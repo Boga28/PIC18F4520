@@ -1,0 +1,378 @@
+CCS PCH C Compiler, Version 5.015, 5967               10-Jul-23 09:36
+
+               Filename:   C:\18F4520\CCS\timerStateMachine\main.lst
+
+               ROM used:   338 bytes (1%)
+                           Largest free fragment is 32232
+               RAM used:   34 (2%) at main() level
+                           34 (2%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 31
+
+*
+0000:  GOTO   0100
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  FF2.5
+004A:  GOTO   0054
+004E:  BTFSC  FF2.2
+0050:  GOTO   0096
+0054:  MOVFF  0E,00
+0058:  MOVFF  0F,01
+005C:  MOVFF  10,02
+0060:  MOVFF  11,03
+0064:  MOVFF  0C,FE9
+0068:  MOVFF  07,FEA
+006C:  BSF    07.7
+006E:  MOVFF  08,FE1
+0072:  MOVFF  09,FE2
+0076:  MOVFF  0A,FD9
+007A:  MOVFF  0B,FDA
+007E:  MOVFF  12,FF3
+0082:  MOVFF  13,FF4
+0086:  MOVFF  14,FFA
+008A:  MOVF   04,W
+008C:  MOVFF  06,FE0
+0090:  MOVFF  05,FD8
+0094:  RETFIE 0
+.................... #include <18F4520.h>   //Kullanilan mikrodenetleyicinin surucusu derleyici uzerinde kaynak dosyasina tanimlanir. 
+.................... //////////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4520 
+....................  
+.................... #list 
+....................  
+....................    
+.................... /*FUSES: cihaza bagli cesitli opsiyonlari ayarlamak icin kullanilir. Mevcut ozellikleri en ustte belirtilir.  
+....................        Konfigurasyon bileri vardir, bu komut ile mikrodenetleyicinin konfigurasyon pinleri ayarlan齬. 
+....................   Yaygin kullanilan cihaz secenekleri: 
+....................       路   LP, XT, HS, RC     :LP dusuk guclu kristal osilator, XT klasik kristal osilator, HS yuksek hizli kristal osilator, RC Direnc/Kondansator osilator 
+....................       路   WDT, NOWDT         :Programin olasi kilitlenmelerde resetlenmesini sa餷ar. WDT dersek bu mod aktif, NOWDT dersek bu mod pasiftir.                     
+....................       路   PROTECT, NOPROTECT :Kod koruma, mikrokontrollerin i鏸ne y黭leyecegin kodlar kopyalananaz demek, NOPROTECT ise kodlar geriye okunup kopyalanabilir demektir.    
+....................       路   PUT, NOPUT   (Power Up Timer): NOPUT, zamanlayicilar kapali demek, yani timer olarak gecen zaman dongulerini kullanmayacagini belirtirsin. 
+....................       路   BROWNOUT, NOBROWNOUT:Dusuk gerilimle program reset, bu ozellik gerilim seviyesi belli bir degerin altina dustugunde, mikrokontrollerin reset atmasidir, 
+....................           genelde NOBROWNOUT modunda tutulur , eyer BROWNOUT olarak kullanilirsa, ani gerilim dalgalanmalarinda sistem surrekli resetlenir. 
+....................       路   INTRC: Internal, dahili osilatoru kullan anlamina gelir.                 
+....................       路   NOMCLR: Master Clear functionality, MCLR girisi PIC'i resetlemek icin kullanilir. Bu fuse yoksa #FUSE MCLR ve MCLR pini 10k ile 5V a  
+.................... Tum #FUSES ozelliklerini kapatmak icin " #FUSES none" kullanilir.                               
+.................... */   
+....................                      
+.................... #FUSES NOWDT,NOLVP,NOCPD,NOWRT,NOMCLR,INTRC 
+....................         
+....................                               
+.................... #include "definitions.h"                                                                                                       
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef unsigned int8   uint8_t;    
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "main.h"                      
+.................... #ifndef MAIN_H      
+.................... #define MAIN_H                   
+.................... #define DELAY 500  
+....................      
+.................... extern uint8_t iSevenSegDispArr[10];   
+.................... extern uint8_t iNumb;  
+.................... extern uint8_t iSayac;   
+....................                      
+.................... #endif //MAIN_H                                 
+....................  
+....................                                                                                                                
+....................                                
+....................  
+.................... #include "delayms.c"                          
+.................... #include <delayms.h>             
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(uint16_t);     
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+....................    
+.................... void delayMsFun(uint16_t msecs)  // Delay function - generates a delay of specified msecs 
+.................... {   uint16_t i,j;  
+....................     for(i=0;i<=msecs;i++){               
+....................       for(j=0;j<197;j++); 
+....................     }                                
+.................... }                                      
+....................  
+.................... #include "ucregisters.h " //State machine  
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................    
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C 
+.................... #byte TRISB = 0x0F93 
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0   
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3  
+.................... #bit  IRCF2 =OSCCON.6 
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER0 INTERRUPT BYTE adresleri     
+.................... #byte RCON = 0x0FD0    //RCON REGISTER  
+.................... #byte INTCON = 0x0FF2  //INTCON REGISTER    
+.................... #byte T0CON  = 0x0FD5  //TIMER0 kontrol kayitcisi 
+.................... #byte TMR0H = 0x0FD7   //                                       
+.................... #byte TMR0L = 0x0FD6   // TIMER0'in 8 bit tasma sayaci kayitcisi       
+....................                                                             
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts   
+....................                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... #bit INTCON_TMR0IE = INTCON.5    // TMR0 Overflow Interrupt Enable bit  
+.................... #bit INTCON_TMR0IF = INTCON.2    // TMR0 Overflow Interrupt Flag bit 
+....................     
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T0CON_TMR0ON = T0CON.7     // Timer0 On/Off Control bit 
+.................... #bit T0CON_T08BIT = T0CON.6     // T08BIT=1, Timer0 8-bit/16-bit Control bit / 8 Bit 
+.................... #bit T0CON_T0CS = T0CON.5       // T0CS=0, Timer0 Clock Source Select bit / internal                              
+.................... #bit T0CON_T0SE = T0CON.4       // Timer0 Source Edge Select bit / T0SE=0, increment on low-to-high transition on T0CKI pin. 
+.................... #bit T0CON_PSA = T0CON.3        // Timer0 Prescaler Assignment bit / PSA=0, Timer0 clock input comes from prescaler output.  
+.................... #bit T0CON_T0PS2 = T0CON.2      // Timer0 Prescaler Select bits  
+.................... #bit T0CON_T0PS1 = T0CON.1      // Timer0 Prescaler Select bits   
+.................... #bit T0CON_T0PS0 = T0CON.0      // Timer0 Prescaler Select bits  
+....................                             
+....................  
+.................... #endif UCREGISTER_H                                                                          
+....................  
+....................                                                                                   
+.................... uint8_t iSevenSegDispArr[10];  
+.................... uint8_t iNumb;  
+.................... uint8_t iSayac;  
+....................                  
+....................          //          union bayraklar 
+....................             //       { 
+....................             //         event_1000ms 
+....................            //        } 
+....................                            
+....................                     
+.................... void setup(void){  
+....................                                                      
+....................    //Setup Osilator 
+....................    IRCF2=1;         
+*
+00C8:  BSF    FD3.6
+....................    IRCF1=1; 
+00CA:  BSF    FD3.5
+....................    IRCF0=1;  
+00CC:  BSF    FD3.4
+....................    //D ve P portlari cikis olarak ayarlanip sifirlandi. 
+....................    TRISB=0x01; 
+00CE:  MOVLW  01
+00D0:  MOVWF  F93
+....................    TRISD=0x00; 
+00D2:  CLRF   F95
+....................    PORTB=0x00; 
+00D4:  CLRF   F81
+....................    PORTD=0x00;    
+00D6:  CLRF   F8C
+....................          
+....................    // Kesmelere izin verildi   
+....................    RCON_IPEN=1; 
+00D8:  BSF    FD0.7
+....................    INTCON_GIE_GIEH=1;                           
+00DA:  BSF    FF2.7
+....................    INTCON_TMR0IE=1;           
+00DC:  BSF    FF2.5
+....................    INTCON_TMR0IF=0;                  
+00DE:  BCF    FF2.2
+....................    INTCON_PEIE=1;       
+00E0:  BSF    FF2.6
+....................       
+....................    //TIMER0 Konfigurasyon                                             
+....................    T0CON_TMR0ON=1;// TIMER0 aktive edildi.                             
+00E2:  BSF    FD5.7
+....................    T0CON_T08BIT=1;// 8 Bit modu secildi. 
+00E4:  BSF    FD5.6
+....................    T0CON_T0CS=0;  // Dahili osilator kullanildi.             
+00E6:  BCF    FD5.5
+....................    T0CON_T0SE=0;        
+00E8:  BCF    FD5.4
+....................    T0CON_PSA=0;   // Olceklemeye izin verildi.  
+00EA:  BCF    FD5.3
+....................    T0CON_T0PS2=1; // 110 = 1:128 olcekleme orani kullanildi.                                                                             
+00EC:  BSF    FD5.2
+....................    T0CON_T0PS1=1; //  ||            
+00EE:  BSF    FD5.1
+....................    T0CON_T0PS0=0; //  ||   
+00F0:  BCF    FD5.0
+....................    TMR0L=57;                           
+00F2:  MOVLW  39
+00F4:  MOVWF  FD6
+00F6:  GOTO   0114 (RETURN)
+....................    //TMR0H    = 0xFB;  
+.................... } 
+....................                      
+.................... #INT_TIMER0                                                            
+.................... void interrupt(){                                  
+....................    //TMR0L, 8 bitlik sayac kesmesi 57'den baslayip 255'e kadar sayar,sonrasinda 0 lanarak sayac kesmesi olusur ve INTCON bayragini 1 yapar. 
+....................    //Goruldugu uzere saniyede 195 kere bit tasar. 255-55+2=198                 
+....................    TMR0L=59;                                            
+*
+0096:  MOVLW  3B
+0098:  MOVWF  FD6
+....................    INTCON_TMR0IF=0;// Kesme bayragi sifirlaniyor.                     
+009A:  BCF    FF2.2
+....................    iSayac++;                                                       
+009C:  INCF   21,F
+....................    if(iSayac>78){ // 78.125 olmasi gerekir. 15ms'lik bir sapma soz konusudur.   
+009E:  MOVF   21,W
+00A0:  SUBLW  4E
+00A2:  BC    00C2
+....................     //  event_1000ms = true; 
+....................       PORTD=iSevenSegDispArr[iNumb];      
+00A4:  CLRF   03
+00A6:  MOVF   20,W
+00A8:  ADDLW  16
+00AA:  MOVWF  FE9
+00AC:  MOVLW  00
+00AE:  ADDWFC 03,W
+00B0:  MOVWF  FEA
+00B2:  MOVFF  FEF,F8C
+....................       iNumb++;                  
+00B6:  INCF   20,F
+....................       if(iNumb==10)                                              
+00B8:  MOVF   20,W
+00BA:  SUBLW  0A
+00BC:  BNZ   00C0
+....................          iNumb=0;         
+00BE:  CLRF   20
+....................       iSayac=0; 
+00C0:  CLRF   21
+....................    }        
+00C2:  BCF    FF2.2
+00C4:  GOTO   0054
+.................... }     
+....................    
+....................        
+.................... void timer0Condition(){     
+....................    if(PORTB_0){  
+*
+0202:  BTFSS  F81.0
+0204:  BRA    020E
+....................       T0CON_TMR0ON=PORTB_0; 
+0206:  BCF    FD5.7
+0208:  BTFSC  F81.0
+020A:  BSF    FD5.7
+....................    }else{             
+020C:  BRA    0214
+....................       T0CON_TMR0ON=PORTB_0; 
+020E:  BCF    FD5.7
+0210:  BTFSC  F81.0
+0212:  BSF    FD5.7
+....................    }      
+0214:  GOTO   0142 (RETURN)
+.................... }                 
+....................       
+.................... #ORG 0x0100,0x0200 
+.................... void main(){                           
+*
+0100:  CLRF   FF8
+0102:  BCF    FD0.7
+0104:  BSF    07.7
+0106:  MOVF   FC1,W
+0108:  ANDLW  C0
+010A:  IORLW  0F
+010C:  MOVWF  FC1
+010E:  MOVLW  07
+0110:  MOVWF  FB4
+....................    setup();  
+0112:  BRA    00C8
+....................    iSevenSegDispArr[0]=0x3F; 
+0114:  MOVLW  3F
+0116:  MOVWF  16
+....................    iSevenSegDispArr[1]=0x06; 
+0118:  MOVLW  06
+011A:  MOVWF  17
+....................    iSevenSegDispArr[2]=0x5B; 
+011C:  MOVLW  5B
+011E:  MOVWF  18
+....................    iSevenSegDispArr[3]=0x4F; 
+0120:  MOVLW  4F
+0122:  MOVWF  19
+....................    iSevenSegDispArr[4]=0x66; 
+0124:  MOVLW  66
+0126:  MOVWF  1A
+....................    iSevenSegDispArr[5]=0x6D; 
+0128:  MOVLW  6D
+012A:  MOVWF  1B
+....................    iSevenSegDispArr[6]=0x7D; 
+012C:  MOVLW  7D
+012E:  MOVWF  1C
+....................    iSevenSegDispArr[7]=0x07; 
+0130:  MOVLW  07
+0132:  MOVWF  1D
+....................    iSevenSegDispArr[8]=0x7F; 
+0134:  MOVLW  7F
+0136:  MOVWF  1E
+....................    iSevenSegDispArr[9]=0x6F;  
+0138:  MOVLW  6F
+013A:  MOVWF  1F
+....................    PORTD=iSevenSegDispArr[0];                                      
+013C:  MOVFF  16,F8C
+....................    while(TRUE){    
+....................     
+....................     
+....................  //  if(  event_1000ms == true) 
+....................    {     
+....................  //     event_1000ms = false; 
+.................... //      display7segment_sur();  
+....................    } 
+....................       timer0Condition();    
+0140:  BRA    0202
+0142:  BRA    0140
+....................    } 
+.................... }           
+....................  
+0144:  SLEEP 
+....................      
+....................      
+.................... //debounce 
+.................... //duruum makinalari - state machine   
+.................... //50ms bir kesmeye gitsin 
+....................  
+....................  
+
+Configuration Fuses:
+   Word  1: C900   INTRC FCMEN IESO
+   Word  2: 1E1E   PUT BROWNOUT BORV21 NOWDT WDT32768
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 0081   STVREN NOLVP NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

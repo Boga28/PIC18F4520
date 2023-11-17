@@ -1,0 +1,6 @@
+#ifndef DS1990A_H                                 
+#define DS1990A_H   
+
+extern uchar_t SlaveROM[2][9];   
+
+#endif // DS1990A_H                               

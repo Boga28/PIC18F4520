@@ -1,0 +1,131 @@
+
+ROM used:   5624/32768 (17%)
+            6242/32768 (19%) including unused fragments
+
+            2.6 Average locations per line
+            11.0 Average locations per statement
+
+RAM used:   377/1536 (25%) at main() level
+            428/1536 (28%) worst case
+
+Stack used: 7 worst case (5 in main + 2 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  171    82  16  main.c
+  840     0   0  ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h
+    9     0   0  definitions.h
+   13     0   0  main.h
+    8     0   0  delayms.h
+  122     0   0  ucregisters.h
+   22     0   0  init.h
+   10     0   0  button.h
+   35     0   0  DS1307.h
+   11     0   0  usart_rs232.h
+   24     0   0  lcd.h
+  129    42   8  lcd.c
+   29    17   3  button.c
+   17     6   1  delayms.c
+  305   167  33  DS1307.c
+   27    12   2  binbcdconv.c
+   10     0   0  binbcdconv.h
+   17     0   0  i2c.h
+   69    38   7  i2c.c
+   16     0   0  DATA.h
+   33    10   2  usart_rs232.c
+  181   138  27  modbusrtu.c
+   70     0   0  modbusrtu.h
+----- -----
+ 2168   512 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     22   0    1   100  1.7  dis_cmd
+0     42   0    3   145  2.6  lcdcmd
+0     14   0    0    17  0.8  twoLinesBCDMode
+0     14   0    0    17  0.8  LinesActive
+0     14   0    0    17  0.8  lcdClear
+0     16   0    0    17  0.8  lcdGoToFirstLine
+0     16   0    0    17  0.8  lcdGoToSecondLine
+0     14   0    0    17  0.8  lcdShiftRight
+0     14   0    0    17  0.8  lcdCursorOff
+0     24   0    1   100  1.7  dis_data
+0     44   0    3   145  2.6  lcddata
+0     56   0    1   207  4.4  LCD_String
+0     18   0    2    88  2.3  delayUsFun
+0     36   0    2   203  5.1  bin2bcd
+0     30   0    2    78  2.3  bcd2bin
+0     20   0    0    88  1.7  i2c_init
+0     12   0    0    52  1.7  _I2C_WAIT
+0     20   0    1    70  2.3  _I2C_Write_Byte
+0     46   0    2   192  4.4  _I2C_Read_Byte
+0      8   0    0    38  1.7  _I2C_Start
+0      8   0    0    38  1.7  _I2C_ReStart
+0      8   0    0    38  1.7  _I2C_Stop
+0     12   0    0    56  1.9  _I2CACK
+0     12   0    0    60  1.4  _I2CNACK
+0     48   0    1   147  3.0  DS1307_Init
+0     74   1    7   422  4.3  ds1307_run
+0    220   2    8  1259  6.8  ds1307_set_date_time
+0     58   1    0             @goto10939
+0    200   2    1   975  6.8  ds1307_get_time
+0     54   0    0             @goto10962
+0    514   5    3  1475  7.2  ds1307_get_date
+0     44   0    0             @const853
+0     32   0    1             @SPRINTF
+0     44   0    3             @DIV88
+0    188   2    6             @PRINTF_D0_855
+0     40   0    3             @PSTRINGCN_855
+0     38   0    2             @PSTRINGR_855
+0     56   0    0             @goto11025
+0    114   1    4   531  6.7  ds1307_write_date
+0    218   2    4   601  3.6  getDayText
+0      6   0    0    14  0.7  getDay
+0      6   0    0    14  0.7  getMonth
+0      6   0    0    14  0.7  getYear
+0    308   3   34   418  6.3  day_of_the_week
+0     70   1    5    90  1.5  @DIV1616
+0     20   0    0    90  1.5  USART_Init
+0     10   0    1    38  1.8  USART_RxCharBuffer
+0     12   0    2    61  1.3  USART_TxCharBuffer
+0    282   3    0             @const896
+0    282   3    0   270  3.6  @const899
+0     80   1    1   318  3.7  modbusRTUrx
+0    436   4    5  1813 13.3  modbusReadReg
+0    252   2    2   933  9.7  modbusWriteSingleReg
+0    446   4    3  1813  9.8  modbusWriteMultipleReg
+0     74   1    2   249  5.0  modbusResponse
+0     20   0    0    33  1.3  clearResponse
+0     26   0    0    35  1.1  @MEMSET
+0     20   0    0    35  1.1  clearQuery
+0    152   1   10   562  8.0  CRC16
+0     60   1    0   646  2.4  setupTimerIOSC
+0     72   1    4   167  2.1  printOn2x16
+0     60   1    0   549  4.8  @const928
+0    156   1    2   549  4.8  interrupt
+0    160   1    1   813  4.8  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               54
+    Statements              512
+    Comments                760
+    Volume (V)              31139
+    Difficulty (D)          186.7
+    Effort to implement (E) 5813721
+    Time to implement (T)   89 hours, 43 minutes
+    Est Delivered Bugs (B)  11
+    Cyclomatic Complexity   93
+    Maintainability (MI)    78
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00006     4  4  
+00008-00094   142  0  
+00096-000FE   102  4  
+00100-00400   160  610  
+00402-07FFE  5216  26526  
+
+
+

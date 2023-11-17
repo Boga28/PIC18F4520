@@ -1,0 +1,29 @@
+#ifndef USART_RS232_H                                                                                               
+#define USART_RS232_H   
+ 
+extern uchar_t rxData[32];
+extern uchar_t txData[32];
+extern uchar_t data_in;
+extern uint8_t rxData_count;  
+
+typedef union{  
+   uint8_t  all;      // Type  kayitciya erismek icin
+   struct{
+      uint8_t _1ms    : 1;  //bit:0, 1ms
+      uint8_t _50ms   : 1;  //bit:1, 50ms
+      uint8_t _100ms  : 1;  //bit:2, 100ms    
+      uint8_t _200ms  : 1;  //bit:3, 200ms                  
+      uint8_t _500ms  : 1;  //bit:4, 500ms 
+      uint8_t _1000ms : 1;  //bit:5, 1000ms 
+      uint8_t reserved     : 2;
+   }stUSARTF;                    
+}unUSARTF_t;   
+extern unUSARTF_t unUSARTF;    
+
+uchar_t USART_RxChar();
+void USART_TxChar();
+void USART_Init();
+void rs232t();    
+                        
+#endif  //USART_RS232_H
+                 

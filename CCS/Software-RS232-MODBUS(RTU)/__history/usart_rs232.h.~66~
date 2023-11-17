@@ -1,0 +1,10 @@
+#ifndef USART_RS232_H                                                                                               
+#define USART_RS232_H   
+ 
+
+uchar_t USART_RxCharBuffer();
+void USART_TxCharBuffer();
+void USART_Init();  
+                                                  
+#endif  //USART_RS232_H
+                 

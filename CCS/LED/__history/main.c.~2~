@@ -1,0 +1,17 @@
+#include <main.h>
+
+void main()
+{
+
+   //Example blinking LED program
+   while(true)
+   {      
+      set_tris_d(0x00);
+      output_d(0x00);
+      output_low(LED); 
+      delay_ms(DELAY);
+      output_high(LED);
+      delay_ms(DELAY); 
+   }
+
+}                                                               

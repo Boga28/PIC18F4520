@@ -1,0 +1,13 @@
+#include "definitions.h"                                                         
+#include "ucregisters.h"      
+                       
+#ifndef MODBUSRTU_H
+#define MODBUSRTU_H  
+#define SLAVEADDRESS 1
+extern uchar_t writeSingle[8]; 
+         
+void modbusRTUrx();
+void modbusWrite();
+void clearCom();              
+
+#endif  //MODBUSRTU_H

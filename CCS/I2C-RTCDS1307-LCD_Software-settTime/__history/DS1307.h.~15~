@@ -1,0 +1,46 @@
+#ifndef DS1307_H                            
+#define DS1307_H   
+
+//TIME CONTROL VIA BUTTON AND LCD     
+typedef union{  
+   uint8_t  all;      // Type  kayitciya erismek icin
+   struct{
+      uint8_t SECOND     : 1;  //bit:0,  
+      uint8_t MINUTE     : 1;  //bit:1,  
+      uint8_t HOUR       : 1;  //bit:2,  
+      uint8_t DAY        : 1;  //bit:3,     
+      uint8_t MONTH      : 1;  //bit:4,                   
+      uint8_t YEAR       : 1;  //bit:5,  
+      uint8_t TRIGGERED  : 1;  //bit:6,  
+      uint8_t SETTLED    : 1;  //bit:,
+   }a;                    
+}date_t;   
+extern date_t DATE_STATUS;  
+
+
+//DS1307 TIME-DATE INFO VARIABLES  
+extern uchar_t sec, min, hrs;
+extern uchar_t day, month, yr, dow;      
+extern uchar_t dayText[4];  
+extern uchar_t DATE_TIME[32];  
+
+
+void DS1307_Init();                                                     
+void ds1307_set_date_time(uchar_t, uchar_t, uchar_t, uchar_t, uchar_t, uchar_t, uchar_t);
+void ds1307_get_date();
+void ds1307_get_time();  
+void getDayText();     
+              
+uchar_t getSec();
+uchar_t getMin(); 
+uchar_t getHour();
+                          
+uchar_t getDay(); 
+uchar_t getMonth(); 
+uchar_t getYear();
+uchar_t getDow();                                                                 
+               
+uint16_t day_of_the_week(uint16_t, uint16_t, uint16_t );                  
+                   
+#endif //DS1307_H                     
+                                      

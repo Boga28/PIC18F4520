@@ -1,0 +1,20 @@
+#include "definitions.h" 
+#include "ucregisters.h"  
+#include "Animation.h"
+#ifndef GLCD_H       
+#define GLCD_H  
+
+void GLCD_Init();   
+void GLCD_Command(uchar_t cmd);
+void GLCD_Char(uchar_t data);
+void GLCD_String();   
+void GLCD_Clear(); 
+
+
+void createImage(const char *); 
+void CS1();
+void CS2();
+                 
+void NOP();
+
+#endif //GLCD_H                           

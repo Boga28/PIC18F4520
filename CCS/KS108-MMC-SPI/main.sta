@@ -1,0 +1,98 @@
+
+ROM used:   3654/32768 (11%)
+            4092/32768 (12%) including unused fragments
+
+            1.8 Average locations per line
+            10.1 Average locations per statement
+
+RAM used:   542/1536 (35%) at main() level
+            579/1536 (38%) worst case
+
+Stack used: 7 worst case (5 in main + 2 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  160    72  20  main.c
+  840     0   0  ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h
+   22     0   0  main.h
+   40     0   0  definitions.h
+    8     0   0  delayms.h
+  141     0   0  ucregisters.h
+   25     0   0  init.h
+   18     5   1  delayms.c
+  393   193  53  sdcard.c
+   41     0   0  sdcard.h
+  150    93  26  glcd.c
+   34     0   0  glcd.h
+  106     0   0  fonts.h
+----- -----
+ 1978   363 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   1    1             @delay_ms1
+0    340   5    3  1871  9.6  sdcard_init
+0    240   3   11   806  8.1  sdcard_read_sector
+0    100   1   12   241  5.3  send_sdcard_command
+0     28   0    0    52  1.6  sdcard_go_idle_state
+0     34   0    0    52  1.6  sdcard_send_if_cond
+0     28   0    0    52  1.6  sdcard_send_app_cmd
+0     30   0    0    52  1.6  sdcard_sd_send_op_cond
+0    136   2    6   442  6.9  sdcard_read_ocr
+0     30   0    0    52  1.6  sdcard_set_blocklen
+0     56   1    1   169  3.7  sdcard_get_r1
+0     78   1    2   281  6.0  sdcard_get_r7
+0      6   0    0    17  0.8  sdcard_select
+0     14   0    0    37  0.6  sdcard_deselect
+0    600   8    0             @const847
+0    188   3    6   601  4.8  GLCD_DrawTop
+0    188   3    6   601  4.8  GLCD_DrawBottom
+0    154   2    7   541  7.2  GLCD_StringCenterOfDisp
+0     92   1    4   127  3.5  GLCD_StringChar
+0     36   0    5             @MUL1616
+0     78   1    0   270  1.9  GLCD_Init
+0     24   0    1   169  1.8  GLCD_Command
+0     20   0    1   108  1.7  GLCD_Char
+0     80   1    3   313  4.2  GLCD_Clear
+0     10   0    0    45  1.4  CS1FUN
+0     10   0    0    45  1.4  CS2FUN
+0      4   0    0     3  0.0  NOP
+0     76   1    0   219  3.8  displayVideoAnimation
+0    134   2    0   304  5.3  readSectorData
+0     28   0    0             @MEMSET
+0     18   0    0             @const894
+0     44   1    3             @PSTRINGCN_57600_31766_31767
+0    182   2    9             @PRINTF_LU_57600_31766_31767
+0     80   1    0   290  3.7  MAIN
+0    104   1    2   348  4.7  timer1_interrupt
+0     72   1    5   505  2.4  @DIV1616
+0     50   1    0   505  2.4  setupTimerIOSC
+0     24   0    0    76  2.1  initMMC
+0     10   0    0             @const905
+0     36   0    2     5  1.0  @PSTRINGC_57600_31766_31767
+0      6   0    0     5  1.0  WDTreset
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               33
+    Statements              363
+    Comments                628
+    Volume (V)              16613
+    Difficulty (D)          111.2
+    Effort to implement (E) 1847344
+    Time to implement (T)   28 hours, 31 minutes
+    Est Delivered Bugs (B)  5
+    Cyclomatic Complexity   44
+    Maintainability (MI)    122
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00006     4  4  
+00008-00094   142  0  
+00096-000FE   106  0  
+00100-00300    80  434  
+00302-07FFE  3322  28676  
+
+
+

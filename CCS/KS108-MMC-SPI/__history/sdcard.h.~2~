@@ -1,0 +1,7 @@
+#ifndef _sd_card_h  
+#define _sd_card_h
+
+#include<string.h>
+#include<stdlib.h>   
+
+#endif

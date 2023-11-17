@@ -1,0 +1,58 @@
+
+ROM used:   500/32768 (2%)
+            500/32768 (2%) including unused fragments
+
+            0.5 Average locations per line
+            8.1 Average locations per statement
+
+RAM used:   25/1536 (2%) at main() level
+            34/1536 (2%) worst case
+
+Stack used: 4 worst case (1 in main + 3 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  110    56  90  main.c
+   19     0   0  main.h
+  840     0   0  ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h
+   10     0   0  definitions.h
+   34     0   0  ucregisters.h
+    8     0   0  delayms.h
+   18     6  10  delayms.c
+----- -----
+ 1039    62 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     28   3    5   101  2.8  delayUsFun
+0     20   2    0   136  1.8  setup
+0     20   2    0   113  1.7  InitSoftUart
+0    134  13    3   411  6.6  UART_Recieve
+0     90   9    3   340  6.1  UART_Transmit
+0      6   1    0     5  1.0  WDTreset
+0     28   3    0   141  2.2  external_RB0
+0     28   3    0    50  1.3  MAIN
+ Inline         0    50  1.3  @cinit1
+
+Program metrics:
+    Functions               9
+    Statements              62
+    Comments                185
+    Volume (V)              2149
+    Difficulty (D)          24.9
+    Effort to implement (E) 53582
+    Time to implement (T)   50 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   6
+    Maintainability (MI)    145
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00094   142  0  
+00096-07FFE   354  32264  
+
+
+

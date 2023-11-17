@@ -1,0 +1,4 @@
+>>> Warning 202 "C:\18F4520\CCS\dump\delayms.c" Line 13(13,14): Variable never used:   j
+      Memory usage:   ROM=2%      RAM=2% - 2%
+      0 Errors,  1 Warnings.
+Build Successful.

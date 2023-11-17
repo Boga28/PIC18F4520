@@ -1,0 +1,21 @@
+#ifndef UCREGISTER_H
+#define UCREGISTER_H
+  
+#byte TRISD = 0x0F95
+#byte PORTD = 0x0F83
+
+#byte TRISB = 0x0F93
+#byte PORTB = 0x0F81  
+
+//TIMER0 INTERRUPT
+        
+#byte T0CON  = 0x0FD5  //TIMER0 
+#byte INTCON = 0x0FF2  //INTCON REGISTER   
+#byte RCON = 0x0FD0    //RCON REGISTER   
+
+                      
+
+#bit IPEN = RCON.7  // Enable priority levels on interrupts
+#bit test = INTCON.2                           
+
+#endif UCREGISTER_H                                                                         

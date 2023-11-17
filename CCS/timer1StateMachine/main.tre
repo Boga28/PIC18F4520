@@ -1,0 +1,56 @@
+ÀÄmain
+   ÃÄMAIN  0/124  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetup  0/66  Ram=0
+   ³  ÃÄprintOn2x16  0/82  Ram=4
+   ³  ³  ÃÄdelayUsFun  0/14  Ram=2
+   ³  ³  ÃÄtwoLinesBCDMode  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÃÄdis_cmd  0/18  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³  ³     ÀÄdis_cmd  0/18  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLinesActive  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdCursorOff  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdShiftRight  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdClear  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄ@const759  0/60  Ram=0
+   ³  ³  ÃÄLCD_Custom_Char  0/58  Ram=5
+   ³  ³  ³  ÃÄlcdcmd  0/34  Ram=3
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÀÄlcddata  0/34  Ram=3
+   ³  ³  ³     ÃÄdis_data  0/18  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³  ³     ÀÄdis_data  0/18  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLCD_Custom_Char  0/58  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄLCD_String  0/74  Ram=2
+   ³  ³     ÃÄlcdGoToFirstLine  0/10  Ram=0
+   ³  ³     ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³     ³     ÀÄ*
+   ³  ³     ÃÄlcdGoToSecondLine  0/10  Ram=0
+   ³  ³     ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³     ³     ÀÄ*
+   ³  ³     ÃÄlcddata  0/34  Ram=3
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄlcddata  0/34  Ram=3
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÀÄlcddata  0/34  Ram=3
+   ³  ³        ÀÄ*
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÃÄLCD_String  0/74  Ram=2
+   ³  ³  ÀÄ*
+   ³  ÀÄbutton_debounce  0/68  Ram=3
+   ³     ÀÄtest_bit  0/36  Ram=3
+   ÀÄinterrupt  0/116  Ram=2
+      ÃÄ@DIV1616  0/66  Ram=5
+      ÀÄ@DIV1616  0/66  Ram=5

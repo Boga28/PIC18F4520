@@ -1,0 +1,13 @@
+16: Write Multiple Registers
+File Version=2
+Slave ID=1
+Address=0
+Quantity=7
+Display format=unsigned
+0=20
+1=14
+2=20
+3=4
+4=25
+5=8
+6=23

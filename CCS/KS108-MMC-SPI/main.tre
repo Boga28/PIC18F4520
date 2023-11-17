@@ -1,0 +1,134 @@
+ÀÄmain
+   ÃÄMAIN  0/80  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/50  Ram=0
+   ³  ÃÄGLCD_Init  0/78  Ram=0
+   ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³  ³  ³  ÃÄNOP  0/4  Ram=0
+   ³  ³  ³  ÃÄNOP  0/4  Ram=0
+   ³  ³  ³  ÃÄNOP  0/4  Ram=0
+   ³  ³  ³  ÃÄNOP  0/4  Ram=0
+   ³  ³  ³  ÃÄNOP  0/4  Ram=0
+   ³  ³  ³  ÀÄNOP  0/4  Ram=0
+   ³  ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄGLCD_Command  0/24  Ram=1
+   ³  ³     ÀÄ*
+   ³  ÃÄinitMMC  0/24  Ram=0
+   ³  ³  ÃÄsdcard_init  0/340  Ram=3
+   ³  ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ³  ÃÄsdcard_select  0/6  Ram=0
+   ³  ³  ³  ÃÄsdcard_go_idle_state  0/28  Ram=0
+   ³  ³  ³  ³  ÃÄsend_sdcard_command  0/100  Ram=12
+   ³  ³  ³  ³  ÀÄsdcard_get_r1  0/56  Ram=1
+   ³  ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³  ³  ³  ÃÄsdcard_select  0/6  Ram=0
+   ³  ³  ³  ÃÄsdcard_send_if_cond  0/34  Ram=0
+   ³  ³  ³  ³  ÃÄsend_sdcard_command  0/100  Ram=12
+   ³  ³  ³  ³  ÀÄsdcard_get_r7  0/78  Ram=2
+   ³  ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³  ³  ³  ÃÄsdcard_select  0/6  Ram=0
+   ³  ³  ³  ÃÄsdcard_send_app_cmd  0/28  Ram=0
+   ³  ³  ³  ³  ÃÄsend_sdcard_command  0/100  Ram=12
+   ³  ³  ³  ³  ÀÄsdcard_get_r1  0/56  Ram=1
+   ³  ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³  ³  ³  ÃÄsdcard_sd_send_op_cond  0/30  Ram=0
+   ³  ³  ³  ³  ÃÄsend_sdcard_command  0/100  Ram=12
+   ³  ³  ³  ³  ÀÄsdcard_get_r1  0/56  Ram=1
+   ³  ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³  ³  ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³  ³  ³  ÃÄsdcard_select  0/6  Ram=0
+   ³  ³  ³  ÃÄsdcard_read_ocr  0/136  Ram=6
+   ³  ³  ³  ³  ÀÄsend_sdcard_command  0/100  Ram=12
+   ³  ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³  ³  ³  ÃÄsdcard_select  0/6  Ram=0
+   ³  ³  ³  ÃÄsdcard_set_blocklen  0/30  Ram=0
+   ³  ³  ³  ³  ÃÄsend_sdcard_command  0/100  Ram=12
+   ³  ³  ³  ³  ÀÄsdcard_get_r1  0/56  Ram=1
+   ³  ³  ³  ÀÄsdcard_deselect  0/14  Ram=0
+   ³  ³  ÀÄ@PSTRINGC_57600_31766_31767  0/36  Ram=2
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÀÄdisplayVideoAnimation  0/76  Ram=0
+   ³     ÃÄreadSectorData  0/134  Ram=0
+   ³     ³  ÃÄ@MEMSET  0/28  Ram=0
+   ³     ³  ÃÄsdcard_read_sector  0/240  Ram=11
+   ³     ³  ³  ÃÄsdcard_select  0/6  Ram=0
+   ³     ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³     ³  ³  ÃÄsdcard_select  0/6  Ram=0
+   ³     ³  ³  ÃÄsend_sdcard_command  0/100  Ram=12
+   ³     ³  ³  ÃÄsdcard_deselect  0/14  Ram=0
+   ³     ³  ³  ÀÄsdcard_deselect  0/14  Ram=0
+   ³     ³  ÃÄGLCD_Clear  0/80  Ram=3
+   ³     ³  ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ³  ÀÄ*
+   ³     ³  ³  ÃÄGLCD_Char  0/20  Ram=1
+   ³     ³  ³  ³  ÃÄNOP  0/4  Ram=0
+   ³     ³  ³  ³  ÀÄNOP  0/4  Ram=0
+   ³     ³  ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ³  ÀÄ*
+   ³     ³  ³  ÀÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³     ÀÄ*
+   ³     ³  ÃÄ@PSTRINGCN_57600_31766_31767  0/44  Ram=3
+   ³     ³  ÀÄ@PRINTF_LU_57600_31766_31767  0/182  Ram=9
+   ³     ÃÄGLCD_DrawTop  0/188  Ram=6
+   ³     ³  ÃÄCS1FUN  0/10  Ram=0
+   ³     ³  ³  ÀÄNOP  0/4  Ram=0
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Char  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄCS2FUN  0/10  Ram=0
+   ³     ³  ³  ÀÄNOP  0/4  Ram=0
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÀÄGLCD_Char  0/20  Ram=1
+   ³     ³     ÀÄ*
+   ³     ÃÄreadSectorData  0/134  Ram=0
+   ³     ³  ÀÄ*
+   ³     ÃÄGLCD_DrawBottom  0/188  Ram=6
+   ³     ³  ÃÄCS1FUN  0/10  Ram=0
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Char  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄCS2FUN  0/10  Ram=0
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄGLCD_Command  0/24  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÀÄGLCD_Char  0/20  Ram=1
+   ³     ³     ÀÄ*
+   ³     ÀÄGLCD_StringCenterOfDisp  0/154  Ram=7
+   ³        ÃÄCS1FUN  0/10  Ram=0
+   ³        ³  ÀÄ*
+   ³        ÃÄGLCD_Command  0/24  Ram=1
+   ³        ³  ÀÄ*
+   ³        ÃÄGLCD_Command  0/24  Ram=1
+   ³        ³  ÀÄ*
+   ³        ÃÄGLCD_StringChar  0/92  Ram=4
+   ³        ³  ÃÄ@MUL1616  0/36  Ram=5
+   ³        ³  ÃÄ@const847  0/600  Ram=0
+   ³        ³  ÀÄGLCD_Char  0/20  Ram=1
+   ³        ³     ÀÄ*
+   ³        ÃÄCS2FUN  0/10  Ram=0
+   ³        ³  ÀÄ*
+   ³        ÃÄGLCD_Command  0/24  Ram=1
+   ³        ³  ÀÄ*
+   ³        ÀÄGLCD_Command  0/24  Ram=1
+   ³           ÀÄ*
+   ÀÄtimer1_interrupt  0/104  Ram=2
+      ÀÄ@DIV1616  0/72  Ram=5

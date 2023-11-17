@@ -1,0 +1,13 @@
+#include <main.h>
+
+void main(){
+   set_tris_d(0x00);
+   output_b(0x00);   
+   
+   //aadsd 
+   while(true){      
+      delay_ms(DELAY);            
+                            
+   }   
+
+}                                                               

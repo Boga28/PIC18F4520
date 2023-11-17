@@ -1,0 +1,42 @@
+#ifndef UCREGISTER_H
+#define UCREGISTER_H
+           
+//Control PINS
+#byte TRISB   = 0x0F93
+#byte PORTB   = 0x0F81
+
+#bit  UART_TX_DIR = TRISB.0   //TX
+#bit  UART_RX_DIR = TRISB.1   //RX
+                              
+#bit  UART_TX = PORTB.0       //TX   
+#bit  UART_RX = PORTB.1       //RX  
+                 
+                         
+//OSILATOR - 8MHZ
+#byte OSCCON = 0x0FD3       
+#bit  IRCF2 =OSCCON.6  
+#bit  IRCF1 =OSCCON.5                     
+#bit  IRCF0 =OSCCON.4 
+       
+//TIMER1 INTERRUPT BYTE adresleri
+#byte ADCON1 = 0x0FC1    
+#byte RCON = 0x0FD0    // RCON REGISTER
+#byte INTCON = 0x0FF2  // INTCON REGISTER
+#byte INTCON2=0x0FF1
+#byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                         
+#byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak)
+#byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi 
+//   #############TIMER 1########                                                           
+//# RCON  :: RCON REGISTER // Bit Adresleri                                    
+#bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                   
+//# INTCON  :: INTCON REGISTER // Bit Adresleri      
+#bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit 
+#bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts
+//# IPR1  :: IPR1 REGISTER // Bit Adresleri 
+#bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                        
+//# PIR1  :: PIR1 REGISTER // Bit Adresleri
+#bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit    
+//# PIE1  :: PIE1 REGISTER // Bit Adresleri 
+#bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit     
+                    
+#endif UCREGISTER_H                                                                         

@@ -1,0 +1,18 @@
+#include "definitions.h" 
+#include "ucregisters.h" 
+#ifndef SPI_H
+#define SPI_H 
+// macros         
+#define PORT_SPI            PORTC 
+#define CARD_CS_PIN         PIN_C2
+#define CS_ENABLE()         PORT_SPI &= ~(1 << CARD_CS_PIN)
+#define CS_DISABLE()        PORT_SPI |= (1 << CARD_CS_PIN)  
+              
+void SPI_Master_Init();   
+uint8_t SPI_transfer(uint8_t); 
+void CS_ENABLE(); 
+void CS_DISABLE();   
+
+
+                    
+#endif  //SPI_H   

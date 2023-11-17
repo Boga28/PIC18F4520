@@ -1,0 +1,286 @@
+
+////////////////////////////////////////////////////////////////////////////////
+///                               DS1307.C                                   ///
+///                     Driver for Real Time Clock                           ///
+///                                                                          ///
+/// ds1307_init() - Enable oscillator without clearing the seconds register -///
+///                 used when PIC loses power and DS1307 run from 3V BAT     ///
+///               - Disable squarewave output                                ///
+///                                                                          ///
+/// ds1307_set_date_time(day,mth,year,dow,hour,min,sec)  Set the date/time   ///
+///                                                                          ///
+/// ds1307_get_date(day,mth,year,dow)               Get the date             ///
+///                                                                          ///
+/// ds1307_get_time(hr,min,sec)                     Get the time             ///
+///                                                                          ///
+////////////////////////////////////////////////////////////////////////////////
+
+                                                                                             
+#include "binbcdconv.c"  
+#include "DS1307.h"  
+#include "i2c.h" 
+#include "i2c.c"  
+#include "DATA.h"  
+                                       
+// START(0) <--------------0xD - 13 is adres of DS1307----------------->  <-R/W->                  <-DATA->    ACK    STOP(1) 
+//|------| |------| |------| |------| |------| |------| |------| |------| |------|       |------|  |------| |------| |------|  
+//|  S   | |   1  |-|   1  |-|   0  |-|   1  |-|   0  |-|   0  |-|   0  |-|   0  |       |   0  |  |nx8BIT| |   0  | |  P   |   
+//|------| |------| |------| |------| |------| |------| |------| |------| |------|       |------|  |------| |------| |------|   
+//          7.Bit    6.Bit    5.Bit    4.Bit    3.Bit    2.Bit    1.Bit    0.Bit           ACK                      
+                        
+uchar_t sec, min, hrs;
+uchar_t day, month, yr, dow;         
+uchar_t dayText[4]; 
+uchar_t timeSwitchPosition;
+uchar_t DATE_TIME[32];
+
+void DS1307_Init(){  
+    _I2C_Start();         
+    while(_I2C_Write_Byte(0xD0 + 0) == 1)// Wait until device is free
+    {   _I2C_ReStart();   } 
+    _I2C_Write_Byte(0x07);          // Select the Ds1307 ControlRegister to configure Ds1307
+    _I2C_Write_Byte(0x00);          // Write 0x00 to Control register to disable SQW-Out      
+    _I2C_Stop();                // Stop I2C communication after initilizing DS1307
+    timeSwitchPosition=0;
+ }                                                              
+       
+void ds1307_run(uchar_t day_t, uchar_t mth_t, uchar_t year_t, uchar_t dow_t, uchar_t hr_t, uchar_t min_t, uchar_t sec_t, uchar_t timeSwitchPositionn){ 
+   timeSwitchPosition = timeSwitchPositionn;
+   if(timeSwitchPosition>=0 && timeSwitchPosition<=10){ 
+      ds1307_set_date_time(day_t, mth_t, year_t, dow_t, hr_t, min_t, sec_t);
+   } 
+   else if(timeSwitchPosition>=11 && timeSwitchPosition<=19){ 
+      ds1307_get_time();    
+   }
+   else if(timeSwitchPosition>=20 && timeSwitchPosition<=29){
+      ds1307_get_date();        
+   }
+}                                                                                                                         
+
+void ds1307_set_date_time(uchar_t day_t, uchar_t mth_t, uchar_t year_t, uchar_t dow_t, uchar_t hr_t, uchar_t min_t, uchar_t sec_t){     
+   switch(timeSwitchPosition){
+   case 0:
+        _I2C_Start();                         // I2C write address 
+        timeSwitchPosition++; 
+   break; 
+     
+   case 1: 
+        while(_I2C_Write_Byte(0xD0 + 0) == 1) // Wait until device is free 
+        {   _I2C_ReStart();   }   
+        timeSwitchPosition++; 
+   break;   
+   
+   case 2: 
+        _I2C_Write_Byte(0x00);                // Start at REG 0 - Seconds  
+        timeSwitchPosition++; 
+   break; 
+   
+   case 3:  
+        sec_t &= 0x7F;
+        _I2C_Write_Byte(bin2bcd(sec_t));      // REG 0  
+        timeSwitchPosition++; 
+   break;   
+   
+   case 4: 
+        min_t &= 0x7F;
+        _I2C_Write_Byte(bin2bcd(min_t));      // REG 1  
+        timeSwitchPosition++; 
+   break;    
+   
+   case 5: 
+        hr_t &= (0x7F|0x40);  //format 24H 
+        _I2C_Write_Byte(bin2bcd(hr_t));       // REG 2 
+        timeSwitchPosition++; 
+   break; 
+   
+   case 6:
+        _I2C_Write_Byte(bin2bcd(dow_t));      // REG 3 
+        timeSwitchPosition++; 
+   break;   
+   
+   case 7: 
+       _I2C_Write_Byte(bin2bcd(day_t));      // REG 4  
+       timeSwitchPosition++; 
+   break;  
+   
+   case 8: 
+       _I2C_Write_Byte(bin2bcd(mth_t));      // REG 5  
+       timeSwitchPosition++; 
+   break;   
+   
+   case 9:
+       _I2C_Write_Byte(bin2bcd(year_t));     // REG 6 
+       timeSwitchPosition++; 
+   break;
+   
+   case 10:
+       _I2C_Stop();        
+       timeSwitchPosition++; 
+   break;           
+  }           
+}                             
+   
+void ds1307_get_time(){ 
+ switch(timeSwitchPosition){
+   case 11:
+        _I2C_Start();                         // I2C write address 
+        timeSwitchPosition++; 
+   break; 
+     
+   case 12: 
+        while(_I2C_Write_Byte(0xD0 + 0) == 1)   // Wait until device is free
+        {   _I2C_ReStart();   }    
+        timeSwitchPosition++; 
+   break;   
+   
+   case 13: 
+        _I2C_Write_Byte(0x00);                  // Start at REG 3 - Day of week  
+        timeSwitchPosition++; 
+   break; 
+   
+   case 14:  
+        _I2C_ReStart(); 
+        timeSwitchPosition++; 
+   break;   
+   
+   case 15: 
+        _I2C_Write_Byte(0xD0 + 1);  
+        timeSwitchPosition++; 
+   break;    
+   
+   case 16:                
+        sec = bcd2bin(_I2C_Read_Byte(0) & 0x7F); 
+        sec = timeDateReadData[0]; 
+        timeSwitchPosition++;    
+   break; 
+   
+   case 17:
+        min = bcd2bin(_I2C_Read_Byte(0) & 0x7F); 
+        min = timeDateReadData[1]; 
+        timeSwitchPosition++; 
+   break;   
+                               
+   case 18:   
+        hrs = bcd2bin(_I2C_Read_Byte(1) & 0x7F); 
+         timeDateReadData[2] = hrs;
+        timeSwitchPosition++; 
+   break;  
+   
+   case 19: 
+        _I2C_Stop();   
+        timeSwitchPosition++; 
+   break;  
+
+  }                   
+}                                                    
+
+void ds1307_get_date(){
+   switch(timeSwitchPosition){
+   case 20:
+        _I2C_Start();                         // I2C write address 
+        timeSwitchPosition++; 
+   break;     
+     
+   case 21: 
+        while(_I2C_Write_Byte(0xD0 + 0) == 1)   // Wait until device is free
+        {   _I2C_ReStart();   } 
+        timeSwitchPosition++; 
+   break;   
+               
+   case 22: 
+        _I2C_Write_Byte(0x03);                  // Start at REG 3 - Day of week  
+        timeSwitchPosition++; 
+   break; 
+   
+   case 23:  
+        _I2C_ReStart(); 
+        timeSwitchPosition++; 
+   break;   
+   
+   case 24: 
+        _I2C_Write_Byte(0xD0 + 1);  
+        timeSwitchPosition++; 
+   break;    
+   
+   case 25: 
+        // lecture DS1307 retourne (une valeur binaire codee BCD
+         // ex retourne 19 ou 0x13   l'an 13                 
+        dow    = bcd2bin(_I2C_Read_Byte(0) & 0x07);   // REG 3 
+        timeSwitchPosition++; 
+   break; 
+   
+   case 26:
+        day    = bcd2bin(_I2C_Read_Byte(0) & 0x3F);   // REG 4 
+         timeDateReadData[4] = day; 
+        timeSwitchPosition++; 
+   break;   
+   
+   case 27:
+        month  = bcd2bin(_I2C_Read_Byte(0) & 0x1F);   // REG 5 
+        timeDateReadData[5] = month; 
+   
+        timeSwitchPosition++;   
+   break;  
+   
+   case 28: 
+        yr     = bcd2bin(_I2C_Read_Byte(1));    // REG 6
+        timeDateReadData[6] = yr; 
+        timeSwitchPosition++; 
+   break;  
+   
+   case 29: 
+       _I2C_Stop(); 
+       getDayText(); 
+       timeDateReadData[3] = day_of_the_week(getYear(),getMonth(),getDay());  
+       sprintf(DATE_TIME,"  \%02d : \%02d : \%02d   %s - \%02d/\%02d/\%02d",hrs,min,sec,dayText,day,month,yr);       
+       memcpy(strLCD,DATE_TIME,32);
+       timeSwitchPosition=11; 
+   break;   
+  }           
+}     
+
+        
+           
+      
+void getDayText(){                          
+   switch(day_of_the_week(getYear(),getMonth(),getDay())){
+     case 0: memcpy(dayText,"Sun",3); break;
+     case 1: memcpy(dayText,"Mon",3); break;
+     case 2: memcpy(dayText,"Tue",3); break;
+     case 3: memcpy(dayText,"Wed",3); break;
+     case 4: memcpy(dayText,"Thu",3); break;
+     case 5: memcpy(dayText,"Fri",3); break;
+     case 6: memcpy(dayText,"Sat",3); break;
+   } 
+}   
+
+uchar_t getSec(){
+   return sec;  
+} 
+uchar_t getMin(){
+   return min;  
+}  
+uchar_t getHour(){                    
+   return hrs;
+}  
+uchar_t getDow(){
+   return dow;  
+}  
+uchar_t getDay(){
+   return day;  
+} 
+uchar_t getMonth(){
+   return month;  
+}  
+uchar_t getYear(){
+   return yr;  
+}                                           
+// <-------------      (0-7, Start Sunday)       -----------> 
+uint16_t day_of_the_week(uint16_t Y, uint16_t M, uint16_t D) { 
+   uint16_t days[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 }; 
+   if (M < 3) 
+      Y--;        
+   return (Y + Y / 4 - Y / 100 + Y / 400 + days[M - 1] + D) % 7; 
+} 
+
+                                                                                                               

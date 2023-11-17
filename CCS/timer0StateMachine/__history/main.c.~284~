@@ -1,0 +1,95 @@
+#include <18F4520.h>   //Kullanilan mikrodenetleyicinin surucusu derleyici uzerinde kaynak dosyasina tanimlanir.
+  
+/*FUSES: cihaza bagli cesitli opsiyonlari ayarlamak icin kullanilir. Mevcut ozellikleri en ustte belirtilir. 
+       Konfigurasyon bileri vardir, bu komut ile mikrodenetleyicinin konfigurasyon pinleri ayarlan齬.
+  Yaygin kullanilan cihaz secenekleri:
+      路   LP, XT, HS, RC     :LP dusuk guclu kristal osilator, XT klasik kristal osilator, HS yuksek hizli kristal osilator, RC Direnc/Kondansator osilator
+      路   WDT, NOWDT         :Programin olasi kilitlenmelerde resetlenmesini sa餷ar. WDT dersek bu mod aktif, NOWDT dersek bu mod pasiftir.                    
+      路   PROTECT, NOPROTECT :Kod koruma, mikrokontrollerin i鏸ne y黭leyecegin kodlar kopyalananaz demek, NOPROTECT ise kodlar geriye okunup kopyalanabilir demektir.   
+      路   PUT, NOPUT   (Power Up Timer): NOPUT, zamanlayicilar kapali demek, yani timer olarak gecen zaman dongulerini kullanmayacagini belirtirsin.
+      路   BROWNOUT, NOBROWNOUT:Dusuk gerilimle program reset, bu ozellik gerilim seviyesi belli bir degerin altina dustugunde, mikrokontrollerin reset atmasidir,
+          genelde NOBROWNOUT modunda tutulur , eyer BROWNOUT olarak kullanilirsa, ani gerilim dalgalanmalarinda sistem surrekli resetlenir.
+      路   INTRC: Internal, dahili osilatoru kullan anlamina gelir.                
+      路   NOMCLR: Master Clear functionality, MCLR girisi PIC'i resetlemek icin kullanilir. Bu fuse yoksa #FUSE MCLR ve MCLR pini 10k ile 5V a 
+Tum #FUSES ozelliklerini kapatmak icin " #FUSES none" kullanilir.                              
+*/  
+                    
+#FUSES NOWDT,NOLVP,NOCPD,NOWRT,NOMCLR,INTRC
+       
+                             
+#include "definitions.h"                                                                                                      
+#include "main.h"                     
+#include "delayms.c"                         
+#include "ucregisters.h " //State machine 
+                                                                                 
+const uint8_t iSevenSegDispArr[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};    
+uint8_t iNumb; 
+uint8_t iSayac;
+                    
+void setup(void){
+
+   //Setup Osilator
+   IRCF2=1;        
+   IRCF1=1;
+   IRCF0=1; 
+   //D ve P portlari cikis olarak ayarlanip sifirlandi.
+   TRISB=0x01;
+   TRISD=0x00;
+   PORTB=0x00;
+   PORTD=0x00;   
+        
+   // Kesmelere izin verildi  
+   RCON_IPEN=1;
+   INTCON_GIE_GIEH=1;                          
+   INTCON_TMR0IE=1;          
+   INTCON_TMR0IF=0;                 
+   INTCON_PEIE=1;      
+     
+   //TIMER0 Konfigurasyon                                            
+   T0CON_TMR0ON=1;// TIMER0 aktive edildi.                            
+   T0CON_T08BIT=1;// 8 Bit modu secildi.
+   T0CON_T0CS=0;  // Dahili osilator kullanildi.            
+   T0CON_T0SE=0;       
+   T0CON_PSA=0;   // Olceklemeye izin verildi. 
+   T0CON_T0PS2=1; // 110 = 1:128 olcekleme orani kullanildi.                                                                            
+   T0CON_T0PS1=1; //  ||           
+   T0CON_T0PS0=0; //  ||  
+   TMR0L=57; 
+   //TMR0H    = 0xFB; 
+}
+                    
+#INT_TIMER0                                                           
+void interrupt(){                                 
+      iSayac++;                                   
+      if(iSayac>78){ // 78.125 olmasi gerekir. 15ms'lik bir sapma soz konusudur.
+         PORTD=iSevenSegDispArr[iNumb]; 
+         iNumb++;                 
+      if(iNumb==10)                                             
+         iNumb=0;        
+      iSayac=0;
+   }     
+   //TMR0L, 8 bitlik sayac kesmesi 57'den baslayip 255'e kadar sayar,sonrasinda 0 lanarak sayac kesmesi olusur ve INTCON bayragini 1 yapar.
+   //Goruldugu uzere saniyede 195 kere bit tasar. 255-55+2=198                
+   TMR0L=57;                           
+   //TMR0H=0xFB;                 
+   INTCON_TMR0IF=0;// Kesme bayragi sifirlaniyor.                     
+}    
+
+
+void timer0Condition(){    
+   if(PORTB_0){
+   T0CON_TMR0ON=PORTB_0;
+   }else{                 
+   T0CON_TMR0ON=PORTB_0;
+   }
+}                
+
+#ORG 0x0100,0x0200
+void main(){                          
+   setup();                         
+   PORTD=iSevenSegDispArr[0];                               
+               
+   while(TRUE){ 
+      timer0Condition();
+   }
+}                          

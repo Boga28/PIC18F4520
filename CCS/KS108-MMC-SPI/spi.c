@@ -1,0 +1,33 @@
+#include "spi.h" 
+#ifndef SPI_C
+#define SPI_C       
+            
+
+
+void SPI_Master_Init(){   
+  SSPCON1 = 0x14; 
+  SSPSTAT = 0x80;  
+  
+  CS_DIR  = 1; // CS  -> Input                                                                                 
+  SDO_DIR = 0; // SDO -> Output
+  SDI_DIR = 1; // SDI -> Input          
+  CLK_DIR = 0; // SCK -> Output
+  CS_DIR  = 0; // CS  -> Output     
+}                                                  
+uint8_t SPI_transfer(uint8_t data){ 
+   SSPBUF = data;
+   while(BF); 
+   return SSPBUF;    
+}
+      
+void CS_ENABLE(){
+  CS_DIR  = 0;
+  CS      = 1;
+}              
+
+void CS_DISABLE(){  
+  CS_DIR  = 0;
+  CS      = 0;
+}                
+      
+#endif  //SPI_H   

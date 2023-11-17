@@ -1,0 +1,17 @@
+
+#ifndef I2C_H
+#define I2C_H 
+#include "definitions.h"   
+
+void I2CIdle();            
+void _I2C_Start(void);       
+void _I2C_ReStart(void);  
+void _I2C_Stop(void);  
+void I2CACK(uchar_t);     
+void _I2C_Write_Byte(uchar_t);
+char _I2C_Read_Byte(char);          
+
+                  
+
+              
+#endif //I2C_H     

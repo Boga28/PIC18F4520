@@ -1,0 +1,36 @@
+#ifndef UCREGISTER_H
+#define UCREGISTER_H
+  
+#byte TRISD = 0x0F95                     
+#byte PORTD = 0x0F8C  
+
+#byte TRISB = 0x0F93
+#byte PORTB = 0x0F81  
+
+//TIMER0 INTERRUPT
+#byte RCON = 0x0FD0    //RCON REGISTER                 
+#byte INTCON = 0x0FF2  //INTCON REGISTER 
+#byte T0CON  = 0x0FD5  //TIMER0
+#byte TMR0H = 0x0FD7   //Timer0 registerina 4 ms'de bir kesme olusturacak deger yukleniyor  
+                                                           
+//# RCON  :: RCON REGISTER                       
+#bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts  
+
+//# INTCON  :: INTCON REGISTER   
+#bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit 
+#bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts
+#bit INTCON_TMR0IE = INTCON.5    // TMR0 Overflow Interrupt Enable bit 
+#bit INTCON_TMR0IF = INTCON.2    // TMR0 Overflow Interrupt Flag bit
+
+//#T0CON  :: TIMER0 CONTROL REGISTER
+#bit T0CON_TMR0ON = T0CON.7     // Timer0 On/Off Control bit
+#bit T0CON_T08BIT = T0CON.6     // T08BIT=1, Timer0 8-bit/16-bit Control bit / 8 Bit
+#bit T0CON_T0CS = T0CON.5       // T0CS=0, Timer0 Clock Source Select bit / internal                             
+#bit T0CON_T0SE = T0CON.4       // Timer0 Source Edge Select bit / T0SE=0, increment on low-to-high transition on T0CKI pin.
+#bit T0CON_PSA = T0CON.3        // Timer0 Prescaler Assignment bit / PSA=0, Timer0 clock input comes from prescaler output. 
+#bit T0CON_T0PS2 = T0CON.2      // Timer0 Prescaler Select bits 
+#bit T0CON_T0PS1 = T0CON.1      // Timer0 Prescaler Select bits  
+#bit T0CON_T0PS0 = T0CON.0      // Timer0 Prescaler Select bits 
+                           
+
+#endif UCREGISTER_H                                                                         

@@ -1,0 +1,151 @@
+ÀÄmain
+   ÃÄMAIN  0/88  Ram=1
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/60  Ram=0
+   ³  ÃÄprintOn2x16  0/72  Ram=4
+   ³  ³  ÃÄdelayUsFun  0/18  Ram=2
+   ³  ³  ÃÄtwoLinesBCDMode  0/14  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/42  Ram=3
+   ³  ³  ³     ÃÄdis_cmd  0/22  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/18  Ram=2
+   ³  ³  ³     ÀÄdis_cmd  0/22  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLinesActive  0/14  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/42  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdCursorOff  0/14  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/42  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdShiftRight  0/14  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/42  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdClear  0/14  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/42  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄ@const828  0/60  Ram=0
+   ³  ÃÄUSART_Init  0/20  Ram=0
+   ³  ÃÄmodbusRTUrx  0/68  Ram=1
+   ³  ³  ÃÄUSART_RxCharBuffer  0/10  Ram=1
+   ³  ³  ÃÄUSART_RxCharBuffer  0/10  Ram=1
+   ³  ³  ÃÄmodbusReadReg  0/852  Ram=4
+   ³  ³  ³  ÃÄUSART_RxCharBuffer  0/10  Ram=1
+   ³  ³  ³  ÃÄCRC16  0/224  Ram=10
+   ³  ³  ³  ³  ÃÄ@MEMSET  0/26  Ram=0
+   ³  ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ³  ³  ÀÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ³  ÃÄ@const787  0/282  Ram=0
+   ³  ³  ³  ³  ÀÄ@const790  0/282  Ram=0
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@PSTRINGCN_799  0/40  Ram=3
+   ³  ³  ³  ³  ÀÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄCRC16  0/224  Ram=10
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@PSTRINGCN_799  0/40  Ram=3
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³  ³  ³  ÀÄ*
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³  ³  ÀÄmodbusResponse  0/74  Ram=2
+   ³  ³  ³     ÃÄclearQuery  0/20  Ram=0
+   ³  ³  ³     ³  ÀÄ@MEMSET  0/26  Ram=0
+   ³  ³  ³     ÃÄUSART_TxCharBuffer  0/12  Ram=2
+   ³  ³  ³     ÀÄclearResponse  0/20  Ram=0
+   ³  ³  ³        ÀÄ@MEMSET  0/26  Ram=0
+   ³  ³  ÀÄmodbusWriteSingleReg  0/452  Ram=2
+   ³  ³     ÃÄUSART_RxCharBuffer  0/10  Ram=1
+   ³  ³     ÃÄCRC16  0/224  Ram=10
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@PSTRINGCN_799  0/40  Ram=3
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@PRINTF_X_799  0/70  Ram=2
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÃÄ@SPRINTF  0/32  Ram=1
+   ³  ³     ÀÄmodbusResponse  0/74  Ram=2
+   ³  ³        ÀÄ*
+   ³  ÀÄLCD_String  0/56  Ram=1
+   ³     ÃÄlcdGoToFirstLine  0/16  Ram=0
+   ³     ³  ÀÄlcdcmd  0/42  Ram=3
+   ³     ³     ÀÄ*
+   ³     ÃÄlcdGoToSecondLine  0/16  Ram=0
+   ³     ³  ÀÄlcdcmd  0/42  Ram=3
+   ³     ³     ÀÄ*
+   ³     ÀÄlcddata  0/44  Ram=3
+   ³        ÃÄdis_data  0/24  Ram=1
+   ³        ³  ÀÄdelayUsFun  0/18  Ram=2
+   ³        ÀÄdis_data  0/24  Ram=1
+   ³           ÀÄ*
+   ÀÄinterrupt  0/118  Ram=2
+      ÀÄ@DIV1616  0/72  Ram=5

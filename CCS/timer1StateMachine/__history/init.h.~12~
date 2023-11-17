@@ -1,0 +1,14 @@
+#ifndif INIT_H
+#define INIT_H
+
+typedef union{  
+   uint8_t     all_flags;      /* Type  kayitciya erismek icin ' */    
+      struct{
+         uint8_t event_50ms   : 1,  /* bit:0, 50ms     */    
+         uint8_t event_100ms  : 1,  /* bit:0, 100ms    */          
+         uint8_t event_200ms  : 1,  /* bit:0, 200ms    */                 
+         uint8_t event_500ms  : 1,  /* bit:0, 500ms    */ 
+         uint8_t event_1000ms : 1,  /* bit:0, 1000ms   */ 
+            };           
+}TMR1_FLAGS; 
+#endif //INIT_H

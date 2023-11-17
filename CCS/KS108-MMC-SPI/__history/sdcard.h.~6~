@@ -1,0 +1,19 @@
+#include<string.h>
+#include<stdlib.h> 
+
+#ifndef _sd_card_h
+#define _sd_card_h
+
+const unsigned char   MSGF[] ={"\rMMC CARD INTERFACE\r"};
+const unsigned char   MSG0[] ={"\rMMC CARD COMMAND 0\r"};
+const unsigned char   MSG1[] ={"\rMMC CARD COMMAND 1\r"};
+const unsigned char   MSGB[] ={"\rMMC CARD COMMAND BLOCK=512\r"};
+const unsigned char   MSGW[] ={"\rMMC CARD SECTOR WRITE\r"};
+const unsigned char   MSGR[] ={"\rMMC CARD SECTOR READ\r"};
+const unsigned char   MSG[]  ={"\nMMC CARD IS INITIALIZED SPI MODE\n"};
+const unsigned char   CSD[]  ={"\rCSD INFORMATION:\r"};   
+const unsigned char   CID[]  ={"\rCID INFORMATION:\r"};
+const unsigned char   WACK[] ={"\rWRITE ACKNOLEDGE:\r"};
+const unsigned char   WNFSH[]={"\rWRITE NOT FINISH:\r"};
+
+#endif

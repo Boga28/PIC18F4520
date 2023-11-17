@@ -1,0 +1,42 @@
+#include "1wire.h"    
+#include "definitions.h"
+#include "ucregisters.h"     
+#include "1wire.c"  
+
+#ifndef DS1990A_H
+#define DS1990A_H 
+
+typedef union{  
+   uint8_t  all;      // Type  kayitciya erismek icin
+   struct{
+      uint8_t SEARCH_DONE : 1;  //bit:0,            
+      uint8_t MATCH_DONE  : 1;  //bit:0,
+      uint8_t reserved    : 6;  //bit:1,     
+     
+   }X;                    
+}DS1990A_t;
+extern DS1990A_t DS1990A;  
+
+extern uchar_t TEMPBF[32];
+
+//DEVICES ROM BUFFER  //  REGISTERED DEVICES
+extern uchar_t SlaveROM[10][9]; 
+//READ ROM BUFFER  
+extern uchar_t ReadROM[9]; 
+
+
+// SEARCH ROOM 
+extern uchar_t DevicesFound; // Number of devices found   
+extern uchar_t queue;  
+
+// SEARCH ROOM FUNCTION
+void ds1990SearchRom(uchar_t * , uchar_t , uchar_t ); 
+
+void ds1990ReadAndMatch(uchar_t * ,uchar_t, uchar_t);  
+void compareROM(uchar_t * ROM_NO_OF_READ_DEVICE, uchar_t *ROM_NO_OF_REGISTERED_DEVICE);
+
+                       
+
+
+
+#endif // DS1990A_H                               

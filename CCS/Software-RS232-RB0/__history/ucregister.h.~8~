@@ -1,0 +1,9 @@
+#ifndef UCREGISTER_H 
+#define UCREGISTER_H  
+
+#byte TRISC   = 0x0F94
+#byte PORTC   = 0x0F82
+#bit  TRISC_0_DIR = TRISC.0
+#bit  TRISC_1_DIR = TRISC.1       
+                           
+#endif //UCREGISTER_H

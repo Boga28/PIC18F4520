@@ -1,0 +1,26 @@
+#include "time.h"
+#include "definitions.h" 
+
+
+
+void getTime(uchar_t day_t, uchar_t mth_t, uchar_t year_t, uchar_t dow_t, uchar_t hr_t, uchar_t min_t, uchar_t sec_t){
+   
+}
+
+
+
+uchar_t exactDayOfMonth(){ 
+   if(month==4 || month==6 || month==9 || month==11) 
+      return 30;                           
+   if(month==2){ 
+      if((yr%4) == 0){
+         if((yr%400) == 0) 
+            return 29;             
+         else if((yr%100) == 0) 
+            return 28;
+         return 29;
+      } 
+      return 28;
+   }          
+   return 31; 
+}

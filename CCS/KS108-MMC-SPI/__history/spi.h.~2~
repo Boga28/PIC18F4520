@@ -1,0 +1,6 @@
+#include "definitions.h" 
+#include "ucregisters.h" 
+#ifndef SPI_H
+#define SPI_H
+
+#endif  //SPI_H   

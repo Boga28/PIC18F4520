@@ -1,0 +1,22 @@
+#include "definitions.h"   
+
+#ifndef I2C_H
+#define I2C_H 
+
+#define SDA_PIN PORTBbits.RB1
+#define SCL_PIN PORTBbits.RB0   
+#define SDA_DIR TRISBbits.RB1
+#define SCL_DIR TRISBbits.RB0
+
+void _I2CIdle();            
+void _I2C_Start();       
+void _I2C_ReStart();  
+void _I2C_Stop();  
+void _I2CACK(uchar_t);     
+void _I2C_Write_Byte(uchar_t);
+uchar_t _I2C_Read_Byte();          
+
+                  
+
+              
+#endif //I2C_H     

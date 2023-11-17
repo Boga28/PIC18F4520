@@ -1,0 +1,21 @@
+#ifndef MAIN_H     
+#define MAIN_H 
+#define DELAY 500 
+ 
+//void displayVideoAnimation
+void displayVideoAnimation();
+
+// SD CARD MANAGMENTS 
+void readSectorData();              
+void readMMCSD(); 
+    
+
+// INITILAZITIONS
+void timer1_interrupt();
+void setupTimerIOSC(void);
+void WDTreset(void);  
+                    
+#endif //MAIN_H                                
+
+                                                                                                              
+                              

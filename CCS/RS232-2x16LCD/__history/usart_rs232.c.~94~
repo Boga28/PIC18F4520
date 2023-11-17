@@ -1,0 +1,90 @@
+#include "ucregisters.h"                                                                                             
+#include "usart_rs232.h"
+
+uchar_t rxData[32];
+uchar_t txData[32];
+uchar_t data_in;
+uint8_t rxData_count=0; 
+unUSARTF_t unUSARTF;       
+uchar_t terminal_text1[]= "\fMEVCUT YAZI: "; 
+uchar_t terminal_text2[]= "\rLutfen bir yazi giriniz: ";                              
+uchar_t terminal_text3[]= "\rLimit Asildi!!!";
+uint8_t terminal_text1_Count,terminal_text2_Count ,terminal_text3_Count,terminal_text4_Count; 
+uint8_t terminal_text1_size,terminal_text2_size ,terminal_text3_size,terminal_text4_size; 
+uint8_t noKbHit_count;    
+uint8_t switchTerminal_position;
+              
+void USART_Init(){                                                                  
+   TRISC_6=0;        // Make Tx pin as output   
+   TRISC_7=1;        // Make Rx pin as input                                                                  
+   // Baud rate=9600, SPBRG = (F_CPU /(64*9600))-1        
+   SPBRG = 0x0C;                      
+   TXSTA = 0x20;     // Enable Transmit(TX)  
+   RCSTA = 0x90;     // Enable Receive(RX) & Serial             
+   terminal_text1_size=sizeof(terminal_text1)/sizeof(terminal_text1[0]);
+   terminal_text2_size=sizeof(terminal_text2)/sizeof(terminal_text2[0]);  
+   terminal_text3_size=sizeof(terminal_text3)/sizeof(terminal_text3[0]);
+   terminal_text4_size=32;                                                                 
+   
+}      
+    
+
+uchar_t USART_RxCharBuffer(){
+    if(RCIF_PIR1==1){         //wait for receive interrupt flag   
+    return(RCREG);           //received in RCREG register and return to main program 
+    }
+}                          
+                                          
+void USART_TxCharBuffer(uint8_t textIndex_charIndex){                
+   if(OERR_RCSTA){              
+      CREN_RCSTA = 0;        
+      #ASM NOP #ENDASM
+      CREN_RCSTA=1;
+   }                                   
+   TXREG = txData[textIndex_charIndex];             //Write char data to transmit register
+   TXIF_PIR1=0;
+}                   
+                                                        
+void rs232t_txText(uint8_t text_index, uint8_t textIndex_charIndex){
+    if(text_index==0&&textIndex_charIndex==0){                                   
+      memcpy(txData, terminal_text1, terminal_text1_size);  
+    }else if(text_index==1&&textIndex_charIndex==0){
+      memcpy(txData, terminal_text2, terminal_text2_size);   
+    }else if(text_index==2&&textIndex_charIndex==0){            
+      memcpy(txData, terminal_text3, terminal_text3_size);  
+    }else if(text_index==4&&textIndex_charIndex==0){             
+      memcpy(txData, strLCD, terminal_text4_size);  
+    }                                       
+    USART_TxCharBuffer(textIndex_charIndex);  
+ 
+} 
+ 
+
+void rs232t(){  
+      unUSARTF.stUSARTF.noKbhit=0;
+      noKbHit_count=0;
+                    
+      data_in=USART_RxCharBuffer();      
+      if(data_in==8 && rxData_count>0){ 
+         rxData_count--;
+         rxData[rxData_count]=0;
+      }else if(data_in==13){  
+         switchTerminal_position=0;
+         unUSARTF.all=0;
+         unUSARTF.stUSARTF.enter_flag=1; 
+         terminal_text1_Count=0,terminal_text2_Count=0,terminal_text3_Count=0,terminal_text4_Count=0; 
+         memcpy(strLCD, rxData, 32);
+         memset(rxData, 0, sizeof(rxData));   
+        // rs232t_txText(0,0);                        
+         //rs232t_txText(4,0);
+         //rs232t_txText(1,0);                     
+         rxData_count=0;                       
+      }else if(rxData_count>31){ 
+         switchTerminal_position=4;
+         unUSARTF.stUSARTF.recieve_exceed=1; 
+         //rs232t_txText(2,0);
+      }else {                        
+         rxData[rxData_count] = data_in; 
+         rxData_count++;            
+      }  
+}                                              

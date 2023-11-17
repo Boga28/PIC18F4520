@@ -1,0 +1,13 @@
+#ifndef BUTTON_H
+#define BUTTON_H  
+
+   
+typedef struct{    
+   uint8_t BUTTON_PRESSED    : 1;  /* bit:0, 50ms     */
+   uint8_t BUTTON_RELEASED   : 1;  /* bit:0, 50ms     */ 
+}button_t;           
+                   
+extern button_t  button_event; 
+void timer0Condition();
+                                           
+#endif           

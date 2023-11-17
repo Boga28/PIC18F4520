@@ -1,0 +1,109 @@
+#include "main.h"
+#include "definitions.h"                                                    
+#include "ucregisters.h"       
+#include "delayms.h"  
+#include "delayms.c"
+               
+uint32_t OneBitDelay;    
+uchar_t ch;   
+//#use delay (internal=8MHz)      
+//#use rs232(baud=9600, xmit=PIN_B1,rcv=PIN_B0)                    
+                      
+void setup(void){ 
+   //Setup Osilator
+   IRCF2 = 1;
+   IRCF1 = 1;
+   IRCF0 = 1;  
+               
+   // Kesmelere izin verildi
+   ADCON1= 0x0F;                                              
+   INTCON_GIE_GIEH = 1;                       
+   INTCON2=0;     
+   INTCON_INT0IE=1;   
+   
+}                             
+                      
+void InitSoftUart(){     
+      
+   LED_DIR=0;                                    
+   LED=0;            //1000000/Baudrate)/6                      
+   OneBitDelay =(13); 
+   UART_TX=1;      //TX 
+                                         
+   UART_RX_DIR=1;  //RX                  
+   UART_TX_DIR=0;  //TX   
+}  
+void uartInterSetup(){
+   UART_TX=1;      //TX 
+           
+   UART_RX_DIR=1;  //RX                  
+   UART_TX_DIR=0;  //TX
+}
+      
+                          
+                         
+uchar_t UART_Recieve(){ 
+  uchar_t DataValue=0;             
+ // while(UART_RX==1);
+  delayUsFun(OneBitDelay);        
+  delayUsFun(OneBitDelay/2);                                                                                      
+  for(uchar_t i=0; i <DataBitCount;i++){  
+    if(UART_RX==1){ 
+      DataValue |= (1<<i);   
+     }                                   
+     delayUsFun(OneBitDelay);
+  }                          
+  if(UART_RX==1){ 
+    delayUsFun(OneBitDelay/2);
+    return DataValue;     
+  }else{           
+    delayUsFun(OneBitDelay/2);            
+    return 0x000;
+  }
+}  
+                               
+void UART_Transmit(uchar_t DataValue){
+   UART_TX=0;                     
+   delayUsFun(OneBitDelay); 
+   for(uchar_t i=0; i <DataBitCount;i++){
+      if(((DataValue & (1<<i)) != 0)){ 
+         UART_TX=1;     
+      }else{              
+         UART_TX=0;              
+      }                          
+         delayUsFun(OneBitDelay);   
+   }                 
+   //Send Stop Bit
+   UART_TX=1;  
+   delayUsFun(OneBitDelay+1000); 
+}      
+
+void WDTreset(void){         
+   #asm                          
+   CLRWDT                                     
+   #endasm                                 
+}   
+ 
+
+#INT_EXT                             
+void external_RB0(){         
+   ch = 0; 
+   INTCON_INT0IE=0;
+   ch=UART_Recieve();        
+      //if(ch=='j') 
+      LED=~LED;           
+   UART_Transmit(ch);                  
+   INTCON_INT0IF=0;    
+   INTCON_INT0IE=1; 
+}   
+                           
+void main(){                    
+   setup();                 
+   InitSoftUart();
+   while(TRUE){            
+   WDTreset();          
+      //ch=UART_Recieve();       
+      //UART_Transmit(ch);                              
+   }         
+
+}                                             

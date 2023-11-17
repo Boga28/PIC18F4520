@@ -1,0 +1,255 @@
+000     @SCRATCH
+000     @MEMSET.P1
+001     @SCRATCH
+001     _RETURN_
+001-002 @MEMSET.P1
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     tmr1_time
+019     BUTTON_PRESSED_RELEASED
+01A     STATUS
+01B-03A rxData
+03B-05A txData
+05B     data_in
+05C     rxData_count
+05D-06B terminal_text1
+06C-086 terminal_text2
+087-097 terminal_text3
+098     terminal_text1_Count
+099     terminal_text2_Count
+09A     terminal_text3_Count
+09B     terminal_text4_Count
+09C     terminal_text1_size
+09D     terminal_text2_size
+09E     terminal_text3_size
+09F     terminal_text4_size
+0A0     noKbHit_count
+0A1     switchTerminal_position
+0A2     unUSARTF
+0A3-0C2 strLCD
+0C3     countLCDChar
+0C4     button_debounce.valueOfInput
+0C4     lcdcmd.cmd_value
+0C4     rs232t_txText.text_index
+0C4     LCD_String.@SCRATCH1
+0C4     USART_Init.@SCRATCH1
+0C4     USART_RxCharBuffer.@SCRATCH1
+0C4     rs232t.@SCRATCH1
+0C4     printOn2x16.@SCRATCH1
+0C4     rs232Case.@SCRATCH1
+0C5     lcdcmd.cmd_value1
+0C5     button_debounce.bit
+0C5     rs232t_txText.textIndex_charIndex
+0C5     lcddata.text
+0C5     USART_Init.@SCRATCH2
+0C5     rs232t.@SCRATCH2
+0C5     printOn2x16.@SCRATCH2
+0C6     lcddata.data
+0C6     test_bit.valueOfInput
+0C6     dis_cmd.cmdout
+0C6     USART_TxCharBuffer.textIndex_charIndex
+0C6     lcdcmd.@SCRATCH1
+0C6     button_debounce.@SCRATCH1
+0C6     USART_Init.@SCRATCH3
+0C6     printOn2x16.@SCRATCH3
+0C7     test_bit.bits
+0C7     dis_data.dataout
+0C7     lcddata.@SCRATCH1
+0C7     USART_Init.@SCRATCH4
+0C7     printOn2x16.@SCRATCH4
+0C8     delayUsFun.us
+0C8     test_bit.@SCRATCH1
+0C9     delayUsFun.i
+0CA-0CB @DIV1616.P1
+0CA     interrupt.@SCRATCH1
+0CB     interrupt.@SCRATCH2
+0CC-0CD @DIV1616.P1
+0CE     @DIV1616.@SCRATCH1
+F80.0   PORTA_0
+F80     PORTA
+F81     PORTB
+F81.0   PORTB_0
+F81.7   PORTB_7
+F83     PSP_DATA
+F84.0   PORTE_RS
+F84     PORTE
+F84.1   PORTE_E
+F84.2   PORTE_RW
+F8C     PORTD
+F8C.7   PORTD_7
+F92     TRISA
+F93     TRISB
+F94     TRISC
+F94.6   TRISC_6
+F94.7   TRISC_7
+F95     TRISD
+F96     TRISE
+F9D.0   PIE1_TMR1IE
+F9D     PIE1
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9E.0   PIR1_TMR1IF
+F9E     PIR1
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9F.0   IPR1_TMR1IP
+F9F     IPR1
+FA6     EECON1
+FA6.1   EECON1_WR
+FA6.2   EECON1_WREN
+FA6.4   EECON1_FREE
+FA6.6   EECON1_CFGS
+FA6.7   EECON1_EEPGD
+FA7     EECON2
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FC1     ADCON1
+FCD.0   T1CON_TMR1ON
+FCD     T1CON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD1     WDTCON
+FD1.0   WDTCON_SWDTEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FE9-FEA @MEMSET.P5
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF5     TABLAT
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+FF6     TBLPTRL
+FF7     TBLPTRH
+FF8     TBLPTRU
+
+ROM Allocation:
+000096  @const816.call
+0000C0  @const817.call
+0000F6  twoLinesBCDMode
+000100  MAIN
+000100  @cinit1
+00011E  @cinit2
+000202  @const818.call
+00022E  @const830.call
+00026A  @DIV1616
+0002AC  interrupt
+000344  setup
+000388  delayUsFun
+000396  dis_cmd
+0003A8  lcdcmd
+0003CA  LinesActive
+0003D4  lcdCursorOff
+0003DE  lcdShiftRight
+0003E8  lcdClear
+0003F2  printOn2x16
+00042E  USART_Init
+0004CA  WDTreset
+0004D0  lcdGoToFirstLine
+0004DA  lcdGoToSecondLine
+0004E4  dis_data
+0004F6  lcddata
+00051A  LCD_String
+000550  test_bit
+000574  button_debounce
+0005B8  USART_RxCharBuffer
+0005C4  @MEMSET
+0005DE  rs232t
+000670  USART_TxCharBuffer
+000692  rs232t_txText
+00072C  rs232Case
+
+Project Directory:
+    C:\18F4520\CCS\RS232-2x16LCD\
+
+Project Files:
+    main.c                                                  [17-Jul-23 09:37  CRC=1E0EEFA2]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [10-Jul-23 21:41  CRC=12CF42A0]
+    main.h                                                  [14-Jul-23 08:01  CRC=F365C986]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [17-Jul-23 09:35  CRC=582E9554]
+    init.h                                                  [17-Jul-23 08:05  CRC=152730A3]
+    button.h                                                [10-Jul-23 21:59  CRC=E4670BCE]
+    usart_rs232.h                                           [17-Jul-23 07:49  CRC=F1B7A449]
+    lcd.h                                                   [17-Jul-23 07:57  CRC=569F0100]
+    lcd.c                                                   [17-Jul-23 08:02  CRC=398AC83C]
+    button.c                                                [12-Jul-23 08:01  CRC=45CBFE65]
+    delayms.c                                               [12-Jul-23 16:14  CRC=0BEAD27E]
+    usart_rs232.c                                           [17-Jul-23 07:51  CRC=2D646367]
+
+Source signature=AD8F3175
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

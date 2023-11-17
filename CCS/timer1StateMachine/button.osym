@@ -1,0 +1,42 @@
+_RETURN_
+CCP_1
+CCP_1_LOW
+CCP_1_HIGH
+CCP_2
+CCP_2_LOW
+CCP_2_HIGH
+PSP_DATA
+C1OUT
+C2OUT
+BUTTON_PRESSED_RELEASED
+STATUS
+
+Project Directory:
+    C:\18F4520\CCS\timer1StateMachine\
+
+Project Files:
+    button.c                                                [12-Jul-23 07:57  CRC=FB0F0E1F]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [10-Jul-23 21:41  CRC=12CF42A0]
+    button.h                                                [10-Jul-23 21:59  CRC=E4670BCE]
+
+Source signature=07671DD5
+
+Units:
+    button (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Output file:    Relocatable
+
+Output Files:
+    XREF file:   button.xsym
+    Errors:      main.err
+    Ext Symbols: button.esym
+    Object:      button.o
+    Symbols:     button.osym

@@ -1,0 +1,66 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     main.iNumb
+006     main.@SCRATCH1
+007     @delay_ms1.P1
+F83     PORTD
+F83     PSP_DATA
+F95     TRISD
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @delay_ms1
+00002C  @cinit1
+00002C  main
+00003C  @cinit2
+
+Project Directory:
+    C:\Users\boga2\Desktop\18F4520\CCS\LED\
+
+Project Files:
+    main.c                                                  [07-Jul-23 12:25  CRC=6D6EAFFE]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4520.h [12-Nov-13 14:35  CRC=30BAB57A]
+    main.h                                                  [07-Jul-23 09:46  CRC=D872A938]
+
+Source signature=4F0EB7E8
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

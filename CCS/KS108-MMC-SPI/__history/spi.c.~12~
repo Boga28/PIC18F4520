@@ -1,0 +1,32 @@
+#include "spi.h" 
+#ifndef SPI_C
+#define SPI_C
+
+void SPI_Master_Init(){   
+  // Set Spi Mode To Master + Set SCK Rate To Fosc/64   
+  SSPM0 = 0;
+  SSPM1 = 0;
+  SSPM2 = 0;
+  SSPM3 = 0;               
+  // Enable The Synchronous Serial Port
+  SSPEN = 1;     
+  // Configure The Clock Polarity & Phase (SPI Mode Num. 1)
+  CKP = 0;  
+  CKE = 0;
+  // Configure The Sampling Time (Let's make it at middle)
+  SMP = 0;
+  // Configure The IO Pins For SPI Master Mode
+  SDO_DIR = 0; // SDO -> Output
+  SDI_DIR  = 1; // SDI -> Input  
+  CS_DIR  = 0;
+  CLK_DIR = 0; // SCK -> Output 
+  // If Interrupts Are Needed, Un-comment The Line Below
+  // SSPIE = 1; PEIE = 1; GIE = 1;                                          
+}                                                  
+uint8_t SPI_transfer(uint8_t data){ 
+   SSPBUF = data;
+   while(BF); 
+   return SSPBUF;    
+}
+
+#endif  //SPI_H   

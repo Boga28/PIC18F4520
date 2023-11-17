@@ -1,0 +1,15 @@
+#ifndef MAIN_H     
+#define MAIN_H                  
+#define DELAY 500 
+    
+extern uint16_t iSayac;  
+
+void setup(void);
+void interrupt();
+void printOn2x16();
+void WDTreset(void);
+
+#endif //MAIN_H                                
+
+                                                                                                              
+                              

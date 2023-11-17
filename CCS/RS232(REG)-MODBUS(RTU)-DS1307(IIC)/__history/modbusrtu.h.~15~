@@ -1,0 +1,14 @@
+#include "definitions.h"                                                         
+#include "ucregisters.h"      
+                       
+#ifndef MODBUSRTU_H
+#define MODBUSRTU_H       
+
+extern uchar_t slaveAddr; 
+extern uchar_t function;  
+extern uchar_t data;  
+extern uchar_t crcHigh;  
+extern uchar_t crcLow;  
+  
+
+#endif  //MODBUSRTU_H

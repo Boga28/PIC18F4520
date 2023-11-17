@@ -1,0 +1,9 @@
+#ifndef BUTTON_H
+#define BUTTON_H 
+
+extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */ 
+extern uint8_t STATUS; 
+extern uint8_t button_debounce(uint8_t,uint8_t);   
+uint8_t test_bit(uint8_t,uint8_t);
+  
+#endif           

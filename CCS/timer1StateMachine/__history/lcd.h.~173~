@@ -1,0 +1,27 @@
+#ifndef LCD_H                                                                                               
+#define LCD_H 
+                                            
+extern uchar_t strLCD[32]; 
+uchar_t customCharacter [8]= {  B00000,
+  B01110,
+  B11011,
+  B10101,
+  B11011,
+  B01110,
+  B00000,
+  B00000};
+void lcdcmd(uchar_t);                                                                               
+void lcddata(uchar_t);                                                                     
+void LCD_String();                                                                             
+//LCD (CHIP: HD44780), COMMANDS
+void twoLinesBCDMode();
+void LinesActive();
+void lcdClear();                              
+void lcdGoToFirstLine();     
+void lcdGoToSecondLine();
+void lcdShiftRight();
+void lcdCursorOn(); 
+void lcdCursorOff();
+void LCD_Custom_Char (uchar_t loc, uchar_t *msg);
+
+#endif //LCD_H    

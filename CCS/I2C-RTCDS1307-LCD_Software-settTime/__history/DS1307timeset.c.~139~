@@ -1,0 +1,214 @@
+#include "definitions.h"      
+#include "i2c.h"  
+//TIME CONTROL VIA BUTTON AND LCD
+uint8_t position;     
+uint8_t executed;         
+date_t DATE_STATUS;  
+                                     
+// SET = 0; herhangi bir ayarlama yok   
+// SET = 1; (AY/Yil/Gun... secimi)  
+// SET = 2; SET =1' de belilrlenen pozisyon elementinin degerini arttirma azaltma
+// SET = 3 execute and SET=0; 
+void setTimeCases(){ 
+   if(DATE_STATUS.X.SET==1){      
+      chooseElement(position);  
+   }                                     
+   if(DATE_STATUS.X.SET==2){   
+      arrangeValueOfElement(position);  
+   } 
+   if(DATE_STATUS.X.SET==3){   
+      setRTC(position);  
+   } 
+}   
+// SET = 1; (AY/Yil/Gun... secimi)
+void chooseElement(uchar_t position_t){       
+                                    
+   switch(position_t){
+   case 0: // SECOND                    
+         memset(strLCD,0,32); 
+         sprintf(DATE_TIME,"     SECOND     ");   
+         memcpy(strLCD,DATE_TIME,17); 
+   break;             //1234567890123456
+         
+   case 1: // MINUTE
+         memset(strLCD,0,32);             
+         sprintf(DATE_TIME,"     MINUTE     ");   
+         memcpy(strLCD,DATE_TIME,17); 
+   break;             //1234567890123456  
+         
+   case 2: // HOUR  
+         memset(strLCD,0,32);
+         sprintf(DATE_TIME,"      HOUR      ");   
+         memcpy(strLCD,DATE_TIME,17); 
+   break;             //1234567890123456 
+                       
+   case 3: // DAY
+         memset(strLCD,0,32);          
+         sprintf(DATE_TIME,"       DAY      ");   
+         memcpy(strLCD,DATE_TIME,17); 
+   break;             //1234567890123456 
+   
+   case 4: // MONTH  
+         memset(strLCD,0,32);                           
+         sprintf(DATE_TIME,"      MONTH     ");   
+         memcpy(strLCD,DATE_TIME,17); 
+   break;             //1234567890123456                      
+   
+   case 5: // YEAR  
+         memset(strLCD,0,32);                         
+         sprintf(DATE_TIME,"      YEAR      ");   
+         memcpy(strLCD,DATE_TIME,17);
+   break;             //1234567890123456
+   }
+}   
+              
+void arrangeValueOfElement(uchar_t position_t){   
+   switch(position_t){ 
+   case 0:                                                               
+         memset(strLCD,0,32);           // |        |                    
+         sprintf(DATE_TIME,"     SECOND            \%02d       ",sec); 
+         memcpy(strLCD,DATE_TIME,32);          
+   break;
+   
+   case 1:
+         memset(strLCD,0,32);           // |        |                    
+         sprintf(DATE_TIME,"     MINUTE            \%02d       ",min);
+         memcpy(strLCD,DATE_TIME,32);
+   
+   break;
+   
+   case 2:
+         memset(strLCD,0,32);           // |        |                    
+         sprintf(DATE_TIME,"      HOUR             \%02d       ",hrs);
+         memcpy(strLCD,DATE_TIME,32);
+   break;                                                       
+   
+   case 3:
+         memset(strLCD,0,32);           // |        |                    
+         sprintf(DATE_TIME,"      DAY'             \%02d       ",day);
+         memcpy(strLCD,DATE_TIME,32);
+   break;
+   
+   case 4:                    
+         memset(strLCD,0,32);           // |        |                    
+         sprintf(DATE_TIME,"      MONTH            \%02d     ",month);
+         memcpy(strLCD,DATE_TIME,32);
+   break;
+   
+   case 5: 
+         memset(strLCD,0,32);           // |        |                    
+         sprintf(DATE_TIME,"      YEAR             \%02d     ",yr);   
+         memcpy(strLCD,DATE_TIME,32);
+   break;
+   }
+}     
+ 
+//MODE=0 DECREASE, MODE = 1 INCREASE
+void increaseElement(uchar_t position_t){        
+   switch(position_t){
+   case 0:
+        if(sec>=59){sec=0;}else{sec++;}
+   break;                                  
+   
+   case 1:
+        if(min>=59){min=0;}else{min++;} 
+   break;
+   
+   case 2:                          
+        if(hrs>=23){hrs=0;}else{hrs++;} 
+   break;
+   
+   case 3: 
+        if(day>=31){day=1;}else{day++;} 
+   break;
+   
+   case 4:
+        if(month>=12){month=1;}else{month++;}
+   break;
+                                            
+   case 5:
+        if(yr>=99){yr=1;}else{yr++;}
+   break; 
+   }  
+}   
+
+void decreaseElement(uchar_t position_t){
+   switch(position_t){
+   case 0:
+        if(sec<=0){sec=59; }else{sec--;}
+   break;
+   
+   case 1:
+        if(min<=0){min=59; }else{min--;}  
+   break;
+   
+   case 2:
+        if(hrs<=0){hrs=23; }else{hrs--;}  
+   break;
+   
+   case 3:
+        if(day<=1){day=31; }else{day--;} 
+   break;
+   
+   case 4:
+        if(month<=1){month=12; }else{month--;} 
+   break;
+   
+   case 5:
+        if(yr<=0){yr=99; }else{yr--;} 
+   break;
+      
+   }     
+}     
+
+void setRTC(uchar_t position_t){
+   switch(position_t){                       
+   case 0:
+        txRTC(0x00,sec);
+   break;                                  
+   
+   case 1:
+        txRTC(0x01,min); 
+   break;                 
+   
+   case 2:                 
+        txRTC(0x02,hrs); 
+   break;
+                    
+   case 3: 
+        txRTC(0x04,day); 
+   break;
+   
+   case 4:
+        txRTC(0x05,month);
+   break;
+                                            
+   case 5:
+        txRTC(0x06,yr);
+   break;                
+   }   
+   DATE_STATUS.X.SET=0; 
+   position=0;                                                        
+}      
+
+void txRTC(uchar_t address, uchar_t value){
+   sec &= 0x7F;                    
+   min &= 0x7F;                                 
+   hrs &= (0x7F|0x40);  //format 24H                                   
+        
+  _I2C_Start();                // I2C write address  
+  _I2C_Write(0xD0);            // Start at REG 0 - Seconds
+  _I2C_Write(address);         // Start at REG 0 - Seconds
+  _I2C_Write(bin2bcd(value));  // REG 0  
+  _I2C_Stop(); 
+}  
+                                  
+uchar_t exactDayOfMonth(){ 
+   ucahr_t maxDayofMonth;
+  
+   if(month==4 || month==6 || month==9 || month==11) 
+      return 30;
+   if(month==2){
+   }
+   return 31; 
+}

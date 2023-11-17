@@ -1,0 +1,4 @@
+>>> Warning 225 "C:\Users\boga2\Desktop\18F4520\CCS\LED\main.h" Line 5(13,15): Duplicate #define
+      Memory usage:   ROM=0%      RAM=0% - 0%
+      0 Errors,  1 Warnings.
+Build Successful.

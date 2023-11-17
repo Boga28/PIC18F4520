@@ -1,0 +1,39 @@
+#ifndef DEFINITIONS_H     
+#define DEFINITIONS_H   
+
+typedef unsigned int32  uint32_t;                                                     
+typedef unsigned int16  uint16_t;
+typedef signed   int16  sint16_t; 
+typedef unsigned int8   uint8_t;  
+typedef signed   int8   sint8_t;
+
+typedef       float32   float32_t;
+typedef unsigned char   uchar_t;   
+
+
+//////////// exact width
+
+typedef signed int8 int8_t;      
+      
+typedef signed int16 int16_t;
+    
+
+
+
+
+
+
+
+///////// minimum width
+
+typedef signed int8 int_least8_t;
+typedef unsigned int8 uint_least8_t;
+typedef signed int16 int_least16_t;
+typedef unsigned int16 uint_least16_t;
+typedef signed int32 int_least32_t;
+typedef unsigned int32 uint_least32_t;
+
+
+                            
+              
+#endif //DEFINITIONS_H      

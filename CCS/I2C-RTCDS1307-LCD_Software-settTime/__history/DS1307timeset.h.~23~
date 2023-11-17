@@ -1,0 +1,24 @@
+#include "definitions.h"      
+                            
+#ifndef DS1307TIMESET_H
+#define DS1307TIMESET_H  
+
+uint8_t position;  
+uint8_t executed;         
+date_t DATE_STATUS;  
+                                     
+// SET = 0; herhangi bir ayarlama yok   
+// SET = 1; (AY/Yil/Gun... secimi)  
+// SET = 2; SET =1' de belilrlenen pozisyon elementinin degerini arttirma azaltma
+// SET = 3 execute and SET=0;                                          
+
+
+
+
+
+
+#endif //DS1307TIMESET_H
+
+
+
+

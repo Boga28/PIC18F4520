@@ -1,0 +1,16 @@
+#include "1wire.h"    
+#include "definitions.h"
+#include "ucregisters.h"     
+#include "1wire.c"  
+
+#ifndef DS1990A_H
+#define DS1990A_H  
+extern uchar_t SlaveROM[10][9];         
+extern uchar_t TEMPBF[32];    
+extern uchar_t DevicesFound; // Number of devices found   
+extern uchar_t queue;    
+
+void ds1990SearchRom();
+
+
+#endif // DS1990A_H                               

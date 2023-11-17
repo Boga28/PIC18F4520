@@ -1,0 +1,5 @@
+#include "spi.h"
+#ifndef SPI_C
+#define SPI_C
+
+#endif  //SPI_H   

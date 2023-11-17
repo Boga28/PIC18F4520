@@ -1,0 +1,78 @@
+#include "sdcard.h"
+
+unsigned char MMC_RESPONCE(unsigned char RESPONSE )
+{
+      unsigned int COUNT=0xFFF; // for 64 MB card 
+       //unsigned int COUNT=0xFFFF;  // for 1 GB
+      unsigned  char  RESULT;
+      while(COUNT!=0)
+      {                    
+           RESULT = SPI_transfer(0xFF);
+            // PRINT_ASCII (RESULT);    SEND_CHAR_UART('\r');   //debug
+            if(RESULT==RESPONSE)
+           break;
+           COUNT--;
+      }
+      if(COUNT==0)return 1;
+      else   
+       return 0;
+}
+   
+unsigned char  MMC_INIT(){
+      unsigned char LPCNT=0;
+      /* start off with 80 bits of high data with card deselected */
+      CS_ENABLE();  
+      delay_ms(20);
+      for(LPCNT=0;LPCNT<20; LPCNT++)
+      SPI_transfer(0xff);   
+      delay_ms(20);
+/*-----------------------------------------CMD 0-------------------------------*/
+      CS_DISABLE();      /* select card */
+      SPI_transfer( 0X40);SPI_transfer( 0X00);SPI_transfer( 0X00);
+      SPI_transfer( 0X00);SPI_transfer( 0X00);SPI_transfer(128); 
+      SPI_transfer(0x01); SPI_transfer( 0x99);                                    
+       
+      if( (MMC_RESPONCE(0x01)) == 1 )
+      {
+         PORTC |=CS;
+         return 1;
+      }
+      printf( MSG0);
+/*-----------------------------------------------------------------------------*/ 
+       PORTC |= CS;
+       SPI_transfer(0xFF); 
+/*----------------------------------CMD1---------------------------------------*/ 
+       PORTC &= ~CS;                         
+       LPCNT=0xFF;
+       do
+       {
+            SPI_transfer( 0X41);   SPI_transfer( 0X00);     SPI_transfer( 0X00);
+             SPI_transfer( 0X00);   SPI_transfer( 0X00);     SPI_transfer( 0XFF);
+             LPCNT--;
+       } while ( (MMC_RESPONCE(0x00) != 0) && (LPCNT>0) );
+      if(LPCNT==0)
+      {     
+           PORTC |= CS;       
+           return 1;   
+      }
+      
+        printf( MSG1);      
+/*--------------------------------------------------------------------*/
+        PORTC |= CS;
+       SPI_transfer(0xFF); 
+/*---------------------CMD16  SET BLOCK LENGTH------------------------*/     
+   
+      PORTC &= ~CS;        // select card 
+      SPI_transfer( 0X50); SPI_transfer( 0X00);  SPI_transfer( 0X00);
+      SPI_transfer( 0X02); SPI_transfer( 0X00);  SPI_transfer( 0XFF);
+      if( (MMC_RESPONCE(0x00)) == 1 )
+      {
+          PORTC |=CS;
+          return 1;
+      }
+        printf( MSGB);
+        PORTC |= CS;
+        SPI_transfer(0xFF); 
+      
+        return 0;
+}  

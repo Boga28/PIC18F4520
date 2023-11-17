@@ -1,0 +1,18 @@
+#include "definitions.h"                                                         
+#include "ucregisters.h"                       
+                       
+#ifndef MODBUSRTU_H                               
+#define MODBUSRTU_H  
+#define SLAVEADDRESS 1
+extern uchar_t query[125], response[125];
+                                              
+void modbusRTUrx();                     
+void modbusReadReg();
+void modbusWriteSingleReg(); 
+void modbusResponse(uchar_t);  
+
+void clearResponse();
+void clearQuery();
+
+
+#endif  //MODBUSRTU_H

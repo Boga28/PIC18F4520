@@ -1,0 +1,4 @@
+>>> Warning 202 "C:\18F4520\CCS\KS108-GLCD-DISPLAY\Animation.c" Line 9(15,19): Variable never used:   tera
+      Memory usage:   ROM=64%      RAM=68% - 69%
+      0 Errors,  1 Warnings.
+Build Successful.

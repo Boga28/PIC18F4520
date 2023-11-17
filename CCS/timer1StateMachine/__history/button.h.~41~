@@ -1,0 +1,8 @@
+#ifndef BUTTON_H
+#define BUTTON_H 
+
+#bit button_pin=PORTB.0 
+extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */   
+extern uint8_t button_debounce(uint8_t);
+                   
+#endif           

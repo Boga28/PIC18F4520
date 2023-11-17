@@ -1,0 +1,54 @@
+#include<string.h>
+#include<stdlib.h> 
+
+#ifndef _sd_card_h
+#define _sd_card_h
+
+const unsigned char   MSGF[] ={"\rMMC CARD INTERFACE\r"};
+const unsigned char   MSG0[] ={"\rMMC CARD COMMAND 0\r"};
+const unsigned char   MSG1[] ={"\rMMC CARD COMMAND 1\r"};
+const unsigned char   MSGB[] ={"\rMMC CARD COMMAND BLOCK=512\r"};
+const unsigned char   MSGW[] ={"\rMMC CARD SECTOR WRITE\r"};
+const unsigned char   MSGR[] ={"\rMMC CARD SECTOR READ\r"};
+const unsigned char   MSG[]  ={"\nMMC CARD IS INITIALIZED SPI MODE\n"};
+const unsigned char   CSD[]  ={"\rCSD INFORMATION:\r"};   
+const unsigned char   CID[]  ={"\rCID INFORMATION:\r"};
+const unsigned char   WACK[] ={"\rWRITE ACKNOLEDGE:\r"};
+const unsigned char   WNFSH[]={"\rWRITE NOT FINISH:\r"};   
+
+////////// open file specific globals ///////////////////////
+struct{
+   char name[MMC_FILE_NAME_SIZE+1]; // fopen file name
+   int32 dir_addr_ptr; // physical address of this files tile info
+   int16 root_cluster_ptr; // location of first cluster in FAT
+   int16 this_cluster_ptr; // location of current cluster in FAT
+   int16 next_cluster_ptr; // location of the next cluster for a file or sub dir in FAT
+   int32 addr_ptr; // physical address in the file the current
+   // cluster points to
+   // address=(this_chain_ptr-2)*cluster_size_bytes+data_area_address
+   //
+   // cluster_addr(THIS_CLUSTER) assigns it
+   // cluster_addr(NEXT_CLUSTER) moves to the data the next
+   // cluster points to
+   int32 size; // size of open file in bytes
+   int32 cluster_offset; // offset within the file representing the start of the current cluster
+   // (0 is start and ends with the cluster contianing eof )
+   // auto increased by cluster_size_bytes each time a new cluster is entered
+
+   int32 offset; // current offset into the open file ( 0 is start size(file size) is end)
+   // auto increased by rec size each time a rec is read
+   // addr_prt+offset-cluster_offset is physical address of
+   // the current position within the file
+   // the physical positions are not always contiguous since the
+   // clusters of the file are not always adjacent to each other
+   int16 rec_size; // fopen record_size
+   // char buff[MMC_BUFF_SIZE+1]; // used for open and for read write
+   // init MMC uses file 0 buff to fetch the globals
+
+} file[MAX_FILES];
+
+uint8_t mmc_cmd(uint8_t ,uint32_t ,uint8_t ,uint8_t ,uint8_t );
+uint32_t init_MMC(uint8_t );
+                                                           
+                                                           
+#endif

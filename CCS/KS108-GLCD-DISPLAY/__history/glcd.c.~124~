@@ -1,0 +1,125 @@
+#include "glcd.h"    
+
+#ifndef GLCD_C
+#define GLCD_C   
+
+
+void GLCD_Init(){       // GLCD Initialization function 
+    TRISC = 0;          // Make Control pin as output 
+    TRISD = 0;          // Make Data pin as output   
+    RW=0;
+    RST = 1;            // Make reset pin High 
+    RST = 0;            // Make reset pin High 
+    CS1 = 1; CS2 = 1;   // Select Left half of display 
+    delay_ms(20);     
+    GLCD_Command(0x3E); // Display OFF           
+    GLCD_Command(0x40); // Set Y address (column=0) 
+    GLCD_Command(0xB8); // Set x address (page=0) 
+    GLCD_Command(0xC0); // Set z address (start line=0) 
+    GLCD_Command(0x3F); // Display ON 
+}                                                
+
+void GLCD_Command(uchar_t cmd){ // GLCD Command function
+                              
+    LCD_data = cmd;   // Copy command on data pin 
+    RS = 0;           // Make RS LOW for command register
+    EN = 1;// Make HIGH-LOW transition on Enable
+    NOP();   
+    NOP();  
+    NOP();    
+    EN = 0; 
+    NOP();
+    NOP(); 
+    NOP(); 
+}
+                        
+void GLCD_Char(uchar_t data){ // GLCD Data function
+    LCD_data = data;       // Copy Data on data pin
+    RS = 1;                // Make RS HIGH for data register 
+    EN = 1;                // Make HIGH-LOW transition on Enable
+    NOP();
+    NOP();                               
+    NOP(); 
+    NOP(); 
+    EN = 0;
+    NOP(); 
+    NOP(); 
+    NOP();
+    NOP(); 
+}                                                                
+             
+void GLCD_String(uchar_t *str){  /* GLCD string write function */ 
+   uchar_t x=0, y=0, pageAdd=0xB8, arrayPosition=0;
+   for(y=0;y<8;y++){ 
+       CS1 = 1; CS2 = 0;  
+       GLCD_Command(pageAdd+y); 
+       GLCD_Command(0x40); 
+      for(x=0;x<64;x++){  
+         GLCD_Char(tera[arrayPosition]);  
+         arrayPosition++;    
+      }                     
+      CS1 = 0; CS2 = 1;  
+      GLCD_Command(pageAdd+y);
+      GLCD_Command(0x40);    
+      for(x=0;x<64;x++){
+        GLCD_Char(tera[arrayPosition]); 
+        arrayPosition++;    
+      }                 
+   }
+}
+                                                                               
+void GLCD_Clear(){
+   int i,j;
+   CS1 = 1; CS2 = 1;                           /* Select both left & right half of display */
+   for(i=0;i<8;i++){
+      GLCD_Command((0xB8)+i);                     /* Increment page each time after 64 column */
+      for(j=0;j<64;j++){
+         GLCD_Char(0);                        /* Write zeros to all 64 column */
+      }
+   }
+   GLCD_Command(0x40);                           /* Set Y address (column=0) */
+   GLCD_Command(0xB8);                           /* Set x address (page=0) */
+}      
+                           
+void createImage(uchar_t * image){ 
+   uint8_t i=0,j=0;      
+   uint8_t page[]={0xB8,0xB9,0xBA,0xBB,0xBC,0xBD,0xBE,0xBF};
+                        
+   delay_ms(10);
+   GLCD_Command(0xC0);    //Start line, (64 rows) selects from where to start(1 line)
+   for(i=0;i<=7;i++){
+      CS1FUN();
+      GLCD_Command(page[i]);
+      GLCD_Command(0x40);    //Setting y-address
+      for(j=0+(i*128);j<=63+(i*128);j++){
+         GLCD_Char(image[j]);
+      }
+      CS2FUN();
+      GLCD_Command(page[i]);
+      GLCD_Command(0x40);    //Setting y-address
+      for(j=64+(i*128);j<=127+(i*128);j++){
+         GLCD_Char(image[j]);
+      }
+      j=0;
+   }
+}    
+
+void CS1FUN(){
+   CS1=1; //Selecting 1 Half
+     NOP();                 
+   CS2=0; //Switch off other half
+} 
+void CS2FUN(){
+   CS1=0;  //Switch off First Half
+     NOP(); 
+   CS2=1;  //Selecting 2nd Half
+}
+
+void NOP(){           
+   #asm                  
+   NOP                          
+   #endasm                                 
+}
+
+     
+#endif //GLCD_H

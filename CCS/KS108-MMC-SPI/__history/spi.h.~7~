@@ -1,0 +1,11 @@
+#include "definitions.h" 
+#include "ucregisters.h" 
+#include <delay.h>
+#ifndef SPI_H
+#define SPI_H    
+              
+void SPI_Master_Init();   
+uint8_t SPI_transfer(uint8_t);
+
+
+#endif  //SPI_H   

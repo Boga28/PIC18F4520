@@ -1,0 +1,9 @@
+#ifndef TIMEDATE_H
+#define TIMEDATE_H
+
+//METHODS 
+void runTime(){}
+uchar_t exactDayOfMonth();
+
+
+#endif //TIMEDATE_H

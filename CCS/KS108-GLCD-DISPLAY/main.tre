@@ -1,0 +1,72 @@
+ÀÄmain
+   ÃÄMAIN  0/70  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/50  Ram=0
+   ³  ÃÄcreateEarthimation  0/1088  Ram=4
+   ³  ³  ÃÄ@const792  0/1048  Ram=0
+   ³  ³  ÃÄ@const794  0/1048  Ram=0
+   ³  ³  ÃÄ@const796  0/1048  Ram=0
+   ³  ³  ÃÄ@const798  0/1048  Ram=0
+   ³  ³  ÃÄ@const800  0/1048  Ram=0
+   ³  ³  ÃÄ@const802  0/1048  Ram=0
+   ³  ³  ÃÄ@const804  0/1048  Ram=0
+   ³  ³  ÃÄ@const806  0/1048  Ram=0
+   ³  ³  ÃÄ@const808  0/1048  Ram=0
+   ³  ³  ÃÄ@const810  0/1048  Ram=0
+   ³  ³  ÃÄ@const812  0/1048  Ram=0
+   ³  ³  ÃÄ@const814  0/1048  Ram=0
+   ³  ³  ÃÄ@const816  0/1048  Ram=0
+   ³  ³  ÃÄ@const818  0/1048  Ram=0
+   ³  ³  ÃÄ@const820  0/1048  Ram=0
+   ³  ³  ÃÄ@const822  0/1048  Ram=0
+   ³  ³  ÃÄ@const824  0/1048  Ram=0
+   ³  ³  ÃÄ@const826  0/1048  Ram=0
+   ³  ³  ÀÄGLCD_String  0/186  Ram=6
+   ³  ³     ÃÄCS1FUN  0/10  Ram=0
+   ³  ³     ³  ÀÄNOP  0/4  Ram=0
+   ³  ³     ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³     ³  ÃÄNOP  0/4  Ram=0
+   ³  ³     ³  ÃÄNOP  0/4  Ram=0
+   ³  ³     ³  ÃÄNOP  0/4  Ram=0
+   ³  ³     ³  ÃÄNOP  0/4  Ram=0
+   ³  ³     ³  ÃÄNOP  0/4  Ram=0
+   ³  ³     ³  ÀÄNOP  0/4  Ram=0
+   ³  ³     ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄGLCD_Char  0/16  Ram=1
+   ³  ³     ³  ÃÄNOP  0/4  Ram=0
+   ³  ³     ³  ÀÄNOP  0/4  Ram=0
+   ³  ³     ÃÄCS2FUN  0/12  Ram=0
+   ³  ³     ³  ÀÄNOP  0/4  Ram=0
+   ³  ³     ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³     ³  ÀÄ*
+   ³  ³     ÀÄGLCD_Char  0/16  Ram=1
+   ³  ³        ÀÄ*
+   ³  ÃÄGLCD_Init  0/78  Ram=0
+   ³  ³  ÃÄ@delay_ms1  0/42  Ram=1
+   ³  ³  ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄGLCD_Command  0/36  Ram=1
+   ³  ³     ÀÄ*
+   ³  ÃÄGLCD_Clear  0/76  Ram=3
+   ³  ³  ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄGLCD_Char  0/16  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄGLCD_Command  0/36  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄGLCD_Command  0/36  Ram=1
+   ³  ³     ÀÄ*
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÀÄcreateEarthimation  0/1088  Ram=4
+   ³     ÀÄ*
+   ÀÄtimer1_interrupt  0/88  Ram=2
+      ÀÄ@DIV1616  0/72  Ram=5

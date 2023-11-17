@@ -1,0 +1,20 @@
+#ifndef LCD_H                                                                                               
+#define LCD_H 
+                                            
+extern uchar_t strLCD[32];
+extern const unsigned short Custom_Char5x8[] = {
+                                                                      
+void lcdcmd(uchar_t);                      
+void lcddata(uchar_t);                                                                     
+void LCD_String();                                                                             
+//LCD (CHIP: HD44780), COMMANDS
+void twoLinesBCDMode();
+void LinesActive();
+void lcdClear();                              
+void lcdGoToFirstLine();     
+void lcdGoToSecondLine();
+void lcdShiftRight();
+void lcdCursorOn(); 
+void lcdCursorOff();
+
+#endif //LCD_H    

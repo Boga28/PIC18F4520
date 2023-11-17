@@ -1,0 +1,299 @@
+000     @SCRATCH
+000     @MEMSET.P1
+001     @SCRATCH
+001     _RETURN_
+001-002 @MEMSET.P1
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     tmr1_time
+019-01A timeout
+01B     g_card_type
+01C-01D sectorPosition
+01E-21D GLCD_BUFFER
+21E     sdcard_init.i
+21E-228 displayVideoAnimation.text
+21E     @PSTRINGC_57600_31766_31767.@SCRATCH1
+21F     sdcard_init.resp
+21F     @PSTRINGC_57600_31766_31767.@SCRATCH2
+220     sdcard_init.ocr_byte_3
+221     @delay_ms1.P1
+221     sdcard_get_r7.i
+221     sdcard_get_r1.response
+221-222 sdcard_read_ocr._ocr_byte_3
+222     sdcard_get_r7.response
+223     sdcard_read_ocr.i
+224     sdcard_read_ocr.response
+225     sdcard_read_ocr.@SCRATCH1
+226     sdcard_read_ocr.@SCRATCH2
+229-22A GLCD_StringCenterOfDisp.data
+229     @PSTRINGCN_57600_31766_31767.P1
+229     GLCD_DrawTop.x
+229-22A @PRINTF_LU_57600_31766_31767.P1
+229-22C sdcard_read_sector.sector_number
+229     GLCD_Clear.i
+229     GLCD_DrawBottom.x
+22A     GLCD_DrawBottom.y
+22A     GLCD_DrawTop.y
+22A     GLCD_Clear.j
+22A     @PSTRINGCN_57600_31766_31767.@SCRATCH1
+22B     GLCD_StringCenterOfDisp.size
+22B     GLCD_DrawTop.pageAdd
+22B     GLCD_DrawBottom.pageAdd
+22B     GLCD_Clear.@SCRATCH1
+22B     @PSTRINGCN_57600_31766_31767.@SCRATCH2
+22B     @PRINTF_LU_57600_31766_31767.@SCRATCH1
+22C     GLCD_StringCenterOfDisp.pageAdd
+22C-22D GLCD_DrawTop.arrayPosition
+22C-22D GLCD_DrawBottom.arrayPosition
+22C     @PRINTF_LU_57600_31766_31767.@SCRATCH2
+22D-22E sdcard_read_sector.data
+22D     GLCD_StringCenterOfDisp.i
+22D     @PRINTF_LU_57600_31766_31767.@SCRATCH3
+22E     GLCD_StringCenterOfDisp.xMargin
+22E     GLCD_DrawTop.@SCRATCH1
+22E     GLCD_DrawBottom.@SCRATCH1
+22E     @PRINTF_LU_57600_31766_31767.@SCRATCH4
+22F     sdcard_read_sector.response
+22F     GLCD_StringCenterOfDisp.@SCRATCH1
+22F     @PRINTF_LU_57600_31766_31767.@SCRATCH5
+230     GLCD_Command.cmd
+230-231 sdcard_read_sector.i
+230     GLCD_StringChar.data
+230     @PRINTF_LU_57600_31766_31767.@SCRATCH6
+231     GLCD_StringChar.i
+231     @PRINTF_LU_57600_31766_31767.@SCRATCH7
+232     send_sdcard_command.command
+232-233 @MUL1616.P1
+232     sdcard_read_sector.@SCRATCH1
+232     GLCD_StringChar.@SCRATCH1
+233     GLCD_Char.data
+233-236 send_sdcard_command.sd_data
+233     sdcard_read_sector.@SCRATCH2
+233     GLCD_StringChar.@SCRATCH2
+234-235 @MUL1616.P1
+236     @MUL1616.@SCRATCH1
+237     send_sdcard_command.sd_crc
+238     send_sdcard_command.i
+239     send_sdcard_command.@SCRATCH1
+23A     send_sdcard_command.@SCRATCH2
+23B     send_sdcard_command.@SCRATCH3
+23C     send_sdcard_command.@SCRATCH4
+23D     send_sdcard_command.@SCRATCH5
+23E-23F @DIV1616.P1
+23E     timer1_interrupt.@SCRATCH1
+23F     timer1_interrupt.@SCRATCH2
+240-241 @DIV1616.P1
+242     @DIV1616.@SCRATCH1
+F80.0   PORTA_0
+F80     PORTA
+F80.1   PORTA_1
+F81     PORTB
+F81     PORTBB
+F81.0   PORTB_0
+F81.7   PORTB_7
+F82     PORTC
+F82.2   CS
+F82.3   CLK
+F82.4   SDI
+F82.5   SDO
+F83     PORTD
+F83     PSP_DATA
+F84     PORTE
+F8A     LATBB
+F8A.0   CS1
+F8A.1   CS2
+F8A.2   RS
+F8A.3   RW
+F8A.4   EN
+F8A.5   RST
+F8B     LATC
+F8C     LCD_data
+F92     TRISA
+F92.0   PORTA_DIR_0
+F92.1   PORTA_DIR_1
+F93     TRISB
+F93     TRISBB
+F94     TRISC
+F94.2   CS_DIR
+F94.3   CLK_DIR
+F94.4   SDI_DIR
+F94.5   SDO_DIR
+F95     TRISD
+F96     TRISE
+F9D     PIE1
+F9D.0   PIE1_TMR1IE
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9E.0   PIR1_TMR1IF
+F9E     PIR1
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9F     IPR1
+F9F.0   IPR1_TMR1IP
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FC6     SSPCON1
+FC6.0   SSPM0
+FC6.1   SSPM1
+FC6.2   SSPM2
+FC6.3   SSPM3
+FC6.4   CKP
+FC6.5   SSPEN
+FC7     SSPSTAT
+FC7.0   BF
+FC7.6   CKE
+FC7.7   SMP
+FC9     SSPBUF
+FCD     T1CON
+FCD.0   T1CON_TMR1ON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @MEMSET.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FE9-FEA @READ_PACKED_MEMORY.P5
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @DIV1616
+0000DE  NOP
+0000E2  GLCD_Command
+0000FA  sdcard_select
+000100  @cinit1
+000100  MAIN
+00012E  @cinit2
+000302  Font5x7.call
+00031A  Font5x7.data
+00055A  @const894.call
+00056C  timer1_interrupt
+0005D4  @const905.call
+0005DE  setupTimerIOSC
+000610  @delay_ms1
+000638  GLCD_Init
+000686  send_sdcard_command
+0006EA  sdcard_get_r1
+000722  sdcard_go_idle_state
+00073E  sdcard_deselect
+00074C  sdcard_get_r7
+00079A  sdcard_send_if_cond
+0007BC  sdcard_send_app_cmd
+0007D8  sdcard_sd_send_op_cond
+0007F6  sdcard_read_ocr
+00087E  sdcard_set_blocklen
+00089C  sdcard_init
+0009F0  @PSTRINGC_57600_31766_31767
+000A14  initMMC
+000A2C  WDTreset
+000A32  @MEMSET
+000A4E  sdcard_read_sector
+000B3E  GLCD_Char
+000B52  GLCD_Clear
+000BA2  @PSTRINGCN_57600_31766_31767
+000BCE  @PRINTF_LU_57600_31766_31767
+000C84  readSectorData
+000D0A  CS1FUN
+000D14  CS2FUN
+000D1E  GLCD_DrawTop
+000DDA  GLCD_DrawBottom
+000E96  @MUL1616
+000EBA  GLCD_StringChar
+000F16  GLCD_StringCenterOfDisp
+000FB0  displayVideoAnimation
+0136  next_sector
+
+Project Directory:
+    C:\18F4520\CCS\KS108-MMC-SPI\
+
+Project Files:
+    main.c                                                  [21-Aug-23 08:06  CRC=AE8F562E]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    main.h                                                  [04-Aug-23 12:13  CRC=E4280BF3]
+    definitions.h                                           [02-Aug-23 09:43  CRC=307DF898]
+    delayms.h                                               [02-Aug-23 09:39  CRC=D872A938]
+    ucregisters.h                                           [04-Aug-23 09:32  CRC=4AA88771]
+    init.h                                                  [31-Jul-23 11:15  CRC=1D71D8EE]
+    delayms.c                                               [19-Jul-23 16:26  CRC=7910CBDE]
+    sdcard.c                                                [04-Aug-23 14:07  CRC=70BADC90]
+    sdcard.h                                                [04-Aug-23 11:17  CRC=163E84B7]
+    glcd.c                                                  [13-Aug-23 22:22  CRC=8A0A3E12]
+    glcd.h                                                  [04-Aug-23 17:20  CRC=56194316]
+    fonts.h                                                 [13-Aug-23 22:22  CRC=5CF6718C]
+
+Source signature=CE97AB2F
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

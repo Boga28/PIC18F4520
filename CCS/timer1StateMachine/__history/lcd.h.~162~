@@ -1,0 +1,19 @@
+#ifndef LCD_H                                                                                               
+#define LCD_H 
+                                            
+extern uchar_t strLCD[32]; 
+BYTE CONST TABLE [8]= {9,8,7,6,5,4,3,2};
+void lcdcmd(uchar_t);                                                                               
+void lcddata(uchar_t);                                                                     
+void LCD_String();                                                                             
+//LCD (CHIP: HD44780), COMMANDS
+void twoLinesBCDMode();
+void LinesActive();
+void lcdClear();                              
+void lcdGoToFirstLine();     
+void lcdGoToSecondLine();
+void lcdShiftRight();
+void lcdCursorOn(); 
+void lcdCursorOff();
+
+#endif //LCD_H    

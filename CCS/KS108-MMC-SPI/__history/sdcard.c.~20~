@@ -1,0 +1,61 @@
+
+
+#include "sdcard.h"
+   
+   
+unsigned char  MMC_INIT()
+{
+       unsigned char LPCNT=0;
+      /* start off with 80 bits of high data with card deselected */
+      SPIPORT |=CS; 
+      for(LPCNT=0;LPCNT<10; LPCNT++)
+      CHAR_SPI(0xff);
+/*-----------------------------------------CMD 0-------------------------------*/       
+      SPIPORT &= ~CS;        /* select card */
+      CHAR_SPI( 0X40);CHAR_SPI( 0X00);CHAR_SPI( 0X00);
+      CHAR_SPI( 0X00);CHAR_SPI( 0X00);CHAR_SPI( 0X95);
+       
+      if( (MMC_RESPONCE(0x01)) == 1 )
+      {
+         SPIPORT |=CS;
+         return 1;
+      }
+      SendStr( MSG0);
+/*-----------------------------------------------------------------------------*/ 
+        SPIPORT |= CS;
+       CHAR_SPI(0xFF); 
+/*----------------------------------CMD1---------------------------------------*/ 
+       SPIPORT &= ~CS;   
+       LPCNT=0xFF;
+       do
+       {
+            CHAR_SPI( 0X41);   CHAR_SPI( 0X00);     CHAR_SPI( 0X00);
+             CHAR_SPI( 0X00);   CHAR_SPI( 0X00);     CHAR_SPI( 0XFF);
+             LPCNT--;
+       } while ( (MMC_RESPONCE(0x00) != 0) && (LPCNT>0) );
+      if(LPCNT==0)
+      {     
+           SPIPORT |= CS;       
+           return 1;   
+      }
+      
+        SendStr( MSG1);      
+/*--------------------------------------------------------------------*/ 
+        SPIPORT |= CS;
+       CHAR_SPI(0xFF); 
+/*---------------------CMD16  SET BLOCK LENGTH------------------------*/     
+   
+      SPIPORT &= ~CS;        // select card 
+      CHAR_SPI( 0X50); CHAR_SPI( 0X00);  CHAR_SPI( 0X00);
+      CHAR_SPI( 0X02); CHAR_SPI( 0X00);  CHAR_SPI( 0XFF);
+      if( (MMC_RESPONCE(0x00)) == 1 )
+      {
+          SPIPORT |=CS;
+          return 1;
+      }
+        SendStr( MSGB);
+        SPIPORT |= CS;
+        CHAR_SPI(0xFF); 
+      
+        return 0;
+}  

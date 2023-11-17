@@ -1,0 +1,11 @@
+#include "definitions.h"                                                         
+#include "ucregisters.h"      
+                       
+#ifndef MODBUSRTU_H
+#define MODBUSRTU_H       
+
+extern uchar_t slaveAddr, function, addrHigh, addrLow, dataHigh, dataLow, crcHigh, crcLow;      
+void modbusRTUrx();  
+void clearCom();              
+
+#endif  //MODBUSRTU_H

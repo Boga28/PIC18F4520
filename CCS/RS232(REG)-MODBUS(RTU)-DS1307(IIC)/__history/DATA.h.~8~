@@ -1,0 +1,8 @@
+#include "definitions.h"                                                         
+
+#ifndef DATA_H
+#define DATA_H    
+
+uchar_t timeDateReadData[7];
+                                    
+#endif  //DATA_H  

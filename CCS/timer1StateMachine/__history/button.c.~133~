@@ -1,0 +1,16 @@
+#include "button.h" 
+uint8_t BUTTON_PRESSED_RELEASED;
+
+uint8_t button_debounce(uint8_t valueOfInput){                                            
+   if(!bit_test(valueOfInput)){
+      BUTTON_PRESSED_RELEASED<<=1;
+   }else{                       
+      BUTTON_PRESSED_RELEASED<<=1;                       
+      BUTTON_PRESSED_RELEASED|=1;          
+   }  
+   if((BUTTON_PRESSED_RELEASED & 0x07)==0x07){ 
+      return true;  
+   }else if((BUTTON_PRESSED_RELEASED& 0x07)==0x00){
+      return false;
+   } 
+}                                                                                                                                  

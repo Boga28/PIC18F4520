@@ -1,0 +1,514 @@
+////////////////////////////////////////////////////////////////////////////////
+//ICC-AVR application builder : 1/21/2007 12:37:44 AM
+// Target : M32
+// Crystal: 11.059Mhz
+////////////////////////////////////////////////////////////////////////////////
+
+#include "sdcard.h"
+
+
+#define SPIDDR  DDRB
+#define SPIPORT PORTB
+#define SPIPIN  PINB
+#define CS      0x10
+#define BinToASCII(t) ((t<=9) ? (t|0x30):(t+55))
+#define ASCIIToBin(t) ((t>='A'&& t<='F')?t-55:((t>='0'&& t<='9') ? t-'0':0))
+#define BYTELOW(v)  (*((unsigned char *)(&v))) 
+#define BYTEHIGH(v) (*(((unsigned char *)(&v) + 1)))
+#define BLOCK_SIZE   512   
+
+const unsigned char  CMD0_RST_IDLE[]= {0x40,0x00,0x00,0x00,0x00,0x95};
+                //command 0 reset all card to idle state   
+const unsigned char    CMD1_SND_OPCND[]= {0x41,0x00,0x00,0x00,0x00,0xFF};
+                //command 1 for read OPERATION CONDITION register 
+const unsigned char    CMD16_SET_BLOCKLEN[]= {0x50,0x00,0x00,0x02,0x00,0xFF};
+                     //command 16 TO SET BLOCK LENGHT=512 BYTE TO READ & WRITE
+                //0x000200=512 & 0x00000010=16
+const unsigned char   MSGF[] ={"\rMMC CARD INTERFACE\r"};
+const unsigned char   MSG0[] ={"\rMMC CARD COMMAND 0\r"};
+const unsigned char   MSG1[] ={"\rMMC CARD COMMAND 1\r"};
+const unsigned char   MSGB[] ={"\rMMC CARD COMMAND BLOCK=512\r"};
+const unsigned char   MSGW[] ={"\rMMC CARD SECTOR WRITE\r"};
+const unsigned char   MSGR[] ={"\rMMC CARD SECTOR READ\r"};
+const unsigned char   MSG[]  ={"\nMMC CARD IS INITIALIZED SPI MODE\n"};
+const unsigned char   CSD[]  ={"\rCSD INFORMATION:\r"};   
+const unsigned char   CID[]  ={"\rCID INFORMATION:\r"};
+const unsigned char   WACK[] ={"\rWRITE ACKNOLEDGE:\r"};
+const unsigned char   WNFSH[]={"\rWRITE NOT FINISH:\r"};
+unsigned char TEMP;
+unsigned int iSIZE;
+unsigned int iSIZE1;
+unsigned char BUFFER[128];
+
+
+unsigned char adc_low,adc_high;
+unsigned int timer0_counter=0;
+
+unsigned char Data=65;
+
+unsigned int RdFlag=0,WrtFlag=0;
+
+/******************************************************************************/
+/////////****************** Port initialisation ************************////////
+/******************************************************************************/
+
+void port_init(void)
+{
+     PORTA = 0x80; // ADC7,for PORTA0 {DDXn,PORTXn,PUD}=010,PXn will source current if Ext. pulled low
+     DDRA  = 0x00; // PA0-PA3 are used as command lines from host controller  
+     PORTB = 0xFF; // if DDXn is written logic zero ,the PXn is configured as an i/p
+     DDRB  = 0xFF;
+     PORTC = 0x00; //m103 output only
+     DDRC  = 0x0F; //LEDs are connected to PORTC0 to PORTC3
+     PORTD = 0x00;
+       DDRD  = 0x02;// read/write buttons are connected to portD
+}
+
+//UART0 initialize
+// desired baud rate: 57600
+/* ************************************************************************ */
+
+void uart0_init(void)
+{
+ UCSRB = 0x00; //disable while setting baud rate
+ UCSRA = 0x00;
+ UCSRC = BIT(URSEL) | 0x06;
+ UBRRL = 0x0B; //set baud rate lo
+ UBRRH = 0x00; //set baud rate hi
+ UCSRB = 0x18;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//                     SPI port initilaisation                              //                      
+////////////////////////////////////////////////////////////////////////////////
+
+void SpiInit()
+{
+     DDRB = 0xB0;   // Set SCK, MOSI & SS as outputs
+     SPCR = 0x53;
+     PORTB = 0xEF;  // clear bits MOSI, & SCK      
+}
+
+
+///////////////////////// UART data receive routine //////////////////////////
+unsigned char ReceiveByte(void)
+{
+     while(!(UCSRA & BIT(RXC)));
+     return UDR;
+}
+///////////////////////// UART data transmit routine //////////////////////////
+void SEND_CHAR_UART(char ch)
+{
+      while(!(UCSRA & BIT(UDRE))) ;
+      UDR = ch;
+}
+
+void SendStr(const char *ch)
+{
+      while(*ch != 0x00) 
+     SEND_CHAR_UART(*ch++);
+}
+/*------------------------------------*/
+void PRINT_ASCII (unsigned char PRNT)
+{
+     unsigned char PRN=0;
+     PRN=PRNT>>4; 
+      SEND_CHAR_UART(BinToASCII(PRN));  
+      PRN=PRNT&0x0F;
+     SEND_CHAR_UART(BinToASCII(PRN));       
+} 
+
+/***  SpiWriteByte() writes a byte to the SPI and waits until  
+it has been transmitted.This function doesn't  return any value back.**/
+unsigned char CHAR_SPI(unsigned char byte)
+{
+     SPDR = byte;
+      while (!(SPSR & 0x80));
+     return SPDR;
+}
+//**************************************
+// void Delay_1ms(void)
+//**************************************
+void Delay_1ms(int Del)
+{
+     int i;
+      while(Del--)
+      {  
+           for (i=0;i<200;i++) 
+           WDR();
+     }
+}
+//-----------------------------------------------------------------//
+//                MMC GET RESPONSE                        //    
+//-----------------------------------------------------------------//
+unsigned char MMC_RESPONCE(unsigned char RESPONSE )
+{
+      unsigned int COUNT=0xFFF; // for 64 MB card 
+       //unsigned int COUNT=0xFFFF;  // for 1 GB
+      unsigned  char  RESULT;
+      while(COUNT!=0)
+      {
+           RESULT = CHAR_SPI(0xFF);
+            // PRINT_ASCII (RESULT);    SEND_CHAR_UART('\r');   //debug
+            if(RESULT==RESPONSE)
+           break;
+           COUNT--;
+      }
+      if(COUNT==0)return 1;
+      else   
+       return 0;
+}
+/***************************************************/  
+unsigned char MMC_WAIT_FOR_WRITE_FINISH( void ) 
+{ 
+      unsigned char LPCNT=0xFF;
+      unsigned char  RESULT = 0;
+      /* The delay is set to maximum considering the longest data block length to handle */
+        while( (RESULT == 0) && LPCNT ) 
+       { 
+               RESULT = CHAR_SPI( 0XFF);
+               LPCNT--;
+      }
+      if (LPCNT== 0 ) 
+         return 1;        /* Failure, loop was exited due to timeout */ 
+      else return 0;  /* Normal , loop was exited before timeout */
+}
+/*-----------------------------------------------------------------------------*/  
+unsigned char  MMC_INIT()
+{
+        unsigned char LPCNT=0;
+      /* start off with 80 bits of high data with card deselected */
+      SPIPORT |=CS; 
+      for(LPCNT=0;LPCNT<10; LPCNT++)
+      CHAR_SPI(0xff);
+/*-----------------------------------------CMD 0-------------------------------*/       
+      SPIPORT &= ~CS;        /* select card */
+      CHAR_SPI( 0X40);CHAR_SPI( 0X00);CHAR_SPI( 0X00);
+      CHAR_SPI( 0X00);CHAR_SPI( 0X00);CHAR_SPI( 0X95);
+       
+      if( (MMC_RESPONCE(0x01)) == 1 )
+      {
+         SPIPORT |=CS;
+         return 1;
+      }
+      SendStr( MSG0);
+/*-----------------------------------------------------------------------------*/ 
+        SPIPORT |= CS;
+       CHAR_SPI(0xFF); 
+/*----------------------------------CMD1---------------------------------------*/ 
+       SPIPORT &= ~CS;   
+       LPCNT=0xFF;
+       do
+       {
+            CHAR_SPI( 0X41);   CHAR_SPI( 0X00);     CHAR_SPI( 0X00);
+             CHAR_SPI( 0X00);   CHAR_SPI( 0X00);     CHAR_SPI( 0XFF);
+             LPCNT--;
+       } while ( (MMC_RESPONCE(0x00) != 0) && (LPCNT>0) );
+      if(LPCNT==0)
+      {     
+           SPIPORT |= CS;       
+           return 1;   
+      }
+      
+        SendStr( MSG1);      
+/*--------------------------------------------------------------------*/ 
+        SPIPORT |= CS;
+       CHAR_SPI(0xFF); 
+/*---------------------CMD16  SET BLOCK LENGTH------------------------*/     
+   
+      SPIPORT &= ~CS;        // select card 
+      CHAR_SPI( 0X50); CHAR_SPI( 0X00);  CHAR_SPI( 0X00);
+      CHAR_SPI( 0X02); CHAR_SPI( 0X00);  CHAR_SPI( 0XFF);
+      if( (MMC_RESPONCE(0x00)) == 1 )
+      {
+          SPIPORT |=CS;
+          return 1;
+      }
+        SendStr( MSGB);
+        SPIPORT |= CS;
+        CHAR_SPI(0xFF); 
+      
+        return 0;
+}    
+
+/*------------------------------------------------------------*/
+//unsigned char  MMC_WRITE_BLOCK( unsigned  long SECTOR)
+/*----------------------------------------------------------- */
+void GET_CSD()
+{
+       SPIPORT &= ~CS;  
+       CHAR_SPI( 0x49);   CHAR_SPI( 0x00);     CHAR_SPI( 0X00);
+       CHAR_SPI( 0x00);   CHAR_SPI( 0x00);     CHAR_SPI( 0XFF);
+         while ((MMC_RESPONCE(0x00)) == 1);
+         while( (MMC_RESPONCE(0xFE)) == 1 );
+       for(TEMP=0;TEMP<=35;TEMP++)
+       BUFFER[TEMP]=CHAR_SPI(0xFF);
+         SendStr(CSD);
+       for(TEMP=0;TEMP<=15;TEMP++)
+       PRINT_ASCII(BUFFER[TEMP]);
+        SEND_CHAR_UART('\n');
+         SPIPORT |= CS;       // Deselect card
+}
+
+/*------------------------------------------------------------*/
+//void GET_CID()
+/*----------------------------------------------------------- */
+void GET_CID()
+{
+       SPIPORT &= ~CS;       // select card 
+       CHAR_SPI(0x4A); CHAR_SPI(0x00);  CHAR_SPI(0X00);
+       CHAR_SPI(0x00); CHAR_SPI(0x00);  CHAR_SPI(0XFF);
+         while ((MMC_RESPONCE(0x00)) == 1);
+        while( (MMC_RESPONCE(0xFE)) == 1 );
+       for(TEMP=0;TEMP<=35;TEMP++)
+       BUFFER[TEMP]=CHAR_SPI(0xFF);
+         SendStr(CID);
+       for(TEMP=0;TEMP<=15;TEMP++)
+       PRINT_ASCII(BUFFER[TEMP]); 
+         SEND_CHAR_UART('\n');
+         SPIPORT |= CS;       // Deselect card
+  
+}
+
+/*----------------------------------------------------*/
+void INSULATOR()
+{ 
+     CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);
+    CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);
+    CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);
+    CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);
+    CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);
+    CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);
+    CHAR_SPI( 0xFF);CHAR_SPI( 0xFF);
+}
+
+/*--------------------------------------------------------------------------------------*/
+
+unsigned char MMC_WRITE_BLOCK( unsigned   int SECTOR)
+{
+
+        unsigned char WRT=65;// A
+       unsigned int LPCNT=0;
+        unsigned long ADDRESS=0;
+       ADDRESS=(unsigned long)SECTOR*BLOCK_SIZE;
+     
+/*-----------------------CMD24------------------------------------------------*/       
+       SPIPORT &= ~CS; 
+       
+       CHAR_SPI( 0x58); 
+       CHAR_SPI (ADDRESS>>24);        CHAR_SPI (ADDRESS>>16);
+       CHAR_SPI (ADDRESS>>8);         CHAR_SPI (ADDRESS>>0);     
+       CHAR_SPI( 0xFF);
+
+       
+           if( (MMC_RESPONCE(0x00)) == 1 )
+          {
+            SPIPORT |=CS;
+            return 1;
+           }
+         
+         CHAR_SPI(0xFF); 
+         CHAR_SPI(0xFE);                //start of DATABLOCK
+
+                       
+          
+          for(LPCNT=0;LPCNT<512; LPCNT++)
+          { 
+                CHAR_SPI(Data);
+             //CHAR_SPI(WRT);
+             //SEND_CHAR_UART(WRT);
+          }
+          
+          
+         CHAR_SPI(0xFF); CHAR_SPI(0xFF);   // dummy chksum
+         
+         
+       LPCNT= CHAR_SPI(0xFF); 
+       
+       //SendStr(WACK);   PRINT_ASCII(LPCNT);   PRINT_ASCII((LPCNT & 0x0F)); // disabled for debugging 
+        
+       if ( (LPCNT & 0x0F) != 0x05 )
+          {
+                  SPIPORT |=CS;
+                  return 1;
+         }
+            
+                   if( MMC_WAIT_FOR_WRITE_FINISH()==1)  //disabled for debugging
+                {
+                           SendStr(WNFSH); // disabled for debugging           //-----------------------
+                         SPIPORT |=CS;
+                          return 1;
+                    }
+//SendStr( MSGW); //disabled for debugging
+/*----------------------------------------------------------------------------------------------------*/
+SPIPORT |= CS;
+CHAR_SPI(0xFF);  
+return 0;
+}    
+/*----------------------------------------------------------------------------------------------------*/
+unsigned char  MMC_READ_BLOCK( unsigned long SECTOR)
+{
+
+unsigned int LPCNT=0;
+unsigned long ADDRESS=0;
+unsigned char mmcData=0;
+
+ADDRESS=(unsigned long)SECTOR*BLOCK_SIZE;
+ 
+       
+/*-----------------------CMD17------------------------------------------------*/       
+// CMD17 READ_SINGLE_BLOCK
+// Function : Single block read  
+// [31:0] Data address R1
+
+       SPIPORT &= ~CS; // Deslect Card
+       
+       CHAR_SPI( 0x51); 
+       
+       CHAR_SPI (ADDRESS>>24);        CHAR_SPI (ADDRESS>>16);
+       CHAR_SPI (ADDRESS>>8);         CHAR_SPI (ADDRESS>>0);     
+       
+       CHAR_SPI( 0xFF);
+
+           if( (MMC_RESPONCE(0x00)) == 1 )
+          {  SPIPORT |= CS;
+            return 1;
+          }
+          
+          //////////////////////////////////////////////////////////////////
+             
+          //while( (MMC_RESPONCE(0xFE)) == 1 ) // disabled for debugging
+          //SEND_CHAR_UART('r');               // disabled for debugging
+          
+          //////////////////////////////////////////////////////////////////
+             
+          
+          while( (MMC_RESPONCE(0xFE)) == 1 ); // added for debugging         //---------
+         
+         
+          for(LPCNT=0;LPCNT<512;LPCNT++)
+          {
+               
+                  
+                  if((LPCNT%32)==0){SEND_CHAR_UART('\n');SEND_CHAR_UART('\r');} 
+                  
+                  mmcData=CHAR_SPI(0xFF);
+                  SEND_CHAR_UART(mmcData); // added for debugging
+                     
+           }   
+                        
+
+         CHAR_SPI(0xFF);  CHAR_SPI(0xFF);  //read CHKSUM
+//SendStr( MSGR); // disabled for debugging
+/*----------------------------------------------------------------------------*/
+ SPIPORT |= CS; // deslect card
+ CHAR_SPI(0xFF);  
+
+return 0;
+
+}                      
+
+//call this routine to initialize all peripherals
+void init_devices(void)
+{
+         CLI(); //disable all interrupts
+         port_init();
+        uart0_init(); // for baud rate of 115200 bps
+        MCUCR = 0x00; // may be disabled for debugging?????
+         GICR  = 0x00;
+         TIMSK = (1<<TOIE0);//timer interrupt sources-timer0
+         SEI(); //re-enable interrupts
+         //all peripherals are now initialized}
+}
+////////////////////////////////////////////////////////////////////////////////
+void main(void)
+{
+   
+     int i=0,LPCNT=0;
+     unsigned char rData;
+     unsigned int SECT=1000;
+  
+     init_devices(); 
+     SpiInit();
+
+////////////////////////////////////////////////////////////////////////////////  
+      SEND_CHAR_UART(0x0D);
+      SEND_CHAR_UART(0x0A);
+      SendStr( MSGF);                      // Transmit welcome message.
+                             // MSGF[]={"\rMMC CARD INTERFACE \r"};
+      SEND_CHAR_UART(0x0D);
+      SEND_CHAR_UART(0x0A);                            
+////////////////////////////////////////////////////////////////////////////////
+      while ( MMC_INIT() != 0);
+      //{ 
+            SendStr( MSG);
+           //SEND_CHAR_UART(0x0D);
+            //SEND_CHAR_UART(0x0A);
+           //break; disabled for debugging 
+      //}     
+      SEND_CHAR_UART(0x0D);   
+      SEND_CHAR_UART(0x0A);   // MSG[]  ={"\nMMC CARD IS INITIALIZED SPI MODE  \n"};
+
+      INSULATOR();
+ 
+/*----------------------------------------------------------------------------*/
+      SPCR  = 0x50;SPSR|=0x01;
+/*----------------------------------------------------------------------------*/
+      GET_CSD();          
+      INSULATOR(); 
+      GET_CID();        
+      INSULATOR(); 
+
+    RdFlag=0,WrtFlag=1;
+  
+     //insert your functional code here...
+       while(1)
+       {//start of while loop for data read & write
+   
+            
+           ////////////////////////// write routine ///////////////////////////
+         
+           if(WrtFlag==1)
+              {//if for write button
+              
+                 /////////////////////////////////////////////////////
+                   //Routines for writing data
+                   
+               MMC_WRITE_BLOCK(SECT);
+               
+               INSULATOR();
+               Data++;
+                   SECT++; 
+                   if(SECT>=1005)
+                   {             
+                    SECT=1000;Data=65;
+                  RdFlag=1,WrtFlag=0;                  
+                   }
+   
+            
+             }//end of if block for write button
+         
+            ///////////////// end of write routine /////////////////////////////
+         
+           if(RdFlag==1)
+            {
+                   //if swicth connected to PD3 closed then read
+                   ////////////////////////////////////////////////////////////////////////////
+                   // Routine for reading data
+                     MMC_READ_BLOCK(SECT);INSULATOR();             
+                
+                    SECT++; 
+                    if(SECT>=1005)
+                    {             
+                     SECT=1000;
+                     RdFlag=0,WrtFlag=1;
+                    }
+     
+                }// closing bracket of if block for reading data
+            CHAR_SPI(0x55); // added for debugging
+          
+   
+     }//ending bracket for while loop for read & write
+   
+ 
+}

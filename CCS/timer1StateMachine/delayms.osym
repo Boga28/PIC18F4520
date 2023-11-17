@@ -1,0 +1,40 @@
+_RETURN_
+CCP_1
+CCP_1_LOW
+CCP_1_HIGH
+CCP_2
+CCP_2_LOW
+CCP_2_HIGH
+PSP_DATA
+C1OUT
+C2OUT
+
+Project Directory:
+    C:\18F4520\CCS\timer1StateMachine\
+
+Project Files:
+    delayms.c                                               [12-Jul-23 07:56  CRC=76632DC1]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [10-Jul-23 21:41  CRC=12CF42A0]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+
+Source signature=6AD2784B
+
+Units:
+    delayms (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Output file:    Relocatable
+
+Output Files:
+    XREF file:   delayms.xsym
+    Errors:      main.err
+    Ext Symbols: delayms.esym
+    Object:      delayms.o
+    Symbols:     delayms.osym

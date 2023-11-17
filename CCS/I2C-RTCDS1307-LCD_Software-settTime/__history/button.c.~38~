@@ -1,0 +1,67 @@
+#include "definitions.h"   
+#include "button.h"
+#include "DS1307timeset.h"
+
+uint8_t BUTTON_PRESSED_RELEASED_1,BUTTON_PRESSED_RELEASED_2,BUTTON_PRESSED_RELEASED_3;   
+uint8_t STATUS_B1, STATUS_B2, STATUS_B3; 
+uint8_t bt_queue;
+                                                   
+uint8_t test_bit(uint8_t valueOfInput, uint8_t bits){ 
+   return ((valueOfInput & (1<<bits)) != 0);
+}                                         
+ 
+uint8_t button_debounce_1(uint8_t valueOfInput, uint8_t bit){
+   if(!test_bit(valueOfInput,bit)){
+      BUTTON_PRESSED_RELEASED_1<<=1;
+   }else{                               
+      BUTTON_PRESSED_RELEASED_1<<=1;                       
+      BUTTON_PRESSED_RELEASED_1|=1;          
+   } 
+   if((BUTTON_PRESSED_RELEASED_1 & 0x07)==0x07){  
+      if(position>5)
+         position=0;
+      STATUS_B1 = 1; 
+      return true;     
+   }else if((BUTTON_PRESSED_RELEASED_1  & 0x07)==0x00){ 
+      STATUS_B1 = 0;       
+      return false;       
+   }else{                           
+      return STATUS_B1;
+   }
+}      
+uint8_t button_debounce_2(uint8_t valueOfInput, uint8_t bit){
+   if(!test_bit(valueOfInput,bit)){
+      BUTTON_PRESSED_RELEASED_2<<=1;
+   }else{                               
+      BUTTON_PRESSED_RELEASED_2<<=1;                       
+      BUTTON_PRESSED_RELEASED_2|=1;          
+   } 
+   if((BUTTON_PRESSED_RELEASED_2 & 0x07)==0x07){  
+      STATUS_B2 = 1; 
+      return true;
+   }else if((BUTTON_PRESSED_RELEASED_2  & 0x07)==0x00){ 
+      STATUS_B2 = 0; 
+      return false;       
+   }else{                           
+      return STATUS_B2;
+   }
+}    
+uint8_t button_debounce_3(uint8_t valueOfInput, uint8_t bit){
+   if(!test_bit(valueOfInput,bit)){
+      BUTTON_PRESSED_RELEASED_3<<=1;    
+   }else{                               
+      BUTTON_PRESSED_RELEASED_3<<=1;                       
+      BUTTON_PRESSED_RELEASED_3|=1;          
+   }
+   if((BUTTON_PRESSED_RELEASED_3 & 0x07)==0x07){  
+      STATUS_B3 = 1;
+      position=0;
+      return true;  
+   }else if((BUTTON_PRESSED_RELEASED_3  & 0x07)==0x00){ 
+      STATUS_B3 = 0; 
+      return false;       
+   }else{                           
+      return STATUS_B3;
+   }
+}    
+

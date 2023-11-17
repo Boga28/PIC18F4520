@@ -1,0 +1,8 @@
+#include "definitions.h" 
+#include "ucregisters.h"   
+#ifndef GLCD_H
+#define GLCD_H  
+
+
+
+#endif //GLCD_H 

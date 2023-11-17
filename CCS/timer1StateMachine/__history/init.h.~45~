@@ -1,0 +1,28 @@
+#ifndef INIT_H
+#define INIT_H      
+           
+typedef union{  
+   uint8_t  all;      /* Type  kayitciya erismek icin ' */    
+      struct{    
+         uint8_t event_50ms   : 1;  /* bit:0, 50ms     */    
+         uint8_t event_100ms  : 1;  /* bit:1, 100ms    */          
+         uint8_t event_200ms  : 1;  /* bit:2, 200ms    */                 
+         uint8_t event_500ms  : 1;  /* bit:3, 500ms    */  
+         uint8_t event_1000ms : 1;  /* bit:4, 1000ms   */
+         uint8_t reserved     : 3;
+            }tmr1_flags;           
+}tmr1_events_t;
+extern tmr1_events_t   tmr1_events;   
+
+typedef union{
+   uint8_t  all;
+   struct{
+   uint8_t new_text:1;      //1 ise yeni metin var, 0 ise yok. 
+   uint8_t line_cursor:1;   //0 ise 1.satir, 1 ise 2.satir.
+   uint8_t write:1;
+   uint8_t delete:1;
+   }item;
+}LCD_state_t;
+extern LCD_state_t LCD_state;
+
+#endif //INIT_H                              

@@ -1,0 +1,36 @@
+#include "ucregisters.h"                                                                                             
+#include "usart_rs232.h"
+
+ 
+              
+void USART_Init(){                                                                  
+   TRISC_6=0;        // Make Tx pin as output   
+   TRISC_7=1;        // Make Rx pin as input                                                                  
+   // Baud rate=9600, SPBRG = (F_CPU /(64*9600))-1        
+   SPBRG = 0x0C;                      
+   TXSTA = 0x20;     // Enable Transmit(TX) 
+   RCSTA = 0x90;     // Enable Recieve (RX)
+}                                       
+                            
+                                
+uchar_t USART_RxCharBuffer(){
+   uchar_t data;
+  
+   if(RCIF_PIR1==1){         
+      data = RCREG;           //received in RCREG register and return to main program   
+      RCREG=0;
+      return data; 
+   }   
+}                            
+                                              
+void USART_TxCharBuffer(uchar_t data){                
+   if(OERR_RCSTA){              
+      CREN_RCSTA = 0;        
+      #ASM NOP #ENDASM
+      CREN_RCSTA=1;
+   }                                   
+   TXREG = data;            //Write char data to transmit register
+   TXIF_PIR1=0; 
+   TXREG=0;
+}                   
+                                                           

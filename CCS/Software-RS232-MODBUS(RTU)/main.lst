@@ -1,0 +1,2839 @@
+CCS PCH C Compiler, Version 5.015, 5967               23-Aug-23 19:52
+
+               Filename:   C:\18F4520\CCS\Software-RS232-MODBUS(RTU)\main.lst
+
+               ROM used:   3528 bytes (11%)
+                           Largest free fragment is 28552
+               RAM used:   317 (21%) at main() level
+                           343 (22%) worst case
+               Stack used: 7 locations (5 in main + 2 for interrupts)
+               Stack size: 31
+
+*
+0000:  GOTO   0100
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  F9D.0
+004A:  GOTO   0054
+004E:  BTFSC  F9E.0
+0050:  GOTO   06EA
+0054:  MOVFF  0E,00
+0058:  MOVFF  0F,01
+005C:  MOVFF  10,02
+0060:  MOVFF  11,03
+0064:  MOVFF  0C,FE9
+0068:  MOVFF  07,FEA
+006C:  BSF    07.7
+006E:  MOVFF  08,FE1
+0072:  MOVFF  09,FE2
+0076:  MOVFF  0A,FD9
+007A:  MOVFF  0B,FDA
+007E:  MOVFF  12,FF3
+0082:  MOVFF  13,FF4
+0086:  MOVFF  14,FFA
+008A:  MOVF   04,W
+008C:  MOVFF  06,FE0
+0090:  MOVFF  05,FD8
+0094:  RETFIE 0
+....................  
+.................... #include <18F4520.h>   //Kullanilan mikrodenetleyicinin surucusu derleyici uzerinde kaynak dosyasina tanimlanir. 
+.................... //////////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4520 
+0096:  CLRF   01
+0098:  CLRF   02
+009A:  CLRF   00
+009C:  CLRF   03
+009E:  MOVLB  1
+00A0:  MOVF   x55,W
+00A2:  BNZ   00A8
+00A4:  MOVF   x54,W
+00A6:  BZ    00D8
+00A8:  MOVLW  10
+00AA:  MOVWF  x56
+00AC:  BCF    FD8.0
+00AE:  RLCF   x52,F
+00B0:  RLCF   x53,F
+00B2:  RLCF   00,F
+00B4:  RLCF   03,F
+00B6:  MOVF   x55,W
+00B8:  SUBWF  03,W
+00BA:  BNZ   00C0
+00BC:  MOVF   x54,W
+00BE:  SUBWF  00,W
+00C0:  BNC   00D0
+00C2:  MOVF   x54,W
+00C4:  SUBWF  00,F
+00C6:  BTFSS  FD8.0
+00C8:  DECF   03,F
+00CA:  MOVF   x55,W
+00CC:  SUBWF  03,F
+00CE:  BSF    FD8.0
+00D0:  RLCF   01,F
+00D2:  RLCF   02,F
+00D4:  DECFSZ x56,F
+00D6:  BRA    00AC
+00D8:  MOVLB  0
+00DA:  GOTO   072E (RETURN)
+*
+0402:  MOVFF  FF2,0D
+0406:  BCF    FF2.7
+0408:  CLRF   FF7
+040A:  ADDLW  1C
+040C:  MOVWF  FF6
+040E:  MOVLW  04
+0410:  ADDWFC FF7,F
+0412:  TBLRD*+
+0414:  MOVF   FF5,W
+0416:  BTFSC  0D.7
+0418:  BSF    FF2.7
+041A:  RETURN 0
+041C:  DATA 00,C1
+041E:  DATA 81,40
+0420:  DATA 01,C0
+0422:  DATA 80,41
+0424:  DATA 01,C0
+0426:  DATA 80,41
+0428:  DATA 00,C1
+042A:  DATA 81,40
+042C:  DATA 01,C0
+042E:  DATA 80,41
+0430:  DATA 00,C1
+0432:  DATA 81,40
+0434:  DATA 00,C1
+0436:  DATA 81,40
+0438:  DATA 01,C0
+043A:  DATA 80,41
+043C:  DATA 01,C0
+043E:  DATA 80,41
+0440:  DATA 00,C1
+0442:  DATA 81,40
+0444:  DATA 00,C1
+0446:  DATA 81,40
+0448:  DATA 01,C0
+044A:  DATA 80,41
+044C:  DATA 00,C1
+044E:  DATA 81,40
+0450:  DATA 01,C0
+0452:  DATA 80,41
+0454:  DATA 01,C0
+0456:  DATA 80,41
+0458:  DATA 00,C1
+045A:  DATA 81,40
+045C:  DATA 01,C0
+045E:  DATA 80,41
+0460:  DATA 00,C1
+0462:  DATA 81,40
+0464:  DATA 00,C1
+0466:  DATA 81,40
+0468:  DATA 01,C0
+046A:  DATA 80,41
+046C:  DATA 00,C1
+046E:  DATA 81,40
+0470:  DATA 01,C0
+0472:  DATA 80,41
+0474:  DATA 01,C0
+0476:  DATA 80,41
+0478:  DATA 00,C1
+047A:  DATA 81,40
+047C:  DATA 00,C1
+047E:  DATA 81,40
+0480:  DATA 01,C0
+0482:  DATA 80,41
+0484:  DATA 01,C0
+0486:  DATA 80,41
+0488:  DATA 00,C1
+048A:  DATA 81,40
+048C:  DATA 01,C0
+048E:  DATA 80,41
+0490:  DATA 00,C1
+0492:  DATA 81,40
+0494:  DATA 00,C1
+0496:  DATA 81,40
+0498:  DATA 01,C0
+049A:  DATA 80,41
+049C:  DATA 01,C0
+049E:  DATA 80,41
+04A0:  DATA 00,C1
+04A2:  DATA 81,40
+04A4:  DATA 00,C1
+04A6:  DATA 81,40
+04A8:  DATA 01,C0
+04AA:  DATA 80,41
+04AC:  DATA 00,C1
+04AE:  DATA 81,40
+04B0:  DATA 01,C0
+04B2:  DATA 80,41
+04B4:  DATA 01,C0
+04B6:  DATA 80,41
+04B8:  DATA 00,C1
+04BA:  DATA 81,40
+04BC:  DATA 00,C1
+04BE:  DATA 81,40
+04C0:  DATA 01,C0
+04C2:  DATA 80,41
+04C4:  DATA 01,C0
+04C6:  DATA 80,41
+04C8:  DATA 00,C1
+04CA:  DATA 81,40
+04CC:  DATA 01,C0
+04CE:  DATA 80,41
+04D0:  DATA 00,C1
+04D2:  DATA 81,40
+04D4:  DATA 00,C1
+04D6:  DATA 81,40
+04D8:  DATA 01,C0
+04DA:  DATA 80,41
+04DC:  DATA 00,C1
+04DE:  DATA 81,40
+04E0:  DATA 01,C0
+04E2:  DATA 80,41
+04E4:  DATA 01,C0
+04E6:  DATA 80,41
+04E8:  DATA 00,C1
+04EA:  DATA 81,40
+04EC:  DATA 01,C0
+04EE:  DATA 80,41
+04F0:  DATA 00,C1
+04F2:  DATA 81,40
+04F4:  DATA 00,C1
+04F6:  DATA 81,40
+04F8:  DATA 01,C0
+04FA:  DATA 80,41
+04FC:  DATA 01,C0
+04FE:  DATA 80,41
+0500:  DATA 00,C1
+0502:  DATA 81,40
+0504:  DATA 00,C1
+0506:  DATA 81,40
+0508:  DATA 01,C0
+050A:  DATA 80,41
+050C:  DATA 00,C1
+050E:  DATA 81,40
+0510:  DATA 01,C0
+0512:  DATA 80,41
+0514:  DATA 01,C0
+0516:  DATA 80,41
+0518:  DATA 00,C1
+051A:  DATA 81,40
+051C:  MOVFF  FF2,0D
+0520:  BCF    FF2.7
+0522:  CLRF   FF7
+0524:  ADDLW  36
+0526:  MOVWF  FF6
+0528:  MOVLW  05
+052A:  ADDWFC FF7,F
+052C:  TBLRD*+
+052E:  MOVF   FF5,W
+0530:  BTFSC  0D.7
+0532:  BSF    FF2.7
+0534:  RETURN 0
+0536:  DATA 00,C0
+0538:  DATA C1,01
+053A:  DATA C3,03
+053C:  DATA 02,C2
+053E:  DATA C6,06
+0540:  DATA 07,C7
+0542:  DATA 05,C5
+0544:  DATA C4,04
+0546:  DATA CC,0C
+0548:  DATA 0D,CD
+054A:  DATA 0F,CF
+054C:  DATA CE,0E
+054E:  DATA 0A,CA
+0550:  DATA CB,0B
+0552:  DATA C9,09
+0554:  DATA 08,C8
+0556:  DATA D8,18
+0558:  DATA 19,D9
+055A:  DATA 1B,DB
+055C:  DATA DA,1A
+055E:  DATA 1E,DE
+0560:  DATA DF,1F
+0562:  DATA DD,1D
+0564:  DATA 1C,DC
+0566:  DATA 14,D4
+0568:  DATA D5,15
+056A:  DATA D7,17
+056C:  DATA 16,D6
+056E:  DATA D2,12
+0570:  DATA 13,D3
+0572:  DATA 11,D1
+0574:  DATA D0,10
+0576:  DATA F0,30
+0578:  DATA 31,F1
+057A:  DATA 33,F3
+057C:  DATA F2,32
+057E:  DATA 36,F6
+0580:  DATA F7,37
+0582:  DATA F5,35
+0584:  DATA 34,F4
+0586:  DATA 3C,FC
+0588:  DATA FD,3D
+058A:  DATA FF,3F
+058C:  DATA 3E,FE
+058E:  DATA FA,3A
+0590:  DATA 3B,FB
+0592:  DATA 39,F9
+0594:  DATA F8,38
+0596:  DATA 28,E8
+0598:  DATA E9,29
+059A:  DATA EB,2B
+059C:  DATA 2A,EA
+059E:  DATA EE,2E
+05A0:  DATA 2F,EF
+05A2:  DATA 2D,ED
+05A4:  DATA EC,2C
+05A6:  DATA E4,24
+05A8:  DATA 25,E5
+05AA:  DATA 27,E7
+05AC:  DATA E6,26
+05AE:  DATA 22,E2
+05B0:  DATA E3,23
+05B2:  DATA E1,21
+05B4:  DATA 20,E0
+05B6:  DATA A0,60
+05B8:  DATA 61,A1
+05BA:  DATA 63,A3
+05BC:  DATA A2,62
+05BE:  DATA 66,A6
+05C0:  DATA A7,67
+05C2:  DATA A5,65
+05C4:  DATA 64,A4
+05C6:  DATA 6C,AC
+05C8:  DATA AD,6D
+05CA:  DATA AF,6F
+05CC:  DATA 6E,AE
+05CE:  DATA AA,6A
+05D0:  DATA 6B,AB
+05D2:  DATA 69,A9
+05D4:  DATA A8,68
+05D6:  DATA 78,B8
+05D8:  DATA B9,79
+05DA:  DATA BB,7B
+05DC:  DATA 7A,BA
+05DE:  DATA BE,7E
+05E0:  DATA 7F,BF
+05E2:  DATA 7D,BD
+05E4:  DATA BC,7C
+05E6:  DATA B4,74
+05E8:  DATA 75,B5
+05EA:  DATA 77,B7
+05EC:  DATA B6,76
+05EE:  DATA 72,B2
+05F0:  DATA B3,73
+05F2:  DATA B1,71
+05F4:  DATA 70,B0
+05F6:  DATA 50,90
+05F8:  DATA 91,51
+05FA:  DATA 93,53
+05FC:  DATA 52,92
+05FE:  DATA 96,56
+0600:  DATA 57,97
+0602:  DATA 55,95
+0604:  DATA 94,54
+0606:  DATA 9C,5C
+0608:  DATA 5D,9D
+060A:  DATA 5F,9F
+060C:  DATA 9E,5E
+060E:  DATA 5A,9A
+0610:  DATA 9B,5B
+0612:  DATA 99,59
+0614:  DATA 58,98
+0616:  DATA 88,48
+0618:  DATA 49,89
+061A:  DATA 4B,8B
+061C:  DATA 8A,4A
+061E:  DATA 4E,8E
+0620:  DATA 8F,4F
+0622:  DATA 8D,4D
+0624:  DATA 4C,8C
+0626:  DATA 44,84
+0628:  DATA 85,45
+062A:  DATA 87,47
+062C:  DATA 46,86
+062E:  DATA 82,42
+0630:  DATA 43,83
+0632:  DATA 41,81
+0634:  DATA 80,40
+0636:  MOVFF  FF2,0D
+063A:  BCF    FF2.7
+063C:  CLRF   FF7
+063E:  ADDLW  50
+0640:  MOVWF  FF6
+0642:  MOVLW  06
+0644:  ADDWFC FF7,F
+0646:  TBLRD*+
+0648:  MOVF   FF5,W
+064A:  BTFSC  0D.7
+064C:  BSF    FF2.7
+064E:  RETURN 0
+0650:  DATA 49,4E
+0652:  DATA 46,4F
+0654:  DATA 52,4D
+0656:  DATA 45,4C
+0658:  DATA 45,4B
+065A:  DATA 54,52
+065C:  DATA 4F,4E
+065E:  DATA 49,4B
+0660:  DATA 41,52
+0662:  DATA 2D,47
+0664:  DATA 45,20
+0666:  DATA 20,20
+0668:  DATA 20,53
+066A:  DATA 54,41
+066C:  DATA 4A,59
+066E:  DATA 45,52
+0670:  DATA 00,00
+0672:  DATA 20,20
+0674:  DATA 25,32
+0676:  DATA 58,20
+0678:  DATA 25,32
+067A:  DATA 58,20
+067C:  DATA 25,32
+067E:  DATA 58,20
+0680:  DATA 25,32
+0682:  DATA 58,20
+0684:  DATA 20,20
+0686:  DATA 20,20
+0688:  DATA 25,32
+068A:  DATA 58,20
+068C:  DATA 25,32
+068E:  DATA 58,20
+0690:  DATA 25,32
+0692:  DATA 58,20
+0694:  DATA 25,32
+0696:  DATA 58,20
+0698:  DATA 20,00
+069A:  DATA 20,20
+069C:  DATA 25,32
+069E:  DATA 58,20
+06A0:  DATA 25,32
+06A2:  DATA 58,20
+06A4:  DATA 25,32
+06A6:  DATA 58,20
+06A8:  DATA 25,32
+06AA:  DATA 58,20
+06AC:  DATA 20,20
+06AE:  DATA 20,20
+06B0:  DATA 25,32
+06B2:  DATA 58,20
+06B4:  DATA 25,32
+06B6:  DATA 58,20
+06B8:  DATA 25,32
+06BA:  DATA 58,20
+06BC:  DATA 25,32
+06BE:  DATA 58,20
+06C0:  DATA 20,00
+06C2:  DATA 20,20
+06C4:  DATA 25,32
+06C6:  DATA 58,20
+06C8:  DATA 25,32
+06CA:  DATA 58,20
+06CC:  DATA 25,32
+06CE:  DATA 58,20
+06D0:  DATA 25,32
+06D2:  DATA 58,20
+06D4:  DATA 20,20
+06D6:  DATA 20,20
+06D8:  DATA 25,32
+06DA:  DATA 58,20
+06DC:  DATA 25,32
+06DE:  DATA 58,20
+06E0:  DATA 25,32
+06E2:  DATA 58,20
+06E4:  DATA 25,32
+06E6:  DATA 58,20
+06E8:  DATA 20,00
+*
+087A:  TSTFSZ 01
+087C:  BRA    0884
+087E:  TSTFSZ 02
+0880:  BRA    0886
+0882:  BRA    0892
+0884:  INCF   02,F
+0886:  MOVFF  00,FEE
+088A:  DECFSZ 01,F
+088C:  BRA    0886
+088E:  DECFSZ 02,F
+0890:  BRA    0886
+0892:  RETURN 0
+0894:  MOVFF  13B,FEA
+0898:  MOVFF  13A,FE9
+089C:  MOVLB  1
+089E:  MOVFF  151,FEF
+08A2:  INCF   FE9,F
+08A4:  BTFSC  FD8.2
+08A6:  INCF   FEA,F
+08A8:  CLRF   FEF
+08AA:  INCF   x3A,F
+08AC:  BTFSC  FD8.2
+08AE:  INCF   x3B,F
+08B0:  MOVLB  0
+08B2:  RETURN 0
+08B4:  MOVLB  1
+08B6:  BTFSC  x50.7
+08B8:  BRA    08DC
+08BA:  MOVLW  0F
+08BC:  MOVWF  00
+08BE:  SWAPF  x4F,W
+08C0:  ANDWF  00,F
+08C2:  MOVLW  0A
+08C4:  SUBWF  00,W
+08C6:  BC    08CE
+08C8:  MOVLW  30
+08CA:  ADDWF  00,F
+08CC:  BRA    08D2
+08CE:  MOVF   x50,W
+08D0:  ADDWF  00,F
+08D2:  MOVFF  00,151
+08D6:  MOVLB  0
+08D8:  RCALL  0894
+08DA:  MOVLB  1
+08DC:  MOVLW  0F
+08DE:  ANDWF  x4F,F
+08E0:  MOVLW  0A
+08E2:  SUBWF  x4F,W
+08E4:  BC    08EA
+08E6:  MOVLW  30
+08E8:  BRA    08EE
+08EA:  BCF    x50.7
+08EC:  MOVF   x50,W
+08EE:  ADDWF  x4F,F
+08F0:  MOVFF  14F,151
+08F4:  MOVLB  0
+08F6:  RCALL  0894
+08F8:  RETURN 0
+*
+09DA:  TBLRD*+
+09DC:  MOVFF  FF6,146
+09E0:  MOVFF  FF7,147
+09E4:  MOVFF  FF5,151
+09E8:  RCALL  0894
+09EA:  MOVFF  146,FF6
+09EE:  MOVFF  147,FF7
+09F2:  MOVLB  1
+09F4:  DECFSZ x45,F
+09F6:  BRA    09FA
+09F8:  BRA    09FE
+09FA:  MOVLB  0
+09FC:  BRA    09DA
+09FE:  MOVLB  0
+0A00:  RETURN 0
+....................  
+.................... #list 
+....................  
+....................    
+....................  
+.................... /*FUSES: cihaza bagli cesitli opsiyonlari ayarlamak icin kullanilir. Mevcut ozellikleri en ustte belirtilir.  
+....................        Konfigurasyon bileri vardir, bu komut ile mikrodenetleyicinin konfigurasyon pinleri ayarlanýr. 
+....................   Yaygin kullanilan cihaz secenekleri: 
+....................       Â· LP, XT, HS, RC :LP dusuk guclu kristal osilator, XT klasik kristal osilator, HS yuksek hizli kristal osilator, RC Direnc / Kondansator osilator 
+....................       Â· WDT, NOWDT  :Programin olasi kilitlenmelerde resetlenmesini saðlar. WDT dersek bu mod aktif, NOWDT dersek bu mod pasiftir.      
+....................       Â· PROTECT, NOPROTECT :Kod koruma, mikrokontrollerin içine yükleyecegin kodlar kopyalananaz demek, NOPROTECT ise kodlar geriye okunup kopyalanabilir demektir.  
+....................       Â· PUT, NOPUT (Power Up Timer) : NOPUT, zamanlayicilar kapali demek, yani timer olarak gecen zaman dongulerini kullanmayacagini belirtirsin. 
+....................       Â· BROWNOUT, NOBROWNOUT:Dusuk gerilimle program reset, bu ozellik gerilim seviyesi belli bir degerin altina dustugunde, mikrokontrollerin reset atmasidir, 
+....................           genelde NOBROWNOUT modunda tutulur, eyer BROWNOUT olarak kullanilirsa, ani gerilim dalgalanmalarinda sistem surrekli resetlenir. 
+....................       Â· INTRC: Internal, dahili osilatoru kullan anlamina gelir.     
+....................       Â· NOMCLR: Master Clear functionality, MCLR girisi PIC'i resetlemek icin kullanilir. Bu fuse yoksa #FUSE MCLR ve MCLR pini 10k ile 5V a  
+.................... Tum #FUSES ozelliklerini kapatmak icin " #FUSES none" kullanilir.                               
+.................... */                                           
+....................                                           
+.................... #FUSES NOWDT, WDT1, NOLVP,NOCPD, NOWRT, NOMCLR, IESO, INTRC  
+.................... #use delay (internal=8MHz)                      
+.................... //#use rs232(baud=9600, xmit=PIN_C6,rcv=PIN_C7) 
+....................  
+....................   
+....................                                               
+....................                                             
+....................                                                
+.................... #include "definitions.h"                                                                                                       
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef unsigned int8   uint8_t; 
+.................... typedef unsigned char   uchar_t; 
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "main.h"                                   
+.................... #ifndef MAIN_H      
+.................... #define MAIN_H                   
+.................... #define DELAY 1000  
+....................      
+.................... extern uint16_t iSayac;   
+....................  
+.................... void WDTreset(void);   
+....................  
+.................... #endif //MAIN_H                                 
+....................  
+....................                                                                                                                
+....................                                
+....................  
+.................... #include "delayms.h"                                 
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(uint16_t);  
+.................... void delayUsFun(uint8_t us); 
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+.................... #include "ucregisters.h"                
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+....................                  
+.................... //Analog PINS            
+.................... #byte TRISA = 0x0F92     
+.................... #byte PORTA = 0x0F80 
+.................... #bit  PORTA_DIR_0=TRISA.0  
+.................... #bit  PORTA_0=PORTA.0   
+.................... #bit  PORTA_DIR_1=TRISA.1  
+.................... #bit  PORTA_1=PORTA.1   
+....................                        
+.................... //Control PINS 
+.................... #byte TRISB = 0x0F93      
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0 
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... // LCD PINS 
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C                      
+.................... #bit  PORTD_7=PORTD.7     
+....................  
+.................... //LCD Control Pins 
+.................... #byte TRISE = 0x0F96 
+.................... #byte PORTE = 0x0F84                        
+.................... #bit  PORTE_RS=PORTE.0        
+.................... #bit  PORTE_E=PORTE.1 
+.................... #bit  PORTE_RW=PORTE.2  
+....................  
+....................    
+.................... #byte TRISC = 0x0F94  
+.................... #byte PORTC = 0x0F82             
+.................... #bit  TRISC_6=TRISC.6  
+.................... #bit  TRISC_7=TRISC.7   
+....................                           
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3        
+.................... #bit  IRCF2 =OSCCON.6   
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER1 INTERRUPT BYTE adresleri 
+.................... #byte ADCON1 = 0x0FC1     
+.................... #byte RCON = 0x0FD0    // RCON REGISTER 
+.................... #byte INTCON = 0x0FF2  // INTCON REGISTER  
+.................... #byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                          
+.................... #byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak) 
+.................... #byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi  
+.................... #byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi  
+.................... #byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                      
+.................... #byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti 
+.................... //   #############TIMER 1########                                                            
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... //# IPR1  :: IPR1 REGISTER // Bit Adresleri  
+.................... #bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                         
+.................... //# PIR1  :: PIR1 REGISTER // Bit Adresleri 
+.................... #bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit     
+.................... //# PIE1  :: PIE1 REGISTER // Bit Adresleri  
+.................... #bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit      
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit 
+.................... #bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit 
+.................... #bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                              
+.................... #bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits 
+.................... #bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit 
+.................... #bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit 
+.................... #bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit  
+.................... #bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit     
+....................  
+....................   
+....................   
+.................... //   #############WATCHDOG#######   
+.................... #byte WDTCON   = 0x0FD1  
+.................... #bit WDTCON_SWDTEN =WDTCON.0    
+....................                                                                  
+.................... //   ################   RS232/EUSART   #################  // 
+.................... #byte  RCSTA   = 0x0FAB    // RCSTA: RECEIVE STATUS AND CONTROL REGISTER 
+.................... #byte  BAUDCON = 0x0FB8    // BAUDCON: BAUD RATE CONTROL REGISTER                        
+.................... #byte  TXSTA   = 0x0FAC    // TXSTA: TRANSMIT STATUS AND CONTROL REGISTER  
+.................... #byte  SPBRGH  = 0x0FB0    // EUSART Baud Rate Generator Register, High Byte                          
+.................... #byte  SPBRG   = 0x0FAF    // EUSART Baud Rate Generator Register, Low Byte   
+.................... #byte  TXREG   = 0x0FAD    // EUSART Transmit Register                             
+.................... #byte  RCREG   = 0x0FAE    // EUSART Receive Register 
+....................  
+.................... #bit   OERR_RCSTA= RCSTA.1  // Overrun Error bit 
+.................... #bit   CREN_RCSTA= RCSTA.4  // Continuous Receive Enable bit    
+.................... #bit   TXIF_PIR1 = PIR1.4   // EUSART Transmit Interrupt Flag bit 
+.................... #bit   RCIF_PIR1 = PIR1.5   // EUSART Receive Interrupt Flag bit  
+.................... #bit   RCIE_PIE1 = PIE1.5   // EUSART Receive Interrupt Enable bit  
+.................... #bit   TXIE_PIE1 = PIE1.4   // EUSART Transmit Interrupt Enable bit  
+....................                            
+.................... #endif UCREGISTER_H                                                                          
+....................  
+.................... #include "init.h"                                       
+.................... #ifndef INITS_H 
+.................... #define INITS_H       
+....................  
+.................... extern uint16_t iSayac;                          
+.................... typedef union{   
+....................    uint8_t  all;      // Type  kayitciya erismek icin 
+....................    struct{ 
+....................       uint8_t _1ms    : 1;  //bit:0, 1ms  
+....................       uint8_t _2ms    : 1;  //bit:1, 2ms    
+....................       uint8_t _20ms   : 1;  //bit:2, 20ms    
+....................       uint8_t _50ms   : 1;  //bit:3, 50ms  
+....................       uint8_t _100ms  : 1;  //bit:4, 100ms     
+....................       uint8_t _200ms  : 1;  //bit:5, 200ms                   
+....................       uint8_t _500ms  : 1;  //bit:6, 500ms  
+....................       uint8_t _1000ms : 1;  //bit:7, 1000ms  
+....................    }tmr1_flags;                     
+.................... }tmr1_time_t;    
+.................... extern tmr1_time_t   tmr1_time;    
+....................  
+....................                                                 
+.................... #endif //INIT_H                               
+....................  
+.................... #include "button.h" 
+.................... #ifndef BUTTON_H                                                             
+.................... #define BUTTON_H  
+....................  
+.................... extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */  
+.................... extern uint8_t STATUS;  
+.................... uint8_t button_debounce(uint8_t,uint8_t);    
+.................... uint8_t test_bit(uint8_t,uint8_t); 
+....................    
+.................... #endif            
+....................  
+.................... #include "usart_rs232.h"   
+.................... #ifndef USART_RS232_H                                                                                                
+.................... #define USART_RS232_H    
+....................   
+....................  
+.................... uchar_t USART_RxCharBuffer(); 
+.................... void USART_TxCharBuffer(uchar_t data); 
+.................... void USART_Init();      
+....................                                                    
+.................... #endif  //USART_RS232_H 
+....................                   
+....................  
+....................  
+....................                             
+.................... #include "lcd.h"   
+.................... #ifndef LCD_H                                                                                                
+.................... #define LCD_H  
+....................                                              
+.................... extern uchar_t strLCD[32];   
+.................... extern uint8_t countLCDChar; 
+.................... extern uchar_t LCDW1SecFlag;         
+.................... //uchar_t legrandLCDCharacter [8]= {0x08, 0x1F, 0x19, 0x11, 0x11, 0x13, 0x1F, 0x02}; 
+.................... //uchar_t stickManLCDCharacter [8] = {0x0E, 0x0E, 0x04, 0x0F, 0x14, 0x0A, 0x1B, 0x00}; 
+.................... void lcdcmd(uchar_t);                                                                                
+.................... void lcddata(uchar_t);                                                                      
+.................... void LCD_String();                                                                              
+.................... //LCD (CHIP: HD44780), COMMANDS 
+.................... void twoLinesBCDMode(); 
+.................... void LinesActive(); 
+.................... void lcdClear();                               
+.................... void lcdGoToFirstLine();      
+.................... void lcdGoToSecondLine(); 
+.................... void lcdShiftRight(); 
+.................... void lcdCursorOn();  
+.................... void lcdCursorOff(); 
+.................... void LCD_Custom_Char (uchar_t loc, uchar_t *msg); 
+....................  
+.................... #endif //LCD_H     
+....................  
+.................... #include "lcd.c"                         
+....................  
+.................... #include "definitions.h"  
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef unsigned int8   uint8_t; 
+.................... typedef unsigned char   uchar_t; 
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "lcd.h" 
+.................... #ifndef LCD_H                                                                                                
+.................... #define LCD_H  
+....................                                              
+.................... extern uchar_t strLCD[32];   
+.................... extern uint8_t countLCDChar; 
+.................... extern uchar_t LCDW1SecFlag;         
+.................... //uchar_t legrandLCDCharacter [8]= {0x08, 0x1F, 0x19, 0x11, 0x11, 0x13, 0x1F, 0x02}; 
+.................... //uchar_t stickManLCDCharacter [8] = {0x0E, 0x0E, 0x04, 0x0F, 0x14, 0x0A, 0x1B, 0x00}; 
+.................... void lcdcmd(uchar_t);                                                                                
+.................... void lcddata(uchar_t);                                                                      
+.................... void LCD_String();                                                                              
+.................... //LCD (CHIP: HD44780), COMMANDS 
+.................... void twoLinesBCDMode(); 
+.................... void LinesActive(); 
+.................... void lcdClear();                               
+.................... void lcdGoToFirstLine();      
+.................... void lcdGoToSecondLine(); 
+.................... void lcdShiftRight(); 
+.................... void lcdCursorOn();  
+.................... void lcdCursorOff(); 
+.................... void LCD_Custom_Char (uchar_t loc, uchar_t *msg); 
+....................  
+.................... #endif //LCD_H     
+....................  
+.................... #include "ucregisters.h"  
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+....................                  
+.................... //Analog PINS            
+.................... #byte TRISA = 0x0F92     
+.................... #byte PORTA = 0x0F80 
+.................... #bit  PORTA_DIR_0=TRISA.0  
+.................... #bit  PORTA_0=PORTA.0   
+.................... #bit  PORTA_DIR_1=TRISA.1  
+.................... #bit  PORTA_1=PORTA.1   
+....................                        
+.................... //Control PINS 
+.................... #byte TRISB = 0x0F93      
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0 
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... // LCD PINS 
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C                      
+.................... #bit  PORTD_7=PORTD.7     
+....................  
+.................... //LCD Control Pins 
+.................... #byte TRISE = 0x0F96 
+.................... #byte PORTE = 0x0F84                        
+.................... #bit  PORTE_RS=PORTE.0        
+.................... #bit  PORTE_E=PORTE.1 
+.................... #bit  PORTE_RW=PORTE.2  
+....................  
+....................    
+.................... #byte TRISC = 0x0F94  
+.................... #byte PORTC = 0x0F82             
+.................... #bit  TRISC_6=TRISC.6  
+.................... #bit  TRISC_7=TRISC.7   
+....................                           
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3        
+.................... #bit  IRCF2 =OSCCON.6   
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER1 INTERRUPT BYTE adresleri 
+.................... #byte ADCON1 = 0x0FC1     
+.................... #byte RCON = 0x0FD0    // RCON REGISTER 
+.................... #byte INTCON = 0x0FF2  // INTCON REGISTER  
+.................... #byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                          
+.................... #byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak) 
+.................... #byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi  
+.................... #byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi  
+.................... #byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                      
+.................... #byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti 
+.................... //   #############TIMER 1########                                                            
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... //# IPR1  :: IPR1 REGISTER // Bit Adresleri  
+.................... #bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                         
+.................... //# PIR1  :: PIR1 REGISTER // Bit Adresleri 
+.................... #bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit     
+.................... //# PIE1  :: PIE1 REGISTER // Bit Adresleri  
+.................... #bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit      
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit 
+.................... #bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit 
+.................... #bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                              
+.................... #bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits 
+.................... #bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit 
+.................... #bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit 
+.................... #bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit  
+.................... #bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit     
+....................  
+....................   
+....................   
+.................... //   #############WATCHDOG#######   
+.................... #byte WDTCON   = 0x0FD1  
+.................... #bit WDTCON_SWDTEN =WDTCON.0    
+....................                                                                  
+.................... //   ################   RS232/EUSART   #################  // 
+.................... #byte  RCSTA   = 0x0FAB    // RCSTA: RECEIVE STATUS AND CONTROL REGISTER 
+.................... #byte  BAUDCON = 0x0FB8    // BAUDCON: BAUD RATE CONTROL REGISTER                        
+.................... #byte  TXSTA   = 0x0FAC    // TXSTA: TRANSMIT STATUS AND CONTROL REGISTER  
+.................... #byte  SPBRGH  = 0x0FB0    // EUSART Baud Rate Generator Register, High Byte                          
+.................... #byte  SPBRG   = 0x0FAF    // EUSART Baud Rate Generator Register, Low Byte   
+.................... #byte  TXREG   = 0x0FAD    // EUSART Transmit Register                             
+.................... #byte  RCREG   = 0x0FAE    // EUSART Receive Register 
+....................  
+.................... #bit   OERR_RCSTA= RCSTA.1  // Overrun Error bit 
+.................... #bit   CREN_RCSTA= RCSTA.4  // Continuous Receive Enable bit    
+.................... #bit   TXIF_PIR1 = PIR1.4   // EUSART Transmit Interrupt Flag bit 
+.................... #bit   RCIF_PIR1 = PIR1.5   // EUSART Receive Interrupt Flag bit  
+.................... #bit   RCIE_PIE1 = PIE1.5   // EUSART Receive Interrupt Enable bit  
+.................... #bit   TXIE_PIE1 = PIE1.4   // EUSART Transmit Interrupt Enable bit  
+....................                            
+.................... #endif UCREGISTER_H                                                                          
+....................  
+.................... #include "delayms.h"  
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(uint16_t);  
+.................... void delayUsFun(uint8_t us); 
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+....................                  
+....................                
+.................... /*Hex Code   LCD Ekran Karsiligi  
+....................  Initialize Lcd in 4-bit mode               0x02 
+.................... 1   Function Set: 8-bit, 1 Line, 5×7 Dots   0x30   48                                              
+.................... 2   Function Set: 8-bit, 2 Line, 5×7 Dots   0x38   56                            
+.................... 3   Function Set: 4-bit, 1 Line, 5×7 Dots   0x20   32 
+.................... 4   Function Set: 4-bit, 2 Line, 5×7 Dots   0x28   40  
+.................... 0F   LCD acik, Imlec acik 
+.................... 01   Ekrani Temizle                                 
+.................... 02   Satir Basina Dön            
+.................... 04   Imleci Sola Kaydir 
+.................... 06   Imleci Saga Kaydir 
+.................... 05   Ekrani Saga Kaydir 
+.................... 07   Ekrani Sola Kaydir 
+.................... 0E   Ekran Acik, Imleç Yanip Sonuyor 
+.................... 80   Imleci Ilk Satirin Basinda Konumlandir 
+.................... C0   Imleci Ikinci Satirin Basinda Konumlandir         
+.................... 3C   Ikinci Satiri Etkinlestir                                                     
+.................... 08   Ekran Kapali, Imleç Kapali              
+.................... OC   Ekran Acik, Imlec Kapali*/   
+....................                                             
+.................... uchar_t strLCD[32]; 
+.................... uint8_t countLCDChar; 
+.................... uchar_t LCDW1SecFlag; 
+....................                                          
+.................... /*LCD (CHIP: HD44780), COMMAND MODE*/  
+.................... void dis_cmd(uchar_t cmdout){  
+....................    PORTD=cmdout;      //Send command to lcdport=PORTB 
+*
+079C:  MOVFF  13E,F8C
+....................    PORTE_RS=0;                   
+07A0:  BCF    F84.0
+....................    PORTE_E=1;    
+07A2:  BSF    F84.1
+....................    delayUsFun(1); 
+07A4:  MOVLW  01
+07A6:  MOVLB  1
+07A8:  MOVWF  x40
+07AA:  MOVLB  0
+07AC:  RCALL  00DE
+....................    PORTE_E=0;                               
+07AE:  BCF    F84.1
+07B0:  RETURN 0
+.................... }                                   
+....................  
+....................  
+....................  
+.................... void lcdcmd(uchar_t cmd_value){          
+....................    uchar_t cmd_value1;                              
+....................    cmd_value1 = (cmd_value & 0xF0);      // Mask lower nibble because RB4-RB7 pins are being used    
+07B2:  MOVLB  1
+07B4:  MOVF   x3C,W
+07B6:  ANDLW  F0
+07B8:  MOVWF  x3D
+....................    dis_cmd(cmd_value1);                   // Send to LCD 
+07BA:  MOVFF  13D,13E
+07BE:  MOVLB  0
+07C0:  RCALL  079C
+....................    cmd_value1 = ((cmd_value<<4) & 0xF0);  // Shift 4-bit and mask 
+07C2:  MOVLB  1
+07C4:  SWAPF  x3C,W
+07C6:  MOVWF  00
+07C8:  MOVLW  F0
+07CA:  ANDWF  00,F
+07CC:  MOVF   00,W
+07CE:  ANDLW  F0
+07D0:  MOVWF  x3D
+....................    dis_cmd(cmd_value1);                   // Send to LCD 
+07D2:  MOVFF  13D,13E
+07D6:  MOVLB  0
+07D8:  RCALL  079C
+07DA:  RETURN 0
+.................... } 
+....................  // 2 lines are active.              
+.................... void twoLinesBCDMode(){  
+....................    lcdcmd(0x02); 
+*
+00F0:  MOVLW  02
+00F2:  MOVLB  1
+00F4:  MOVWF  x3C
+00F6:  MOVLB  0
+00F8:  RCALL  07B2
+00FA:  GOTO   0820 (RETURN)
+.................... } 
+....................                         
+.................... // 2 lines are active. BCD MODE 
+.................... void LinesActive(){  
+....................    lcdcmd(0x28);                
+*
+07DC:  MOVLW  28
+07DE:  MOVLB  1
+07E0:  MOVWF  x3C
+07E2:  MOVLB  0
+07E4:  RCALL  07B2
+07E6:  GOTO   0822 (RETURN)
+.................... }                          
+.................... // LCD screen clear.                   
+.................... void lcdClear(){ 
+....................    lcdcmd(0x01);                   
+*
+0806:  MOVLW  01
+0808:  MOVLB  1
+080A:  MOVWF  x3C
+080C:  MOVLB  0
+080E:  RCALL  07B2
+0810:  GOTO   0828 (RETURN)
+.................... }                   
+.................... // Go to first line. 
+.................... void lcdGoToFirstLine(){  
+....................    lcdcmd(0x80); 
+*
+0FDC:  MOVLW  80
+0FDE:  MOVLB  1
+0FE0:  MOVWF  x3C
+0FE2:  MOVLB  0
+0FE4:  CALL   07B2
+0FE8:  GOTO   1046 (RETURN)
+.................... }                                  
+.................... // Go to second line.                        
+.................... void lcdGoToSecondLine(){ 
+....................    lcdcmd(0xC0); 
+0FEC:  MOVLW  C0
+0FEE:  MOVLB  1
+0FF0:  MOVWF  x3C
+0FF2:  MOVLB  0
+0FF4:  CALL   07B2
+0FF8:  GOTO   104E (RETURN)
+.................... }                        
+.................... // Shift cursor to right. 
+.................... void lcdShiftRight(){   
+....................    lcdcmd(0x06);                                                     
+*
+07F8:  MOVLW  06
+07FA:  MOVLB  1
+07FC:  MOVWF  x3C
+07FE:  MOVLB  0
+0800:  RCALL  07B2
+0802:  GOTO   0826 (RETURN)
+.................... }                                           
+.................... // Display on, Cursor on              
+.................... void lcdCursorOn(){                  
+....................    lcdcmd(0x0E); 
+.................... }                                      
+.................... //Display off, Cursor off 
+.................... void lcdCursorOff(){                                             
+....................    lcdcmd(0x0C);                             
+*
+07EA:  MOVLW  0C
+07EC:  MOVLB  1
+07EE:  MOVWF  x3C
+07F0:  MOVLB  0
+07F2:  RCALL  07B2
+07F4:  GOTO   0824 (RETURN)
+.................... }                              
+....................   
+.................... void dis_data(uchar_t dataout) {  
+....................    PORTD=dataout;   //Send data to lcdport=PORTB 
+*
+0FFC:  MOVFF  13F,F8C
+....................    PORTE_RS=1;                   
+1000:  BSF    F84.0
+....................    PORTE_E=1;                          
+1002:  BSF    F84.1
+....................    delayUsFun(1); 
+1004:  MOVLW  01
+1006:  MOVLB  1
+1008:  MOVWF  x40
+100A:  MOVLB  0
+100C:  CALL   00DE
+....................    PORTE_E=0;   
+1010:  BCF    F84.1
+1012:  RETURN 0
+....................    //PORTD=0x00; 
+....................    //while(test_bit(PORTD,7));           
+.................... }   
+.................... /*DATA MODE*/   
+.................... void lcddata(uchar_t text){  
+....................    uchar_t data;                                                                 
+....................    data=(text & 0xF0);         
+1014:  MOVLB  1
+1016:  MOVF   x3D,W
+1018:  ANDLW  F0
+101A:  MOVWF  x3E
+....................    dis_data(data);     
+101C:  MOVFF  13E,13F
+1020:  MOVLB  0
+1022:  RCALL  0FFC
+....................    data=((text<<4)&0xF0);      
+1024:  MOVLB  1
+1026:  SWAPF  x3D,W
+1028:  MOVWF  00
+102A:  MOVLW  F0
+102C:  ANDWF  00,F
+102E:  MOVF   00,W
+1030:  ANDLW  F0
+1032:  MOVWF  x3E
+....................    dis_data(data);                  
+1034:  MOVFF  13E,13F
+1038:  MOVLB  0
+103A:  RCALL  0FFC
+103C:  GOTO   106C (RETURN)
+.................... }                                
+.................... void LCD_String(){  
+....................    if(countLCDChar==0)  
+1040:  MOVF   3B,F
+1042:  BNZ   1046
+....................       lcdGoToFirstLine(); 
+1044:  BRA    0FDC
+....................    if(countLCDChar==16)   
+1046:  MOVF   3B,W
+1048:  SUBLW  10
+104A:  BNZ   104E
+....................       lcdGoToSecondLine();    
+104C:  BRA    0FEC
+....................    if(countLCDChar<=31){  
+104E:  MOVF   3B,W
+1050:  SUBLW  1F
+1052:  BNC   1070
+....................       lcddata(strLCD[countLCDChar]); 
+1054:  CLRF   03
+1056:  MOVF   3B,W
+1058:  ADDLW  1B
+105A:  MOVWF  FE9
+105C:  MOVLW  00
+105E:  ADDWFC 03,W
+1060:  MOVWF  FEA
+1062:  MOVFF  FEF,13C
+1066:  MOVFF  13C,13D
+106A:  BRA    1014
+....................       countLCDChar++;   
+106C:  INCF   3B,F
+....................    }else{    
+106E:  BRA    1074
+....................       LCDW1SecFlag=0; 
+1070:  CLRF   3C
+....................       countLCDChar=0; 
+1072:  CLRF   3B
+....................    }                  
+1074:  GOTO   0154 (RETURN)
+.................... }  
+....................  
+....................  
+.................... void LCD_Custom_Char(uchar_t loc, uchar_t *msg){ 
+....................     uchar_t i; 
+....................     if(loc<8) 
+....................     { 
+....................      lcdcmd(0x40 + (loc*8));    /* Command 0x40 and onwards forces the device to point CGRAM address */ 
+....................      for(i=0;i<8;i++)          /* Write 8 byte for generation of 1 character */ 
+....................         lcddata(msg[i]);       
+....................     }                        
+.................... } 
+....................  
+....................                                           
+....................  
+....................       
+....................  
+.................... #include "button.c"           
+....................  
+.................... #include "definitions.h"  
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef unsigned int8   uint8_t; 
+.................... typedef unsigned char   uchar_t; 
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "button.h" 
+.................... #ifndef BUTTON_H                                                             
+.................... #define BUTTON_H  
+....................  
+.................... extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */  
+.................... extern uint8_t STATUS;  
+.................... uint8_t button_debounce(uint8_t,uint8_t);    
+.................... uint8_t test_bit(uint8_t,uint8_t); 
+....................    
+.................... #endif            
+....................  
+.................... uint8_t BUTTON_PRESSED_RELEASED; 
+.................... uint8_t STATUS=0;             
+....................  
+.................... uint8_t test_bit(uint8_t valueOfInput, uint8_t bits){  
+....................    return ((valueOfInput & (1<<bits)) != 0); 
+.................... }                             
+....................   
+.................... uint8_t button_debounce(uint8_t valueOfInput, uint8_t bit){ 
+....................    if(!test_bit(valueOfInput,bit)){ 
+....................       BUTTON_PRESSED_RELEASED<<=1; 
+....................    }else{                        
+....................       BUTTON_PRESSED_RELEASED<<=1;                        
+....................       BUTTON_PRESSED_RELEASED|=1;           
+....................    }   
+....................    if((BUTTON_PRESSED_RELEASED & 0x07)==0x07){  
+....................       STATUS = 1; 
+....................       return true;   
+....................    }else if((BUTTON_PRESSED_RELEASED  & 0x07)==0x00){  
+....................       STATUS = 0; 
+....................       return false; 
+....................    }else{  
+....................       return STATUS; 
+....................    } 
+.................... }         
+....................  
+....................  
+.................... #include "delayms.c" 
+....................  
+.................... #include "definitions.h"  
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef unsigned int8   uint8_t; 
+.................... typedef unsigned char   uchar_t; 
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "delayms.h" 
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(uint16_t);  
+.................... void delayUsFun(uint8_t us); 
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+....................    
+.................... void delayMsFun(uint16_t msecs)  // Delay function - generates a delay of specified msecs 
+.................... {   uint16_t i,j;  
+....................     for(i=0;i<=msecs;i++){               
+....................       for(j=0;j<197;j++); 
+....................     }                                
+.................... }  
+.................... void delayUsFun(uint8_t us)  // Delay function - generates a delay of specified msecs 
+.................... {   uint8_t i; 
+....................     for(i=0;i<=us;i++){               
+*
+00DE:  MOVLB  1
+00E0:  CLRF   x41
+00E2:  MOVF   x41,W
+00E4:  SUBWF  x40,W
+00E6:  BNC   00EC
+00E8:  INCF   x41,F
+00EA:  BRA    00E2
+....................     }                                
+00EC:  MOVLB  0
+00EE:  RETURN 0
+.................... }   
+....................  
+....................  
+.................... #include "usart_rs232.c"     
+.................... #include "ucregisters.h"                                                                                              
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+....................                  
+.................... //Analog PINS            
+.................... #byte TRISA = 0x0F92     
+.................... #byte PORTA = 0x0F80 
+.................... #bit  PORTA_DIR_0=TRISA.0  
+.................... #bit  PORTA_0=PORTA.0   
+.................... #bit  PORTA_DIR_1=TRISA.1  
+.................... #bit  PORTA_1=PORTA.1   
+....................                        
+.................... //Control PINS 
+.................... #byte TRISB = 0x0F93      
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0 
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... // LCD PINS 
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C                      
+.................... #bit  PORTD_7=PORTD.7     
+....................  
+.................... //LCD Control Pins 
+.................... #byte TRISE = 0x0F96 
+.................... #byte PORTE = 0x0F84                        
+.................... #bit  PORTE_RS=PORTE.0        
+.................... #bit  PORTE_E=PORTE.1 
+.................... #bit  PORTE_RW=PORTE.2  
+....................  
+....................    
+.................... #byte TRISC = 0x0F94  
+.................... #byte PORTC = 0x0F82             
+.................... #bit  TRISC_6=TRISC.6  
+.................... #bit  TRISC_7=TRISC.7   
+....................                           
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3        
+.................... #bit  IRCF2 =OSCCON.6   
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER1 INTERRUPT BYTE adresleri 
+.................... #byte ADCON1 = 0x0FC1     
+.................... #byte RCON = 0x0FD0    // RCON REGISTER 
+.................... #byte INTCON = 0x0FF2  // INTCON REGISTER  
+.................... #byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                          
+.................... #byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak) 
+.................... #byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi  
+.................... #byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi  
+.................... #byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                      
+.................... #byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti 
+.................... //   #############TIMER 1########                                                            
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... //# IPR1  :: IPR1 REGISTER // Bit Adresleri  
+.................... #bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                         
+.................... //# PIR1  :: PIR1 REGISTER // Bit Adresleri 
+.................... #bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit     
+.................... //# PIE1  :: PIE1 REGISTER // Bit Adresleri  
+.................... #bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit      
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit 
+.................... #bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit 
+.................... #bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                              
+.................... #bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits 
+.................... #bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit 
+.................... #bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit 
+.................... #bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit  
+.................... #bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit     
+....................  
+....................   
+....................   
+.................... //   #############WATCHDOG#######   
+.................... #byte WDTCON   = 0x0FD1  
+.................... #bit WDTCON_SWDTEN =WDTCON.0    
+....................                                                                  
+.................... //   ################   RS232/EUSART   #################  // 
+.................... #byte  RCSTA   = 0x0FAB    // RCSTA: RECEIVE STATUS AND CONTROL REGISTER 
+.................... #byte  BAUDCON = 0x0FB8    // BAUDCON: BAUD RATE CONTROL REGISTER                        
+.................... #byte  TXSTA   = 0x0FAC    // TXSTA: TRANSMIT STATUS AND CONTROL REGISTER  
+.................... #byte  SPBRGH  = 0x0FB0    // EUSART Baud Rate Generator Register, High Byte                          
+.................... #byte  SPBRG   = 0x0FAF    // EUSART Baud Rate Generator Register, Low Byte   
+.................... #byte  TXREG   = 0x0FAD    // EUSART Transmit Register                             
+.................... #byte  RCREG   = 0x0FAE    // EUSART Receive Register 
+....................  
+.................... #bit   OERR_RCSTA= RCSTA.1  // Overrun Error bit 
+.................... #bit   CREN_RCSTA= RCSTA.4  // Continuous Receive Enable bit    
+.................... #bit   TXIF_PIR1 = PIR1.4   // EUSART Transmit Interrupt Flag bit 
+.................... #bit   RCIF_PIR1 = PIR1.5   // EUSART Receive Interrupt Flag bit  
+.................... #bit   RCIE_PIE1 = PIE1.5   // EUSART Receive Interrupt Enable bit  
+.................... #bit   TXIE_PIE1 = PIE1.4   // EUSART Transmit Interrupt Enable bit  
+....................                            
+.................... #endif UCREGISTER_H                                                                          
+....................  
+.................... #include "usart_rs232.h" 
+.................... #ifndef USART_RS232_H                                                                                                
+.................... #define USART_RS232_H    
+....................   
+....................  
+.................... uchar_t USART_RxCharBuffer(); 
+.................... void USART_TxCharBuffer(uchar_t data); 
+.................... void USART_Init();      
+....................                                                    
+.................... #endif  //USART_RS232_H 
+....................                   
+....................  
+....................  
+....................   
+....................                
+.................... void USART_Init(){                                                                   
+....................    TRISC_6=0;        // Make Tx pin as output    
+*
+085C:  BCF    F94.6
+....................    TRISC_7=1;        // Make Rx pin as input                                                                   
+085E:  BSF    F94.7
+....................    // Baud rate=9600, SPBRG = (F_CPU /(64*9600))-1         
+....................    SPBRG = 0x0C;                       
+0860:  MOVLW  0C
+0862:  MOVWF  FAF
+....................    TXSTA = 0x20;     // Enable Transmit(TX)  
+0864:  MOVLW  20
+0866:  MOVWF  FAC
+....................    RCSTA = 0x90;     // Enable Recieve (RX) 
+0868:  MOVLW  90
+086A:  MOVWF  FAB
+086C:  GOTO   0128 (RETURN)
+.................... }                                        
+....................                              
+....................                                  
+.................... uchar_t USART_RxCharBuffer(){                
+....................    if(RCIF_PIR1==1)                   
+0870:  BTFSS  F9E.5
+0872:  BRA    0878
+....................       return(RCREG);           //received in RCREG register and return to main program     
+0874:  MOVFF  FAE,01
+0878:  RETURN 0
+.................... }                             
+....................                                                
+.................... void USART_TxCharBuffer(uchar_t data){        
+....................     TXREG=data;                                     // Store data in Transmit register 
+*
+0A16:  MOVFF  14A,FAD
+....................     while(TXIF_PIR1==0);                             // Wait until TXIF gets low 
+0A1A:  BTFSS  F9E.4
+0A1C:  BRA    0A1A
+0A1E:  GOTO   0A74 (RETURN)
+....................    /* if(OERR_RCSTA){               
+....................       CREN_RCSTA = 0;                                        
+....................       #ASM NOP #ENDASM      
+....................       CREN_RCSTA=1; 
+....................    }                                    
+....................    TXREG = data;            //Write char data to transmit register 
+....................    TXIF_PIR1=0;    */          
+.................... }                    
+....................                                                             
+....................  
+.................... #include "modbusrtu.c"      
+.................... #include "modbusrtu.h"                                      
+.................... #include "definitions.h"                                                          
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef unsigned int8   uint8_t; 
+.................... typedef unsigned char   uchar_t; 
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "ucregisters.h"                        
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+....................                  
+.................... //Analog PINS            
+.................... #byte TRISA = 0x0F92     
+.................... #byte PORTA = 0x0F80 
+.................... #bit  PORTA_DIR_0=TRISA.0  
+.................... #bit  PORTA_0=PORTA.0   
+.................... #bit  PORTA_DIR_1=TRISA.1  
+.................... #bit  PORTA_1=PORTA.1   
+....................                        
+.................... //Control PINS 
+.................... #byte TRISB = 0x0F93      
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0 
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... // LCD PINS 
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C                      
+.................... #bit  PORTD_7=PORTD.7     
+....................  
+.................... //LCD Control Pins 
+.................... #byte TRISE = 0x0F96 
+.................... #byte PORTE = 0x0F84                        
+.................... #bit  PORTE_RS=PORTE.0        
+.................... #bit  PORTE_E=PORTE.1 
+.................... #bit  PORTE_RW=PORTE.2  
+....................  
+....................    
+.................... #byte TRISC = 0x0F94  
+.................... #byte PORTC = 0x0F82             
+.................... #bit  TRISC_6=TRISC.6  
+.................... #bit  TRISC_7=TRISC.7   
+....................                           
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3        
+.................... #bit  IRCF2 =OSCCON.6   
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER1 INTERRUPT BYTE adresleri 
+.................... #byte ADCON1 = 0x0FC1     
+.................... #byte RCON = 0x0FD0    // RCON REGISTER 
+.................... #byte INTCON = 0x0FF2  // INTCON REGISTER  
+.................... #byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                          
+.................... #byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak) 
+.................... #byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi  
+.................... #byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi  
+.................... #byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                      
+.................... #byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti 
+.................... //   #############TIMER 1########                                                            
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... //# IPR1  :: IPR1 REGISTER // Bit Adresleri  
+.................... #bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                         
+.................... //# PIR1  :: PIR1 REGISTER // Bit Adresleri 
+.................... #bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit     
+.................... //# PIE1  :: PIE1 REGISTER // Bit Adresleri  
+.................... #bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit      
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit 
+.................... #bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit 
+.................... #bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                              
+.................... #bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits 
+.................... #bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit 
+.................... #bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit 
+.................... #bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit  
+.................... #bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit     
+....................  
+....................   
+....................   
+.................... //   #############WATCHDOG#######   
+.................... #byte WDTCON   = 0x0FD1  
+.................... #bit WDTCON_SWDTEN =WDTCON.0    
+....................                                                                  
+.................... //   ################   RS232/EUSART   #################  // 
+.................... #byte  RCSTA   = 0x0FAB    // RCSTA: RECEIVE STATUS AND CONTROL REGISTER 
+.................... #byte  BAUDCON = 0x0FB8    // BAUDCON: BAUD RATE CONTROL REGISTER                        
+.................... #byte  TXSTA   = 0x0FAC    // TXSTA: TRANSMIT STATUS AND CONTROL REGISTER  
+.................... #byte  SPBRGH  = 0x0FB0    // EUSART Baud Rate Generator Register, High Byte                          
+.................... #byte  SPBRG   = 0x0FAF    // EUSART Baud Rate Generator Register, Low Byte   
+.................... #byte  TXREG   = 0x0FAD    // EUSART Transmit Register                             
+.................... #byte  RCREG   = 0x0FAE    // EUSART Receive Register 
+....................  
+.................... #bit   OERR_RCSTA= RCSTA.1  // Overrun Error bit 
+.................... #bit   CREN_RCSTA= RCSTA.4  // Continuous Receive Enable bit    
+.................... #bit   TXIF_PIR1 = PIR1.4   // EUSART Transmit Interrupt Flag bit 
+.................... #bit   RCIF_PIR1 = PIR1.5   // EUSART Receive Interrupt Flag bit  
+.................... #bit   RCIE_PIE1 = PIE1.5   // EUSART Receive Interrupt Enable bit  
+.................... #bit   TXIE_PIE1 = PIE1.4   // EUSART Transmit Interrupt Enable bit  
+....................                            
+.................... #endif UCREGISTER_H                                                                          
+....................  
+....................                         
+.................... #ifndef MODBUSRTU_H                                
+.................... #define MODBUSRTU_H   
+.................... #define SLAVEADDRESS 1                      
+.................... extern uchar_t query[125], response[125]; 
+.................... extern uint16_t crcCheckCode; 
+....................                                                
+.................... void modbusRTUrx();                      
+.................... void modbusReadReg();           //03 
+.................... void modbusWriteSingleReg();    //06    
+.................... void modbusResponse(uchar_t);   
+....................  
+.................... void clearResponse(); 
+.................... void clearQuery();  
+....................  
+.................... //uint16_t CRC16 (uchar_t, uint8_t);    
+.................... uint16_t CRC16(uchar_t, uint8_t); 
+....................  
+....................  
+.................... /* Table of CRC values for high–order byte */ 
+.................... const char Table_CRC_Hi[256] = { 
+.................... 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 
+.................... 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 
+.................... 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 
+.................... 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 
+.................... 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 
+.................... 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 
+.................... 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 
+.................... 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 
+.................... 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 
+.................... 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 
+.................... 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 
+.................... 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 
+.................... 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 
+.................... 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 
+.................... 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 
+.................... 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 
+.................... 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 
+.................... 0x40 
+.................... } ; 
+....................  
+.................... /* Table of CRC values for low–order byte */ 
+.................... const char Table_CRC_Lo[256] = { 
+.................... 0x00, 0xC0, 0xC1, 0x01, 0xC3, 0x03, 0x02, 0xC2, 0xC6, 0x06, 0x07, 0xC7, 0x05, 0xC5, 0xC4, 
+.................... 0x04, 0xCC, 0x0C, 0x0D, 0xCD, 0x0F, 0xCF, 0xCE, 0x0E, 0x0A, 0xCA, 0xCB, 0x0B, 0xC9, 0x09, 
+.................... 0x08, 0xC8, 0xD8, 0x18, 0x19, 0xD9, 0x1B, 0xDB, 0xDA, 0x1A, 0x1E, 0xDE, 0xDF, 0x1F, 0xDD, 
+.................... 0x1D, 0x1C, 0xDC, 0x14, 0xD4, 0xD5, 0x15, 0xD7, 0x17, 0x16, 0xD6, 0xD2, 0x12, 0x13, 0xD3, 
+.................... 0x11, 0xD1, 0xD0, 0x10, 0xF0, 0x30, 0x31, 0xF1, 0x33, 0xF3, 0xF2, 0x32, 0x36, 0xF6, 0xF7, 
+.................... 0x37, 0xF5, 0x35, 0x34, 0xF4, 0x3C, 0xFC, 0xFD, 0x3D, 0xFF, 0x3F, 0x3E, 0xFE, 0xFA, 0x3A, 
+.................... 0x3B, 0xFB, 0x39, 0xF9, 0xF8, 0x38, 0x28, 0xE8, 0xE9, 0x29, 0xEB, 0x2B, 0x2A, 0xEA, 0xEE, 
+.................... 0x2E, 0x2F, 0xEF, 0x2D, 0xED, 0xEC, 0x2C, 0xE4, 0x24, 0x25, 0xE5, 0x27, 0xE7, 0xE6, 0x26, 
+.................... 0x22, 0xE2, 0xE3, 0x23, 0xE1, 0x21, 0x20, 0xE0, 0xA0, 0x60, 0x61, 0xA1, 0x63, 0xA3, 0xA2, 
+.................... 0x62, 0x66, 0xA6, 0xA7, 0x67, 0xA5, 0x65, 0x64, 0xA4, 0x6C, 0xAC, 0xAD, 0x6D, 0xAF, 0x6F, 
+.................... 0x6E, 0xAE, 0xAA, 0x6A, 0x6B, 0xAB, 0x69, 0xA9, 0xA8, 0x68, 0x78, 0xB8, 0xB9, 0x79, 0xBB, 
+.................... 0x7B, 0x7A, 0xBA, 0xBE, 0x7E, 0x7F, 0xBF, 0x7D, 0xBD, 0xBC, 0x7C, 0xB4, 0x74, 0x75, 0xB5, 
+.................... 0x77, 0xB7, 0xB6, 0x76, 0x72, 0xB2, 0xB3, 0x73, 0xB1, 0x71, 0x70, 0xB0, 0x50, 0x90, 0x91, 
+.................... 0x51, 0x93, 0x53, 0x52, 0x92, 0x96, 0x56, 0x57, 0x97, 0x55, 0x95, 0x94, 0x54, 0x9C, 0x5C, 
+.................... 0x5D, 0x9D, 0x5F, 0x9F, 0x9E, 0x5E, 0x5A, 0x9A, 0x9B, 0x5B, 0x99, 0x59, 0x58, 0x98, 0x88, 
+.................... 0x48, 0x49, 0x89, 0x4B, 0x8B, 0x8A, 0x4A, 0x4E, 0x8E, 0x8F, 0x4F, 0x8D, 0x4D, 0x4C, 0x8C, 
+.................... 0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42, 0x43, 0x83, 0x41, 0x81, 0x80, 
+.................... 0x40 
+.................... }; 
+....................  
+....................  
+.................... #endif  //MODBUSRTU_H 
+....................  
+....................  
+.................... #ifndef MODBUSRTU_ 
+.................... #define MODBUSRTU_C                                          
+.................... uchar_t query[125], response[125]; 
+.................... uint16_t crcCheckCode; 
+.................... uchar_t comStat;                                   
+....................                                                     
+.................... void modbusRTUrx(){                    
+....................    comStat=0;  
+*
+0F98:  MOVLB  1
+0F9A:  CLRF   x39
+....................    uchar_t rxData = USART_RxCharBuffer();  
+0F9C:  MOVLB  0
+0F9E:  RCALL  0870
+0FA0:  MOVFF  01,13C
+....................    if(SLAVEADDRESS==rxData){                         
+0FA4:  MOVLB  1
+0FA6:  DECFSZ x3C,W
+0FA8:  BRA    0FD0
+....................       while(RCIF_PIR1==0); 
+0FAA:  BTFSS  F9E.5
+0FAC:  BRA    0FAA
+....................       rxData = USART_RxCharBuffer();  
+0FAE:  MOVLB  0
+0FB0:  RCALL  0870
+0FB2:  MOVFF  01,13C
+....................       if(rxData==0x03)     
+0FB6:  MOVLB  1
+0FB8:  MOVF   x3C,W
+0FBA:  SUBLW  03
+0FBC:  BNZ   0FC4
+....................          modbusReadReg();   
+0FBE:  MOVLB  0
+0FC0:  BRA    0A80
+0FC2:  MOVLB  1
+....................       if(rxData==0x06)     
+0FC4:  MOVF   x3C,W
+0FC6:  SUBLW  06
+0FC8:  BNZ   0FD0
+....................          modbusWriteSingleReg();    
+0FCA:  MOVLB  0
+0FCC:  BRA    0DD4
+0FCE:  MOVLB  1
+....................    }                                                                                                                                          
+....................    if(comStat){        
+0FD0:  MOVF   x39,F
+0FD2:  BZ    0FD6
+....................       comStat=0;                                 
+0FD4:  CLRF   x39
+....................       return;                      
+....................    }     
+0FD6:  MOVLB  0
+0FD8:  GOTO   0144 (RETURN)
+.................... }           
+....................  
+.................... void modbusReadReg(){ 
+....................    query[0] = 0x01;    
+*
+0A80:  MOVLW  01
+0A82:  MOVWF  3D
+....................    query[1] = 0x03;  
+0A84:  MOVLW  03
+0A86:  MOVWF  3E
+....................     
+....................    uchar_t ii,charTime; 
+....................    for(ii=2;ii<8;ii++){  
+0A88:  MOVLW  02
+0A8A:  MOVLB  1
+0A8C:  MOVWF  x3D
+0A8E:  MOVF   x3D,W
+0A90:  SUBLW  07
+0A92:  BTFSS  FD8.0
+0A94:  BRA    0DCE
+....................       charTime=0;                                                                                                     
+0A96:  CLRF   x3E
+....................       while(RCIF_PIR1==0){   
+0A98:  BTFSC  F9E.5
+0A9A:  BRA    0AB8
+....................         delay_us(20);  
+0A9C:  MOVLW  0C
+0A9E:  MOVWF  00
+0AA0:  DECFSZ 00,F
+0AA2:  BRA    0AA0
+0AA4:  BRA    0AA6
+0AA6:  NOP   
+....................         charTime++; 
+0AA8:  INCF   x3E,F
+....................         if(charTime>=200){ 
+0AAA:  MOVF   x3E,W
+0AAC:  SUBLW  C7
+0AAE:  BC    0AB6
+....................            comStat = 1;                                                
+0AB0:  MOVLW  01
+0AB2:  MOVWF  x39
+....................            break; 
+0AB4:  BRA    0AB8
+....................         }         
+0AB6:  BRA    0A98
+....................       }                                        
+....................       query[ii]=USART_RxCharBuffer(); 
+0AB8:  CLRF   03
+0ABA:  MOVF   x3D,W
+0ABC:  ADDLW  3D
+0ABE:  MOVWF  01
+0AC0:  MOVLW  00
+0AC2:  ADDWFC 03,F
+0AC4:  MOVFF  01,145
+0AC8:  MOVFF  03,146
+0ACC:  MOVLB  0
+0ACE:  RCALL  0870
+0AD0:  MOVFF  146,FEA
+0AD4:  MOVFF  145,FE9
+0AD8:  MOVFF  01,FEF
+....................       if(comStat==1||ii>=7){  
+0ADC:  MOVLB  1
+0ADE:  DECFSZ x39,W
+0AE0:  BRA    0AE4
+0AE2:  BRA    0AEC
+0AE4:  MOVF   x3D,W
+0AE6:  SUBLW  06
+0AE8:  BTFSC  FD8.0
+0AEA:  BRA    0DCA
+....................          crcCheckCode = CRC16(0,8);    
+0AEC:  CLRF   x46
+0AEE:  MOVLW  08
+0AF0:  MOVWF  x47
+0AF2:  MOVLB  0
+0AF4:  RCALL  08FA
+0AF6:  MOVFF  02,138
+0AFA:  MOVFF  01,137
+....................          if(((crcCheckCode >> 8)&0x00FF)==query[6] &&((crcCheckCode)&0x00FF)==query[7]){    
+0AFE:  MOVFF  138,145
+0B02:  MOVLB  1
+0B04:  CLRF   x46
+0B06:  CLRF   x46
+0B08:  MOVF   43,W
+0B0A:  SUBWF  x38,W
+0B0C:  BTFSS  FD8.2
+0B0E:  BRA    0DCA
+0B10:  MOVF   x46,F
+0B12:  BTFSS  FD8.2
+0B14:  BRA    0DCA
+0B16:  MOVFF  137,145
+0B1A:  CLRF   x46
+0B1C:  MOVF   44,W
+0B1E:  SUBWF  x37,W
+0B20:  BTFSS  FD8.2
+0B22:  BRA    0DCA
+0B24:  MOVF   x46,F
+0B26:  BTFSS  FD8.2
+0B28:  BRA    0DCA
+....................             sprintf(strLCD,"  %2X %2X %2X %2X     %2X %2X %2X %2X  ",query[0],query[1],query[2],query[3],query[4],query[5],query[6],query[7]);                    
+0B2A:  CLRF   x3B
+0B2C:  MOVLW  1B
+0B2E:  MOVWF  x3A
+0B30:  MOVLW  20
+0B32:  MOVWF  x51
+0B34:  MOVLB  0
+0B36:  RCALL  0894
+0B38:  MOVLW  20
+0B3A:  MOVLB  1
+0B3C:  MOVWF  x51
+0B3E:  MOVLB  0
+0B40:  RCALL  0894
+0B42:  MOVFF  3D,14F
+0B46:  MOVLW  37
+0B48:  MOVLB  1
+0B4A:  MOVWF  x50
+0B4C:  MOVLB  0
+0B4E:  RCALL  08B4
+0B50:  MOVLW  20
+0B52:  MOVLB  1
+0B54:  MOVWF  x51
+0B56:  MOVLB  0
+0B58:  RCALL  0894
+0B5A:  MOVFF  3E,14F
+0B5E:  MOVLW  37
+0B60:  MOVLB  1
+0B62:  MOVWF  x50
+0B64:  MOVLB  0
+0B66:  RCALL  08B4
+0B68:  MOVLW  20
+0B6A:  MOVLB  1
+0B6C:  MOVWF  x51
+0B6E:  MOVLB  0
+0B70:  RCALL  0894
+0B72:  MOVFF  3F,14F
+0B76:  MOVLW  37
+0B78:  MOVLB  1
+0B7A:  MOVWF  x50
+0B7C:  MOVLB  0
+0B7E:  RCALL  08B4
+0B80:  MOVLW  20
+0B82:  MOVLB  1
+0B84:  MOVWF  x51
+0B86:  MOVLB  0
+0B88:  RCALL  0894
+0B8A:  MOVFF  40,14F
+0B8E:  MOVLW  37
+0B90:  MOVLB  1
+0B92:  MOVWF  x50
+0B94:  MOVLB  0
+0B96:  RCALL  08B4
+0B98:  MOVLW  83
+0B9A:  MOVWF  FF6
+0B9C:  MOVLW  06
+0B9E:  MOVWF  FF7
+0BA0:  MOVLW  05
+0BA2:  MOVLB  1
+0BA4:  MOVWF  x45
+0BA6:  MOVLB  0
+0BA8:  RCALL  09DA
+0BAA:  MOVFF  41,14F
+0BAE:  MOVLW  37
+0BB0:  MOVLB  1
+0BB2:  MOVWF  x50
+0BB4:  MOVLB  0
+0BB6:  RCALL  08B4
+0BB8:  MOVLW  20
+0BBA:  MOVLB  1
+0BBC:  MOVWF  x51
+0BBE:  MOVLB  0
+0BC0:  RCALL  0894
+0BC2:  MOVFF  42,14F
+0BC6:  MOVLW  37
+0BC8:  MOVLB  1
+0BCA:  MOVWF  x50
+0BCC:  MOVLB  0
+0BCE:  RCALL  08B4
+0BD0:  MOVLW  20
+0BD2:  MOVLB  1
+0BD4:  MOVWF  x51
+0BD6:  MOVLB  0
+0BD8:  RCALL  0894
+0BDA:  MOVFF  43,14F
+0BDE:  MOVLW  37
+0BE0:  MOVLB  1
+0BE2:  MOVWF  x50
+0BE4:  MOVLB  0
+0BE6:  RCALL  08B4
+0BE8:  MOVLW  20
+0BEA:  MOVLB  1
+0BEC:  MOVWF  x51
+0BEE:  MOVLB  0
+0BF0:  RCALL  0894
+0BF2:  MOVFF  44,14F
+0BF6:  MOVLW  37
+0BF8:  MOVLB  1
+0BFA:  MOVWF  x50
+0BFC:  MOVLB  0
+0BFE:  RCALL  08B4
+0C00:  MOVLW  20
+0C02:  MOVLB  1
+0C04:  MOVWF  x51
+0C06:  MOVLB  0
+0C08:  RCALL  0894
+0C0A:  MOVLW  20
+0C0C:  MOVLB  1
+0C0E:  MOVWF  x51
+0C10:  MOVLB  0
+0C12:  RCALL  0894
+....................             uint16_t startingAddr = (query[2] << 8 | query[3]);                  
+....................             uint16_t numOfReg = (query[4] << 8 | query[5]);  
+....................             uint8_t byteCount = numOfReg*2;   
+0C14:  MOVLW  00
+0C16:  IORWF  40,W
+0C18:  MOVLB  1
+0C1A:  MOVWF  x3F
+0C1C:  CLRF   x40
+0C1E:  MOVLW  00
+0C20:  IORWF  42,W
+0C22:  MOVWF  x41
+0C24:  CLRF   x42
+0C26:  BCF    FD8.0
+0C28:  RLCF   x41,W
+0C2A:  MOVWF  02
+0C2C:  RLCF   x42,W
+0C2E:  MOVFF  02,143
+....................             response[0]=0x01;         // SlaveAddress 
+0C32:  MOVLW  01
+0C34:  MOVLB  0
+0C36:  MOVWF  xBA
+....................             response[1]=0x03;         // Function                                         
+0C38:  MOVLW  03
+0C3A:  MOVWF  xBB
+....................             response[2]=numOfReg*2;   // ByteCount            
+0C3C:  BCF    FD8.0
+0C3E:  MOVLB  1
+0C40:  RLCF   x41,W
+0C42:  MOVWF  02
+0C44:  RLCF   x42,W
+0C46:  MOVFF  02,BC
+0C4A:  MOVLB  0
+....................             for(uchar_t ii=3;ii<byteCount+3;ii++){   //DATA 
+0C4C:  MOVLW  03
+0C4E:  MOVLB  1
+0C50:  MOVWF  x44
+0C52:  MOVLW  03
+0C54:  ADDWF  x43,W
+0C56:  SUBWF  x44,W
+0C58:  BC    0C8A
+....................                if(ii%2==1) 
+0C5A:  MOVF   x44,W
+0C5C:  ANDLW  01
+0C5E:  SUBLW  01
+0C60:  BNZ   0C74
+....................                  response[ii]=0x00;                    
+0C62:  CLRF   03
+0C64:  MOVF   x44,W
+0C66:  ADDLW  BA
+0C68:  MOVWF  FE9
+0C6A:  MOVLW  00
+0C6C:  ADDWFC 03,W
+0C6E:  MOVWF  FEA
+0C70:  CLRF   FEF
+0C72:  BRA    0C86
+....................                else 
+....................                  response[ii]=0x05;                         
+0C74:  CLRF   03
+0C76:  MOVF   x44,W
+0C78:  ADDLW  BA
+0C7A:  MOVWF  FE9
+0C7C:  MOVLW  00
+0C7E:  ADDWFC 03,W
+0C80:  MOVWF  FEA
+0C82:  MOVLW  05
+0C84:  MOVWF  FEF
+0C86:  INCF   x44,F
+0C88:  BRA    0C52
+....................             }            
+....................             crcCheckCode = CRC16(1,(5+byteCount));       
+0C8A:  MOVLW  05
+0C8C:  ADDWF  x43,W
+0C8E:  MOVWF  x45
+0C90:  MOVLW  01
+0C92:  MOVWF  x46
+0C94:  MOVFF  145,147
+0C98:  MOVLB  0
+0C9A:  RCALL  08FA
+0C9C:  MOVFF  02,138
+0CA0:  MOVFF  01,137
+....................             response[4+byteCount] = (crcCheckCode) & 0x00FF;       //Error Check Lo       
+0CA4:  MOVLW  04
+0CA6:  MOVLB  1
+0CA8:  ADDWF  x43,W
+0CAA:  CLRF   03
+0CAC:  ADDLW  BA
+0CAE:  MOVWF  FE9
+0CB0:  MOVLW  00
+0CB2:  ADDWFC 03,W
+0CB4:  MOVWF  FEA
+0CB6:  MOVFF  137,FEF
+....................             response[3+byteCount] = (crcCheckCode >> 8) & 0x00FF;  //Error Check Hi     
+0CBA:  MOVLW  03
+0CBC:  ADDWF  x43,W
+0CBE:  CLRF   03
+0CC0:  ADDLW  BA
+0CC2:  MOVWF  FE9
+0CC4:  MOVLW  00
+0CC6:  ADDWFC 03,W
+0CC8:  MOVWF  FEA
+0CCA:  MOVFF  138,FEF
+....................             sprintf(strLCD,"  %2X %2X %2X %2X     %2X %2X %2X %2X  ",response[0],response[1],response[2],response[3],response[4],response[5],response[6],response[7]); 
+0CCE:  CLRF   x3B
+0CD0:  MOVLW  1B
+0CD2:  MOVWF  x3A
+0CD4:  MOVLW  20
+0CD6:  MOVWF  x51
+0CD8:  MOVLB  0
+0CDA:  RCALL  0894
+0CDC:  MOVLW  20
+0CDE:  MOVLB  1
+0CE0:  MOVWF  x51
+0CE2:  MOVLB  0
+0CE4:  RCALL  0894
+0CE6:  MOVFF  BA,14F
+0CEA:  MOVLW  37
+0CEC:  MOVLB  1
+0CEE:  MOVWF  x50
+0CF0:  MOVLB  0
+0CF2:  RCALL  08B4
+0CF4:  MOVLW  20
+0CF6:  MOVLB  1
+0CF8:  MOVWF  x51
+0CFA:  MOVLB  0
+0CFC:  RCALL  0894
+0CFE:  MOVFF  BB,14F
+0D02:  MOVLW  37
+0D04:  MOVLB  1
+0D06:  MOVWF  x50
+0D08:  MOVLB  0
+0D0A:  RCALL  08B4
+0D0C:  MOVLW  20
+0D0E:  MOVLB  1
+0D10:  MOVWF  x51
+0D12:  MOVLB  0
+0D14:  RCALL  0894
+0D16:  MOVFF  BC,14F
+0D1A:  MOVLW  37
+0D1C:  MOVLB  1
+0D1E:  MOVWF  x50
+0D20:  MOVLB  0
+0D22:  RCALL  08B4
+0D24:  MOVLW  20
+0D26:  MOVLB  1
+0D28:  MOVWF  x51
+0D2A:  MOVLB  0
+0D2C:  RCALL  0894
+0D2E:  MOVFF  BD,14F
+0D32:  MOVLW  37
+0D34:  MOVLB  1
+0D36:  MOVWF  x50
+0D38:  MOVLB  0
+0D3A:  RCALL  08B4
+0D3C:  MOVLW  AB
+0D3E:  MOVWF  FF6
+0D40:  MOVLW  06
+0D42:  MOVWF  FF7
+0D44:  MOVLW  05
+0D46:  MOVLB  1
+0D48:  MOVWF  x45
+0D4A:  MOVLB  0
+0D4C:  RCALL  09DA
+0D4E:  MOVFF  BE,14F
+0D52:  MOVLW  37
+0D54:  MOVLB  1
+0D56:  MOVWF  x50
+0D58:  MOVLB  0
+0D5A:  RCALL  08B4
+0D5C:  MOVLW  20
+0D5E:  MOVLB  1
+0D60:  MOVWF  x51
+0D62:  MOVLB  0
+0D64:  RCALL  0894
+0D66:  MOVFF  BF,14F
+0D6A:  MOVLW  37
+0D6C:  MOVLB  1
+0D6E:  MOVWF  x50
+0D70:  MOVLB  0
+0D72:  RCALL  08B4
+0D74:  MOVLW  20
+0D76:  MOVLB  1
+0D78:  MOVWF  x51
+0D7A:  MOVLB  0
+0D7C:  RCALL  0894
+0D7E:  MOVFF  C0,14F
+0D82:  MOVLW  37
+0D84:  MOVLB  1
+0D86:  MOVWF  x50
+0D88:  MOVLB  0
+0D8A:  RCALL  08B4
+0D8C:  MOVLW  20
+0D8E:  MOVLB  1
+0D90:  MOVWF  x51
+0D92:  MOVLB  0
+0D94:  RCALL  0894
+0D96:  MOVFF  C1,14F
+0D9A:  MOVLW  37
+0D9C:  MOVLB  1
+0D9E:  MOVWF  x50
+0DA0:  MOVLB  0
+0DA2:  RCALL  08B4
+0DA4:  MOVLW  20
+0DA6:  MOVLB  1
+0DA8:  MOVWF  x51
+0DAA:  MOVLB  0
+0DAC:  RCALL  0894
+0DAE:  MOVLW  20
+0DB0:  MOVLB  1
+0DB2:  MOVWF  x51
+0DB4:  MOVLB  0
+0DB6:  RCALL  0894
+....................             modbusResponse(5+byteCount);                         
+0DB8:  MOVLW  05
+0DBA:  MOVLB  1
+0DBC:  ADDWF  x43,W
+0DBE:  MOVWF  x45
+0DC0:  MOVWF  x46
+0DC2:  MOVLB  0
+0DC4:  RCALL  0A36
+....................             return; 
+0DC6:  BRA    0DCE
+0DC8:  MOVLB  1
+....................         } 
+....................       } 
+0DCA:  INCF   x3D,F
+0DCC:  BRA    0A8E
+0DCE:  MOVLB  0
+....................    }                                    
+0DD0:  GOTO   0FC2 (RETURN)
+.................... }                             
+....................                                     
+.................... void modbusWriteSingleReg(){   
+....................    query[0] = 0x01; 
+0DD4:  MOVLW  01
+0DD6:  MOVWF  3D
+....................    query[1] = 0x06;   
+0DD8:  MOVLW  06
+0DDA:  MOVWF  3E
+....................    uchar_t ii,charTime; 
+....................    for(ii=2;ii<8;ii++){ 
+0DDC:  MOVLW  02
+0DDE:  MOVLB  1
+0DE0:  MOVWF  x3D
+0DE2:  MOVF   x3D,W
+0DE4:  SUBLW  07
+0DE6:  BTFSS  FD8.0
+0DE8:  BRA    0F92
+....................       charTime=0;  
+0DEA:  CLRF   x3E
+....................       while(RCIF_PIR1==0){                       
+0DEC:  BTFSC  F9E.5
+0DEE:  BRA    0E0C
+....................         delay_us(20);                 
+0DF0:  MOVLW  0C
+0DF2:  MOVWF  00
+0DF4:  DECFSZ 00,F
+0DF6:  BRA    0DF4
+0DF8:  BRA    0DFA
+0DFA:  NOP   
+....................         charTime++; 
+0DFC:  INCF   x3E,F
+....................         if(charTime>=200){     
+0DFE:  MOVF   x3E,W
+0E00:  SUBLW  C7
+0E02:  BC    0E0A
+....................            comStat = 1;  
+0E04:  MOVLW  01
+0E06:  MOVWF  x39
+....................            break; 
+0E08:  BRA    0E0C
+....................         }                          
+0E0A:  BRA    0DEC
+....................       }                                    
+....................       query[ii]=USART_RxCharBuffer();  
+0E0C:  CLRF   03
+0E0E:  MOVF   x3D,W
+0E10:  ADDLW  3D
+0E12:  MOVWF  01
+0E14:  MOVLW  00
+0E16:  ADDWFC 03,F
+0E18:  MOVFF  01,13F
+0E1C:  MOVFF  03,140
+0E20:  MOVLB  0
+0E22:  RCALL  0870
+0E24:  MOVFF  140,FEA
+0E28:  MOVFF  13F,FE9
+0E2C:  MOVFF  01,FEF
+....................       if(comStat==1||ii>=7){ 
+0E30:  MOVLB  1
+0E32:  DECFSZ x39,W
+0E34:  BRA    0E38
+0E36:  BRA    0E40
+0E38:  MOVF   x3D,W
+0E3A:  SUBLW  06
+0E3C:  BTFSC  FD8.0
+0E3E:  BRA    0F8E
+....................          crcCheckCode = CRC16(0,8);    
+0E40:  CLRF   x46
+0E42:  MOVLW  08
+0E44:  MOVWF  x47
+0E46:  MOVLB  0
+0E48:  RCALL  08FA
+0E4A:  MOVFF  02,138
+0E4E:  MOVFF  01,137
+....................          if(((crcCheckCode >> 8)&0x00FF)==query[6] &&((crcCheckCode)&0x00FF)==query[7]){  
+0E52:  MOVFF  138,13F
+0E56:  MOVLB  1
+0E58:  CLRF   x40
+0E5A:  CLRF   x40
+0E5C:  MOVF   43,W
+0E5E:  SUBWF  x38,W
+0E60:  BTFSS  FD8.2
+0E62:  BRA    0F8E
+0E64:  MOVF   x40,F
+0E66:  BTFSS  FD8.2
+0E68:  BRA    0F8E
+0E6A:  MOVFF  137,13F
+0E6E:  CLRF   x40
+0E70:  MOVF   44,W
+0E72:  SUBWF  x37,W
+0E74:  BTFSS  FD8.2
+0E76:  BRA    0F8E
+0E78:  MOVF   x40,F
+0E7A:  BTFSS  FD8.2
+0E7C:  BRA    0F8E
+....................            // memset(strLCD,0,32);                 
+....................            // sprintf(strLCD,"%2X %2X",(crcCheckCode >> 8)&0x00FF,(crcCheckCode)&0x00FF);    
+....................             sprintf(strLCD,"  %2X %2X %2X %2X     %2X %2X %2X %2X  ",query[0],query[1],query[2],query[3],query[4],query[5],query[6],query[7]);  
+0E7E:  CLRF   x3B
+0E80:  MOVLW  1B
+0E82:  MOVWF  x3A
+0E84:  MOVLW  20
+0E86:  MOVWF  x51
+0E88:  MOVLB  0
+0E8A:  RCALL  0894
+0E8C:  MOVLW  20
+0E8E:  MOVLB  1
+0E90:  MOVWF  x51
+0E92:  MOVLB  0
+0E94:  RCALL  0894
+0E96:  MOVFF  3D,14F
+0E9A:  MOVLW  37
+0E9C:  MOVLB  1
+0E9E:  MOVWF  x50
+0EA0:  MOVLB  0
+0EA2:  RCALL  08B4
+0EA4:  MOVLW  20
+0EA6:  MOVLB  1
+0EA8:  MOVWF  x51
+0EAA:  MOVLB  0
+0EAC:  RCALL  0894
+0EAE:  MOVFF  3E,14F
+0EB2:  MOVLW  37
+0EB4:  MOVLB  1
+0EB6:  MOVWF  x50
+0EB8:  MOVLB  0
+0EBA:  RCALL  08B4
+0EBC:  MOVLW  20
+0EBE:  MOVLB  1
+0EC0:  MOVWF  x51
+0EC2:  MOVLB  0
+0EC4:  RCALL  0894
+0EC6:  MOVFF  3F,14F
+0ECA:  MOVLW  37
+0ECC:  MOVLB  1
+0ECE:  MOVWF  x50
+0ED0:  MOVLB  0
+0ED2:  RCALL  08B4
+0ED4:  MOVLW  20
+0ED6:  MOVLB  1
+0ED8:  MOVWF  x51
+0EDA:  MOVLB  0
+0EDC:  RCALL  0894
+0EDE:  MOVFF  40,14F
+0EE2:  MOVLW  37
+0EE4:  MOVLB  1
+0EE6:  MOVWF  x50
+0EE8:  MOVLB  0
+0EEA:  RCALL  08B4
+0EEC:  MOVLW  D3
+0EEE:  MOVWF  FF6
+0EF0:  MOVLW  06
+0EF2:  MOVWF  FF7
+0EF4:  MOVLW  05
+0EF6:  MOVLB  1
+0EF8:  MOVWF  x45
+0EFA:  MOVLB  0
+0EFC:  RCALL  09DA
+0EFE:  MOVFF  41,14F
+0F02:  MOVLW  37
+0F04:  MOVLB  1
+0F06:  MOVWF  x50
+0F08:  MOVLB  0
+0F0A:  RCALL  08B4
+0F0C:  MOVLW  20
+0F0E:  MOVLB  1
+0F10:  MOVWF  x51
+0F12:  MOVLB  0
+0F14:  RCALL  0894
+0F16:  MOVFF  42,14F
+0F1A:  MOVLW  37
+0F1C:  MOVLB  1
+0F1E:  MOVWF  x50
+0F20:  MOVLB  0
+0F22:  RCALL  08B4
+0F24:  MOVLW  20
+0F26:  MOVLB  1
+0F28:  MOVWF  x51
+0F2A:  MOVLB  0
+0F2C:  RCALL  0894
+0F2E:  MOVFF  43,14F
+0F32:  MOVLW  37
+0F34:  MOVLB  1
+0F36:  MOVWF  x50
+0F38:  MOVLB  0
+0F3A:  RCALL  08B4
+0F3C:  MOVLW  20
+0F3E:  MOVLB  1
+0F40:  MOVWF  x51
+0F42:  MOVLB  0
+0F44:  RCALL  0894
+0F46:  MOVFF  44,14F
+0F4A:  MOVLW  37
+0F4C:  MOVLB  1
+0F4E:  MOVWF  x50
+0F50:  MOVLB  0
+0F52:  RCALL  08B4
+0F54:  MOVLW  20
+0F56:  MOVLB  1
+0F58:  MOVWF  x51
+0F5A:  MOVLB  0
+0F5C:  RCALL  0894
+0F5E:  MOVLW  20
+0F60:  MOVLB  1
+0F62:  MOVWF  x51
+0F64:  MOVLB  0
+0F66:  RCALL  0894
+....................             memcpy(response,query,8);                 
+0F68:  CLRF   FEA
+0F6A:  MOVLW  BA
+0F6C:  MOVWF  FE9
+0F6E:  CLRF   FE2
+0F70:  MOVLW  3D
+0F72:  MOVWF  FE1
+0F74:  MOVLW  08
+0F76:  MOVWF  01
+0F78:  MOVFF  FE6,FEE
+0F7C:  DECFSZ 01,F
+0F7E:  BRA    0F78
+....................             modbusResponse(8); 
+0F80:  MOVLW  08
+0F82:  MOVLB  1
+0F84:  MOVWF  x46
+0F86:  MOVLB  0
+0F88:  RCALL  0A36
+....................             return;     
+0F8A:  BRA    0F92
+0F8C:  MOVLB  1
+....................          } 
+....................       }     
+0F8E:  INCF   x3D,F
+0F90:  BRA    0DE2
+0F92:  MOVLB  0
+....................    }                                          
+0F94:  GOTO   0FCE (RETURN)
+.................... }                                                    
+....................     
+.................... void modbusResponse(uchar_t length){   
+....................    clearQuery(); 
+*
+0A36:  BRA    0A02
+....................    uchar_t charTime=0,ii;  
+0A38:  MOVLB  1
+0A3A:  CLRF   x47
+....................    while(charTime>=200){                        
+0A3C:  MOVF   x47,W
+0A3E:  SUBLW  C7
+0A40:  BC    0A52
+....................       delay_us(20);                          
+0A42:  MOVLW  0C
+0A44:  MOVWF  00
+0A46:  DECFSZ 00,F
+0A48:  BRA    0A46
+0A4A:  BRA    0A4C
+0A4C:  NOP   
+....................       charTime++;                           
+0A4E:  INCF   x47,F
+0A50:  BRA    0A3C
+....................    }                                                                                                              
+....................    for(ii=0;ii<length;ii++){                          
+0A52:  CLRF   x48
+0A54:  MOVF   x46,W
+0A56:  SUBWF  x48,W
+0A58:  BC    0A7A
+....................       USART_TxCharBuffer(response[ii]);                        
+0A5A:  CLRF   03
+0A5C:  MOVF   x48,W
+0A5E:  ADDLW  BA
+0A60:  MOVWF  FE9
+0A62:  MOVLW  00
+0A64:  ADDWFC 03,W
+0A66:  MOVWF  FEA
+0A68:  MOVFF  FEF,149
+0A6C:  MOVFF  149,14A
+0A70:  MOVLB  0
+0A72:  BRA    0A16
+0A74:  MOVLB  1
+0A76:  INCF   x48,F
+0A78:  BRA    0A54
+....................    }              
+....................    clearResponse();  
+0A7A:  MOVLB  0
+0A7C:  BRA    0A22
+0A7E:  RETURN 0
+.................... }   
+....................  
+....................  
+.................... void clearResponse(){ 
+....................    memset(response, 0, 125);   
+*
+0A22:  CLRF   FEA
+0A24:  MOVLW  BA
+0A26:  MOVWF  FE9
+0A28:  CLRF   00
+0A2A:  CLRF   02
+0A2C:  MOVLW  7D
+0A2E:  MOVWF  01
+0A30:  RCALL  087A
+0A32:  GOTO   0A7E (RETURN)
+.................... }  
+.................... void clearQuery(){ 
+....................    memset(query, 0, 125); 
+*
+0A02:  CLRF   FEA
+0A04:  MOVLW  3D
+0A06:  MOVWF  FE9
+0A08:  CLRF   00
+0A0A:  CLRF   02
+0A0C:  MOVLW  7D
+0A0E:  MOVWF  01
+0A10:  RCALL  087A
+0A12:  GOTO   0A38 (RETURN)
+.................... } 
+....................                                                 
+.................... uint16_t CRC16(uchar_t mode, uint8_t length){ 
+*
+08FA:  MOVLB  1
+08FC:  CLRF   x48
+08FE:  SETF   x49
+0900:  SETF   x4A
+0902:  CLRF   x4D
+.................... // Calcula o CRC16 de uma mensagem por table lookup 
+....................    uchar_t ii=0;  
+....................    uchar_t CRC_Hi = 0xFF;            // carrega Hi byte inicialmente 
+....................    uchar_t CRC_Lo = 0xFF;         // carrega Lo byte inicialmente 
+....................    uint16_t CRC;            // temporario de CRC16 
+....................    uint8_t index=0;               // indexador para busca nas tabelas      
+....................    memset(strLCD,0,32); 
+0904:  CLRF   FEA
+0906:  MOVLW  1B
+0908:  MOVWF  FE9
+090A:  CLRF   00
+090C:  CLRF   02
+090E:  MOVLW  20
+0910:  MOVWF  01
+0912:  MOVLB  0
+0914:  RCALL  087A
+....................    while (ii<length-2){   
+0916:  MOVLW  02
+0918:  MOVLB  1
+091A:  SUBWF  x47,W
+091C:  SUBWF  x48,W
+091E:  BC    09B8
+....................       if(mode==0) 
+0920:  MOVF   x46,F
+0922:  BNZ   093A
+....................          index = CRC_Hi ^ query[ii];         // calcula o CRC   
+0924:  CLRF   03
+0926:  MOVF   x48,W
+0928:  ADDLW  3D
+092A:  MOVWF  FE9
+092C:  MOVLW  00
+092E:  ADDWFC 03,W
+0930:  MOVWF  FEA
+0932:  MOVF   FEF,W
+0934:  XORWF  x49,W
+0936:  MOVWF  x4D
+0938:  BRA    094E
+....................       else  
+....................          index = CRC_Hi ^ response[ii];         // calcula o CRC   
+093A:  CLRF   03
+093C:  MOVF   x48,W
+093E:  ADDLW  BA
+0940:  MOVWF  FE9
+0942:  MOVLW  00
+0944:  ADDWFC 03,W
+0946:  MOVWF  FEA
+0948:  MOVF   FEF,W
+094A:  XORWF  x49,W
+094C:  MOVWF  x4D
+....................       sprintf(strLCD,"%2X ",response[ii]); 
+094E:  CLRF   03
+0950:  MOVF   x48,W
+0952:  ADDLW  BA
+0954:  MOVWF  FE9
+0956:  MOVLW  00
+0958:  ADDWFC 03,W
+095A:  MOVWF  FEA
+095C:  MOVFF  FEF,14E
+0960:  CLRF   x3B
+0962:  MOVLW  1B
+0964:  MOVWF  x3A
+0966:  MOVFF  14E,14F
+096A:  MOVLW  37
+096C:  MOVWF  x50
+096E:  MOVLB  0
+0970:  RCALL  08B4
+0972:  MOVLW  20
+0974:  MOVLB  1
+0976:  MOVWF  x51
+0978:  MOVLB  0
+097A:  RCALL  0894
+....................       CRC_Hi = CRC_Lo ^ Table_CRC_Hi[index]; 
+097C:  CLRF   03
+097E:  MOVLB  1
+0980:  MOVF   x4D,W
+0982:  MOVFF  FF2,14E
+0986:  BCF    FF2.7
+0988:  MOVLB  0
+098A:  RCALL  0402
+098C:  MOVLB  1
+098E:  BTFSC  x4E.7
+0990:  BSF    FF2.7
+0992:  MOVWF  01
+0994:  MOVF   x4A,W
+0996:  XORWF  01,W
+0998:  MOVWF  x49
+....................       CRC_Lo = Table_CRC_Lo[index];    
+099A:  CLRF   03
+099C:  MOVF   x4D,W
+099E:  MOVFF  FF2,14E
+09A2:  BCF    FF2.7
+09A4:  MOVLB  0
+09A6:  RCALL  051C
+09A8:  MOVLB  1
+09AA:  BTFSC  x4E.7
+09AC:  BSF    FF2.7
+09AE:  MOVWF  x4A
+....................       ii++;                         
+09B0:  INCF   x48,F
+09B2:  MOVLB  0
+09B4:  BRA    0916
+09B6:  MOVLB  1
+....................    }          
+....................    CRC = CRC_Hi;                  // formata e retorna o CRC 
+09B8:  CLRF   x4C
+09BA:  MOVFF  149,14B
+....................    CRC = (CRC<<8) | CRC_Lo; 
+09BE:  MOVFF  14B,14F
+09C2:  CLRF   x4E
+09C4:  MOVF   x4E,W
+09C6:  IORWF  x4A,W
+09C8:  MOVWF  x4B
+09CA:  MOVFF  14F,14C
+....................    return CRC;                    
+09CE:  MOVFF  14B,01
+09D2:  MOVFF  14C,02
+09D6:  MOVLB  0
+09D8:  RETURN 0
+.................... }                                               
+....................                            
+.................... #endif  //MODBUSRTU_H                               
+....................  
+....................  
+.................... // "init.h" TIMER1 INTERRUPT                       
+.................... uint16_t iSayac;  
+.................... tmr1_time_t tmr1_time;    
+....................                             
+....................                    
+.................... void setupTimerIOSC(void){  
+....................  //Setup Osilator 
+....................    IRCF2 = 1;        
+*
+0760:  BSF    FD3.6
+....................    IRCF1 = 1; 
+0762:  BSF    FD3.5
+....................    IRCF0 = 1;                    
+0764:  BSF    FD3.4
+....................                          
+....................    //D ve P portlari cikis olarak ayarlanip sifirlandi. 
+....................    TRISB = 0x00;                  
+0766:  CLRF   F93
+....................    TRISD = 0x00; 
+0768:  CLRF   F95
+....................    TRISE = 0x00;       
+076A:  CLRF   F96
+....................    PORTB = 0x00;                                                       
+076C:  CLRF   F81
+....................    PORTD = 0x00; 
+076E:  CLRF   F8C
+....................    PORTE = 0x00;   
+0770:  CLRF   F84
+....................                                                       
+....................    //TMR1 etkinlik bayraklari sifirlandi 
+....................    tmr1_time.all = 0; 
+0772:  CLRF   18
+....................  
+....................    // Kesmelere izin verildi 
+....................    RCON_IPEN = 1;                                               
+0774:  BSF    FD0.7
+....................    INTCON_GIE_GIEH = 1; 
+0776:  BSF    FF2.7
+....................    INTCON_PEIE = 1;           
+0778:  BSF    FF2.6
+....................    IPR1_TMR1IP = 1; // TMR1 Overflow Interrupt Priority bit 
+077A:  BSF    F9F.0
+....................    PIE1_TMR1IE = 1; // TMR1 Overflow Interrupt Enable bit 
+077C:  BSF    F9D.0
+....................    PIR1_TMR1IF = 0; // TMR1 Overflow Interrupt Flag bit 
+077E:  BCF    F9E.0
+....................                                                                                        
+....................    //TIMER1 Konfigurasyon //50us 
+....................    T1CON_RD16 = 0; // 16 - bit Read / Write Mode Enable bit 
+0780:  BCF    FCD.7
+....................    T1CON_T1RUN = 0; // Timer1 System Clock Statusbit 
+0782:  BCF    FCD.6
+....................    T1CON_T1CKPS1 = 0; // Timer1 Input Clock Prescale Select bits | 1:1 Olcekleme 
+0784:  BCF    FCD.5
+....................    T1CON_T1CKPS0 = 0; // Timer1 Input Clock Prescale Select bits | 
+0786:  BCF    FCD.4
+....................    T1CON_T1OSCEN = 0; // Timer1 Oscillator Enable bit 
+0788:  BCF    FCD.3
+....................    T1CON_T1SYNC = 0; // Timer1 External Clock Input Synchronization Select bit 
+078A:  BCF    FCD.2
+....................    T1CON_TMR1CS = 0; // Timer1 Clock Source Select bit 
+078C:  BCF    FCD.1
+....................    TMR1H = 0xF8; //Tasma saayci| 
+078E:  MOVLW  F8
+0790:  MOVWF  FCF
+....................    TMR1L = 0x30; // |||65436 decimal sayisina esit. 
+0792:  MOVLW  30
+0794:  MOVWF  FCE
+....................    T1CON_TMR1ON = 1; // Timer1 On bit                                   
+0796:  BSF    FCD.0
+0798:  GOTO   0124 (RETURN)
+.................... }       
+....................                                                     
+....................                                                                                                                   
+.................... void printOn2x16(){ 
+....................    delayUsFun(40);                                                                                                                                       
+*
+0814:  MOVLW  28
+0816:  MOVLB  1
+0818:  MOVWF  x40
+081A:  MOVLB  0
+081C:  RCALL  00DE
+....................    twoLinesBCDMode();    
+081E:  BRA    00F0
+....................    LinesActive();   
+0820:  BRA    07DC
+....................    lcdCursorOff(); 
+0822:  BRA    07EA
+....................    lcdShiftRight();                      
+0824:  BRA    07F8
+....................    lcdClear();                                                    
+0826:  BRA    0806
+....................    memcpy(strLCD, "INFORMELEKTRONIKAR-GE    STAJYER", 32);  
+0828:  CLRF   FEA
+082A:  MOVLW  1B
+082C:  MOVWF  FE9
+082E:  MOVFF  FF2,13C
+0832:  BCF    FF2.7
+0834:  MOVLW  20
+0836:  MOVWF  01
+0838:  CLRF   FF7
+083A:  MOVLW  00
+083C:  RCALL  0636
+083E:  TBLRD*-
+0840:  TBLRD*+
+0842:  MOVFF  FF5,FEE
+0846:  DECFSZ 01,F
+0848:  BRA    0840
+084A:  MOVLB  1
+084C:  BTFSC  x3C.7
+084E:  BSF    FF2.7
+....................    countLCDChar=0;    
+0850:  CLRF   3B
+....................    LCDW1SecFlag=1;                        
+0852:  MOVLW  01
+0854:  MOVWF  3C
+0856:  MOVLB  0
+0858:  GOTO   0126 (RETURN)
+....................    // LCD_Custom_CHAR(7, legrandLCDCharacter); 
+....................    //LCD_Custom_CHAR(6, stickManLCDCharacter);                                
+.................... }          
+....................                                                   
+.................... #INT_TIMER1                                                            
+.................... void interrupt(){  
+....................    TMR1H = 0xF8; //Tasma saayci| 
+*
+06EA:  MOVLW  F8
+06EC:  MOVWF  FCF
+....................    TMR1L = 0x30; // |||15536 decimal sayisina esit.                      
+06EE:  MOVLW  30
+06F0:  MOVWF  FCE
+....................    PIR1_TMR1IF = 0; // Kesme bayragi sifirlaniyor. 
+06F2:  BCF    F9E.0
+....................    iSayac++;   
+06F4:  INCF   16,F
+06F6:  BTFSC  FD8.2
+06F8:  INCF   17,F
+....................    if (iSayac % 2 == 0) //2ms      
+06FA:  MOVF   16,W
+06FC:  ANDLW  01
+06FE:  MOVLB  1
+0700:  MOVWF  x52
+0702:  CLRF   x53
+0704:  MOVF   x52,F
+0706:  BNZ   070E
+0708:  MOVF   x53,F
+070A:  BNZ   070E
+....................       tmr1_time.tmr1_flags._2ms = true; 
+070C:  BSF    18.1
+....................    if (iSayac % 1 == 0) //1ms   
+070E:  CLRF   x52
+0710:  CLRF   x53
+0712:  MOVF   x52,F
+0714:  BNZ   071C
+0716:  MOVF   x53,F
+0718:  BNZ   071C
+....................       tmr1_time.tmr1_flags._20ms = true;              
+071A:  BSF    18.2
+....................    if (iSayac % 50 == 0) //50ms  
+071C:  MOVFF  17,153
+0720:  MOVFF  16,152
+0724:  CLRF   x55
+0726:  MOVLW  32
+0728:  MOVWF  x54
+072A:  MOVLB  0
+072C:  BRA    0096
+072E:  MOVFF  00,152
+0732:  MOVLB  1
+0734:  MOVFF  03,153
+0738:  MOVF   x52,F
+073A:  BNZ   0742
+073C:  MOVF   x53,F
+073E:  BNZ   0742
+....................       tmr1_time.tmr1_flags._50ms = true; 
+0740:  BSF    18.3
+....................    if (iSayac > 1000){   // 1 Saniye          
+0742:  MOVF   17,W
+0744:  SUBLW  02
+0746:  BC    0758
+0748:  XORLW  FF
+074A:  BNZ   0752
+074C:  MOVF   16,W
+074E:  SUBLW  E8
+0750:  BC    0758
+....................       tmr1_time.tmr1_flags._1000ms = true;   
+0752:  BSF    18.7
+....................       iSayac = 0;    
+0754:  CLRF   17
+0756:  CLRF   16
+....................    }                
+....................                            
+.................... }     
+....................                       
+....................               
+0758:  BCF    F9E.0
+075A:  MOVLB  0
+075C:  GOTO   0054
+.................... #ORG 0x0100,0x0400                                                                     
+.................... void main(){                                  
+*
+0100:  CLRF   FF8
+0102:  BCF    FD0.7
+0104:  BSF    07.7
+0106:  MOVLW  70
+0108:  MOVWF  FD3
+010A:  MOVF   FD3,W
+010C:  CLRF   1A
+010E:  MOVLB  1
+0110:  CLRF   x3B
+0112:  CLRF   x3A
+0114:  MOVF   FC1,W
+0116:  ANDLW  C0
+0118:  IORLW  0F
+011A:  MOVWF  FC1
+011C:  MOVLW  07
+011E:  MOVWF  FB4
+....................    setupTimerIOSC(); 
+0120:  MOVLB  0
+0122:  BRA    0760
+....................    printOn2x16();      
+0124:  BRA    0814
+....................    USART_Init();           
+0126:  BRA    085C
+....................    while(TRUE){           
+....................      // WDTreset();  
+....................       if(tmr1_time.tmr1_flags._1000ms){               
+0128:  BTFSS  18.7
+012A:  BRA    0134
+....................          tmr1_time.tmr1_flags._1000ms = false;          
+012C:  BCF    18.7
+....................          LCDW1SecFlag=1;              
+012E:  MOVLW  01
+0130:  MOVWF  3C
+....................          PORTB_7=~PORTB_7;                         
+0132:  BTG    F81.7
+....................       }                                     
+....................       if(tmr1_time.tmr1_flags._20ms){   
+0134:  BTFSS  18.2
+0136:  BRA    0146
+....................          tmr1_time.tmr1_flags._20ms = false;  
+0138:  BCF    18.2
+....................          if(RCIF_PIR1==1){   
+013A:  BTFSS  F9E.5
+013C:  BRA    0146
+....................             INTCON_GIE_GIEH = 0; 
+013E:  BCF    FF2.7
+....................             modbusRTUrx(); 
+0140:  GOTO   0F98
+....................             INTCON_GIE_GIEH = 1;   
+0144:  BSF    FF2.7
+....................          }                              
+....................       }    
+....................       if(tmr1_time.tmr1_flags._2ms){           
+0146:  BTFSS  18.1
+0148:  BRA    0154
+....................          tmr1_time.tmr1_flags._2ms = false;   
+014A:  BCF    18.1
+....................          if(LCDW1SecFlag){      
+014C:  MOVF   3C,F
+014E:  BZ    0154
+....................             LCD_String();     
+0150:  GOTO   1040
+....................          }  
+....................       }                        
+0154:  BRA    0128
+....................    }                                                         
+.................... }                                        
+....................  
+0156:  SLEEP 
+....................  
+.................... void WDTreset(void){                
+....................    #asm                 
+....................    CLRWDT 
+....................    #endasm                                  
+.................... }                 
+....................                                                                                              
+....................                                                                                                  
+....................                                         
+....................  
+....................         
+....................                     
+
+Configuration Fuses:
+   Word  1: C800   INTRC_IO FCMEN IESO
+   Word  2: 001E   PUT BROWNOUT BORV21 NOWDT WDT1
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 0081   STVREN NOLVP NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

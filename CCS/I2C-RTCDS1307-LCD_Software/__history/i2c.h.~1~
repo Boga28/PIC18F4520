@@ -1,0 +1,16 @@
+
+#ifndef BINBCDCONV_H
+#define BINBCDCONV_H 
+#include "definitions.h"     
+void _I2C_Start();
+void _I2C_ReStart();  
+void _I2C_Stop();  
+void _I2C_Send_ACK();   
+void _I2C_Send_NACK(); 
+void _I2C_Write_Byte(uchar_t)
+uchar_t _I2C_Read_Byte(void);          
+
+                  
+
+
+#endif //BINBCDCONV_H     

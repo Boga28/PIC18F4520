@@ -1,0 +1,20 @@
+#include "definitions.h"      
+                            
+#ifndef DS1307TIMESET_H
+#define DS1307TIMESET_H  
+
+uint8_t position;  
+uint8_t executed;         
+date_t DATE_STATUS;  
+
+//SET = 0; herhangi bir ayarlama yok
+
+
+
+
+
+#endif //DS1307TIMESET_H
+
+
+
+

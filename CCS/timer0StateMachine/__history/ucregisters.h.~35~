@@ -1,0 +1,32 @@
+#ifndef UCREGISTER_H
+#define UCREGISTER_H
+  
+#byte TRISD = 0x0F95
+#byte PORTD = 0x0F83
+
+#byte TRISB = 0x0F93
+#byte PORTB = 0x0F81  
+
+//TIMER0 INTERRUPT
+#byte RCON = 0x0FD0    //RCON REGISTER                 
+#byte INTCON = 0x0FF2  //INTCON REGISTER 
+#byte T0CON  = 0x0FD5  //TIMER0
+   
+
+                      
+
+#bit IPEN = RCON.7        // Enable priority levels on interrupts
+
+#bit GIE_GIEH = INTCON.7  // Global Interrupt Enable bit
+#bit TMR0IE = INTCON.5    // TMR0 Overflow Interrupt Enable bit 
+#bit TMR0IF = INTCON.2    // TMR0 Overflow Interrupt Flag bit
+
+#bit T08BIT = T0CON.6     // Timer0 8-bit/16-bit Control bit / 8 Bit
+#bit T0CS = T0CON.5       // Timer0 Clock Source Select bit / internal
+#bit PSA = T0CON.3        // Timer0 Prescaler Assignment bit / PSA=0, Timer0 clock input comes from prescaler output.   
+#bit T0PS2 = T0CON.2      // Timer0 Prescaler Select bits 
+#bit T0PS1 = T0CON.1      // Timer0 Prescaler Select bits  
+#bit T0PS0 = T0CON.0      // Timer0 Prescaler Select bits 
+                           
+
+#endif UCREGISTER_H                                                                         

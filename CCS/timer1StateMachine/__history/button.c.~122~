@@ -1,0 +1,16 @@
+#include "button.h" 
+uint8_t BUTTON_PRESSED_RELEASED;
+
+uint1_t button_events(uint8_t * addressOfInput, uint8_t bit){                                            
+   for(uint8_t i=0;i<=9;i++){
+      if(!bit_test(addressOfInput,bit)){
+         BUTTON_PRESSED_RELEASED<<=1;
+     }else{                     
+         BUTTON_PRESSED_RELEASED<<=1;                       
+         BUTTON_PRESSED_RELEASED|=1;          
+     }  
+   }            
+   if(BUTTON_PRESSED_RELEASED==0xFF){ 
+      return true;  
+   }else{return false;}
+}                                                                                                                                  

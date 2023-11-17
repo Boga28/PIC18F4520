@@ -1,0 +1,180 @@
+#include "modbusrtu.h"                                     
+
+#ifndef MODBUSRTU_
+#define MODBUSRTU_C                                         
+uchar_t query[125], response[125];
+uint16_t crcCheckCode;
+uchar_t comStat;                                  
+                                                   
+void modbusRTUrx(){                   
+   comStat=0; 
+   uchar_t rxData = USART_RxCharBuffer(); 
+   if(SLAVEADDRESS==rxData){                        
+      while(RCIF_PIR1==0);
+      rxData = USART_RxCharBuffer(); 
+      if(rxData==0x03)    
+         modbusReadReg();  
+      if(rxData==0x06)                                   
+         modbusWriteSingleReg();
+      if(rxData==0x10)                                   
+         modbusWriteMultipleReg(); 
+   }
+   if(comStat){       
+      comStat=0;                                
+      return;                     
+   }                                                  
+}  
+                                                                    
+//########## Function 03 (03hex) Read Holding Registers ########   
+void modbusReadReg(){                                                        
+   query[0] = 0x01;   
+   query[1] = 0x03; 
+   
+   uchar_t ii,charTime;
+   for(ii=2;ii<8;ii++){ 
+      charTime=0;                                                                                                    
+      while(RCIF_PIR1==0){  
+        delay_us(20); 
+        charTime++;
+        if(charTime>=200){
+           comStat = 1;                                               
+           break;
+        }        
+      }                                       
+      query[ii]=USART_RxCharBuffer();
+      if(comStat==1||ii>=7){ 
+         crcCheckCode = CRC16(0,8);   
+         if(((crcCheckCode >> 8)&0x00FF)==query[6] &&((crcCheckCode)&0x00FF)==query[7]){   
+            uint16_t startingAddr = (query[2] << 8 | query[3]);                 
+            uint16_t numOfReg = (query[4] << 8 | query[5]); 
+            uint8_t byteCount = numOfReg*2;  
+            response[0]=0x01;                                            // SlaveAddress
+            response[1]=0x03;                                            // Function                                        
+            response[2]=numOfReg*2;                                      // ByteCount           
+            for(uchar_t ii=3;ii<byteCount+3;ii++){                       // DATA
+               if(ii%2==1)                                               // DATA High     
+                 response[ii]=0x00;                                    
+               else                                                      // DATA Low
+                 response[ii]=timeDateReadData[startingAddr+((ii-3)/2)]; //   ...         
+            }                                                            //   ...                                                                       
+            crcCheckCode = CRC16(1,(5+byteCount));       
+            response[3+byteCount] = (crcCheckCode >> 8) & 0x00FF;        // Error Check High 
+            response[4+byteCount] = (crcCheckCode) & 0x00FF;             // Error Check Low 
+            modbusResponse(5+byteCount);                        
+            return;
+        }
+      }
+   }                                   
+}                            
+//########## Function 06 (06hex) Write Single Register ########                                  
+void modbusWriteSingleReg(){                                       
+   query[0] = 0x01;
+   query[1] = 0x06;  
+   uchar_t ii,charTime;
+   for(ii=2;ii<8;ii++){
+      charTime=0; 
+      while(RCIF_PIR1==0){                      
+        delay_us(20);                
+        charTime++;
+        if(charTime>=200){    
+           comStat = 1; 
+           break;
+        }                         
+      }                                   
+      query[ii]=USART_RxCharBuffer(); 
+      if(comStat==1||ii>=7){ 
+         crcCheckCode = CRC16(0,8);   
+         if(((crcCheckCode >> 8)&0x00FF)==query[6] &&((crcCheckCode)&0x00FF)==query[7]){ 
+            timeDateWriteData[query[3]]=query[5];     
+            ds1307_write_date(query[3],1);  
+            memcpy(response,query,8);                
+            modbusResponse(8); 
+            return;    
+         }
+      }    
+   }                                         
+}                                                   
+//########## Function 16 (10hex) Write Multiple Registers ########                                                   
+void modbusWriteMultipleReg(){   
+   query[0] = 0x01;                    // Slave Address              0
+   query[1] = 0x10;                    // Function                   1                                                  
+   uchar_t ii,charTime,byteCount;      // Starting Address HIGH      2
+   for(ii=2;ii<7;ii++){                // Starting Address LOW       3
+      charTime=0;                      // Number of Registers HIGH   4
+      while(RCIF_PIR1==0){             // Number of Registers LOW    5
+        delay_us(20);                  // Byte Count                 6
+        charTime++;
+        if(charTime>=200){    
+           comStat = 1; 
+           break;
+        }                         
+      }
+      query[ii]=USART_RxCharBuffer();
+   }      
+   byteCount = query[6];
+   for(ii=7;ii<8+byteCount+2;ii++){    // DATA HIGH                  7                                                   
+      charTime=0;                      // DATA LOW                   8
+      while(RCIF_PIR1==0){             // DATA LOW                   n 
+        delay_us(20);                  // DATA LOW                   n+1    
+        charTime++;                    // CRC  HIGH                  n+2 
+        if(charTime>=200){             // CRC  LOW                   n+3 
+           comStat = 1; 
+           break;
+        }                         
+      }
+      query[ii]=USART_RxCharBuffer();  
+   }
+   crcCheckCode = CRC16(0,9+byteCount);
+   if(((crcCheckCode >> 8)&0x00FF)==query[9+byteCount-2] &&((crcCheckCode)&0x00FF)==query[9+byteCount-1]){ 
+      memcpy(response,query,6);          
+      crcCheckCode = CRC16(1,8);                 
+      response[6]= (crcCheckCode >> 8) & 0x00FF;                   // Error Check Low  
+      response[7]= (crcCheckCode) & 0x00FF;                        // Error Check High 
+      for(ii){
+          
+      }
+      ds1307_write_date(query[3],query[5]);  
+      modbusResponse(8);  
+   }
+}
+
+
+void modbusResponse(uchar_t length){  
+   clearQuery();
+   uchar_t charTime=0,ii; 
+   while(charTime>=200){                       
+      delay_us(20);                         
+      charTime++;                          
+   }                                                                                                             
+   for(ii=0;ii<length;ii++){                         
+      USART_TxCharBuffer(response[ii]);                       
+   }             
+   clearResponse(); 
+}  
+void clearResponse(){
+   memset(response, 0, 125);  
+} 
+void clearQuery(){
+   memset(query, 0, 125);
+}                                           
+uint16_t CRC16(uchar_t mode, uint8_t length){
+   uchar_t ii=0; 
+   uchar_t CRC_Hi = 0xFF;                       
+   uchar_t CRC_Lo = 0xFF;        
+   uint16_t CRC;            
+   uint8_t index=0;                  
+   while (ii<length-2){  
+      if(mode==0)
+         index = CRC_Hi ^ query[ii];          
+      else 
+         index = CRC_Hi ^ response[ii];           
+      CRC_Hi = CRC_Lo ^ Table_CRC_Hi[index];
+      CRC_Lo = Table_CRC_Lo[index];   
+      ii++;                        
+   }         
+   CRC = CRC_Hi;                  
+   CRC = (CRC<<8) | CRC_Lo;
+   return CRC;                   
+}                                              
+                                                       
+#endif  //MODBUSRTU_H                              

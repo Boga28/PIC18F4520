@@ -1,0 +1,17 @@
+#include<string.h>
+#include<stdlib.h> 
+
+#ifndef _sd_card_h
+#define _sd_card_h
+
+#define SPIDDR  TRISC
+#define SPIPORT PORTC
+#define SPIPIN  PINB
+#define CS      0x10
+#define BinToASCII(t) ((t<=9) ? (t|0x30):(t+55))
+#define ASCIIToBin(t) ((t>='A'&& t<='F')?t-55:((t>='0'&& t<='9') ? t-'0':0))
+#define BYTELOW(v)  (*((unsigned char *)(&v))) 
+#define BYTEHIGH(v) (*(((unsigned char *)(&v) + 1)))
+#define BLOCK_SIZE   512 
+
+#endif

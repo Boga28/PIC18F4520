@@ -1,0 +1,32 @@
+#ifndef DS1307_H                            
+#define DS1307_H   
+
+   
+
+
+//DS1307 TIME-DATE INFO VARIABLES  
+extern uchar_t sec, min, hrs;
+extern uchar_t day, month, yr, dow;      
+extern uchar_t dayText[4];  
+extern uchar_t DATE_TIME[32];  
+
+
+void DS1307_Init();                                                     
+void ds1307_set_date_time(uchar_t, uchar_t, uchar_t, uchar_t, uchar_t, uchar_t, uchar_t);
+void ds1307_get_date();
+void ds1307_get_time();  
+void getDayText();     
+              
+uchar_t getSec();
+uchar_t getMin(); 
+uchar_t getHour();
+                          
+uchar_t getDay(); 
+uchar_t getMonth(); 
+uchar_t getYear();
+uchar_t getDow();                                                                 
+               
+uint16_t day_of_the_week(uint16_t, uint16_t, uint16_t );                  
+                   
+#endif //DS1307_H                     
+                                      

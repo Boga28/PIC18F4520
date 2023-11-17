@@ -1,0 +1,43 @@
+#include "definitions.h"      
+                            
+#ifndef DS1307TIMESET_H
+#define DS1307TIMESET_H  
+
+extern uint8_t position;
+extern uint8_t executed;
+//TIME CONTROL VIA BUTTON AND LCD
+typedef union{  
+   uint8_t  all;      // Type  kayitciya erismek icin
+   struct{
+      uint8_t SECOND     : 1;  //bit:0,  
+      uint8_t MINUTE     : 1;  //bit:1,  
+      uint8_t HOUR       : 1;  //bit:2,  
+      uint8_t DAY        : 1;  //bit:3,     
+      uint8_t MONTH      : 1;  //bit:4,                   
+      uint8_t YEAR       : 1;  //bit:5,  
+      uint8_t SET        : 2;  //bit:6-7,  
+   }X;                    
+}date_t;   
+extern date_t DATE_STATUS;   
+
+void setTimeCases();
+void chooseElement(uchar_t);      
+void arrangeValueOfElement(uchar_t);
+
+// INCREASE OR DECREASE
+void increaseElement(uchar_t); 
+void decreaseElement(uchar_t);
+
+//Send DATE ELEMENTS to RTC
+void setRTC(uchar_t);   
+void txRTC(uchar_t, uchar_t); 
+                              
+uchar_t exactDayOfMonth();          
+
+
+
+#endif //DS1307TIMESET_H
+
+
+
+

@@ -1,0 +1,92 @@
+#ifndef UCREGISTER_H
+#define UCREGISTER_H
+  
+#byte TRISD = 0x0F95                     
+#byte PORTD = 0x0F8C
+#byte TRISB = 0x0F93
+#byte PORTB = 0x0F81 
+#byte TRISE = 0x0F96
+#byte PORTE = 0x0F84
+#byte TRISC = 0x0F94
+
+#bit  PORTB_0=PORTB.0
+#bit  PORTB_7=PORTB.7 
+
+#bit  TRISC_6=TRISC.6
+#bit  TRISC_7=TRISC.7
+
+#bit  PORTD_7=PORTD.7 
+                         
+#bit  PORTE_RS=PORTE.0 
+#bit  PORTE_E=PORTE.1
+#bit  PORTE_RW=PORTE.2
+
+                 
+
+//OSILATOR - 8MHZ
+#byte OSCCON = 0x0FD3       
+#bit  IRCF2 =OSCCON.6  
+#bit  IRCF1 =OSCCON.5                     
+#bit  IRCF0 =OSCCON.4 
+       
+//TIMER1 INTERRUPT BYTE adresleri
+#byte ADCON1 = 0x0FC1  
+#byte RCON = 0x0FD0    // RCON REGISTER
+#byte INTCON = 0x0FF2  // INTCON REGISTER 
+#byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                         
+#byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak)
+#byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi 
+#byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi 
+#byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                     
+#byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti
+//   #############TIMER 1########                                                           
+//# RCON  :: RCON REGISTER // Bit Adresleri                                    
+#bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                   
+//# INTCON  :: INTCON REGISTER // Bit Adresleri      
+#bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit 
+#bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts
+//# IPR1  :: IPR1 REGISTER // Bit Adresleri 
+#bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                        
+//# PIR1  :: PIR1 REGISTER // Bit Adresleri
+#bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit    
+//# PIE1  :: PIE1 REGISTER // Bit Adresleri 
+#bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit     
+//#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri
+#bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit
+#bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit
+#bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                             
+#bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits
+#bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit
+#bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit
+#bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit 
+#bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit    
+
+ 
+ 
+//   #############WATCHDOG#######  
+#byte WDTCON   = 0x0FD1 
+#bit WDTCON_SWDTEN =WDTCON.0 
+
+#byte TABLAT =0x0FF5 
+#byte TBLPTRU=0x0FF8 
+#byte TBLPTRH=0x0FF7 
+#byte TBLPTRL=0x0FF6 
+#byte EECON2 = 0x0FA7 
+
+#byte EECON1 = 0x0FA6
+#bit  EECON1_WR =EECON1.1
+#bit  EECON1_WREN =EECON1.2 
+#bit  EECON1_FREE =EECON1.4 
+#bit  EECON1_CFGS = EECON1.6
+#bit  EECON1_EEPGD = EECON1.7        
+                            
+//   #############RS232/EUSART#######
+#byte  RCSTA   = 0x0FAB
+#byte  BAUDCON = 0x0FB8
+#byte  TXSTA   = 0x0FAC 
+#byte  SPBRGH  = 0x0FB0 
+#byte  SPBRG   = 0x0FAF  
+#byte  TXREG   = 0x0FAD  
+#byte  RCREG   = 0x0FAE  
+                                                                                   
+#endif UCREGISTER_H                                                                         

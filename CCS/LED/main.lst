@@ -1,0 +1,120 @@
+CCS PCH C Compiler, Version 5.015, 5967               07-Jul-23 12:25
+
+               Filename:   C:\Users\boga2\Desktop\18F4520\CCS\LED\main.lst
+
+               ROM used:   90 bytes (0%)
+                           Largest free fragment is 32678
+               RAM used:   6 (0%) at main() level
+                           7 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002C
+.................... #include <18F4520.h> 
+.................... //////////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4520 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+....................                   
+.................... #FUSES NOWDT,INTRC,NOMCLR              //No Watch Dog Timer  
+.................... #FUSES WDT128                   //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOXINST                  //Extended set extension and Indexed Addressing mode disabled (Legacy mode)    
+....................                                       
+.................... #use delay(crystal=20000000)    
+0004:  CLRF   FEA
+0006:  MOVLW  07
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    0028
+000E:  MOVLW  06
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  7B
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  DECFSZ FEF,F
+0026:  BRA    000E
+0028:  GOTO   004C (RETURN)
+....................                                                                                                            
+.................... #include <main.h>                               
+.................... #ifndef MAIN_H      
+.................... #define MAIN_H     
+....................                
+.................... #define DELAY 1000 
+.................... #define TRUE 1 
+....................  
+.................... #endif //MAIN_H     
+....................  
+....................                           
+....................  
+....................  
+....................                                  
+.................... #byte TRISD = 0x0F95 
+.................... #byte PORTD = 0x0F83     
+....................  
+....................  
+.................... void main(){                                                                                  
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  MOVF   FC1,W
+0032:  ANDLW  C0
+0034:  IORLW  0F
+0036:  MOVWF  FC1
+0038:  MOVLW  07
+003A:  MOVWF  FB4
+003C:  CLRF   05
+....................    unsigned int iNumb=0;  
+....................     
+....................    TRISD=0x00; 
+003E:  CLRF   F95
+....................    PORTD=0x00;       
+0040:  CLRF   F83
+....................                               
+....................    //aadsd                               
+....................    while(TRUE){ 
+....................       delay_ms(DELAY);             
+0042:  MOVLW  04
+0044:  MOVWF  06
+0046:  MOVLW  FA
+0048:  MOVWF  07
+004A:  BRA    0004
+004C:  DECFSZ 06,F
+004E:  BRA    0046
+....................       PORTD=iNumb;           
+0050:  MOVFF  05,F83
+....................       iNumb++;                                                               
+0054:  INCF   05,F
+0056:  BRA    0042
+....................    }                                                          
+....................  
+.................... }    
+....................    
+0058:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C200   HS FCMEN IESO
+   Word  2: 0E18   PUT NOBROWNOUT BORV21 NOWDT WDT128
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 0081   STVREN NOLVP NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

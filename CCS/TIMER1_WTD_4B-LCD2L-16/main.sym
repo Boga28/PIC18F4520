@@ -1,0 +1,201 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-01F iSevenSegDispArr
+020     iNumb
+021-022 iSayac
+023     tmr1_events
+024     BUTTON_PRESSED_RELEASED
+025     STATUS
+026-045 strLCD
+046-04D legrandLCDCharacter
+04E-055 stickManLCDCharacter
+056     LCD_Custom_Char.loc
+056     button_debounce.valueOfInput
+056     LCD_String.i
+056     printOn2x16.@SCRATCH1
+057-058 LCD_Custom_Char.msg
+057     button_debounce.bit
+057     LCD_String.@SCRATCH1
+057     printOn2x16.@SCRATCH2
+058     test_bit.valueOfInput
+058     button_debounce.@SCRATCH1
+058     printOn2x16.@SCRATCH3
+059     test_bit.bits
+059     LCD_Custom_Char.i
+059     printOn2x16.@SCRATCH4
+05A     LCD_Custom_Char.@SCRATCH1
+05A     test_bit.@SCRATCH1
+05B     lcddata.text
+05B     lcdcmd.cmd_value
+05C     lcdcmd.cmd_value1
+05C     lcddata.data
+05D     dis_cmd.cmdout
+05D     dis_data.dataout
+05D     lcdcmd.@SCRATCH1
+05D     lcddata.@SCRATCH1
+05E     delayUsFun.us
+05F     delayUsFun.i
+060-061 @DIV1616.P1
+060     interrupt.@SCRATCH1
+061     interrupt.@SCRATCH2
+062-063 @DIV1616.P1
+064     @DIV1616.@SCRATCH1
+F81.0   PORTB_0
+F81     PORTB
+F81.7   PORTB_7
+F83     PSP_DATA
+F84.0   PORTE_RS
+F84     PORTE
+F84.1   PORTE_E
+F84.2   PORTE_RW
+F8C     PORTD
+F8C.7   PORTD_7
+F93     TRISB
+F95     TRISD
+F96     TRISE
+F9D.0   PIE1_TMR1IE
+F9D     PIE1
+F9E     PIR1
+F9E.0   PIR1_TMR1IF
+F9F.0   IPR1_TMR1IP
+F9F     IPR1
+FA6     EECON1
+FA6.1   EECON1_WR
+FA6.2   EECON1_WREN
+FA6.4   EECON1_FREE
+FA6.6   EECON1_CFGS
+FA6.7   EECON1_EEPGD
+FA7     EECON2
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FC1     ADCON1
+FCD     T1CON
+FCD.0   T1CON_TMR1ON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD1.0   WDTCON_SWDTEN
+FD1     WDTCON
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF5     TABLAT
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6     TBLPTRL
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF7     TBLPTRH
+FF8     TBLPTRU
+
+ROM Allocation:
+000096  @const762.call
+0000C8  delayUsFun
+0000D6  dis_cmd
+0000E8  twoLinesBCDMode
+0000F2  LinesActive
+000100  @cinit1
+000100  MAIN
+00011A  @cinit2
+000202  @DIV1616
+000244  interrupt
+0002B8  setup
+0002FA  lcdcmd
+00031C  lcdCursorOff
+000326  lcdShiftRight
+000330  lcdClear
+00033A  dis_data
+00034C  lcddata
+00036E  LCD_Custom_Char
+0003A8  lcdGoToFirstLine
+0003B2  lcdGoToSecondLine
+0003BC  LCD_String
+000406  printOn2x16
+000458  WDTreset
+00045E  test_bit
+000482  button_debounce
+
+Project Directory:
+    C:\18F4520\CCS\TIMER1_WTD_4B-LCD2L-16\
+
+Project Files:
+    main.c                                                  [13-Jul-23 10:50  CRC=D96AB11A]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [10-Jul-23 21:41  CRC=12CF42A0]
+    main.h                                                  [11-Jul-23 13:27  CRC=E04E8832]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [13-Jul-23 09:50  CRC=E59B8F97]
+    init.h                                                  [13-Jul-23 09:49  CRC=D6009742]
+    button.h                                                [10-Jul-23 21:59  CRC=E4670BCE]
+    lcd.h                                                   [12-Jul-23 09:51  CRC=BD68869A]
+    lcd.c                                                   [12-Jul-23 16:40  CRC=ED333E6D]
+    button.c                                                [12-Jul-23 08:01  CRC=45CBFE65]
+    delayms.c                                               [12-Jul-23 16:14  CRC=0BEAD27E]
+
+Source signature=7DF675AD
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

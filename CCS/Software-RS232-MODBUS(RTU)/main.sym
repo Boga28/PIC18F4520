@@ -1,0 +1,268 @@
+000     @SCRATCH
+000     @MEMSET.P1
+001     @SCRATCH
+001     _RETURN_
+001-002 @MEMSET.P1
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     tmr1_time
+019     BUTTON_PRESSED_RELEASED
+01A     STATUS
+01B-03A strLCD
+03B     countLCDChar
+03C     LCDW1SecFlag
+03D-0B9 query
+0BA-136 response
+137-138 crcCheckCode
+139     comStat
+13A-13B @sprintf_string
+13C     lcdcmd.cmd_value
+13C     modbusRTUrx.rxData
+13C     LCD_String.@SCRATCH1
+13C     printOn2x16.@SCRATCH1
+13C     MAIN.@SCRATCH1
+13D     modbusWriteSingleReg.ii
+13D     modbusReadReg.ii
+13D     lcdcmd.cmd_value1
+13D     lcddata.text
+13D     modbusRTUrx.@SCRATCH1
+13D     printOn2x16.@SCRATCH2
+13E     modbusReadReg.charTime
+13E     lcddata.data
+13E     dis_cmd.cmdout
+13E     modbusWriteSingleReg.charTime
+13E     lcdcmd.@SCRATCH1
+13E     printOn2x16.@SCRATCH3
+13F-140 modbusReadReg.startingAddr
+13F     dis_data.dataout
+13F     lcddata.@SCRATCH1
+13F     modbusWriteSingleReg.@SCRATCH1
+13F     printOn2x16.@SCRATCH4
+140     delayUsFun.us
+140     modbusWriteSingleReg.@SCRATCH2
+141     delayUsFun.i
+141-142 modbusReadReg.numOfReg
+143     modbusReadReg.byteCount
+144     modbusReadReg.ii
+145     @PSTRINGCN_799.P1
+145     modbusReadReg.@SCRATCH1
+146     CRC16.mode
+146     modbusResponse.length
+146     modbusReadReg.@SCRATCH2
+146     @PSTRINGCN_799.@SCRATCH1
+147     CRC16.length
+147     modbusResponse.charTime
+147     USART_RxCharBuffer.@SCRATCH1
+147     modbusReadReg.@SCRATCH3
+147     @PSTRINGCN_799.@SCRATCH2
+148     CRC16.ii
+148     modbusResponse.ii
+148     modbusReadReg.@SCRATCH4
+149     CRC16.CRC_Hi
+149     modbusResponse.@SCRATCH1
+14A     USART_TxCharBuffer.data
+14A     CRC16.CRC_Lo
+14B-14C CRC16.CRC
+14B     USART_TxCharBuffer.@SCRATCH1
+14D     CRC16.index
+14E     CRC16.@SCRATCH1
+14F     @PRINTF_X_799.P1
+14F     CRC16.@SCRATCH2
+150     @PRINTF_X_799.P1
+151     @SPRINTF.P1
+152-153 @DIV1616.P1
+152     interrupt.@SCRATCH1
+153     interrupt.@SCRATCH2
+154-155 @DIV1616.P1
+156     @DIV1616.@SCRATCH1
+F80.0   PORTA_0
+F80     PORTA
+F80.1   PORTA_1
+F81     PORTB
+F81.0   PORTB_0
+F81.7   PORTB_7
+F82     PORTC
+F83     PSP_DATA
+F84     PORTE
+F84.0   PORTE_RS
+F84.1   PORTE_E
+F84.2   PORTE_RW
+F8C     PORTD
+F8C.7   PORTD_7
+F92.0   PORTA_DIR_0
+F92     TRISA
+F92.1   PORTA_DIR_1
+F93     TRISB
+F94     TRISC
+F94.6   TRISC_6
+F94.7   TRISC_7
+F95     TRISD
+F96     TRISE
+F9D     PIE1
+F9D.0   PIE1_TMR1IE
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9E     PIR1
+F9E.0   PIR1_TMR1IF
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9F     IPR1
+F9F.0   IPR1_TMR1IP
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FC1     ADCON1
+FCD.0   T1CON_TMR1ON
+FCD     T1CON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD1     WDTCON
+FD1.0   WDTCON_SWDTEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @MEMSET.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FE9-FEA @WRITE_PROGRAM_MEMORY.P5
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @DIV1616
+0000DE  delayUsFun
+0000F0  twoLinesBCDMode
+000100  @cinit1
+000100  MAIN
+000120  @cinit2
+000402  Table_CRC_Hi.call
+00041C  Table_CRC_Hi.data
+00051C  Table_CRC_Lo.call
+000536  Table_CRC_Lo.data
+000636  @const828.call
+000672  @const797.call
+00069A  @const810.call
+0006C2  @const813.call
+0006EA  interrupt
+000760  setupTimerIOSC
+00079C  dis_cmd
+0007B2  lcdcmd
+0007DC  LinesActive
+0007EA  lcdCursorOff
+0007F8  lcdShiftRight
+000806  lcdClear
+000814  printOn2x16
+00085C  USART_Init
+000870  USART_RxCharBuffer
+00087A  @MEMSET
+000894  @SPRINTF
+0008B4  @PRINTF_X_799
+0008FA  CRC16
+0009DA  @PSTRINGCN_799
+000A02  clearQuery
+000A16  USART_TxCharBuffer
+000A22  clearResponse
+000A36  modbusResponse
+000A80  modbusReadReg
+000DD4  modbusWriteSingleReg
+000F98  modbusRTUrx
+000FDC  lcdGoToFirstLine
+000FEC  lcdGoToSecondLine
+000FFC  dis_data
+001014  lcddata
+001040  LCD_String
+
+Project Directory:
+    C:\18F4520\CCS\Software-RS232-MODBUS(RTU)\
+
+Project Files:
+    main.c                                                  [23-Aug-23 10:47  CRC=43740852]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [10-Jul-23 21:41  CRC=12CF42A0]
+    main.h                                                  [21-Aug-23 14:01  CRC=FE2EABFC]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [21-Aug-23 14:08  CRC=03AF7E8E]
+    init.h                                                  [21-Aug-23 13:28  CRC=152730A3]
+    button.h                                                [10-Jul-23 21:59  CRC=E4670BCE]
+    usart_rs232.h                                           [21-Aug-23 12:15  CRC=94B24E5D]
+    lcd.h                                                   [19-Jul-23 09:30  CRC=1292755A]
+    lcd.c                                                   [21-Aug-23 13:45  CRC=47AA46FB]
+    button.c                                                [12-Jul-23 08:01  CRC=45CBFE65]
+    delayms.c                                               [12-Jul-23 16:14  CRC=0BEAD27E]
+    usart_rs232.c                                           [23-Aug-23 10:49  CRC=C51FBC47]
+    modbusrtu.c                                             [23-Aug-23 19:52  CRC=FAE35D34]
+    modbusrtu.h                                             [23-Aug-23 19:04  CRC=92AB0559]
+
+Source signature=80DC1061
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

@@ -1,0 +1,14 @@
+#ifndef MAIN_H     
+#define MAIN_H 
+#define DELAY 500 
+
+void timer1_interrupt();
+void setupTimerIOSC(void);
+void readSectorData();              
+void readMMCSD();
+void WDTreset(void);  
+                    
+#endif //MAIN_H                                
+
+                                                                                                              
+                              

@@ -1,0 +1,120 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 OneBitDelay
+018     ch
+019     UART_Transmit.DataValue
+019     UART_Recieve.DataValue
+01A     UART_Transmit.i
+01A     UART_Recieve.i
+01B     UART_Recieve.@SCRATCH1
+01B     UART_Transmit.@SCRATCH1
+01C     UART_Recieve.@SCRATCH2
+01C     UART_Transmit.@SCRATCH2
+01D-01E delayUsFun.us
+01F-020 delayUsFun.i
+021     delayUsFun.j
+F81     PORTB
+F81.0   UART_RX
+F81.1   UART_TX
+F81.2   LED
+F83     PSP_DATA
+F93     TRISB
+F93.0   UART_RX_DIR
+F93.1   UART_TX_DIR
+F93.2   LED_DIR
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FC1     ADCON1
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF1     INTCON2
+FF2     INTCON
+FF2.1   INTCON_INT0IF
+FF2.4   INTCON_INT0IE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  delayUsFun
+0000B2  UART_Recieve
+000138  UART_Transmit
+000192  external_RB0
+0001AE  setup
+0001C2  InitSoftUart
+0001D6  WDTreset
+0001DC  @cinit1
+0001DC  MAIN
+0001EE  @cinit2
+
+Project Directory:
+    C:\18F4520\CCS\dump\
+
+Project Files:
+    main.c                                                  [18-Jul-23 09:05  CRC=1CD47620]
+    main.h                                                  [18-Jul-23 08:26  CRC=8893F8BB]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [17-Jul-23 16:21  CRC=D8102B21]
+    ucregisters.h                                           [17-Jul-23 16:54  CRC=FFA9C566]
+    delayms.h                                               [17-Jul-23 16:59  CRC=D872A938]
+    delayms.c                                               [18-Jul-23 08:36  CRC=0BEAD27E]
+
+Source signature=9E256310
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

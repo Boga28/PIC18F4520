@@ -1,0 +1,17 @@
+ÀÄmain
+   ÃÄMAIN  0/28  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetup  0/20  Ram=0
+   ³  ÃÄInitSoftUart  0/20  Ram=0
+   ³  ÀÄWDTreset  0/6  Ram=0
+   ÀÄexternal_RB0  0/28  Ram=0
+      ÃÄUART_Recieve  0/134  Ram=3
+      ³  ÃÄdelayUsFun  0/28  Ram=5
+      ³  ÃÄdelayUsFun  0/28  Ram=5
+      ³  ÃÄdelayUsFun  0/28  Ram=5
+      ³  ÃÄdelayUsFun  0/28  Ram=5
+      ³  ÀÄdelayUsFun  0/28  Ram=5
+      ÀÄUART_Transmit  0/90  Ram=3
+         ÃÄdelayUsFun  0/28  Ram=5
+         ÃÄdelayUsFun  0/28  Ram=5
+         ÀÄdelayUsFun  0/28  Ram=5

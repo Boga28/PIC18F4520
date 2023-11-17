@@ -1,0 +1,10 @@
+typedef union{ 
+   uint8_t     all_flags;      /* Type  kayitciya erismek icin ' */    
+      struct{
+         uint8_t event_50ms   : 1,   
+         uint8_t event_100ms  : 1, 
+         uint8_t event_200ms  : 1, 
+         uint8_t event_500ms  : 1, 
+         uint8_t event_1000ms : 1, 
+            };           
+}TMR1_FLAGS;                                           

@@ -1,0 +1,8 @@
+#ifndef DEFINITIONS_H     
+#define DEFINITIONS_H   
+                                                    
+typedef unsigned int16  uint16_t;
+typedef unsigned int8   uint8_t; 
+typedef unsigned bit pointer;
+              
+#endif //DEFINITIONS_H      

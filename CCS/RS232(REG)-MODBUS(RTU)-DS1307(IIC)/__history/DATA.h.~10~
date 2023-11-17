@@ -1,0 +1,14 @@
+#include "definitions.h"                                                         
+
+#ifndef DATA_H
+#define DATA_H    
+// Second    [0]  
+// Minute    [1]
+// Hour      [2]
+// WeekOfDay [3]
+// Day       [4]
+// Month     [5]
+// Year      [6]
+uchar_t timeDateReadData[7]={0,0,0,0,0,0,0};
+
+#endif  //DATA_H  

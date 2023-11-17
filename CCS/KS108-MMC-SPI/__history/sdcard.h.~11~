@@ -1,0 +1,89 @@
+#include<string.h>
+#include<stdlib.h> 
+
+#ifndef _sd_card_h
+#define _sd_card_h    
+
+
+#DEFINE MAX_FILES 2 /// max number of open files
+#DEFINE MMC_BUFF_SIZE 32 /// 32 for PCM 
+#DEFINE MMC_FILE_NAME_SIZE 32
+
+#DEFINE ROOT_CLUSTER 0
+#DEFINE NEXT_CLUSTER 1
+
+#define MMC_INIT_TRACE FALSE
+#define MMC_CMD_TRACE FALSE
+#define MMC_CLUSTER_TRACE FALSE // if true prints to serial port
+#define MMC_OPEN_TRACE FALSE // if true prints to serial port
+#define MMC_READ_TRACE FALSE // if true prints file_addr,cluster index etc
+#define MMC_WRITE_TRACE FALSE
+#define MMC_READ_BLOCK_TRACE FALSE
+#define MMC_SET_BLOCK_LEN_TRACE FALSE
+#define MMC_WRITE_BLOCK_TRACE FALSE
+#define MMC_NEW_CLUSTER FALSE          
+int16 cluster_size_bytes; // bytes in a cluster
+//int16 dir_cluster_chain_ptr; // link to the first cluster in the dir
+
+int32 fat1_address; // physical address of fat1 cluster table assigned by INIT_MMC
+int32 fat2_address; // physical address of fat1 cluster table assigned by INIT_MMC
+int32 root_dir_address; // physical address of volume,file,folder tiles assigned by INIT_MMC
+int32 data_area_address; // physical address of data area assigned by INIT_MMC
+int32 winhex_adj; // Win hex hides the bytes in the reserved sectors
+// this means Fat1 is address 512
+// so adj is fat1-512
+int32 block_size; // current MMC block size
+
+int MMC_init=FALSE;
+
+int MMC_dir_protected=TRUE;    
+
+const unsigned char   MSGF[] ={"\rMMC CARD INTERFACE\r"};
+const unsigned char   MSG0[] ={"\rMMC CARD COMMAND 0\r"};
+const unsigned char   MSG1[] ={"\rMMC CARD COMMAND 1\r"};
+const unsigned char   MSGB[] ={"\rMMC CARD COMMAND BLOCK=512\r"};
+const unsigned char   MSGW[] ={"\rMMC CARD SECTOR WRITE\r"};
+const unsigned char   MSGR[] ={"\rMMC CARD SECTOR READ\r"};
+const unsigned char   MSG[]  ={"\nMMC CARD IS INITIALIZED SPI MODE\n"};
+const unsigned char   CSD[]  ={"\rCSD INFORMATION:\r"};   
+const unsigned char   CID[]  ={"\rCID INFORMATION:\r"};
+const unsigned char   WACK[] ={"\rWRITE ACKNOLEDGE:\r"};
+const unsigned char   WNFSH[]={"\rWRITE NOT FINISH:\r"};   
+
+////////// open file specific globals ///////////////////////
+struct{
+   char name[MMC_FILE_NAME_SIZE+1]; // fopen file name
+   int32 dir_addr_ptr; // physical address of this files tile info
+   int16 root_cluster_ptr; // location of first cluster in FAT
+   int16 this_cluster_ptr; // location of current cluster in FAT
+   int16 next_cluster_ptr; // location of the next cluster for a file or sub dir in FAT
+   int32 addr_ptr; // physical address in the file the current
+   // cluster points to
+   // address=(this_chain_ptr-2)*cluster_size_bytes+data_area_address
+   //
+   // cluster_addr(THIS_CLUSTER) assigns it
+   // cluster_addr(NEXT_CLUSTER) moves to the data the next
+   // cluster points to
+   int32 size; // size of open file in bytes
+   int32 cluster_offset; // offset within the file representing the start of the current cluster
+   // (0 is start and ends with the cluster contianing eof )
+   // auto increased by cluster_size_bytes each time a new cluster is entered
+
+   int32 offset; // current offset into the open file ( 0 is start size(file size) is end)
+   // auto increased by rec size each time a rec is read
+   // addr_prt+offset-cluster_offset is physical address of
+   // the current position within the file
+   // the physical positions are not always contiguous since the
+   // clusters of the file are not always adjacent to each other
+   int16 rec_size; // fopen record_size
+   // char buff[MMC_BUFF_SIZE+1]; // used for open and for read write
+   // init MMC uses file 0 buff to fetch the globals
+
+} file[MAX_FILES];
+int set_BLOCKLEN( int32);
+int read_BLOCK( int32 , char *);
+uint8_t mmc_cmd(uint8_t ,uint32_t ,uint8_t ,uint8_t ,uint8_t );
+uint32_t init_MMC(uint8_t );
+                                                           
+                                                           
+#endif

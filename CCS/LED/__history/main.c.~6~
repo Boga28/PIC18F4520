@@ -1,0 +1,16 @@
+#include <main.h>
+
+void main(){
+    unsigned int iNumb=0;
+    
+   set_tris_d(0x00);
+   output_b(0x00);   
+      
+   //aadsd                              
+   while(true){                         
+      delay_ms(DELAY);            
+      output_b(iNumb);       
+      iNumb++;
+   }   
+
+}                                                               

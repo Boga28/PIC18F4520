@@ -1,0 +1,141 @@
+#include "modbusrtu.h"                                     
+
+#ifndef MODBUSRTU_
+#define MODBUSRTU_C                                         
+uchar_t query[125], response[125];
+uint16_t crcCheckCode;
+uchar_t comStat;                                  
+                                                   
+void modbusRTUrx(){                   
+   comStat=0; 
+   uchar_t rxData = USART_RxCharBuffer(); 
+   if(SLAVEADDRESS==rxData){                        
+      while(RCIF_PIR1==0);
+      rxData = USART_RxCharBuffer(); 
+      if(rxData==0x03)    
+         modbusReadReg();  
+      if(rxData==0x06)    
+         modbusWriteSingleReg();   
+   }                                                                                                                                         
+   if(comStat){       
+      comStat=0;                                
+      return;                     
+   }    
+}          
+
+void modbusReadReg(){
+   query[0] = 0x01;   
+   query[1] = 0x03; 
+   
+   uchar_t ii,charTime;
+   for(ii=2;ii<8;ii++){ 
+      charTime=0;                                                                                                    
+      while(RCIF_PIR1==0){  
+        delay_us(20); 
+        charTime++;
+        if(charTime>=200){
+           comStat = 1;                                               
+           break;
+        }        
+      }                                       
+      query[ii]=USART_RxCharBuffer();
+      if(comStat==1||ii>=7){ 
+         crcCheckCode = CRC16(0,8);   
+         if(((crcCheckCode >> 8)&0x00FF)==query[6] &&((crcCheckCode)&0x00FF)==query[7]){   
+            sprintf(strLCD,"  %2X %2X %2X %2X     %2X %2X %2X %2X  ",query[0],query[1],query[2],query[3],query[4],query[5],query[6],query[7]);                   
+            uint16_t startingAddr = (query[2] << 8 | query[3]);                 
+            uint16_t numOfReg = (query[4] << 8 | query[5]); 
+            uint8_t byteCount = numOfReg*2;  
+            response[0]=0x01;         // SlaveAddress
+            response[1]=0x03;         // Function                                        
+            response[2]=numOfReg*2;   // ByteCount 
+            for(uchar_t ii=3;ii<byteCount+3;ii++){   //DATA
+               if(ii%2==1)
+                 response[ii]=0x00;                   
+               else
+                 response[ii]=0x05;                        
+            }                   
+            crcCheckCode = CRC16(1,(5+byteCount));
+            response[3+byteCount] = (crcCheckCode) & 0x00FF;       //Error Check Lo      
+            response[4+byteCount] = (crcCheckCode >> 8) & 0x00FF;  //Error Check Hi   
+            modbusResponse(5+byteCount);                        
+            return;
+        }
+      }
+   }                                   
+}                            
+                                   
+void modbusWriteSingleReg(){  
+   query[0] = 0x01;
+   query[1] = 0x06;  
+   uchar_t ii,charTime;
+   for(ii=2;ii<8;ii++){
+      charTime=0; 
+      while(RCIF_PIR1==0){                      
+        delay_us(20);                
+        charTime++;
+        if(charTime>=200){    
+           comStat = 1; 
+           break;
+        }                         
+      }                                   
+      query[ii]=USART_RxCharBuffer(); 
+      if(comStat==1||ii>=7){
+         crcCheckCode = CRC16(0,8);   
+         if(((crcCheckCode >> 8)&0x00FF)==query[6] &&((crcCheckCode)&0x00FF)==query[7]){ 
+           // memset(strLCD,0,32);                
+           // sprintf(strLCD,"%2X %2X",(crcCheckCode >> 8)&0x00FF,(crcCheckCode)&0x00FF);   
+            sprintf(strLCD,"  %2X %2X %2X %2X     %2X %2X %2X %2X  ",query[0],query[1],query[2],query[3],query[4],query[5],query[6],query[7]); 
+            memcpy(response,query,8);                
+            modbusResponse(8);
+            return;    
+         }
+      }    
+   }                                         
+}                                                   
+   
+void modbusResponse(uchar_t length){  
+   clearQuery();
+   uchar_t charTime=0,ii; 
+   while(charTime>=200){                       
+      delay_us(20);                         
+      charTime++;                          
+   }                                                                                                             
+   for(ii=0;ii<length;ii++){                         
+      USART_TxCharBuffer(response[ii]);                       
+   }             
+   clearResponse(); 
+}  
+
+
+void clearResponse(){
+   memset(response, 0, 125);  
+} 
+void clearQuery(){
+   memset(query, 0, 125);
+}
+                                               
+uint16_t CRC16(uchar_t mode, uint8_t length){
+// Calcula o CRC16 de uma mensagem por table lookup
+   uchar_t ii=0; 
+   uchar_t CRC_Hi = 0xFF;            // carrega Hi byte inicialmente
+   uchar_t CRC_Lo = 0xFF;         // carrega Lo byte inicialmente
+   uint16_t CRC;            // temporario de CRC16
+   uint8_t index=0;               // indexador para busca nas tabelas     
+   memset(strLCD,0,32);
+   while (ii<length-2){  
+      if(mode==0)
+         index = CRC_Hi ^ query[ii];         // calcula o CRC  
+      else 
+         index = CRC_Hi ^ response[ii];         // calcula o CRC  
+      sprintf(strLCD,"%2X ",response[ii]);
+      CRC_Hi = CRC_Lo ^ Table_CRC_Hi[index];
+      CRC_Lo = Table_CRC_Lo[index];   
+      ii++;                        
+   }         
+   CRC = CRC_Hi;                  // formata e retorna o CRC
+   CRC = (CRC<<8) | CRC_Lo;
+   return CRC;                   
+}                                              
+                          
+#endif  //MODBUSRTU_H                              

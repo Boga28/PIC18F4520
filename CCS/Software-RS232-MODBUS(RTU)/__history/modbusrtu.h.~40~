@@ -1,0 +1,15 @@
+#include "definitions.h"                                                         
+#include "ucregisters.h"                       
+                       
+#ifndef MODBUSRTU_H
+#define MODBUSRTU_H  
+#define SLAVEADDRESS 1
+extern uchar_t writeSingleRegBuffer[8], readSingleRegBuffer[50]; 
+         
+void modbusRTUrx();  
+void modbusReadSingleReg();
+void modbusWriteSingleReg(); 
+void response();
+
+
+#endif  //MODBUSRTU_H

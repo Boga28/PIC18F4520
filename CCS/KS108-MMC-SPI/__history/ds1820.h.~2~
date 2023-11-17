@@ -1,0 +1,19 @@
+#ifndef DS1820_H
+#define DS1820_H 
+/*#define Input           1
+#define Output          0
+#define ReadROM         0x33
+#define MatchROM        0x55
+#define SkipROM         0xCC
+#define SearchROM       0xF0
+#define AlarmSearch     0xEC
+#define ConvertT        0x44
+#define ReadScratchpad  0xBE
+#define WriteScratchpad 0x4E
+#define CopyScratchpad  0x48
+#define RecallEE        0xB8                                 
+#define ReadPowerSupply 0xB4
+#define DevicesNumber   1 */     
+
+#endif //DS1820_H
+                    

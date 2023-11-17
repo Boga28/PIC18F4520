@@ -1,0 +1,56 @@
+#include "time.h"
+#include "definitions.h" 
+
+                                                
+void runTime(){ 
+   if(sec>=59){ //SANIYE ASIMI
+      sec=0;
+      if(min>=59){ //DAKIKA ASIMI
+         min=0; 
+         if(hrs>=23){ //SAAT ASIMI
+            hrs=0;
+            if(day>=exactDayOfMonth){  //GUN ASIMI
+               day=1;
+               if(month>=12){          //AY ASIMI
+                  month=1;
+                  if(yr>=99){
+                  
+                  }else{
+                     yr++;
+                  }
+               }else{ 
+                  month++;
+               }
+            }else{    
+               day++;     
+            }
+         }else{
+            hrs++;
+         }
+      }else{
+        min++|
+      }
+   }else{
+      sec++;
+   }
+}
+  
+void getTime(){     
+   ds1307_get_time();           
+   ds1307_get_date(); 
+}    
+uchar_t exactDayOfMonth(){ 
+   if(month==4 || month==6 || month==9 || month==11) 
+      return 30;                           
+   if(month==2){ 
+      if((yr%4) == 0){
+         if((yr%400) == 0) 
+            return 29;             
+         else if((yr%100) == 0) 
+            return 28;
+         return 29;
+      } 
+      return 28;
+   }          
+   return 31; 
+}

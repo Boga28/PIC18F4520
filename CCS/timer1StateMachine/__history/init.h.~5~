@@ -1,0 +1,10 @@
+typedef union{ 
+   uint8_t     all_flags;      /* Allows us to refer to the flags 'en masse' */
+      struct{
+         uint8_t event_50ms   : 0, 
+         uint8_t event_100ms  : 1, 
+         uint8_t event_200ms  : 2, 
+         uint8_t event_500ms  : 3, 
+         uint8_t event_1000ms : 5, 
+            };           
+}EX_FLAGS;                                           

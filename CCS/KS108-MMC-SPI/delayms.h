@@ -1,0 +1,7 @@
+#ifndef DELAYMS_H  
+#define DELAYMS_H   
+
+void delayMsFun(uint16_t); 
+void delayUsFun(uint8_t us);
+
+#endif //DELAYMS_H  

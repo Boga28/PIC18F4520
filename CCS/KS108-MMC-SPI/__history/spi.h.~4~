@@ -1,0 +1,10 @@
+#include "definitions.h" 
+#include "ucregisters.h" 
+#ifndef SPI_H
+#define SPI_H    
+
+void SPI_Master_Init();   
+
+
+
+#endif  //SPI_H   

@@ -1,0 +1,10 @@
+#ifndef MAIN_H     
+#define MAIN_H                  
+#define DELAY 500 
+    
+extern const uint8_t iSevenSegDispArr[10];
+                    
+#endif //MAIN_H                                
+
+                                                                                                              
+

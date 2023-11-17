@@ -1,0 +1,7 @@
+#ifndef BUTTON_H
+#define BUTTON_H  
+  
+extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */   
+uint1_t button_events(uint8_t *, uint8_t );
+
+#endif           

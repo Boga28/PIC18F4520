@@ -1,0 +1,79 @@
+#include "timedate.h"
+#include "definitions.h" 
+
+                                                
+void runTime(){ 
+   if(sec>=59){ //SANIYE ASIMI
+      sec=0;
+      if(min>=59){ //DAKIKA ASIMI
+         min=0; 
+         if(hrs>=23){ //SAAT ASIMI
+            hrs=0;
+            if(day>=exactDayOfMonth){  //GUN ASIMI
+               day=1;
+               if(month>=12){          //AY ASIMI
+                  month=1;
+                  if(yr>=99){
+                     yr=0;
+                  }else{
+                     yr++;
+                  }
+               }else{ 
+                  month++;
+               }
+            }else{    
+               day++;     
+            }
+         }else{
+            hrs++;
+         }
+      }else{                                            
+        min++|
+      }
+   }else{
+      sec++;
+   }
+   //.  14 : 00 : 25  .
+    // Fri - 24/07/23  
+   sprintf(DATE_TIME,"  \%02d : \%02d : \%02d   %s - \%02d/\%02d/\%02d",hrs,min,sec,dayText,day,month,yr); 
+   memset(strLCD,0,32);                      
+   memcpy(strLCD,DATE_TIME,32);
+}
+  
+void getTime(){     
+   ds1307_get_time();           
+   ds1307_get_date(); 
+}    
+uchar_t exactDayOfMonth(){ 
+   if(month==4 || month==6 || month==9 || month==11) 
+      return 30;                           
+   if(month==2){ 
+      if((yr%4) == 0){
+         if((yr%400) == 0) 
+            return 29;             
+         else if((yr%100) == 0) 
+            return 28;
+         return 29;
+      } 
+      return 28;
+   }          
+   return 31; 
+}             
+void getDayText(){                          
+   switch(day_of_the_week(getYear(),getMonth(),getDay())){
+     case 0: memcpy(dayText,"Sun",3); break;
+     case 1: memcpy(dayText,"Mon",3); break;
+     case 2: memcpy(dayText,"Tue",3); break;
+     case 3: memcpy(dayText,"Wed",3); break;
+     case 4: memcpy(dayText,"Thu",3); break;
+     case 5: memcpy(dayText,"Fri",3); break;
+     case 6: memcpy(dayText,"Sat",3); break;
+   }   
+} 
+// <-------------      (0-7, Start Sunday)       -----------> 
+uint16_t day_of_the_week(uint16_t Y, uint16_t M, uint16_t D) { 
+   uint16_t days[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 }; 
+   if (M < 3) 
+      Y--;        
+   return (Y + Y / 4 - Y / 100 + Y / 400 + days[M - 1] + D) % 7; 
+}    

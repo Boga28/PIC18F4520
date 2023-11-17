@@ -1,0 +1,6 @@
+#ifndef UCREGISTER_H 
+#define UCREGISTER_H  
+
+#byte  TRISC = 0x0F94
+      
+#endif //UCREGISTER_H

@@ -1,0 +1,13 @@
+#ifndef UCREGISTER_H 
+#define UCREGISTER_H  
+
+#byte TRISB   = 0x0F93
+#byte PORTB   = 0x0F82 
+
+#bit  UART_TX_DIR = TRISB.0   //TX
+#bit  UART_RX_DIR = TRISB.1   //RX
+                              
+#bit  UART_TX = PORTB.0       //TX   
+#bit  UART_RX = PORTB.1       //RX                   
+                          
+#endif //UCREGISTER_H                     

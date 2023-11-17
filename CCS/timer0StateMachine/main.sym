@@ -1,0 +1,116 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-01F iSevenSegDispArr
+020     iNumb
+021     iSayac
+F81     PORTB
+F81.0   PORTB_0
+F81.7   PORTB_7
+F83     PSP_DATA
+F8C     PORTD
+F93     TRISB
+F95     TRISD
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FD0     RCON
+FD0.7   RCON_IPEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FD5     T0CON
+FD5.0   T0CON_T0PS0
+FD5.1   T0CON_T0PS1
+FD5.2   T0CON_T0PS2
+FD5.3   T0CON_PSA
+FD5.4   T0CON_T0SE
+FD5.5   T0CON_T0CS
+FD5.6   T0CON_T08BIT
+FD5.7   T0CON_TMR0ON
+FD6     TMR0L
+FD7     TMR0H
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF2     INTCON
+FF2.2   INTCON_TMR0IF
+FF2.5   INTCON_TMR0IE
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  interrupt
+0000C8  setup
+000100  MAIN
+000100  @cinit1
+000112  @cinit2
+000202  timer0Condition
+
+Project Directory:
+    C:\18F4520\CCS\timerStateMachine\
+
+Project Files:
+    main.c                                                  [10-Jul-23 09:36  CRC=5EB68565]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [10-Jul-23 07:43  CRC=D872A938]
+    main.h                                                  [10-Jul-23 09:32  CRC=E04E8832]
+    delayms.c                                               [10-Jul-23 07:44  CRC=0886E292]
+    delayms.h                                               [10-Jul-23 07:44  CRC=00000000]
+    ucregisters.h                                           [10-Jul-23 07:51  CRC=17236486]
+
+Source signature=7F0017E7
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

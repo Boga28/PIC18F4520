@@ -1,0 +1,12 @@
+#ifndef BUTTON_H
+#define BUTTON_H  
+  
+typedef struct{    
+   uint8_t BUTTON_PRESSED_RELEASED    : 1;  /* bit:1, Aktif     */
+}button_t;                                                    
+
+extern button_t  button_event; 
+
+void button_events();             
+            
+#endif           

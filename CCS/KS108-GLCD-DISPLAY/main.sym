@@ -1,0 +1,225 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     tmr1_time
+019     count
+01A     init
+01B-41A BUFFER
+41B     GLCD_Clear.i
+41B     GLCD_String.x
+41B     @delay_ms1.P1
+41B     createEarthimation.@SCRATCH1
+41C     GLCD_Clear.j
+41C     GLCD_String.y
+41C     createEarthimation.@SCRATCH2
+41D     GLCD_String.pageAdd
+41D     createEarthimation.@SCRATCH3
+41D     GLCD_Clear.@SCRATCH1
+41E-41F GLCD_String.arrayPosition
+41E     createEarthimation.@SCRATCH4
+420     GLCD_String.@SCRATCH1
+421     GLCD_Command.cmd
+421     GLCD_Char.data
+422-423 @DIV1616.P1
+422     timer1_interrupt.@SCRATCH1
+423     timer1_interrupt.@SCRATCH2
+424-425 @DIV1616.P1
+426     @DIV1616.@SCRATCH1
+F80.0   PORTA_0
+F80     PORTA
+F80.1   PORTA_1
+F81.0   PORTB_0
+F81     PORTB
+F81.7   PORTB_7
+F82     PORTC
+F83     PORTD
+F83     PSP_DATA
+F84     PORTE
+F8B     LATC
+F8B.0   CS1
+F8B.1   CS2
+F8B.2   RS
+F8B.3   RW
+F8B.4   EN
+F8B.5   RST
+F8C     LCD_data
+F92.0   PORTA_DIR_0
+F92     TRISA
+F92.1   PORTA_DIR_1
+F93     TRISB
+F94     TRISC
+F95     TRISD
+F96     TRISE
+F9D     PIE1
+F9D.0   PIE1_TMR1IE
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9E     PIR1
+F9E.0   PIR1_TMR1IF
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9F.0   IPR1_TMR1IP
+F9F     IPR1
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FCD.0   T1CON_TMR1ON
+FCD     T1CON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @DIV1616
+0000DE  NOP
+0000E2  CS1FUN
+0000EC  GLCD_Char
+000100  @cinit1
+000100  MAIN
+00011A  @cinit2
+000802  earth0.call
+00081A  earth0.data
+000C1A  earth1.call
+000C32  earth1.data
+001032  earth2.call
+00104A  earth2.data
+00144A  earth3.call
+001462  earth3.data
+001862  earth4.call
+00187A  earth4.data
+001C7A  earth5.call
+001C92  earth5.data
+002092  earth6.call
+0020AA  earth6.data
+0024AA  earth7.call
+0024C2  earth7.data
+0028C2  earth8.call
+0028DA  earth8.data
+002CDA  earth9.call
+002CF2  earth9.data
+0030F2  earth10.call
+00310A  earth10.data
+00350A  earth11.call
+003522  earth11.data
+003922  earth12.call
+00393A  earth12.data
+003D3A  earth13.call
+003D52  earth13.data
+004152  earth14.call
+00416A  earth14.data
+00456A  earth15.call
+004582  earth15.data
+004982  earth16.call
+00499A  earth16.data
+004D9A  earth17.call
+004DB2  earth17.data
+0051B2  timer1_interrupt
+00520A  setupTimerIOSC
+00523C  GLCD_Command
+005260  CS2FUN
+00526C  GLCD_String
+005326  createEarthimation
+005766  @delay_ms1
+005790  GLCD_Init
+0057DE  GLCD_Clear
+00582A  WDTreset
+
+Project Directory:
+    C:\18F4520\CCS\KS108-GLCD-DISPLAY\
+
+Project Files:
+    main.c                                                  [01-Aug-23 17:28  CRC=0A54B8C4]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [27-Jul-23 14:40  CRC=F817D64F]
+    main.h                                                  [31-Jul-23 09:08  CRC=D8102B21]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [01-Aug-23 13:50  CRC=1E869664]
+    init.h                                                  [31-Jul-23 11:15  CRC=1D71D8EE]
+    Animation.h                                             [01-Aug-23 17:16  CRC=CA2670BA]
+    glcd.h                                                  [01-Aug-23 17:18  CRC=28811FFC]
+    Animation.c                                             [01-Aug-23 17:27  CRC=921BD628]
+    delayms.c                                               [19-Jul-23 16:26  CRC=7910CBDE]
+    glcd.c                                                  [01-Aug-23 14:17  CRC=A237AB78]
+
+Source signature=61E611E4
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

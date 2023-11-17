@@ -1,0 +1,15 @@
+typedef union
+{
+ uint8_t     all_flags;      /* Allows us to refer to the flags 'en masse' */
+ struct
+ {
+  uint8_t foo : 1,        /* Explanation of foo */
+          bar : 1,        /* Explanation of bar */
+          spare5 : 1,     /* Unused */
+          spare4 : 1,     /* Unused */
+          spare3 : 1,     /* Unused */
+          spare2 : 1,     /* Unused */
+          spare1 : 1,     /* Unused */
+          spare0 : 1;     /* Unused */
+ };
+} EX_FLAGS;                                           
