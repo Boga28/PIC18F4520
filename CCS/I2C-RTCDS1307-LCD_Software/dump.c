@@ -1,0 +1,89 @@
+       
+
+
+#include "i2c.h"
+#include "definitions.h"    
+#include "ucregisters.h"                                                   
+                         
+ uchar_t _I2C_Read(uchar_t mode){
+   uchar_t inByte, n;                                                                    
+   i2cHighSda(); 
+   for(n=0; n<8; n++){
+      i2cHighScl();
+       
+      if (SDA)
+         inByte = (inByte << 1) | 0x01; // msbit first  
+      else                                                  
+         inByte = inByte << 1;                
+      i2cLowScl();                  
+   }  
+   //_I2CACK(mode);     
+   return(inByte);                               
+}                                            
+
+void _I2C_Write(uchar_t outByte){ 
+   uchar_t n;
+   for(n=0; n<8; n++){    
+      if(outByte&0x80)                
+         i2cHighSda();
+      else
+         i2cLowSda();   
+      i2cHighScl();
+      i2cLowScl();
+      outByte = outByte << 1;
+   }
+   i2cHighSda();
+}  
+void _I2CACK(uchar_t mode){ 
+   if(mode==1){ //ACK   
+      i2cLowSda();   
+      i2cHighScl();
+      i2cLowScl();
+      i2cHighSda();      // bring data low and clock
+   }else{      //NACK
+      i2cHighScl();
+      i2cLowScl();      // bring data high and clock  
+   }                                                                                 
+}   
+
+uint8_t test_bit(uint8_t valueOfInput, uint8_t bits){ 
+   return ((valueOfInput & (1<<bits)) != 0);
+}               
+     
+ 
+ 
+void _I2C_Start(void){                                        
+   i2cLowScl();              
+   i2cHighSda();
+   i2cHighScl();   
+   i2cLowSda();                                                                                                            
+   i2cLowScl();      // bring SDA low while SCL is high
+}   
+void _I2C_Stop(void){
+   i2cLowScl();
+   i2cLowSda();                
+   i2cHighScl();
+   i2cHighSda();      // bring SDA high while SCL is high
+}       
+
+void i2cHighSda(void){    
+   SDA_DIR = 1;      // bring SDA to high impedance
+   delay_us(5);      
+}               
+                         
+void i2cLowSda(void){
+   SDA = 0;  
+   SDA_DIR = 0;      // output a logic zero
+   delay_us(5);
+}                                
+                                           
+void i2cHighScl(void){
+   SCL_DIR = 1;      // bring SCL to high impedance
+   delay_us(5);        
+}            
+
+void i2cLowScl(void){
+   SCL= 0;      
+   SCL_DIR = 0;
+   delay_us(5);
+}     

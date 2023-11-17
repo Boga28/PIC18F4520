@@ -1,0 +1,38 @@
+#include <18F4520.h>   //Kullanilan mikrodenetleyicinin surucusu derleyici uzerinde kaynak dosyasina tanimlanir.
+
+/*FUSES: cihaza bagli cesitli opsiyonlari ayarlamak icin kullanilir. Mevcut ozellikleri en ustte belirtilir. 
+       Konfigurasyon bileri vardir, bu komut ile mikrodenetleyicinin konfigurasyon pinleri ayarlan齬.
+  Yaygin kullanilan cihaz secenekleri:
+      路   LP, XT, HS, RC     :LP dusuk guclu kristal osilator, XT klasik kristal osilator, HS yuksek hizli kristal osilator, RC Direnc/Kondansator osilator
+      路   WDT, NOWDT         :Programin olasi kilitlenmelerde resetlenmesini sa餷ar. WDT dersek bu mod aktif, NOWDT dersek bu mod pasiftir.                    
+      路   PROTECT, NOPROTECT :Kod koruma, mikrokontrollerin i鏸ne y黭leyecegin kodlar kopyalananaz demek, NOPROTECT ise kodlar geriye okunup kopyalanabilir demektir.   
+      路   PUT, NOPUT   (Power Up Timer): NOPUT, zamanlayicilar kapali demek, yani timer olarak gecen zaman dongulerini kullanmayacagini belirtirsin
+      路   BROWNOUT, NOBROWNOUT                                               
+      路   INTRC  
+      路   NOMCLR 
+      路
+Tum #FUSES ozelliklerini kapatmak icin " #FUSES none" kullanilir.                              
+*/                                                                           
+#FUSES NOWDT,INTRC,NOMCLR               
+                       
+#include "definitions.h"                                                                                                      
+#include "main.h"      
+#include "delayms.c"
+#include "ucregisters.h" //State machine    
+                                                                                      
+int8_t iSevenSegDispArr[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};   
+                          
+void main(){                   
+   int8_t iNumb=0;                                                                                        
+                                                                                                                           
+   TRISD=0x00;                                           
+   PORTD=0x00;
+   
+   while(1){                                                                 
+      PORTD=iSevenSegDispArr[iNumb]; 
+      delayMsFun(DELAY);                                                                                     
+      iNumb++;  
+      if(iNumb==10)                                             
+         iNumb=0; 
+   }                                                         
+}          

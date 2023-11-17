@@ -1,0 +1,7 @@
+#ifndef 24LC256_H 
+#define 24LC256_H                            
+#include "definitions.h"    
+#include "ucregisters.h"   
+
+
+#endif //24LC256_H

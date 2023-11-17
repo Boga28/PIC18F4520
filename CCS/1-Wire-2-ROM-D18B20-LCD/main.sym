@@ -1,0 +1,332 @@
+000     @SCRATCH
+000     @MEMSET.P1
+001     @SCRATCH
+001     _RETURN_
+001-002 @MEMSET.P1
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     tmr1_time
+019-038 strLCD
+039     countLCDChar
+03A     LCDW1SecFlag
+03B     DevicesFound
+03C     queue
+03D-05C TEMPBF
+05D-05E tempHeat
+05F-060 heat1
+061-062 heat2
+063-064 heat3
+065     i
+066-080 SlaveROM
+081-089 ROM_NO
+08A     LastDiscrepancy
+08B     LastFamilyDiscrepancy
+08C     LastDeviceFlag
+08D     crc8
+08E     countt
+08F-090 @sprintf_string
+091     period
+092-093 ds1820_read_from_rom.SlaveROM11
+092     Ow_Search.id_bit_number
+092-093 @PRINTF_LD_884.P1
+092     lcdcmd.cmd_value
+092     @PSTRINGCN_884.P1
+092     LCD_String.@SCRATCH1
+092     searchRom.@SCRATCH1
+092     @PSTRINGC_9600_31766_31767.@SCRATCH1
+092     printOn2x16.@SCRATCH1
+093     lcddata.text
+093     lcdcmd.cmd_value1
+093     Ow_Search.last_zero
+093     searchRom.@SCRATCH2
+093     @PSTRINGC_9600_31766_31767.@SCRATCH2
+093     @PSTRINGCN_884.@SCRATCH1
+093     printOn2x16.@SCRATCH2
+094     Ow_Search.rom_byte_number
+094     ds1820_read_from_rom.busy
+094     lcddata.data
+094     dis_cmd.cmdout
+094     lcdcmd.@SCRATCH1
+094     searchRom.@SCRATCH3
+094     @PSTRINGCN_884.@SCRATCH2
+094     @PRINTF_LD_884.@SCRATCH1
+094     printOn2x16.@SCRATCH3
+095     Ow_Search.search_result
+095     dis_data.dataout
+095     ds1820_read_from_rom.temp1
+095     lcddata.@SCRATCH1
+095     @PRINTF_LD_884.@SCRATCH2
+095     printOn2x16.@SCRATCH4
+096     delayUsFun.us
+096     Ow_Search.id_bit
+096     ds1820_read_from_rom.temp2
+096     @PRINTF_LD_884.@SCRATCH3
+097-098 ds1820_read_from_rom.temp3
+097     delayUsFun.i
+097     Ow_Search.cmp_id_bit
+097     @PRINTF_LD_884.@SCRATCH4
+098     Ow_Search.rom_byte_mask
+098     @PRINTF_LD_884.@SCRATCH5
+099     onewire_read.count
+099     Ow_Search.search_direction
+099-09A @DIVS1616.P1
+099     onewire_reset.@SCRATCH1
+099     ds1820_read_from_rom.@SCRATCH1
+099     @PRINTF_LD_884.@SCRATCH6
+09A     onewire_read.data
+09A     onewire_write.data
+09A     Ow_Reset.OW
+09A     Ow_Search.@SCRATCH1
+09A     @PRINTF_LD_884.@SCRATCH7
+09B-09C @DIVS1616.P1
+09B     docrc8.value
+09B     onewire_write.count
+09B.0   Ow_Read_Bit.BitValue
+09B     @SPRINTF.P1
+09B     Ow_Reset.@SCRATCH1
+09B     Ow_Search.@SCRATCH2
+09C     @delay_us1.P1
+09C     docrc8.@SCRATCH1
+09C     Ow_Search.@SCRATCH3
+09D     @DIVS1616.@SCRATCH1
+09E     @DIVS1616.@SCRATCH2
+09F-0A0 @DIV1616.P1
+09F     timer1_interrupt.@SCRATCH1
+0A0     timer1_interrupt.@SCRATCH2
+0A1-0A2 @DIV1616.P1
+0A3     @DIV1616.@SCRATCH1
+F80.0   PORTA_0
+F80     PORTA
+F80.1   PORTA_1
+F81     PORTB
+F81.0   PORTB_0
+F81.7   PORTB_7
+F82     PORTC
+F82.0   PORTC_0
+F82.2   PORTC_2
+F83     PSP_DATA
+F84     PORTE
+F84.0   PORTE_RS
+F84.1   PORTE_E
+F84.2   PORTE_RW
+F8B     LATC
+F8B.0   LATC_0
+F8C     PORTD
+F8C.7   PORTD_7
+F92.0   PORTA_DIR_0
+F92     TRISA
+F92.1   PORTA_DIR_1
+F93     TRISB
+F94     TRISC
+F94.0   TRISC_0
+F94.2   TRISC_2
+F94.3   SCL_DIR
+F94.4   SDA_DIR
+F94.6   TRISC_6
+F94.7   TRISC_7
+F95     TRISD
+F96     TRISE
+F9D.0   PIE1_TMR1IE
+F9D     PIE1
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9D.6   ADIE
+F9E     PIR1
+F9E.0   PIR1_TMR1IF
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9E.6   ADIF
+F9F     IPR1
+F9F.0   IPR1_TMR1IP
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBD     CCP1CON
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBE     CCPR1L
+FBF     CCP_1_HIGH
+FBF     CCPR1H
+FC0     ADCON2
+FC1.0   PCFG0
+FC1     ADCON1
+FC1.1   PCFG1
+FC2.0   ADON
+FC2     ADCON0
+FC2.1   GODONE
+FC3     ADRESL
+FC4     ADRESH
+FC5     SSPCON2
+FC5.0   SEN
+FC5.1   RSEN
+FC5.2   PEN
+FC5.3   RCEN
+FC5.4   ACKEN
+FC5.5   ACKDT
+FC5.6   ACKSTAT
+FC6     SSPCON1
+FC7     SSPSTAT
+FC7.0   BF
+FC8     SSPADD
+FC9     SSPBUF
+FCA     T2CON
+FCA.2   TMR2ON
+FCB     PR2
+FCC     TMR2
+FCD.0   T1CON_TMR1ON
+FCD     T1CON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @MEMSET.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FE9-FEA @READ_PACKED_MEMORY.P5
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @DIV1616
+0000DA  delayUsFun
+0000E8  dis_cmd
+0000FA  OneWireLow
+000100  MAIN
+000100  @cinit1
+000130  @cinit2
+000402  dscrc_table.call
+00041C  dscrc_table.data
+00051C  @const893.call
+000558  @const869.call
+00056A  @const882.call
+000574  timer1_interrupt
+0005D4  @const902.call
+0005F6  @const903.call
+000618  @const904.call
+00063A  setupTimerIOSC
+000676  lcdcmd
+000698  twoLinesBCDMode
+0006A2  LinesActive
+0006AC  lcdCursorOff
+0006B6  lcdShiftRight
+0006C0  lcdClear
+0006CA  printOn2x16
+00070A  @delay_us1
+000728  OneWireRelease
+00072E  Ow_Read_Bit
+00075C  Ow_Reset
+000798  onewire_write
+0007C8  Ow_Write_One
+0007E6  Ow_Write_Zero
+000804  docrc8
+000820  Ow_Search
+00094C  Ow_First
+00095A  @MEMSET
+000974  Ow_Next
+00097A  @PSTRINGC_9600_31766_31767
+00099E  searchRom
+000B06  WDTreset
+000B0C  lcdGoToFirstLine
+000B16  lcdGoToSecondLine
+000B20  dis_data
+000B34  lcddata
+000B58  LCD_String
+000B90  onewire_reset
+000BB4  onewire_read
+000C00  @DIVS1616
+000C76  ds1820_read_from_rom
+000D34  @SPRINTF
+000D50  @PSTRINGCN_884
+000D6E  @PRINTF_LD_884
+000E60  multid18b20cal
+
+Project Directory:
+    C:\18F4520\CCS\1-Wire-2-ROM-D18B20-LCD\
+
+Project Files:
+    main.c                                                  [28-Jul-23 17:15  CRC=52CD1EAE]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [27-Jul-23 14:40  CRC=F817D64F]
+    main.h                                                  [28-Jul-23 16:57  CRC=F365C986]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [28-Jul-23 10:40  CRC=7037A62B]
+    init.h                                                  [27-Jul-23 15:52  CRC=7925241E]
+    lcd.h                                                   [19-Jul-23 09:30  CRC=1292755A]
+    ds1820.h                                                [28-Jul-23 16:53  CRC=D51C0D15]
+    lcd.c                                                   [20-Jul-23 16:37  CRC=ECEA4FFE]
+    delayms.c                                               [19-Jul-23 16:26  CRC=7910CBDE]
+    1wire.c                                                 [28-Jul-23 16:34  CRC=F75B34D2]
+    1wire.h                                                 [28-Jul-23 16:36  CRC=F2C131D7]
+    ds1820.c                                                [28-Jul-23 17:11  CRC=0259E97B]
+
+Source signature=6D4EBF68
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

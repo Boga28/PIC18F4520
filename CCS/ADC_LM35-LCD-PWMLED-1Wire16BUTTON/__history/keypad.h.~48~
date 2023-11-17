@@ -1,0 +1,12 @@
+#ifndef KEYPAD_H                                                                                               
+#define KEYPAD_H           
+const uint8_t ROWS = 4; //four rows
+const uint8_t COLS = 4; //four columns  
+                                                                               
+const uchar_t keypadChar[] = {'1','2','3','4','5','6','7','8','9','0','.','#',13 ,127, 12,'%'};   
+const uint16_t tresholdL[] = {870,715,580,205,440,390,355,197,275,255,239,225,515,325,185,175};
+const uint16_t tresholdH[] = {900,745,620,220,455,420,370,204,299,270,252,237,620,345,195,184};
+#endif //KEYPAD_H                                                               
+                                                                       //13  ENTER     515 - 620
+                                                                       //127 DELETE    325 - 345
+                                                                       //12  CLEAR ALL 225 - 237

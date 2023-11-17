@@ -1,0 +1,79 @@
+ÀÄmain
+   ÃÄMAIN  0/90  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/60  Ram=0
+   ³  ÃÄprintOn2x16  0/64  Ram=4
+   ³  ³  ÃÄdelayUsFun  0/14  Ram=2
+   ³  ³  ÃÄtwoLinesBCDMode  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÃÄdis_cmd  0/18  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³  ³     ÀÄdis_cmd  0/18  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLinesActive  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdCursorOff  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdShiftRight  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdClear  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄ@const898  0/60  Ram=0
+   ³  ÃÄi2c_init  0/20  Ram=0
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÃÄLCD_String  0/56  Ram=1
+   ³  ³  ÃÄlcdGoToFirstLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdGoToSecondLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄlcddata  0/36  Ram=3
+   ³  ³     ÃÄdis_data  0/18  Ram=1
+   ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³     ÀÄdis_data  0/18  Ram=1
+   ³  ³        ÀÄ*
+   ³  ÀÄeeprom_test  0/124  Ram=1
+   ³     ÃÄeeprom_write_char  0/40  Ram=4
+   ³     ³  ÃÄ_I2C_Start  0/8  Ram=0
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ_I2C_WAIT  0/12  Ram=0
+   ³     ³  ÃÄ_I2C_ReStart  0/8  Ram=0
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÀÄ_I2C_Stop  0/8  Ram=0
+   ³     ÃÄeeprom_read_char  0/64  Ram=4
+   ³     ³  ÃÄ_I2C_Start  0/8  Ram=0
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄ_I2C_ReStart  0/8  Ram=0
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄ_I2C_ReStart  0/8  Ram=0
+   ³     ³  ÃÄ_I2C_Write_Byte  0/20  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄ_I2C_ReStart  0/8  Ram=0
+   ³     ³  ÃÄ_I2C_Read_Byte  0/32  Ram=2
+   ³     ³  ³  ÃÄ_I2CACK  0/12  Ram=0
+   ³     ³  ³  ÃÄ_I2CNACK  0/12  Ram=0
+   ³     ³  ³  ÀÄ_I2C_WAIT  0/12  Ram=0
+   ³     ³  ÀÄ_I2C_Stop  0/8  Ram=0
+   ³     ÃÄ@PSTRINGCN_870  0/30  Ram=3
+   ³     ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³     ÃÄ@SPRINTF  0/28  Ram=1
+   ³     ÃÄ@PSTRINGCN_870  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÀÄeeprom_read_char  0/64  Ram=4
+   ³        ÀÄ*
+   ÀÄtimer1_interrupt  0/96  Ram=2
+      ÀÄ@DIV1616  0/68  Ram=5

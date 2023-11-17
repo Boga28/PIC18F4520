@@ -1,0 +1,212 @@
+ÀÄmain
+   ÃÄMAIN  0/324  Ram=3
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/64  Ram=0
+   ³  ÃÄprintOn2x16  0/64  Ram=4
+   ³  ³  ÃÄdelayUsFun  0/14  Ram=2
+   ³  ³  ÃÄtwoLinesBCDMode  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÃÄdis_cmd  0/18  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³  ³     ÀÄdis_cmd  0/18  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLinesActive  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdCursorOff  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdShiftRight  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdClear  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄ@const995  0/60  Ram=0
+   ³  ÃÄDS1307_Init  0/24  Ram=0
+   ³  ³  ÃÄ_I2C_Start  0/12  Ram=0
+   ³  ³  ³  ÃÄi2cLowScl  0/18  Ram=0
+   ³  ³  ³  ÃÄi2cHighSda  0/16  Ram=0
+   ³  ³  ³  ÃÄi2cHighScl  0/16  Ram=0
+   ³  ³  ³  ÃÄi2cLowSda  0/18  Ram=0
+   ³  ³  ³  ÀÄi2cLowScl  0/18  Ram=0
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÃÄi2cHighSda  0/16  Ram=0
+   ³  ³  ³  ÃÄi2cLowSda  0/18  Ram=0
+   ³  ³  ³  ÃÄI2C_Clock  0/8  Ram=0
+   ³  ³  ³  ³  ÃÄi2cHighScl  0/16  Ram=0
+   ³  ³  ³  ³  ÀÄi2cLowScl  0/18  Ram=0
+   ³  ³  ³  ÃÄi2cHighSda  0/16  Ram=0
+   ³  ³  ³  ÀÄI2C_Clock  0/8  Ram=0
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ_I2C_Stop  0/10  Ram=0
+   ³  ³     ÃÄi2cLowScl  0/18  Ram=0
+   ³  ³     ÃÄi2cLowSda  0/18  Ram=0
+   ³  ³     ÃÄi2cHighScl  0/16  Ram=0
+   ³  ³     ÀÄi2cHighSda  0/16  Ram=0
+   ³  ÃÄds1307_set_date_time  0/136  Ram=8
+   ³  ³  ÃÄ_I2C_Start  0/12  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbin2bcd  0/32  Ram=2
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbin2bcd  0/32  Ram=2
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbin2bcd  0/32  Ram=2
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbin2bcd  0/32  Ram=2
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbin2bcd  0/32  Ram=2
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbin2bcd  0/32  Ram=2
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbin2bcd  0/32  Ram=2
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ_I2C_Stop  0/10  Ram=0
+   ³  ³     ÀÄ*
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÃÄds1307_get_time  0/84  Ram=1
+   ³  ³  ÃÄ_I2C_Start  0/12  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Start  0/12  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Read  0/44  Ram=3
+   ³  ³  ³  ÃÄi2cHighSda  0/16  Ram=0
+   ³  ³  ³  ÃÄi2cHighScl  0/16  Ram=0
+   ³  ³  ³  ÃÄi2cLowScl  0/18  Ram=0
+   ³  ³  ³  ÀÄ_I2CACK  0/22  Ram=1
+   ³  ³  ³     ÃÄi2cLowSda  0/18  Ram=0
+   ³  ³  ³     ÃÄI2C_Clock  0/8  Ram=0
+   ³  ³  ³     ³  ÀÄ*
+   ³  ³  ³     ÃÄi2cHighSda  0/16  Ram=0
+   ³  ³  ³     ÃÄi2cHighSda  0/16  Ram=0
+   ³  ³  ³     ÃÄI2C_Clock  0/8  Ram=0
+   ³  ³  ³     ³  ÀÄ*
+   ³  ³  ³     ÀÄi2cHighScl  0/16  Ram=0
+   ³  ³  ÃÄbcd2bin  0/26  Ram=2
+   ³  ³  ÃÄ_I2C_Read  0/44  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbcd2bin  0/26  Ram=2
+   ³  ³  ÃÄ_I2C_Read  0/44  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbcd2bin  0/26  Ram=2
+   ³  ³  ÀÄ_I2C_Stop  0/10  Ram=0
+   ³  ³     ÀÄ*
+   ³  ÃÄds1307_get_date  0/302  Ram=1
+   ³  ³  ÃÄ_I2C_Start  0/12  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Start  0/12  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Write  0/34  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ_I2C_Read  0/44  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbcd2bin  0/26  Ram=2
+   ³  ³  ÃÄ_I2C_Read  0/44  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbcd2bin  0/26  Ram=2
+   ³  ³  ÃÄ_I2C_Read  0/44  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbcd2bin  0/26  Ram=2
+   ³  ³  ÃÄ_I2C_Read  0/44  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄbcd2bin  0/26  Ram=2
+   ³  ³  ÃÄ_I2C_Stop  0/10  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄgetDayText  0/214  Ram=4
+   ³  ³  ³  ÃÄgetYear  0/6  Ram=0
+   ³  ³  ³  ÃÄgetMonth  0/6  Ram=0
+   ³  ³  ³  ÃÄgetDay  0/8  Ram=0
+   ³  ³  ³  ÀÄday_of_the_week  0/256  Ram=34
+   ³  ³  ³     ÃÄ@DIV1616  0/66  Ram=5
+   ³  ³  ³     ÃÄ@DIV1616  0/66  Ram=5
+   ³  ³  ³     ÀÄ@DIV1616  0/66  Ram=5
+   ³  ³  ÃÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@PRINTF_D0_967  0/170  Ram=6
+   ³  ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ³  ÃÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ³  ÃÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ³  ÃÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@PSTRINGCN_967  0/30  Ram=3
+   ³  ³  ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@PRINTF_D0_967  0/170  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@PSTRINGCN_967  0/30  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@PRINTF_D0_967  0/170  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@PSTRINGCN_967  0/30  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@PSTRINGR_967  0/38  Ram=2
+   ³  ³  ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@PSTRINGCN_967  0/30  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@PRINTF_D0_967  0/170  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@PRINTF_D0_967  0/170  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@PRINTF_D0_967  0/170  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ@MEMSET  0/28  Ram=0
+   ³  ÃÄgetHour  0/8  Ram=0
+   ³  ÃÄgetMin  0/8  Ram=0
+   ³  ÃÄgetSec  0/8  Ram=0
+   ³  ÃÄ@PRINTF_D0_9600_31766_31767  0/178  Ram=6
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÀÄ@DIV88  0/40  Ram=3
+   ³  ÃÄ@PRINTF_D0_9600_31766_31767  0/178  Ram=6
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_D0_9600_31766_31767  0/178  Ram=6
+   ³  ³  ÀÄ*
+   ³  ÃÄgetMonth  0/6  Ram=0
+   ³  ÃÄgetYear  0/6  Ram=0
+   ³  ÃÄ@PRINTF_D0_9600_31766_31767  0/178  Ram=6
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_D0_9600_31766_31767  0/178  Ram=6
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PRINTF_D0_9600_31766_31767  0/178  Ram=6
+   ³  ³  ÀÄ*
+   ³  ÃÄ@PSTRINGCN_9600_31766_31767  0/34  Ram=3
+   ³  ÃÄ@PSTRINGR_9600_31766_31767  0/40  Ram=2
+   ³  ÀÄLCD_String  0/56  Ram=1
+   ³     ÃÄlcdGoToFirstLine  0/12  Ram=0
+   ³     ³  ÀÄlcdcmd  0/34  Ram=3
+   ³     ³     ÀÄ*
+   ³     ÃÄlcdGoToSecondLine  0/12  Ram=0
+   ³     ³  ÀÄlcdcmd  0/34  Ram=3
+   ³     ³     ÀÄ*
+   ³     ÀÄlcddata  0/36  Ram=3
+   ³        ÃÄdis_data  0/20  Ram=1
+   ³        ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³        ÀÄdis_data  0/20  Ram=1
+   ³           ÀÄ*
+   ÀÄtimer1_interrupt  0/62  Ram=2

@@ -1,0 +1,38 @@
+#include "adc.h"
+#include "ucregisters.h"
+#include "definitions.h"    
+
+uint8_t preChannel;    
+void adcSetup(){
+   //A0 giris olarak ayarlandi         
+   PORTA_DIR_0 =1;                        
+   PORTA_DIR_1 =1; 
+   PORTA_0 =0;
+   PORTA_1 =0;                     
+   ADCON1 = 0x0E;  
+   PCFG0=1;              
+   PCFG1=0;  
+   
+   //We use default value for +/- Vref
+   //VCFG0=0,VCFG1=0         
+   //That means +Vref = Vdd (5v) and -Vref=GEN
+   //ADCON1=0x00;                      
+   //ADC Result Right Justified.                                                             
+   //Acquisition Time = 1TAD 
+   //Conversion Clock = 16 Tosc                 
+   ADCON2=0x89;                
+}          
+                    
+uint8_t ADC_Read(uint8_t CHANNEL){
+   if(!GODONE & !ADON){
+      preChannel=CHANNEL;
+      ADCON0=0x00;        // ADC modul deactive ve AN0 Anlog kanal oalrak secildi   
+      ADCON0=(CHANNEL<<2);//Sola 2 kaydir ondan sonra CHANNEL degerini diger bitlere yazdir.   
+      ADON=1;  //ADC yi aktif et.         
+      GODONE=1;//Cevrime basla 
+      return 0;  //Cevrime basla
+   }else if(!GODONE & ADON && preChannel==CHANNEL){
+      ADON=0;  //switch off adc
+      return 1;//Cevrim bitti
+   }return 2; //Cevrim tamamlanmadi
+}  

@@ -1,0 +1,7 @@
+#ifndef ADC_H                                                                                               
+#define ADC_H   
+         
+void adcSetup(); 
+uint8_t ADC_Read(uint8_t);
+
+#endif //ADC_H 

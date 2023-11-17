@@ -1,0 +1,35 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC18F4520
+CCSVerions=5.015
+Compiler=PCH
+CCSVersion=5.015
+[Target Data]
+FileList=main.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\boga2\Desktop\18F4520\CCS\LED\main]
+Type=4
+[mru-list]
+1=main.c
+[Opened Files]
+1=main.c
+2=ucregisters.h
+3=definitions.h
+4=lcd.c
+5=lcd.h
+6=1wire.c
+7=1wire.h
+8=ds1820.c
+9=init.h
+10=
+11=24lc256.h
+12=
+13=adc.h
+14=keypad.h
+15=
+[main.c]
+Type=4
+[Units]
+Count=1
+1=main (main)

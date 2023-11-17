@@ -1,0 +1,10 @@
+#ifndef MAIN_H     
+#define MAIN_H 
+#define DELAY 500 
+                           
+extern uint16_t iSayac;                            
+                    
+#endif //MAIN_H                                
+
+                                                                                                              
+                              

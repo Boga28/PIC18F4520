@@ -1,0 +1,77 @@
+ÀÄmain
+   ÃÄMAIN  0/72  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/62  Ram=0
+   ³  ÃÄadcSetup  0/20  Ram=0
+   ³  ÃÄprintOn2x16  0/60  Ram=4
+   ³  ³  ÃÄdelayUsFun  0/14  Ram=2
+   ³  ³  ÃÄtwoLinesBCDMode  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÃÄdis_cmd  0/18  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³  ³     ÀÄdis_cmd  0/18  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLinesActive  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdCursorOff  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdShiftRight  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdClear  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄ@const827  0/60  Ram=0
+   ³  ÃÄUSART_Init  0/156  Ram=4
+   ³  ³  ÃÄ@const810  0/42  Ram=0
+   ³  ³  ÃÄ@const811  0/54  Ram=0
+   ³  ³  ÀÄ@const812  0/44  Ram=0
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÃÄADC_Read  0/20  Ram=1
+   ³  ÃÄbutton_debounce  0/68  Ram=3
+   ³  ³  ÀÄtest_bit  0/36  Ram=3
+   ³  ÃÄLCD_String  0/54  Ram=1
+   ³  ³  ÃÄlcdGoToFirstLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdGoToSecondLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄlcddata  0/36  Ram=3
+   ³  ³     ÃÄdis_data  0/18  Ram=1
+   ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³     ÀÄdis_data  0/18  Ram=1
+   ³  ³        ÀÄ*
+   ³  ÀÄrs232Case  0/284  Ram=1
+   ³     ÃÄrs232t  0/146  Ram=2
+   ³     ³  ÃÄUSART_RxCharBuffer  0/12  Ram=1
+   ³     ³  ÀÄ@MEMSET  0/26  Ram=0
+   ³     ÃÄrs232t_txText  0/154  Ram=2
+   ³     ³  ÀÄUSART_TxCharBuffer  0/34  Ram=1
+   ³     ÃÄ@MEMSET  0/26  Ram=0
+   ³     ÃÄrs232t_txText  0/154  Ram=2
+   ³     ³  ÀÄ*
+   ³     ÃÄ@MEMSET  0/26  Ram=0
+   ³     ÃÄrs232t_txText  0/154  Ram=2
+   ³     ³  ÀÄ*
+   ³     ÃÄ@MEMSET  0/26  Ram=0
+   ³     ÃÄrs232t_txText  0/154  Ram=2
+   ³     ³  ÀÄ*
+   ³     ÀÄ@MEMSET  0/26  Ram=0
+   ÃÄAD_comp_interrupt  0/22  Ram=0
+   ³  ÀÄlm35Calculate  0/124  Ram=2
+   ³     ÃÄ@MEMSET  0/26  Ram=0
+   ³     ÃÄ@MUL1616  0/32  Ram=5
+   ³     ÃÄ@PSTRINGCN_837  0/32  Ram=3
+   ³     ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³     ÃÄ@PRINTF_LU_837  0/188  Ram=9
+   ³     ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³     ÃÄ@SPRINTF  0/28  Ram=1
+   ³     ÃÄ@SPRINTF  0/28  Ram=1
+   ³     ÀÄ@SPRINTF  0/28  Ram=1
+   ÀÄtimer1_interrupt  0/152  Ram=2
+      ÃÄ@DIV1616  0/66  Ram=5
+      ÃÄ@DIV1616  0/66  Ram=5
+      ÀÄ@DIV1616  0/66  Ram=5

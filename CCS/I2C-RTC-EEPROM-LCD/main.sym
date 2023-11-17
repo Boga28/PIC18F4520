@@ -1,0 +1,283 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     tmr1_time
+019-038 strLCD
+039     countLCDChar
+03A     LCDW1SecFlag
+03B     sec
+03C     min
+03D     hrs
+03E     day
+03F     month
+040     yr
+041     dow
+042-045 dayText
+046     timeSwitchPosition
+047-066 DATE_TIME
+067-068 @sprintf_string
+069     lcdcmd.cmd_value
+069     ds1307_set_date_time.day_t
+069     eeprom_write_char.addressH
+069     eeprom_read_char.addressH
+069     LCD_String.@SCRATCH1
+069     eeprom_test.@SCRATCH1
+069     printOn2x16.@SCRATCH1
+06A     lcdcmd.cmd_value1
+06A     lcddata.text
+06A     eeprom_read_char.addressL
+06A     eeprom_write_char.addressL
+06A     @PSTRINGCN_870.P1
+06A     ds1307_set_date_time.mth_t
+06A     printOn2x16.@SCRATCH2
+06B     dis_cmd.cmdout
+06B     lcddata.data
+06B     eeprom_read_char.recieve
+06B     eeprom_write_char.value
+06B     ds1307_set_date_time.year_t
+06B     lcdcmd.@SCRATCH1
+06B     @PSTRINGCN_870.@SCRATCH1
+06B     printOn2x16.@SCRATCH3
+06C     _I2C_Read_Byte.flag
+06C     _I2C_Write_Byte.data
+06C     dis_data.dataout
+06C     ds1307_set_date_time.dow_t
+06C     lcddata.@SCRATCH1
+06C     @PSTRINGCN_870.@SCRATCH2
+06C     eeprom_write_char.@SCRATCH1
+06C     eeprom_read_char.@SCRATCH1
+06C     printOn2x16.@SCRATCH4
+06D     delayUsFun.us
+06D     @SPRINTF.P1
+06D     _I2C_Read_Byte.receive
+06D     ds1307_set_date_time.hr_t
+06E     ds1307_set_date_time.min_t
+06E     delayUsFun.i
+06F-070 @DIV1616.P1
+06F     ds1307_set_date_time.sec_t
+06F     timer1_interrupt.@SCRATCH1
+070     timer1_interrupt.@SCRATCH2
+071-072 @DIV1616.P1
+073     @DIV1616.@SCRATCH1
+F80.0   PORTA_0
+F80     PORTA
+F80.1   PORTA_1
+F81     PORTB
+F81.0   PORTB_0
+F81.7   PORTB_7
+F82     PORTC
+F82.2   PORTC_2
+F83     PSP_DATA
+F84     PORTE
+F84.0   PORTE_RS
+F84.1   PORTE_E
+F84.2   PORTE_RW
+F8C     PORTD
+F8C.7   PORTD_7
+F92.0   PORTA_DIR_0
+F92     TRISA
+F92.1   PORTA_DIR_1
+F93     TRISB
+F94     TRISC
+F94.2   TRISC_2
+F94.3   SCL_DIR
+F94.4   SDA_DIR
+F94.6   TRISC_6
+F94.7   TRISC_7
+F95     TRISD
+F96     TRISE
+F9D     PIE1
+F9D.0   PIE1_TMR1IE
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9D.6   ADIE
+F9E.0   PIR1_TMR1IF
+F9E     PIR1
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9E.6   ADIF
+F9F.0   IPR1_TMR1IP
+F9F     IPR1
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBD     CCP1CON
+FBE     CCPR1L
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FBF     CCPR1H
+FC0     ADCON2
+FC1.0   PCFG0
+FC1     ADCON1
+FC1.1   PCFG1
+FC2.0   ADON
+FC2     ADCON0
+FC2.1   GODONE
+FC3     ADRESL
+FC4     ADRESH
+FC5.0   SEN
+FC5     SSPCON2
+FC5.1   RSEN
+FC5.2   PEN
+FC5.3   RCEN
+FC5.4   ACKEN
+FC5.5   ACKDT
+FC5.6   ACKSTAT
+FC6     SSPCON1
+FC7     SSPSTAT
+FC7.0   BF
+FC8     SSPADD
+FC9     SSPBUF
+FCA     T2CON
+FCA.2   TMR2ON
+FCB     PR2
+FCC     TMR2
+FCD.0   T1CON_TMR1ON
+FCD     T1CON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @const898.call
+0000D2  @const868.call
+000100  @cinit1
+000100  MAIN
+00012E  @cinit2
+000402  @const893.call
+000412  @DIV1616
+000456  timer1_interrupt
+0004B6  setupTimerIOSC
+0004F2  delayUsFun
+000500  dis_cmd
+000512  lcdcmd
+000534  twoLinesBCDMode
+00053E  LinesActive
+000548  lcdCursorOff
+000552  lcdShiftRight
+00055C  lcdClear
+000566  printOn2x16
+0005A6  i2c_init
+0005BA  WDTreset
+0005C0  lcdGoToFirstLine
+0005CA  lcdGoToSecondLine
+0005D4  dis_data
+0005E6  lcddata
+00060A  LCD_String
+000642  _I2C_Start
+00064A  _I2C_WAIT
+000656  _I2C_Write_Byte
+00066A  _I2C_ReStart
+000672  _I2C_Stop
+00067A  eeprom_write_char
+0006A2  _I2CACK
+0006AE  _I2CNACK
+0006BA  _I2C_Read_Byte
+0006DA  eeprom_read_char
+00071A  @SPRINTF
+000736  @PSTRINGCN_870
+000754  eeprom_test
+
+Project Directory:
+    C:\18F4520\CCS\I2C-RTC-EEPROM-LCD\
+
+Project Files:
+    main.c                                                  [13-Aug-23 18:22  CRC=56C25EB6]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [19-Jul-23 08:38  CRC=DE295692]
+    main.h                                                  [20-Jul-23 16:34  CRC=D8102B21]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [26-Jul-23 11:57  CRC=3BEC2ADE]
+    init.h                                                  [20-Jul-23 16:34  CRC=7925241E]
+    lcd.h                                                   [19-Jul-23 09:30  CRC=1292755A]
+    DS1307.h                                                [26-Jul-23 11:24  CRC=7DEC7938]
+    24lc256.h                                               [26-Jul-23 16:10  CRC=264921D4]
+    lcd.c                                                   [20-Jul-23 16:37  CRC=ECEA4FFE]
+    delayms.c                                               [19-Jul-23 16:26  CRC=7910CBDE]
+    DS1307.c                                                [26-Jul-23 16:12  CRC=F968C7B9]
+    binbcdconv.c                                            [25-Jul-23 16:03  CRC=EF4D8B26]
+    binbcdconv.h                                            [21-Jul-23 15:08  CRC=D872A938]
+    i2c.h                                                   [26-Jul-23 10:15  CRC=EFE66AEA]
+    i2c.c                                                   [26-Jul-23 10:50  CRC=4BA353B5]
+    24lc256.c                                               [13-Aug-23 18:24  CRC=55697511]
+
+Source signature=8F835F31
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

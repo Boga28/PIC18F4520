@@ -1,0 +1,98 @@
+
+ROM used:   1314/32768 (4%)
+            2000/32768 (6%) including unused fragments
+
+            0.7 Average locations per line
+            3.9 Average locations per statement
+
+RAM used:   105/1536 (7%) at main() level
+            116/1536 (8%) worst case
+
+Stack used: 7 worst case (5 in main + 2 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  157    74  22  main.c
+  840     0   0  ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h
+   14     0   0  definitions.h
+   11     0   0  main.h
+    8     0   0  delayms.h
+  140     0   0  ucregisters.h
+   25     0   0  init.h
+   24     0   0  lcd.h
+   34     0   0  DS1307.h
+   12     0   0  24lc256.h
+  129    42  12  lcd.c
+   18     5   1  delayms.c
+  278   148  44  DS1307.c
+   27    12   4  binbcdconv.c
+   10     0   0  binbcdconv.h
+   17     0   0  i2c.h
+   60    33  10  i2c.c
+   39    26   8  24lc256.c
+----- -----
+ 1843   340 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     18   1    1   100  1.7  dis_cmd
+0     34   1    3   145  2.6  lcdcmd
+0     10   0    0    17  0.8  twoLinesBCDMode
+0     10   0    0    17  0.8  LinesActive
+0     10   0    0    17  0.8  lcdClear
+0     10   0    0    17  0.8  lcdGoToFirstLine
+0     10   0    0    17  0.8  lcdGoToSecondLine
+0     10   0    0    17  0.8  lcdShiftRight
+0     10   0    0    17  0.8  lcdCursorOff
+0     18   1    1   100  1.7  dis_data
+0     36   1    3   145  2.6  lcddata
+0     56   2    1   207  4.4  LCD_String
+0     14   1    2    88  2.3  delayUsFun
+0     12   0    0    52  1.7  _I2C_WAIT
+0     20   1    1    70  2.3  _I2C_Write_Byte
+0     32   1    2   192  4.4  _I2C_Read_Byte
+0      8   0    0    38  1.7  _I2C_Start
+0      8   0    0    38  1.7  _I2C_ReStart
+0      8   0    0    38  1.7  _I2C_Stop
+0     12   0    0    56  1.9  _I2CACK
+0     12   0    0    57  1.7  _I2CNACK
+0     44   2    0             @const868
+0     28   1    1             @SPRINTF
+0     30   1    3             @PSTRINGCN_870
+0     68   3    5             @DIV1616
+0    124   5    1   212  1.8  eeprom_test
+0     16   1    0             @const893
+0     40   2    4   199  3.0  eeprom_write_char
+0     64   2    4   341  4.1  eeprom_read_char
+0     60   2    0   646  2.4  setupTimerIOSC
+0     64   2    4   167  2.1  printOn2x16
+0     60   2    0   167  2.1  @const898
+0     20   1    0    88  1.7  i2c_init
+0     96   4    2   348  4.7  timer1_interrupt
+0     90   3    0   461  3.8  MAIN
+0      6   0    0     5  1.0  WDTreset
+ Inline         0     5  1.0  @cinit1
+
+Program metrics:
+    Functions               32
+    Statements              340
+    Comments                643
+    Volume (V)              7978
+    Difficulty (D)          69.0
+    Effort to implement (E) 550560
+    Time to implement (T)   8 hours, 30 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   12
+    Maintainability (MI)    135
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00006     4  4  
+00008-00094   142  0  
+00096-000FE   104  2  
+00100-00400    90  680  
+00402-07FFE   974  30768  
+
+
+

@@ -1,0 +1,30 @@
+#ifndef ONE_WIRE_H
+#define ONE_WIRE_H  
+
+
+                             
+typedef union{  
+   uint8_t  all;      // Type  kayitciya erismek icin
+   struct{                                           
+      uint8_t RESET    : 1;  //bit:0, 2ms 
+      uint8_t WRITE    : 1;  //bit:2, 20ms 
+      uint8_t READ     : 1;  //bit:3, 50ms 
+      uint8_t reserved : 5;  //bit:4, 100ms    
+      uint8_t _200ms  : 1;  //bit:5, 200ms                  
+      uint8_t _500ms  : 1;  //bit:6, 500ms 
+      uint8_t _1000ms : 1;  //bit:7, 1000ms 
+      uint8_t _200msKEYPAD     : 1;    
+   }X;                    
+}OneWire_t;   
+extern OneWire_t ONEWIRE;       
+                                                                           
+     
+void onewire_reset();  
+void onewire_write(uchar_t);
+uint8_t onewire_read();       
+void OneWireHigh();          
+void OneWireRelease();
+                        
+                       
+
+#endif ONE_WIRE_H

@@ -1,0 +1,38 @@
+#include "definitions.h"    
+#include "ucregisters.h" 
+#include "24lc256.h" 
+ 
+void eeprom_test(){ 
+  eeprom_write_char(0x00,0x00,'R');
+  delay_us(5);
+  sprintf(DATE_TIME,"      %c      " ,eeprom_read_char(0x00,0x00));  
+  printf(eeprom_read_char(0x00,0x00));
+  memcpy(strLCD,DATE_TIME,32);                              
+}
+void eeprom_write_char(uchar_t addressH, uchar_t addressL, uchar_t value){
+    _I2C_Start();         
+    while(_I2C_Write_Byte(EEPROM_ADDRESS + 0) == 1)// Wait until device is free
+    {   _I2C_ReStart();   }  
+    
+     //0-14'nci bitler adres bitleridir. 15. bit anlamsiz bittir. 
+    _I2C_Write_Byte(addressH);   // Adresin yuksek bitleri
+    _I2C_Write_Byte(addressL);   // Adresin dusuk bitleri  
+    _I2C_Write_Byte(value);      // gonderecegimiz 8 bit
+    _I2C_Stop();                                
+}              
+
+uchar_t eeprom_read_char(uchar_t addressH, uchar_t addressL){   
+   uchar_t recieve= 0;
+   _I2C_Start();                         
+   while(_I2C_Write_Byte(EEPROM_ADDRESS + 0) == 1)// Wait until device is free
+   {   _I2C_ReStart();   } 
+   _I2C_Write_Byte(addressH);   // Adresin yuksek bitleri
+   _I2C_Write_Byte(addressL);   // Adresin dusuk bitleri
+   _I2C_ReStart();
+   while(_I2C_Write_Byte(EEPROM_ADDRESS + 1) == 1)// Wait until device is free
+    {   _I2C_ReStart();   }         
+   recieve=_I2C_Read_Byte(1);      
+   _I2C_Stop();     
+   
+ return recieve;
+}

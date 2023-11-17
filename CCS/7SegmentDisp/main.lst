@@ -1,0 +1,193 @@
+CCS PCH C Compiler, Version 5.015, 5967               07-Jul-23 14:41
+
+               Filename:   C:\18F4520\CCS\7SegmentDisp\main.lst
+
+               ROM used:   160 bytes (0%)
+                           Largest free fragment is 32608
+               RAM used:   15 (1%) at main() level
+                           21 (1%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0038
+.................... #include <18F4520.h>   //Kullanilan mikrodenetleyicinin surucusu derleyici uzerinde kaynak dosyasina tanimlanir. 
+.................... //////////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4520 
+....................  
+.................... #list 
+....................  
+....................  
+.................... /**FUSES: cihaza bagli cesitli opsiyonlari ayarlamak icin kullanilir. Mevcut ozellikleri en ustte belirtilir.  
+....................        Konfigurasyon bileri vardir, bu komut ile mikrodenetleyicinin konfigurasyon pinleri ayarlan齬. 
+....................   Yaygin kullanilan cihaz secenekleri: 
+....................       路   LP, XT, HS, RC     :LP dusuk guclu kristal osilator, XT klasik kristal osilator, HS yuksek hizli kristal osilator, RC Direnc/Kondansator osilator 
+....................       路   WDT, NOWDT         :Programin olasi kilitlenmelerde resetlenmesini sa餷ar. WDT dersek bu mod aktif, NOWDT dersek bu mod pasiftir.                     
+....................       路   PROTECT, NOPROTECT :Kod koruma, mikrokontrollerin i鏸ne y黭leyecegin kodlar kopyalananaz demek, NOPROTECT ise kodlar geriye okunup kopyalanabilir demektir.    
+....................       路   PUT, NOPUT   (Power Up Timer): NOPUT, zamanlayicilar kapali demek, yani timer olarak gecen zaman dongulerini kullanmayacagini belirtirsin. 
+....................       路   BROWNOUT, NOBROWNOUT:Dusuk gerilimle program reset, bu ozellik gerilim seviyesi belli bir degerin altina dustugunde, mikrokontrollerin reset atmasidir, 
+....................           genelde NOBROWNOUT modunda tutulur , eyer BROWNOUT olarak kullanilirsa, ani gerilim dalgalanmalarinda sistem surrekli resetlenir. 
+....................       路   INTRC: Internal, dahili osilatoru kullan anlam齨a gelir.                 
+....................       路   NOMCLR: Master Clear functionality, MCLR girisi PIC'i resetlemek icin kullanilir. Bu fuse yoksa #FUSE MCLR ve MCLR pini 10k ile 5V a  
+.................... Tum #FUSES ozelliklerini kapatmak icin " #FUSES none" kullanilir.                               
+.................... */                                                                            
+.................... #FUSES NOWDT,INTRC,NOMCLR                
+....................                         
+.................... #include "definitions.h"                                                                                                       
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................                                                      
+.................... typedef unsigned int16  int16_t; 
+.................... typedef unsigned int8   int8_t;    
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "main.h"       
+.................... #ifndef MAIN_H      
+.................... #define MAIN_H                   
+.................... #define DELAY 1000  
+....................      
+.................... extern int8_t iSevenSegDispArr[10]; 
+....................                      
+.................... #endif //MAIN_H                                 
+....................  
+....................                                                                                                                
+....................  
+....................  
+.................... #include "delayms.c" 
+.................... #include <delayms.h>             
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(int16_t);     
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+....................    
+.................... void delayMsFun(int16_t msecs)  // Delay function - generates a delay of specified msecs 
+.................... {   int16_t i,j;  
+....................     for(i=0;i<=msecs;i++){ 
+0004:  CLRF   12
+0006:  CLRF   11
+0008:  MOVF   12,W
+000A:  SUBWF  10,W
+000C:  BNC   0034
+000E:  BNZ   0016
+0010:  MOVF   11,W
+0012:  SUBWF  0F,W
+0014:  BNC   0034
+....................       for(j=0;j<23;j++); 
+0016:  CLRF   14
+0018:  CLRF   13
+001A:  MOVF   14,F
+001C:  BNZ   002C
+001E:  MOVF   13,W
+0020:  SUBLW  16
+0022:  BNC   002C
+0024:  INCF   13,F
+0026:  BTFSC  FD8.2
+0028:  INCF   14,F
+002A:  BRA    001A
+002C:  INCF   11,F
+002E:  BTFSC  FD8.2
+0030:  INCF   12,F
+0032:  BRA    0008
+....................     }                                
+0034:  GOTO   0092 (RETURN)
+.................... }                                      
+....................  
+.................... #include "ucregisters.h" //State machine     
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+.................... #byte TRISD = 0x0F95    
+.................... #byte PORTD = 0x0F83   
+....................  
+.................... #endif UCREGISTER_H 
+....................  
+....................                                                                                        
+.................... int8_t iSevenSegDispArr[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};    
+....................                            
+.................... void main(){                    
+0038:  CLRF   FF8
+003A:  BCF    FD0.7
+003C:  MOVF   FC1,W
+003E:  ANDLW  C0
+0040:  IORLW  0F
+0042:  MOVWF  FC1
+0044:  MOVLW  07
+0046:  MOVWF  FB4
+0048:  MOVLW  3F
+004A:  MOVWF  04
+004C:  MOVLW  06
+004E:  MOVWF  05
+0050:  MOVLW  5B
+0052:  MOVWF  06
+0054:  MOVLW  4F
+0056:  MOVWF  07
+0058:  MOVLW  66
+005A:  MOVWF  08
+005C:  MOVLW  6D
+005E:  MOVWF  09
+0060:  MOVLW  7D
+0062:  MOVWF  0A
+0064:  MOVLW  07
+0066:  MOVWF  0B
+0068:  MOVLW  7F
+006A:  MOVWF  0C
+006C:  MOVLW  6F
+006E:  MOVWF  0D
+0070:  CLRF   0E
+....................    int8_t iNumb=0;                                                                                         
+....................                                                                                                                             
+....................    TRISD=0x00;                                            
+0072:  CLRF   F95
+....................    PORTD=0x00; 
+0074:  CLRF   F83
+....................     
+....................    while(1){                                                                  
+....................       PORTD=iSevenSegDispArr[iNumb];  
+0076:  CLRF   03
+0078:  MOVF   0E,W
+007A:  ADDLW  04
+007C:  MOVWF  FE9
+007E:  MOVLW  00
+0080:  ADDWFC 03,W
+0082:  MOVWF  FEA
+0084:  MOVFF  FEF,F83
+....................       delayMsFun(DELAY);                                                                                      
+0088:  MOVLW  03
+008A:  MOVWF  10
+008C:  MOVLW  E8
+008E:  MOVWF  0F
+0090:  BRA    0004
+....................       iNumb++;   
+0092:  INCF   0E,F
+....................       if(iNumb==10)                                              
+0094:  MOVF   0E,W
+0096:  SUBLW  0A
+0098:  BNZ   009C
+....................          iNumb=0;  
+009A:  CLRF   0E
+009C:  BRA    0076
+....................    }                                                          
+.................... }           
+009E:  SLEEP 
+
+Configuration Fuses:
+   Word  1: C900   INTRC FCMEN IESO
+   Word  2: 1E1E   PUT BROWNOUT BORV21 NOWDT WDT32768
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 0081   STVREN NOLVP NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

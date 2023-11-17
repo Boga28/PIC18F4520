@@ -1,0 +1,5 @@
+>>> Warning 203 "C:\18F4520\CCS\I2C-RTCDS1307-LCD\binbcdconv.c" Line 6(1,1): Condition always TRUE
+>>> Warning 216 "main.c" Line 152(1,2): Interrupts disabled during call to prevent re-entrancy:  (@DIV1616)
+      Memory usage:   ROM=9%      RAM=7% - 10%
+      0 Errors,  2 Warnings.
+Build Successful.

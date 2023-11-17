@@ -1,0 +1,8 @@
+#include "definitions.h"    
+
+#ifndef 24LC256_H
+#define 24LC256_H                            
+ 
+
+
+#endif //24LC256_H

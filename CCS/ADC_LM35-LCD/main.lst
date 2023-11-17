@@ -1,0 +1,3064 @@
+CCS PCH C Compiler, Version 5.015, 5967               19-Jul-23 14:36
+
+               Filename:   C:\18F4520\CCS\ADC_LM35-LCD\main.lst
+
+               ROM used:   3026 bytes (9%)
+                           Largest free fragment is 29192
+               RAM used:   250 (16%) at main() level
+                           270 (18%) worst case
+               Stack used: 9 locations (7 in main + 2 for interrupts)
+               Stack size: 31
+
+*
+0000:  GOTO   0100
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  F9D.0
+004A:  GOTO   0054
+004E:  BTFSC  F9E.0
+0050:  GOTO   04BC
+0054:  MOVFF  0E,00
+0058:  MOVFF  0F,01
+005C:  MOVFF  10,02
+0060:  MOVFF  11,03
+0064:  MOVFF  0C,FE9
+0068:  MOVFF  07,FEA
+006C:  BSF    07.7
+006E:  MOVFF  08,FE1
+0072:  MOVFF  09,FE2
+0076:  MOVFF  0A,FD9
+007A:  MOVFF  0B,FDA
+007E:  MOVFF  12,FF3
+0082:  MOVFF  13,FF4
+0086:  MOVFF  14,FFA
+008A:  MOVF   04,W
+008C:  MOVFF  06,FE0
+0090:  MOVFF  05,FD8
+0094:  RETFIE 0
+.................... #include <18F4520.h>   //Kullanilan mikrodenetleyicinin surucusu derleyici uzerinde kaynak dosyasina tanimlanir. 
+.................... //////////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4520 
+0096:  MOVFF  FF2,0D
+009A:  BCF    FF2.7
+009C:  CLRF   FF7
+009E:  ADDLW  B0
+00A0:  MOVWF  FF6
+00A2:  MOVLW  00
+00A4:  ADDWFC FF7,F
+00A6:  TBLRD*+
+00A8:  MOVF   FF5,W
+00AA:  BTFSC  0D.7
+00AC:  BSF    FF2.7
+00AE:  RETURN 0
+00B0:  DATA 0C,4D
+00B2:  DATA 45,56
+00B4:  DATA 43,55
+00B6:  DATA 54,20
+00B8:  DATA 59,41
+00BA:  DATA 5A,49
+00BC:  DATA 3A,20
+00BE:  DATA 00,00
+00C0:  MOVFF  FF2,0D
+00C4:  BCF    FF2.7
+00C6:  CLRF   FF7
+00C8:  ADDLW  DA
+00CA:  MOVWF  FF6
+00CC:  MOVLW  00
+00CE:  ADDWFC FF7,F
+00D0:  TBLRD*+
+00D2:  MOVF   FF5,W
+00D4:  BTFSC  0D.7
+00D6:  BSF    FF2.7
+00D8:  RETURN 0
+00DA:  DATA 0D,4C
+00DC:  DATA 75,74
+00DE:  DATA 66,65
+00E0:  DATA 6E,20
+00E2:  DATA 62,69
+00E4:  DATA 72,20
+00E6:  DATA 79,61
+00E8:  DATA 7A,69
+00EA:  DATA 20,67
+00EC:  DATA 69,72
+00EE:  DATA 69,6E
+00F0:  DATA 69,7A
+00F2:  DATA 3A,20
+00F4:  DATA 00,00
+*
+0402:  MOVFF  FF2,0D
+0406:  BCF    FF2.7
+0408:  CLRF   FF7
+040A:  ADDLW  1C
+040C:  MOVWF  FF6
+040E:  MOVLW  04
+0410:  ADDWFC FF7,F
+0412:  TBLRD*+
+0414:  MOVF   FF5,W
+0416:  BTFSC  0D.7
+0418:  BSF    FF2.7
+041A:  RETURN 0
+041C:  DATA 0D,4C
+041E:  DATA 69,6D
+0420:  DATA 69,74
+0422:  DATA 20,41
+0424:  DATA 73,69
+0426:  DATA 6C,64
+0428:  DATA 69,21
+042A:  DATA 21,21
+042C:  DATA 00,00
+042E:  MOVFF  FF2,0D
+0432:  BCF    FF2.7
+0434:  CLRF   FF7
+0436:  ADDLW  48
+0438:  MOVWF  FF6
+043A:  MOVLW  04
+043C:  ADDWFC FF7,F
+043E:  TBLRD*+
+0440:  MOVF   FF5,W
+0442:  BTFSC  0D.7
+0444:  BSF    FF2.7
+0446:  RETURN 0
+0448:  DATA 49,4E
+044A:  DATA 46,4F
+044C:  DATA 52,4D
+044E:  DATA 45,4C
+0450:  DATA 45,4B
+0452:  DATA 54,52
+0454:  DATA 4F,4E
+0456:  DATA 49,4B
+0458:  DATA 41,52
+045A:  DATA 2D,47
+045C:  DATA 45,20
+045E:  DATA 20,20
+0460:  DATA 20,53
+0462:  DATA 54,41
+0464:  DATA 4A,59
+0466:  DATA 45,52
+0468:  DATA 00,00
+046A:  DATA 54,45
+046C:  DATA 4D,50
+046E:  DATA 3A,25
+0470:  DATA 64,25
+0472:  DATA 63,43
+0474:  DATA 20,00
+0476:  CLRF   01
+0478:  CLRF   02
+047A:  CLRF   00
+047C:  CLRF   03
+047E:  MOVLB  1
+0480:  MOVF   x0C,W
+0482:  BNZ   0488
+0484:  MOVF   x0B,W
+0486:  BZ    04B8
+0488:  MOVLW  10
+048A:  MOVWF  x0D
+048C:  BCF    FD8.0
+048E:  RLCF   x09,F
+0490:  RLCF   x0A,F
+0492:  RLCF   00,F
+0494:  RLCF   03,F
+0496:  MOVF   x0C,W
+0498:  SUBWF  03,W
+049A:  BNZ   04A0
+049C:  MOVF   x0B,W
+049E:  SUBWF  00,W
+04A0:  BNC   04B0
+04A2:  MOVF   x0B,W
+04A4:  SUBWF  00,F
+04A6:  BTFSS  FD8.0
+04A8:  DECF   03,F
+04AA:  MOVF   x0C,W
+04AC:  SUBWF  03,F
+04AE:  BSF    FD8.0
+04B0:  RLCF   01,F
+04B2:  RLCF   02,F
+04B4:  DECFSZ x0D,F
+04B6:  BRA    048C
+04B8:  MOVLB  0
+04BA:  RETURN 0
+*
+06F4:  TSTFSZ 01
+06F6:  BRA    06FE
+06F8:  TSTFSZ 02
+06FA:  BRA    0700
+06FC:  BRA    070C
+06FE:  INCF   02,F
+0700:  MOVFF  00,FEE
+0704:  DECFSZ 01,F
+0706:  BRA    0700
+0708:  DECFSZ 02,F
+070A:  BRA    0700
+070C:  RETURN 0
+070E:  MOVF   xFE,W
+0710:  MOVLB  1
+0712:  MULWF  x00
+0714:  MOVFF  FF3,01
+0718:  MOVFF  FF4,00
+071C:  MULWF  x01
+071E:  MOVF   FF3,W
+0720:  ADDWF  00,F
+0722:  MOVLB  0
+0724:  MOVF   xFF,W
+0726:  MOVLB  1
+0728:  MULWF  x00
+072A:  MOVF   FF3,W
+072C:  ADDWFC 00,W
+072E:  MOVWF  02
+0730:  MOVLB  0
+0732:  GOTO   08A4 (RETURN)
+0736:  MOVFF  F9,FEA
+073A:  MOVFF  F8,FE9
+073E:  MOVLB  1
+0740:  MOVFF  106,FEF
+0744:  INCF   FE9,F
+0746:  BTFSC  FD8.2
+0748:  INCF   FEA,F
+074A:  CLRF   FEF
+074C:  MOVLB  0
+074E:  INCF   xF8,F
+0750:  BTFSC  FD8.2
+0752:  INCF   xF9,F
+0754:  RETURN 0
+0756:  TBLRD*+
+0758:  MOVFF  FF6,FF
+075C:  MOVFF  FF7,100
+0760:  MOVFF  FF5,106
+0764:  RCALL  0736
+0766:  MOVFF  FF,FF6
+076A:  MOVFF  100,FF7
+076E:  DECFSZ xFE,F
+0770:  BRA    0756
+0772:  GOTO   08CC (RETURN)
+0776:  MOVLB  1
+0778:  MOVF   x07,W
+077A:  CLRF   01
+077C:  SUBWF  x06,W
+077E:  BC    0786
+0780:  MOVFF  106,00
+0784:  BRA    079E
+0786:  CLRF   00
+0788:  MOVLW  08
+078A:  MOVWF  x08
+078C:  RLCF   x06,F
+078E:  RLCF   00,F
+0790:  MOVF   x07,W
+0792:  SUBWF  00,W
+0794:  BTFSC  FD8.0
+0796:  MOVWF  00
+0798:  RLCF   01,F
+079A:  DECFSZ x08,F
+079C:  BRA    078C
+079E:  MOVLB  0
+07A0:  RETURN 0
+07A2:  MOVLW  20
+07A4:  BTFSS  xFF.4
+07A6:  MOVLW  30
+07A8:  MOVLB  1
+07AA:  MOVWF  x00
+07AC:  MOVFF  FE,00
+07B0:  BTFSS  00.7
+07B2:  BRA    07C8
+07B4:  COMF   00,F
+07B6:  INCF   00,F
+07B8:  MOVFF  00,FE
+07BC:  MOVLW  2D
+07BE:  MOVWF  x00
+07C0:  MOVLB  0
+07C2:  BSF    xFF.7
+07C4:  BSF    xFF.0
+07C6:  MOVLB  1
+07C8:  MOVF   01,W
+07CA:  MOVFF  FE,106
+07CE:  MOVLW  64
+07D0:  MOVWF  x07
+07D2:  MOVLB  0
+07D4:  RCALL  0776
+07D6:  MOVFF  00,FE
+07DA:  MOVLW  30
+07DC:  ADDWF  01,W
+07DE:  MOVLB  1
+07E0:  MOVWF  x01
+07E2:  MOVFF  FE,106
+07E6:  MOVLW  0A
+07E8:  MOVWF  x07
+07EA:  MOVLB  0
+07EC:  RCALL  0776
+07EE:  MOVLW  30
+07F0:  ADDWF  00,W
+07F2:  MOVLB  1
+07F4:  MOVWF  x03
+07F6:  MOVLW  30
+07F8:  ADDWF  01,W
+07FA:  MOVWF  x02
+07FC:  MOVFF  100,00
+0800:  MOVLW  30
+0802:  SUBWF  x01,W
+0804:  BZ    0812
+0806:  MOVLB  0
+0808:  BSF    xFF.1
+080A:  BTFSC  xFF.7
+080C:  BSF    xFF.2
+080E:  BRA    0848
+0810:  MOVLB  1
+0812:  MOVFF  100,101
+0816:  MOVLW  20
+0818:  MOVWF  x00
+081A:  MOVLW  30
+081C:  SUBWF  x02,W
+081E:  BZ    082C
+0820:  MOVLB  0
+0822:  BSF    xFF.0
+0824:  BTFSC  xFF.7
+0826:  BSF    xFF.1
+0828:  BRA    0848
+082A:  MOVLB  1
+082C:  BTFSC  FD8.2
+082E:  BRA    0836
+0830:  MOVLB  0
+0832:  BSF    xFF.0
+0834:  MOVLB  1
+0836:  BTFSC  FD8.2
+0838:  BRA    083E
+083A:  MOVLB  0
+083C:  BRA    0848
+083E:  MOVFF  101,102
+0842:  MOVLW  20
+0844:  MOVWF  x01
+0846:  MOVLB  0
+0848:  BTFSC  xFF.2
+084A:  BRA    0856
+084C:  BTFSC  xFF.1
+084E:  BRA    085C
+0850:  BTFSC  xFF.0
+0852:  BRA    0862
+0854:  BRA    0868
+0856:  MOVFF  100,106
+085A:  RCALL  0736
+085C:  MOVFF  101,106
+0860:  RCALL  0736
+0862:  MOVFF  102,106
+0866:  RCALL  0736
+0868:  MOVFF  103,106
+086C:  RCALL  0736
+086E:  GOTO   08D6 (RETURN)
+....................  
+.................... #list 
+....................  
+....................  
+.................... /*FUSES: cihaza bagli cesitli opsiyonlari ayarlamak icin kullanilir. Mevcut ozellikleri en ustte belirtilir.  
+....................        Konfigurasyon bileri vardir, bu komut ile mikrodenetleyicinin konfigurasyon pinleri ayarlanýr. 
+....................   Yaygin kullanilan cihaz secenekleri: 
+....................       Â· LP, XT, HS, RC :LP dusuk guclu kristal osilator, XT klasik kristal osilator, HS yuksek hizli kristal osilator, RC Direnc / Kondansator osilator 
+....................       Â· WDT, NOWDT  :Programin olasi kilitlenmelerde resetlenmesini saðlar. WDT dersek bu mod aktif, NOWDT dersek bu mod pasiftir.      
+....................       Â· PROTECT, NOPROTECT :Kod koruma, mikrokontrollerin içine yükleyecegin kodlar kopyalananaz demek, NOPROTECT ise kodlar geriye okunup kopyalanabilir demektir.  
+....................       Â· PUT, NOPUT (Power Up Timer) : NOPUT, zamanlayicilar kapali demek, yani timer olarak gecen zaman dongulerini kullanmayacagini belirtirsin. 
+....................       Â· BROWNOUT, NOBROWNOUT:Dusuk gerilimle program reset, bu ozellik gerilim seviyesi belli bir degerin altina dustugunde, mikrokontrollerin reset atmasidir, 
+....................           genelde NOBROWNOUT modunda tutulur, eyer BROWNOUT olarak kullanilirsa, ani gerilim dalgalanmalarinda sistem surrekli resetlenir. 
+....................       Â· INTRC: Internal, dahili osilatoru kullan anlamina gelir.     
+....................       Â· NOMCLR: Master Clear functionality, MCLR girisi PIC'i resetlemek icin kullanilir. Bu fuse yoksa #FUSE MCLR ve MCLR pini 10k ile 5V a  
+.................... Tum #FUSES ozelliklerini kapatmak icin " #FUSES none" kullanilir.                               
+.................... */                          
+....................                                           
+.................... #FUSES WDT, WDT1, NOLVP,NOCPD, NOWRT, NOMCLR, IESO, INTRC  
+....................                               
+....................                                                             
+....................                                      
+.................... #include "definitions.h"                                                                                                       
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................  
+.................... typedef unsigned int32  uint32_t;                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef signed   int16  sint16_t;  
+.................... typedef unsigned int8   uint8_t;  
+....................  
+.................... typedef       float32   float32_t; 
+.................... typedef unsigned char   uchar_t;   
+....................                              
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "main.h"                  
+.................... #ifndef MAIN_H      
+.................... #define MAIN_H  
+.................... #define DELAY 500  
+....................                             
+.................... extern uint16_t iSayac;                             
+....................                      
+.................... #endif //MAIN_H                                 
+....................  
+....................                                                                                                                
+....................                                
+....................  
+.................... #include "delayms.h"                                 
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(uint16_t);  
+.................... void delayUsFun(uint8_t us); 
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+.................... #include "ucregisters.h"                                     
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+....................                         
+.................... //Analog PINS            
+.................... #byte TRISA = 0x0F92     
+.................... #byte PORTA = 0x0F80 
+.................... #bit  PORTA_DIR_0=TRISA.0  
+.................... #bit  PORTA_0=PORTA.0  
+....................                        
+.................... //Control PINS 
+.................... #byte TRISB = 0x0F93      
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0 
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... // LCD PINS 
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C                      
+.................... #bit  PORTD_7=PORTD.7     
+....................  
+.................... //LCD Control Pins 
+.................... #byte TRISE = 0x0F96 
+.................... #byte PORTE = 0x0F84                        
+.................... #bit  PORTE_RS=PORTE.0        
+.................... #bit  PORTE_E=PORTE.1 
+.................... #bit  PORTE_RW=PORTE.2  
+....................  
+....................    
+.................... #byte TRISC = 0x0F94  
+.................... #byte PORTC = 0x0F82             
+.................... #bit  TRISC_6=TRISC.6 
+.................... #bit  TRISC_7=TRISC.7   
+....................  
+.................... #bit  DS1820=PORTC.0   
+.................... #bit  DS1820_DIR=TRISC.0   
+....................                             
+....................   
+....................  
+....................                           
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3        
+.................... #bit  IRCF2 =OSCCON.6   
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER1 INTERRUPT BYTE adresleri 
+....................     
+.................... #byte RCON = 0x0FD0    // RCON REGISTER 
+.................... #byte INTCON = 0x0FF2  // INTCON REGISTER  
+.................... #byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                          
+.................... #byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak) 
+.................... #byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi  
+.................... #byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi  
+.................... #byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                      
+.................... #byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti 
+.................... //   #############TIMER 1########                                                            
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... //# IPR1  :: IPR1 REGISTER // Bit Adresleri  
+.................... #bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                         
+.................... //# PIR1  :: PIR1 REGISTER // Bit Adresleri 
+.................... #bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit     
+.................... //# PIE1  :: PIE1 REGISTER // Bit Adresleri  
+.................... #bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit      
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit 
+.................... #bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit 
+.................... #bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                              
+.................... #bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits 
+.................... #bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit 
+.................... #bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit 
+.................... #bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit  
+.................... #bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit          
+....................                                                                  
+.................... //   ################   RS232/EUSART   #################  //    
+.................... #byte  RCSTA   = 0x0FAB    // RCSTA: RECEIVE STATUS AND CONTROL REGISTER 
+.................... #byte  BAUDCON = 0x0FB8    // BAUDCON: BAUD RATE CONTROL REGISTER                        
+.................... #byte  TXSTA   = 0x0FAC    // TXSTA: TRANSMIT STATUS AND CONTROL REGISTER  
+.................... #byte  SPBRGH  = 0x0FB0    // EUSART Baud Rate Generator Register, High Byte                          
+.................... #byte  SPBRG   = 0x0FAF    // EUSART Baud Rate Generator Register, Low Byte   
+.................... #byte  TXREG   = 0x0FAD    // EUSART Transmit Register                             
+.................... #byte  RCREG   = 0x0FAE    // EUSART Receive Register 
+....................  
+.................... #bit   OERR_RCSTA= RCSTA.1  // Overrun Error bit 
+.................... #bit   CREN_RCSTA= RCSTA.4  // Continuous Receive Enable bit    
+.................... #bit   TXIF_PIR1 = PIR1.4   // EUSART Transmit Interrupt Flag bit 
+.................... #bit   RCIF_PIR1 = PIR1.5   // EUSART Receive Interrupt Flag bit  
+.................... #bit   RCIE_PIE1 = PIE1.5   // EUSART Receive Interrupt Enable bit  
+.................... #bit   TXIE_PIE1 = PIE1.4   // EUSART Transmit Interrupt Enable bit     
+....................  
+.................... //   ################   ADC CONVERTER   #################  // 
+.................... #byte ADRESH = 0x0FC4     
+.................... #byte ADRESL = 0x0FC3  
+.................... #byte ADCON0 = 0x0FC2  
+.................... #bit  ADON   = ADCON0.0 
+.................... #bit  GODONE = ADCON0.1  
+.................... #byte ADCON1 = 0x0FC1 
+.................... #bit  PCFG0  = ADCON1.0 
+.................... #byte ADCON2 = 0x0FC0   
+.................... #bit  ADIE   = PIE1.6 
+.................... #bit  ADIF   = PIR1.6 
+....................  
+.................... #endif UCREGISTER_H                                                                          
+....................  
+.................... #include "init.h"                                       
+.................... #ifndef INITS_H 
+.................... #define INITS_H       
+....................  
+.................... extern uint16_t iSayac;                          
+.................... typedef union{   
+....................    uint8_t  all;      // Type  kayitciya erismek icin 
+....................    struct{ 
+....................       uint8_t _2ms    : 1;  //bit:0, 2ms  
+....................       uint8_t _20ms   : 1;  //bit:2, 20ms  
+....................       uint8_t _50ms   : 1;  //bit:3, 50ms  
+....................       uint8_t _100ms  : 1;  //bit:4, 100ms     
+....................       uint8_t _200ms  : 1;  //bit:5, 200ms                   
+....................       uint8_t _500ms  : 1;  //bit:6, 500ms  
+....................       uint8_t _1000ms : 1;  //bit:7, 1000ms  
+....................       uint8_t reserved     : 1; 
+....................    }tmr1_flags;                     
+.................... }tmr1_time_t;    
+.................... extern tmr1_time_t tmr1_time;     
+....................  
+....................                         
+.................... typedef union{          
+....................    uint8_t  all;      // Type  kayitciya erismek icin 
+....................    struct{ 
+....................       uint8_t LCD    : 1;  //bit:0, LCD    ACTIVE=1 
+....................       uint8_t TEMP   : 1;  //bit:1, TEMP   ACTIVE=1 
+....................       uint8_t LED    : 1;  //bit:2, LED    ACTIVE=1   
+....................       uint8_t reserved     : 5; 
+....................    }a;                     
+.................... }usart_t;            
+.................... extern usart_t usart_inst;  
+....................  
+....................                                                 
+.................... #endif //INIT_H                               
+....................  
+.................... #include "button.h"                   
+.................... #ifndef BUTTON_H                                                             
+.................... #define BUTTON_H  
+....................  
+.................... extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */  
+.................... extern uint8_t STATUS;  
+.................... uint8_t button_debounce(uint8_t,uint8_t);    
+.................... uint8_t test_bit(uint8_t,uint8_t); 
+....................    
+.................... #endif            
+....................  
+.................... #include "usart_rs232.h"                          
+.................... #ifndef USART_RS232_H                                                                                                
+.................... #define USART_RS232_H    
+....................   
+.................... extern uchar_t rxData[32]; 
+.................... extern uchar_t txData[32]; 
+.................... extern uchar_t data_in; 
+.................... extern uint8_t rxData_count; 
+.................... extern uchar_t terminal_text1[15];                 
+.................... extern uchar_t terminal_text2[27];                               
+.................... extern uchar_t terminal_text3[17];       
+.................... extern uint8_t terminal_text1_Count,terminal_text2_Count,terminal_text3_Count,terminal_text4_Count; 
+.................... extern uint8_t terminal_text1_size,terminal_text2_size ,terminal_text3_size,terminal_text4_size;  
+.................... extern uint8_t noKbHit_count;   
+.................... extern uint8_t switchTerminal_position;   
+.................... extern uint8_t UART_BUSY;         
+.................... extern uchar_t cmd1[]; extern uchar_t cmd2[]; extern uchar_t cmd3[]; 
+.................... extern uchar_t cmd4[]; extern uchar_t cmd5[]; extern uchar_t cmd6[]; 
+....................  
+....................                                    
+.................... typedef union{                  
+....................    uint8_t  all;      // Type  kayitciya erismek icin 
+....................    struct{  
+....................       uint8_t noKbhit              : 1;  //bit:0, no data for 5 seconds   
+....................       uint8_t enter_flag           : 1;  //bit:1, Text executed / Texts are cleared,                                     
+....................       uint8_t recieve_exceed       : 1;  //bit:2, LCD- character exceed / 1-Exceed 
+....................       uint8_t terminal_text1_flag  : 1;  //bit:3, Text 1 write / 1-DONE  //MEVCUT YAZI  
+....................       uint8_t terminal_text2_flag  : 1;  //bit:4, Text 2 write / 1-DONE  //Lutfen bir yazi giriniz:             
+....................       uint8_t terminal_text3_flag  : 1;  //bit:5, Text 3 write / 1-DONE  //Limit Asildi!!! 
+....................       uint8_t terminal_text4_flag  : 1;  //bit:6, Text 4 write / 1-DONE  //LCD 
+....................       uint8_t terminal_text_done   : 1;  //bit:6, Texts are DONE / 1-DONE      
+....................    }stUSARTF;                                       
+.................... }unUSARTF_t;    
+.................... extern unUSARTF_t unUSARTF;     
+....................  
+.................... uchar_t USART_RxCharBuffer(); 
+.................... void USART_TxCharBuffer(); 
+.................... void USART_Init(); 
+.................... void rs232t();     
+....................                                                    
+.................... #endif  //USART_RS232_H 
+....................                   
+....................  
+....................                             
+.................... #include "lcd.h"   
+.................... #ifndef LCD_H                                                                                                
+.................... #define LCD_H  
+....................                                              
+.................... extern uchar_t strLCD[32];   
+.................... extern uint8_t countLCDChar; 
+.................... extern uchar_t LCDW1SecFlag;         
+.................... //uchar_t legrandLCDCharacter [8]= {0x08, 0x1F, 0x19, 0x11, 0x11, 0x13, 0x1F, 0x02}; 
+.................... //uchar_t stickManLCDCharacter [8] = {0x0E, 0x0E, 0x04, 0x0F, 0x14, 0x0A, 0x1B, 0x00}; 
+.................... void lcdcmd(uchar_t);                                                                                
+.................... void lcddata(uchar_t);                                                                      
+.................... void LCD_String();                                                                              
+.................... //LCD (CHIP: HD44780), COMMANDS 
+.................... void twoLinesBCDMode(); 
+.................... void LinesActive(); 
+.................... void lcdClear();                               
+.................... void lcdGoToFirstLine();      
+.................... void lcdGoToSecondLine(); 
+.................... void lcdShiftRight(); 
+.................... void lcdCursorOn();  
+.................... void lcdCursorOff(); 
+.................... void LCD_Custom_Char (uchar_t loc, uchar_t *msg); 
+....................  
+.................... #endif //LCD_H     
+....................  
+.................... #include "lcd.c"                         
+....................  
+.................... #include "definitions.h"  
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................  
+.................... typedef unsigned int32  uint32_t;                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef signed   int16  sint16_t;  
+.................... typedef unsigned int8   uint8_t;  
+....................  
+.................... typedef       float32   float32_t; 
+.................... typedef unsigned char   uchar_t;   
+....................                              
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "lcd.h" 
+.................... #ifndef LCD_H                                                                                                
+.................... #define LCD_H  
+....................                                              
+.................... extern uchar_t strLCD[32];   
+.................... extern uint8_t countLCDChar; 
+.................... extern uchar_t LCDW1SecFlag;         
+.................... //uchar_t legrandLCDCharacter [8]= {0x08, 0x1F, 0x19, 0x11, 0x11, 0x13, 0x1F, 0x02}; 
+.................... //uchar_t stickManLCDCharacter [8] = {0x0E, 0x0E, 0x04, 0x0F, 0x14, 0x0A, 0x1B, 0x00}; 
+.................... void lcdcmd(uchar_t);                                                                                
+.................... void lcddata(uchar_t);                                                                      
+.................... void LCD_String();                                                                              
+.................... //LCD (CHIP: HD44780), COMMANDS 
+.................... void twoLinesBCDMode(); 
+.................... void LinesActive(); 
+.................... void lcdClear();                               
+.................... void lcdGoToFirstLine();      
+.................... void lcdGoToSecondLine(); 
+.................... void lcdShiftRight(); 
+.................... void lcdCursorOn();  
+.................... void lcdCursorOff(); 
+.................... void LCD_Custom_Char (uchar_t loc, uchar_t *msg); 
+....................  
+.................... #endif //LCD_H     
+....................  
+.................... #include "ucregisters.h"  
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+....................                         
+.................... //Analog PINS            
+.................... #byte TRISA = 0x0F92     
+.................... #byte PORTA = 0x0F80 
+.................... #bit  PORTA_DIR_0=TRISA.0  
+.................... #bit  PORTA_0=PORTA.0  
+....................                        
+.................... //Control PINS 
+.................... #byte TRISB = 0x0F93      
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0 
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... // LCD PINS 
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C                      
+.................... #bit  PORTD_7=PORTD.7     
+....................  
+.................... //LCD Control Pins 
+.................... #byte TRISE = 0x0F96 
+.................... #byte PORTE = 0x0F84                        
+.................... #bit  PORTE_RS=PORTE.0        
+.................... #bit  PORTE_E=PORTE.1 
+.................... #bit  PORTE_RW=PORTE.2  
+....................  
+....................    
+.................... #byte TRISC = 0x0F94  
+.................... #byte PORTC = 0x0F82             
+.................... #bit  TRISC_6=TRISC.6 
+.................... #bit  TRISC_7=TRISC.7   
+....................  
+.................... #bit  DS1820=PORTC.0   
+.................... #bit  DS1820_DIR=TRISC.0   
+....................                             
+....................   
+....................  
+....................                           
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3        
+.................... #bit  IRCF2 =OSCCON.6   
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER1 INTERRUPT BYTE adresleri 
+....................     
+.................... #byte RCON = 0x0FD0    // RCON REGISTER 
+.................... #byte INTCON = 0x0FF2  // INTCON REGISTER  
+.................... #byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                          
+.................... #byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak) 
+.................... #byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi  
+.................... #byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi  
+.................... #byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                      
+.................... #byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti 
+.................... //   #############TIMER 1########                                                            
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... //# IPR1  :: IPR1 REGISTER // Bit Adresleri  
+.................... #bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                         
+.................... //# PIR1  :: PIR1 REGISTER // Bit Adresleri 
+.................... #bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit     
+.................... //# PIE1  :: PIE1 REGISTER // Bit Adresleri  
+.................... #bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit      
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit 
+.................... #bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit 
+.................... #bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                              
+.................... #bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits 
+.................... #bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit 
+.................... #bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit 
+.................... #bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit  
+.................... #bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit          
+....................                                                                  
+.................... //   ################   RS232/EUSART   #################  //    
+.................... #byte  RCSTA   = 0x0FAB    // RCSTA: RECEIVE STATUS AND CONTROL REGISTER 
+.................... #byte  BAUDCON = 0x0FB8    // BAUDCON: BAUD RATE CONTROL REGISTER                        
+.................... #byte  TXSTA   = 0x0FAC    // TXSTA: TRANSMIT STATUS AND CONTROL REGISTER  
+.................... #byte  SPBRGH  = 0x0FB0    // EUSART Baud Rate Generator Register, High Byte                          
+.................... #byte  SPBRG   = 0x0FAF    // EUSART Baud Rate Generator Register, Low Byte   
+.................... #byte  TXREG   = 0x0FAD    // EUSART Transmit Register                             
+.................... #byte  RCREG   = 0x0FAE    // EUSART Receive Register 
+....................  
+.................... #bit   OERR_RCSTA= RCSTA.1  // Overrun Error bit 
+.................... #bit   CREN_RCSTA= RCSTA.4  // Continuous Receive Enable bit    
+.................... #bit   TXIF_PIR1 = PIR1.4   // EUSART Transmit Interrupt Flag bit 
+.................... #bit   RCIF_PIR1 = PIR1.5   // EUSART Receive Interrupt Flag bit  
+.................... #bit   RCIE_PIE1 = PIE1.5   // EUSART Receive Interrupt Enable bit  
+.................... #bit   TXIE_PIE1 = PIE1.4   // EUSART Transmit Interrupt Enable bit     
+....................  
+.................... //   ################   ADC CONVERTER   #################  // 
+.................... #byte ADRESH = 0x0FC4     
+.................... #byte ADRESL = 0x0FC3  
+.................... #byte ADCON0 = 0x0FC2  
+.................... #bit  ADON   = ADCON0.0 
+.................... #bit  GODONE = ADCON0.1  
+.................... #byte ADCON1 = 0x0FC1 
+.................... #bit  PCFG0  = ADCON1.0 
+.................... #byte ADCON2 = 0x0FC0   
+.................... #bit  ADIE   = PIE1.6 
+.................... #bit  ADIF   = PIR1.6 
+....................  
+.................... #endif UCREGISTER_H                                                                          
+....................  
+.................... #include "button.h" 
+.................... #ifndef BUTTON_H                                                             
+.................... #define BUTTON_H  
+....................  
+.................... extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */  
+.................... extern uint8_t STATUS;  
+.................... uint8_t button_debounce(uint8_t,uint8_t);    
+.................... uint8_t test_bit(uint8_t,uint8_t); 
+....................    
+.................... #endif            
+....................  
+.................... #include "delayms.h"  
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(uint16_t);  
+.................... void delayUsFun(uint8_t us); 
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+....................  
+....................                
+.................... /*Hex Code   LCD Ekran Karsiligi  
+....................  Initialize Lcd in 4-bit mode               0x02 
+.................... 1   Function Set: 8-bit, 1 Line, 5×7 Dots   0x30   48                                              
+.................... 2   Function Set: 8-bit, 2 Line, 5×7 Dots   0x38   56                            
+.................... 3   Function Set: 4-bit, 1 Line, 5×7 Dots   0x20   32 
+.................... 4   Function Set: 4-bit, 2 Line, 5×7 Dots   0x28   40  
+.................... 0F   LCD acik, Imlec acik 
+.................... 01   Ekrani Temizle                                 
+.................... 02   Satir Basina Dön            
+.................... 04   Imleci Sola Kaydir 
+.................... 06   Imleci Saga Kaydir 
+.................... 05   Ekrani Saga Kaydir 
+.................... 07   Ekrani Sola Kaydir 
+.................... 0E   Ekran Acik, Imleç Yanip Sonuyor 
+.................... 80   Imleci Ilk Satirin Basinda Konumlandir 
+.................... C0   Imleci Ikinci Satirin Basinda Konumlandir         
+.................... 3C   Ikinci Satiri Etkinlestir                                                     
+.................... 08   Ekran Kapali, Imleç Kapali              
+.................... OC   Ekran Acik, Imlec Kapali*/   
+....................                                             
+.................... uchar_t strLCD[32]; 
+.................... uint8_t countLCDChar; 
+.................... uchar_t LCDW1SecFlag; 
+....................                                          
+.................... /*LCD (CHIP: HD44780), COMMAND MODE*/  
+.................... void dis_cmd(uchar_t cmdout){  
+....................    PORTD=cmdout;      //Send command to lcdport=PORTB 
+*
+05B4:  MOVFF  FC,F8C
+....................    PORTE_RS=0;                   
+05B8:  BCF    F84.0
+....................    PORTE_E=1;                
+05BA:  BSF    F84.1
+....................    delayUsFun(1); 
+05BC:  MOVLW  01
+05BE:  MOVWF  xFE
+05C0:  RCALL  05A6
+....................    PORTE_E=0;                               
+05C2:  BCF    F84.1
+05C4:  RETURN 0
+.................... }                                   
+....................  
+....................  
+....................  
+.................... void lcdcmd(uchar_t cmd_value){          
+....................    uchar_t cmd_value1;                              
+....................    cmd_value1 = (cmd_value & 0xF0);      // Mask lower nibble because RB4-RB7 pins are being used    
+05C6:  MOVF   xFA,W
+05C8:  ANDLW  F0
+05CA:  MOVWF  xFB
+....................    dis_cmd(cmd_value1);                   // Send to LCD 
+05CC:  MOVFF  FB,FC
+05D0:  RCALL  05B4
+....................    cmd_value1 = ((cmd_value<<4) & 0xF0);  // Shift 4-bit and mask 
+05D2:  SWAPF  xFA,W
+05D4:  MOVWF  00
+05D6:  MOVLW  F0
+05D8:  ANDWF  00,F
+05DA:  MOVF   00,W
+05DC:  ANDLW  F0
+05DE:  MOVWF  xFB
+....................    dis_cmd(cmd_value1);                   // Send to LCD 
+05E0:  MOVFF  FB,FC
+05E4:  RCALL  05B4
+05E6:  RETURN 0
+.................... } 
+....................  // 2 lines are active.              
+.................... void twoLinesBCDMode(){  
+....................    lcdcmd(0x02); 
+*
+00F6:  MOVLW  02
+00F8:  MOVWF  xFA
+00FA:  RCALL  05C6
+00FC:  GOTO   0616 (RETURN)
+.................... } 
+....................                         
+.................... // 2 lines are active. BCD MODE 
+.................... void LinesActive(){  
+....................    lcdcmd(0x28);                
+*
+05E8:  MOVLW  28
+05EA:  MOVWF  xFA
+05EC:  RCALL  05C6
+05EE:  GOTO   0618 (RETURN)
+.................... }                          
+.................... // LCD screen clear.                   
+.................... void lcdClear(){ 
+....................    lcdcmd(0x01);                   
+*
+0606:  MOVLW  01
+0608:  MOVWF  xFA
+060A:  RCALL  05C6
+060C:  RETURN 0
+.................... }                   
+.................... // Go to first line. 
+.................... void lcdGoToFirstLine(){  
+....................    lcdcmd(0x80); 
+*
+099E:  MOVLW  80
+09A0:  MOVWF  xFA
+09A2:  RCALL  05C6
+09A4:  GOTO   09EE (RETURN)
+.................... }                                  
+.................... // Go to second line.                        
+.................... void lcdGoToSecondLine(){ 
+....................    lcdcmd(0xC0); 
+09A8:  MOVLW  C0
+09AA:  MOVWF  xFA
+09AC:  RCALL  05C6
+09AE:  GOTO   09F6 (RETURN)
+.................... }                        
+.................... // Shift cursor to right. 
+.................... void lcdShiftRight(){   
+....................    lcdcmd(0x06);                                                     
+*
+05FC:  MOVLW  06
+05FE:  MOVWF  xFA
+0600:  RCALL  05C6
+0602:  GOTO   061C (RETURN)
+.................... }                                           
+.................... // Display on, Cursor on              
+.................... void lcdCursorOn(){                  
+....................    lcdcmd(0x0E); 
+.................... }                                      
+.................... //Display off, Cursor off 
+.................... void lcdCursorOff(){                                             
+....................    lcdcmd(0x0C);                             
+*
+05F2:  MOVLW  0C
+05F4:  MOVWF  xFA
+05F6:  RCALL  05C6
+05F8:  GOTO   061A (RETURN)
+.................... }                              
+....................   
+.................... void dis_data(uchar_t dataout) {  
+....................    PORTD=dataout;   //Send data to lcdport=PORTB 
+*
+09B2:  MOVFF  FD,F8C
+....................    PORTE_RS=1;                   
+09B6:  BSF    F84.0
+....................    PORTE_E=1;                          
+09B8:  BSF    F84.1
+....................    delayUsFun(1); 
+09BA:  MOVLW  01
+09BC:  MOVWF  xFE
+09BE:  RCALL  05A6
+....................    PORTE_E=0;   
+09C0:  BCF    F84.1
+09C2:  RETURN 0
+....................    //PORTD=0x00; 
+....................    //while(test_bit(PORTD,7));           
+.................... }   
+.................... /*DATA MODE*/   
+.................... void lcddata(uchar_t text){  
+....................    uchar_t data;                                                                 
+....................    data=(text & 0xF0);         
+09C4:  MOVF   xFB,W
+09C6:  ANDLW  F0
+09C8:  MOVWF  xFC
+....................    dis_data(data);     
+09CA:  MOVFF  FC,FD
+09CE:  RCALL  09B2
+....................    data=((text<<4)&0xF0);      
+09D0:  SWAPF  xFB,W
+09D2:  MOVWF  00
+09D4:  MOVLW  F0
+09D6:  ANDWF  00,F
+09D8:  MOVF   00,W
+09DA:  ANDLW  F0
+09DC:  MOVWF  xFC
+....................    dis_data(data);                  
+09DE:  MOVFF  FC,FD
+09E2:  RCALL  09B2
+09E4:  GOTO   0A14 (RETURN)
+.................... }                                
+.................... void LCD_String(){  
+....................    if(countLCDChar==0)  
+09E8:  MOVF   xF4,F
+09EA:  BNZ   09EE
+....................       lcdGoToFirstLine(); 
+09EC:  BRA    099E
+....................    if(countLCDChar==16)   
+09EE:  MOVF   xF4,W
+09F0:  SUBLW  10
+09F2:  BNZ   09F6
+....................       lcdGoToSecondLine();    
+09F4:  BRA    09A8
+....................    if(countLCDChar<=31){  
+09F6:  MOVF   xF4,W
+09F8:  SUBLW  1F
+09FA:  BNC   0A18
+....................       lcddata(strLCD[countLCDChar]); 
+09FC:  CLRF   03
+09FE:  MOVF   xF4,W
+0A00:  ADDLW  D4
+0A02:  MOVWF  FE9
+0A04:  MOVLW  00
+0A06:  ADDWFC 03,W
+0A08:  MOVWF  FEA
+0A0A:  MOVFF  FEF,FA
+0A0E:  MOVFF  FA,FB
+0A12:  BRA    09C4
+....................       countLCDChar++;   
+0A14:  INCF   xF4,F
+....................    }else{    
+0A16:  BRA    0A1C
+....................       LCDW1SecFlag=0; 
+0A18:  CLRF   xF5
+....................       countLCDChar=0; 
+0A1A:  CLRF   xF4
+....................    }                  
+0A1C:  GOTO   01D8 (RETURN)
+.................... }  
+....................  
+....................  
+.................... void LCD_Custom_Char(uchar_t loc, uchar_t *msg){ 
+....................     uchar_t i; 
+....................     if(loc<8) 
+....................     { 
+....................      lcdcmd(0x40 + (loc*8));    /* Command 0x40 and onwards forces the device to point CGRAM address */ 
+....................      for(i=0;i<8;i++)          /* Write 8 byte for generation of 1 character */ 
+....................         lcddata(msg[i]);       
+....................     }                        
+.................... } 
+....................  
+....................                                           
+....................  
+....................       
+....................  
+.................... #include "button.c"           
+....................  
+.................... #include "definitions.h"  
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................  
+.................... typedef unsigned int32  uint32_t;                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef signed   int16  sint16_t;  
+.................... typedef unsigned int8   uint8_t;  
+....................  
+.................... typedef       float32   float32_t; 
+.................... typedef unsigned char   uchar_t;   
+....................                              
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "button.h" 
+.................... #ifndef BUTTON_H                                                             
+.................... #define BUTTON_H  
+....................  
+.................... extern uint8_t BUTTON_PRESSED_RELEASED;  /* bit:1, Aktif     */  
+.................... extern uint8_t STATUS;  
+.................... uint8_t button_debounce(uint8_t,uint8_t);    
+.................... uint8_t test_bit(uint8_t,uint8_t); 
+....................    
+.................... #endif            
+....................  
+.................... uint8_t BUTTON_PRESSED_RELEASED; 
+.................... uint8_t STATUS=0;             
+....................  
+.................... uint8_t test_bit(uint8_t valueOfInput, uint8_t bits){  
+....................    return ((valueOfInput & (1<<bits)) != 0); 
+*
+0936:  MOVLW  01
+0938:  MOVWF  00
+093A:  MOVF   xFD,W
+093C:  MOVWF  01
+093E:  BZ    0948
+0940:  BCF    FD8.0
+0942:  RLCF   00,F
+0944:  DECFSZ 01,F
+0946:  BRA    0940
+0948:  MOVF   00,W
+094A:  ANDWF  xFC,W
+094C:  BNZ   0952
+094E:  MOVLW  00
+0950:  BRA    0954
+0952:  MOVLW  01
+0954:  MOVWF  01
+0956:  GOTO   0964 (RETURN)
+.................... }                             
+....................   
+.................... uint8_t button_debounce(uint8_t valueOfInput, uint8_t bit){ 
+....................    if(!test_bit(valueOfInput,bit)){ 
+095A:  MOVFF  FA,FC
+095E:  MOVFF  FB,FD
+0962:  BRA    0936
+0964:  MOVF   01,F
+0966:  BNZ   096E
+....................       BUTTON_PRESSED_RELEASED<<=1; 
+0968:  BCF    FD8.0
+096A:  RLCF   1A,F
+....................    }else{                        
+096C:  BRA    0974
+....................       BUTTON_PRESSED_RELEASED<<=1;                        
+096E:  BCF    FD8.0
+0970:  RLCF   1A,F
+....................       BUTTON_PRESSED_RELEASED|=1;           
+0972:  BSF    1A.0
+....................    }   
+....................    if((BUTTON_PRESSED_RELEASED & 0x07)==0x07){  
+0974:  MOVF   1A,W
+0976:  ANDLW  07
+0978:  SUBLW  07
+097A:  BNZ   0986
+....................       STATUS = 1; 
+097C:  MOVLW  01
+097E:  MOVWF  1B
+....................       return true;   
+0980:  MOVWF  01
+0982:  BRA    099A
+....................    }else if((BUTTON_PRESSED_RELEASED  & 0x07)==0x00){  
+0984:  BRA    099A
+0986:  MOVF   1A,W
+0988:  ANDLW  07
+098A:  BNZ   0996
+....................       STATUS = 0; 
+098C:  CLRF   1B
+....................       return false; 
+098E:  MOVLW  00
+0990:  MOVWF  01
+0992:  BRA    099A
+....................    }else{  
+0994:  BRA    099A
+....................       return STATUS; 
+0996:  MOVFF  1B,01
+....................    } 
+099A:  GOTO   01C6 (RETURN)
+.................... }         
+....................  
+....................  
+.................... #include "delayms.c"         
+....................  
+.................... #include "definitions.h"  
+.................... #ifndef DEFINITIONS_H      
+.................... #define DEFINITIONS_H    
+....................  
+.................... typedef unsigned int32  uint32_t;                                                      
+.................... typedef unsigned int16  uint16_t; 
+.................... typedef signed   int16  sint16_t;  
+.................... typedef unsigned int8   uint8_t;  
+....................  
+.................... typedef       float32   float32_t; 
+.................... typedef unsigned char   uchar_t;   
+....................                              
+....................                
+.................... #endif //DEFINITIONS_H       
+....................  
+.................... #include "delayms.h" 
+.................... #ifndef DELAYMS_H   
+.................... #define DELAYMS_H    
+....................  
+.................... void delayMsFun(uint16_t);  
+.................... void delayUsFun(uint8_t us); 
+....................  
+.................... #endif //DELAYMS_H   
+....................  
+....................    
+.................... void delayMsFun(uint16_t msecs){  // Delay function - generates a delay of specified msecs 
+....................    unsigned int i,j; 
+....................    for(i=0;i<=msecs;i++) 
+....................    for(j=0;j<81;j++); /*This count Provide delay of 1 ms for 8MHz Frequency */                              
+.................... }        
+....................  
+.................... void delayUsFun(uint8_t us)  // Delay function - generates a delay of specified msecs 
+.................... {   uint8_t i; 
+....................     for(i=0;i<=us;i++){               
+*
+05A6:  CLRF   xFF
+05A8:  MOVF   xFF,W
+05AA:  SUBWF  xFE,W
+05AC:  BNC   05B2
+05AE:  INCF   xFF,F
+05B0:  BRA    05A8
+....................     }                                
+05B2:  RETURN 0
+.................... }   
+....................  
+....................  
+.................... #include "usart_rs232.c"        
+.................... #include "ucregisters.h"                                                                                              
+.................... #ifndef UCREGISTER_H 
+.................... #define UCREGISTER_H 
+....................  
+....................                         
+.................... //Analog PINS            
+.................... #byte TRISA = 0x0F92     
+.................... #byte PORTA = 0x0F80 
+.................... #bit  PORTA_DIR_0=TRISA.0  
+.................... #bit  PORTA_0=PORTA.0  
+....................                        
+.................... //Control PINS 
+.................... #byte TRISB = 0x0F93      
+.................... #byte PORTB = 0x0F81  
+.................... #bit  PORTB_0=PORTB.0 
+.................... #bit  PORTB_7=PORTB.7  
+....................  
+.................... // LCD PINS 
+.................... #byte TRISD = 0x0F95                      
+.................... #byte PORTD = 0x0F8C                      
+.................... #bit  PORTD_7=PORTD.7     
+....................  
+.................... //LCD Control Pins 
+.................... #byte TRISE = 0x0F96 
+.................... #byte PORTE = 0x0F84                        
+.................... #bit  PORTE_RS=PORTE.0        
+.................... #bit  PORTE_E=PORTE.1 
+.................... #bit  PORTE_RW=PORTE.2  
+....................  
+....................    
+.................... #byte TRISC = 0x0F94  
+.................... #byte PORTC = 0x0F82             
+.................... #bit  TRISC_6=TRISC.6 
+.................... #bit  TRISC_7=TRISC.7   
+....................  
+.................... #bit  DS1820=PORTC.0   
+.................... #bit  DS1820_DIR=TRISC.0   
+....................                             
+....................   
+....................  
+....................                           
+.................... //OSILATOR - 8MHZ 
+.................... #byte OSCCON = 0x0FD3        
+.................... #bit  IRCF2 =OSCCON.6   
+.................... #bit  IRCF1 =OSCCON.5                      
+.................... #bit  IRCF0 =OSCCON.4  
+....................         
+.................... //TIMER1 INTERRUPT BYTE adresleri 
+....................     
+.................... #byte RCON = 0x0FD0    // RCON REGISTER 
+.................... #byte INTCON = 0x0FF2  // INTCON REGISTER  
+.................... #byte IPR1 = 0x0F9F    // Cevresel kesme onceligi                          
+.................... #byte PIR1 = 0x0F9E    // Cevresel kesme istegi (Bayrak) 
+.................... #byte PIE1 = 0x0F9D    // Cevresel kesme yetkisi  
+.................... #byte T1CON  = 0x0FCD  // TIMER1 kontrol kayitcisi  
+.................... #byte TMR1H = 0x0FCF   // TIMER1'in ta;ma sayacinin son 8 biti                                      
+.................... #byte TMR1L = 0x0FCE   // TIMER1'in ta;ma sayacinin ilk 8 biti 
+.................... //   #############TIMER 1########                                                            
+.................... //# RCON  :: RCON REGISTER // Bit Adresleri                                     
+.................... #bit RCON_IPEN = RCON.7        // Enable priority levels on interrupts                    
+.................... //# INTCON  :: INTCON REGISTER // Bit Adresleri       
+.................... #bit INTCON_GIE_GIEH = INTCON.7  // Global Interrupt Enable bit  
+.................... #bit INTCON_PEIE = INTCON.6      // INTCON_PEIE=1, Enables all high priority interrupts 
+.................... //# IPR1  :: IPR1 REGISTER // Bit Adresleri  
+.................... #bit IPR1_TMR1IP = IPR1.0  // TMR1 Overflow Interrupt Priority bit                                         
+.................... //# PIR1  :: PIR1 REGISTER // Bit Adresleri 
+.................... #bit PIR1_TMR1IF=PIR1.0    // TMR1 Overflow Interrupt Flag bit     
+.................... //# PIE1  :: PIE1 REGISTER // Bit Adresleri  
+.................... #bit PIE1_TMR1IE=PIE1.0    // TMR1 Overflow Interrupt Enable bit      
+.................... //#T0CON  :: TIMER0 CONTROL REGISTER // Bit Adresleri 
+.................... #bit T1CON_RD16    = T1CON.7     // 16-bit Read/Write Mode Enable bit 
+.................... #bit T1CON_T1RUN   = T1CON.6     // Timer1 System Clock Status bit 
+.................... #bit T1CON_T1CKPS1 = T1CON.5     // Timer1 Input Clock Prescale Select bits                              
+.................... #bit T1CON_T1CKPS0 = T1CON.4     // Timer1 Input Clock Prescale Select bits 
+.................... #bit T1CON_T1OSCEN = T1CON.3     // Timer1 Oscillator Enable bit 
+.................... #bit T1CON_T1SYNC  = T1CON.2     // Timer1 External Clock Input Synchronization Select bit 
+.................... #bit T1CON_TMR1CS  = T1CON.1     // Timer1 Clock Source Select bit  
+.................... #bit T1CON_TMR1ON  = T1CON.0     // Timer1 On bit          
+....................                                                                  
+.................... //   ################   RS232/EUSART   #################  //    
+.................... #byte  RCSTA   = 0x0FAB    // RCSTA: RECEIVE STATUS AND CONTROL REGISTER 
+.................... #byte  BAUDCON = 0x0FB8    // BAUDCON: BAUD RATE CONTROL REGISTER                        
+.................... #byte  TXSTA   = 0x0FAC    // TXSTA: TRANSMIT STATUS AND CONTROL REGISTER  
+.................... #byte  SPBRGH  = 0x0FB0    // EUSART Baud Rate Generator Register, High Byte                          
+.................... #byte  SPBRG   = 0x0FAF    // EUSART Baud Rate Generator Register, Low Byte   
+.................... #byte  TXREG   = 0x0FAD    // EUSART Transmit Register                             
+.................... #byte  RCREG   = 0x0FAE    // EUSART Receive Register 
+....................  
+.................... #bit   OERR_RCSTA= RCSTA.1  // Overrun Error bit 
+.................... #bit   CREN_RCSTA= RCSTA.4  // Continuous Receive Enable bit    
+.................... #bit   TXIF_PIR1 = PIR1.4   // EUSART Transmit Interrupt Flag bit 
+.................... #bit   RCIF_PIR1 = PIR1.5   // EUSART Receive Interrupt Flag bit  
+.................... #bit   RCIE_PIE1 = PIE1.5   // EUSART Receive Interrupt Enable bit  
+.................... #bit   TXIE_PIE1 = PIE1.4   // EUSART Transmit Interrupt Enable bit     
+....................  
+.................... //   ################   ADC CONVERTER   #################  // 
+.................... #byte ADRESH = 0x0FC4     
+.................... #byte ADRESL = 0x0FC3  
+.................... #byte ADCON0 = 0x0FC2  
+.................... #bit  ADON   = ADCON0.0 
+.................... #bit  GODONE = ADCON0.1  
+.................... #byte ADCON1 = 0x0FC1 
+.................... #bit  PCFG0  = ADCON1.0 
+.................... #byte ADCON2 = 0x0FC0   
+.................... #bit  ADIE   = PIE1.6 
+.................... #bit  ADIF   = PIR1.6 
+....................  
+.................... #endif UCREGISTER_H                                                                          
+....................  
+.................... #include "usart_rs232.h" 
+.................... #ifndef USART_RS232_H                                                                                                
+.................... #define USART_RS232_H    
+....................   
+.................... extern uchar_t rxData[32]; 
+.................... extern uchar_t txData[32]; 
+.................... extern uchar_t data_in; 
+.................... extern uint8_t rxData_count; 
+.................... extern uchar_t terminal_text1[15];                 
+.................... extern uchar_t terminal_text2[27];                               
+.................... extern uchar_t terminal_text3[17];       
+.................... extern uint8_t terminal_text1_Count,terminal_text2_Count,terminal_text3_Count,terminal_text4_Count; 
+.................... extern uint8_t terminal_text1_size,terminal_text2_size ,terminal_text3_size,terminal_text4_size;  
+.................... extern uint8_t noKbHit_count;   
+.................... extern uint8_t switchTerminal_position;   
+.................... extern uint8_t UART_BUSY;         
+.................... extern uchar_t cmd1[]; extern uchar_t cmd2[]; extern uchar_t cmd3[]; 
+.................... extern uchar_t cmd4[]; extern uchar_t cmd5[]; extern uchar_t cmd6[]; 
+....................  
+....................                                    
+.................... typedef union{                  
+....................    uint8_t  all;      // Type  kayitciya erismek icin 
+....................    struct{  
+....................       uint8_t noKbhit              : 1;  //bit:0, no data for 5 seconds   
+....................       uint8_t enter_flag           : 1;  //bit:1, Text executed / Texts are cleared,                                     
+....................       uint8_t recieve_exceed       : 1;  //bit:2, LCD- character exceed / 1-Exceed 
+....................       uint8_t terminal_text1_flag  : 1;  //bit:3, Text 1 write / 1-DONE  //MEVCUT YAZI  
+....................       uint8_t terminal_text2_flag  : 1;  //bit:4, Text 2 write / 1-DONE  //Lutfen bir yazi giriniz:             
+....................       uint8_t terminal_text3_flag  : 1;  //bit:5, Text 3 write / 1-DONE  //Limit Asildi!!! 
+....................       uint8_t terminal_text4_flag  : 1;  //bit:6, Text 4 write / 1-DONE  //LCD 
+....................       uint8_t terminal_text_done   : 1;  //bit:6, Texts are DONE / 1-DONE      
+....................    }stUSARTF;                                       
+.................... }unUSARTF_t;    
+.................... extern unUSARTF_t unUSARTF;     
+....................  
+.................... uchar_t USART_RxCharBuffer(); 
+.................... void USART_TxCharBuffer(); 
+.................... void USART_Init(); 
+.................... void rs232t();     
+....................                                                    
+.................... #endif  //USART_RS232_H 
+....................                   
+....................  
+.................... #include <string.h>       
+.................... //////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2008 Custom Computer Services            //// 
+.................... //// This source code may only be used by licensed users of the CCS C   //// 
+.................... //// compiler.  This source code may only be distributed to other       //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction  //// 
+.................... //// or distribution is permitted without written permission.           //// 
+.................... //// Derivative programs created using this software in object code     //// 
+.................... //// form are not restricted in any way.                                //// 
+.................... //////////////////////////////////////////////////////////////////////////// 
+....................  
+.................... #ifndef _STRING 
+.................... #define _STRING 
+.................... #include <stddef.h> 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2003 Custom Computer Services           //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+....................  
+.................... #ifndef _STDDEF 
+....................  
+.................... #define _STDDEF 
+....................  
+.................... #if sizeof(unsigned int8 *)==1 
+.................... #define ptrdiff_t unsigned int8 
+.................... #else 
+.................... #define ptrdiff_t unsigned int16 
+.................... #endif 
+....................  
+.................... #if defined(__PCB__) 
+.................... #define size_t unsigned int8 
+.................... #else 
+.................... #define size_t unsigned int16 
+.................... #endif 
+.................... #define wchar_t char 
+.................... #define NULL 0 
+....................  
+.................... #define offsetof(s,f) (offsetofbit(s,f)/8) 
+....................  
+.................... #endif 
+....................  
+.................... #include <ctype.h> 
+.................... //////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2003 Custom Computer Services            //// 
+.................... //// This source code may only be used by licensed users of the CCS C   //// 
+.................... //// compiler.  This source code may only be distributed to other       //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction  //// 
+.................... //// or distribution is permitted without written permission.           //// 
+.................... //// Derivative programs created using this software in object code     //// 
+.................... //// form are not restricted in any way.                                //// 
+.................... //////////////////////////////////////////////////////////////////////////// 
+....................  
+.................... #ifndef _CTYPE 
+.................... #define _CTYPE 
+....................  
+.................... #define islower(x)  isamong(x,"abcdefghijklmnopqrstuvwxyz") 
+.................... #define isupper(x)  isamong(x,"ABCDEFGHIJKLMNOPQRSTUVWXYZ") 
+.................... #define isalnum(x)  isamong(x,"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") 
+.................... #define isalpha(x)  isamong(x,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") 
+.................... #define isdigit(x)  isamong(x,"0123456789") 
+.................... #define isspace(x)  ((x)==' ') 
+.................... #define isxdigit(x) isamong(x,"0123456789ABCDEFabcdef") 
+.................... #define iscntrl(x)  ((x)<' ') 
+.................... #define isprint(x)  ((x)>=' ') 
+.................... #define isgraph(x)  ((x)>' ') 
+.................... #define ispunct(x)  (((x)>' ')&&!isalnum(x)) 
+....................  
+.................... #endif 
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... ////////////////////////////////////////////// 
+.................... //// Uncomment the following define to    //// 
+.................... //// allow some functions to use a        //// 
+.................... //// quicker algorithm, but use more ROM  //// 
+.................... ////                                      //// 
+.................... //// #define FASTER_BUT_MORE_ROM          //// 
+.................... ////////////////////////////////////////////// 
+....................  
+....................  
+....................  
+.................... /*Copying functions*/ 
+.................... /* standard template: 
+....................    void *memmove(void *s1, void *s2, size_t n). 
+....................    Copies max of n characters safely (not following ending '\0') 
+....................    from s2 in s1; if s2 has less than n characters, appends 0 */ 
+....................  
+.................... char *memmove(void *s1,char *s2,size_t n) 
+.................... { 
+....................    char *sc1; 
+....................    char *sc2; 
+....................    sc1=s1; 
+....................    sc2=s2; 
+....................    if(sc2<sc1 && sc1 <sc2 +n) 
+....................       for(sc1+=n,sc2+=n;0<n;--n) 
+....................          *--sc1=*--sc2; 
+....................    else 
+....................       for(;0<n;--n) 
+....................          *sc1++=*sc2++; 
+....................   return s1; 
+....................   } 
+....................  
+.................... /* Standard template: char *strcpy(char *s1, const char *s2) 
+....................    copies the string s2 including the null character to s1. 
+....................    This is a compiler built in to handle the different address 
+....................    spaces */ 
+....................  
+.................... #define strcopy strcpy 
+....................  
+.................... /* standard template: 
+....................    char *strncpy(char *s1, const char *s2, size_t n). 
+....................    Copies max of n characters (not following ending '\0') 
+....................    from s2 in s1; if s2 has less than n characters, appends 0 */ 
+....................  
+.................... char *strncpy(char *s1, char *s2, size_t n) 
+.................... { 
+....................   char *s; 
+....................  
+....................   for (s = s1; n > 0 && *s2 != '\0'; n--) 
+....................      *s++ = *s2++; 
+....................   for (; n > 0; n--) 
+....................      *s++ = '\0'; 
+....................  
+....................   return(s1); 
+.................... } 
+.................... /***********************************************************/ 
+....................  
+.................... /*concatenation functions*/ 
+.................... /* standard template: char *strcat(char *s1, const char *s2) 
+.................... appends s2 to s1*/ 
+....................  
+.................... char *strcat(char *s1, char *s2) 
+.................... { 
+....................    char *s; 
+....................  
+....................    for (s = s1; *s != '\0'; ++s); 
+....................    while(*s2 != '\0') 
+....................    { 
+....................       *s = *s2; 
+....................       ++s; 
+....................       ++s2; 
+....................    } 
+....................  
+....................    *s = '\0'; 
+....................    return(s1); 
+.................... } 
+.................... /* standard template: char *strncat(char *s1, char *s2,size_t n) 
+.................... appends not more than n characters from s2 to s1*/ 
+....................  
+.................... char *strncat(char *s1, char *s2, size_t n) 
+.................... { 
+....................    char *s; 
+....................  
+....................    for (s = s1; *s != '\0'; ++s); 
+....................    while(*s2 != '\0' && 0<n) 
+....................    { 
+....................       *s = *s2; 
+....................       ++s; 
+....................       ++s2; 
+....................       --n; 
+....................    } 
+....................  
+....................    *s = '\0'; 
+....................    return(s1); 
+.................... } 
+....................  
+.................... /***********************************************************/ 
+....................  
+....................  
+.................... /*comparison functions*/ 
+.................... /* standard template: signed int memcmp(void *s1, void *s2). 
+....................    Compares s1 & s2; returns -1 if s1<s2, 0 if s1=s2, 1 if s1>s2 */ 
+....................  
+.................... signed int8 memcmp(void * s1,char *s2,size_t n) 
+.................... { 
+.................... char *su1, *su2; 
+.................... for(su1=s1, su2=s2; 0<n; ++su1, ++su2, --n) 
+.................... { 
+....................    if(*su1!=*su2) 
+....................       return ((*su1<*su2)?-1:+1); 
+.................... } 
+.................... return 0; 
+.................... } 
+....................  
+.................... /* standard template: int strcmp(const char *s1, const char *s2). 
+....................    Compares s1 & s2; returns -1 if s1<s2, 0 if s1=s2, 1 if s1>s2 */ 
+....................  
+.................... signed int8 strcmp(char *s1, char *s2) 
+.................... { 
+....................    for (; *s1 == *s2; s1++, s2++) 
+....................       if (*s1 == '\0') 
+....................          return(0); 
+....................    return((*s1 < *s2) ? -1: 1); 
+.................... } 
+.................... /* standard template: int strcoll(const char *s1, const char *s2). 
+....................    Compares s1 & s2; returns -1 if s1<s2, 0 if s1=s2, 1 if s1>s2 */ 
+....................  
+.................... signed int8 strcoll(char *s1, char *s2) 
+.................... { 
+....................    for (; *s1 == *s2; s1++, s2++) 
+....................       if (*s1 == '\0') 
+....................          return(0); 
+....................    return((*s1 < *s2) ? -1: 1); 
+.................... } 
+....................  
+.................... /* standard template: 
+....................    int strncmp(const char *s1, const char *s2, size_t n). 
+....................    Compares max of n characters (not following 0) from s1 to s2; 
+....................    returns same as strcmp */ 
+....................  
+.................... signed int8 strncmp(char *s1, char *s2, size_t n) 
+.................... { 
+....................    for (; n > 0; s1++, s2++, n--) 
+*
+0A2C:  MOVF   xFE,F
+0A2E:  BNZ   0A34
+0A30:  MOVF   xFF,F
+0A32:  BZ    0AC4
+....................       if (*s1 != *s2) 
+0A34:  MOVFF  FA,FE9
+0A38:  MOVFF  FB,FEA
+0A3C:  MOVFF  FEF,100
+0A40:  MOVFF  FD,03
+0A44:  MOVFF  FC,FE9
+0A48:  MOVFF  FD,FEA
+0A4C:  MOVF   FEF,W
+0A4E:  MOVLB  1
+0A50:  SUBWF  x00,W
+0A52:  BZ    0A86
+....................          return((*s1 <*s2) ? -1: 1); 
+0A54:  MOVFF  FB,03
+0A58:  MOVLB  0
+0A5A:  MOVFF  FA,FE9
+0A5E:  MOVFF  03,FEA
+0A62:  MOVFF  FEF,100
+0A66:  MOVFF  FD,03
+0A6A:  MOVFF  FC,FE9
+0A6E:  MOVFF  FD,FEA
+0A72:  MOVF   FEF,W
+0A74:  MOVLB  1
+0A76:  SUBWF  x00,W
+0A78:  BC    0A7E
+0A7A:  MOVLW  FF
+0A7C:  BRA    0A80
+0A7E:  MOVLW  01
+0A80:  MOVWF  01
+0A82:  BRA    0ACA
+0A84:  BRA    0AA0
+....................       else if (*s1 == '\0') 
+0A86:  MOVFF  FB,03
+0A8A:  MOVLB  0
+0A8C:  MOVFF  FA,FE9
+0A90:  MOVFF  FB,FEA
+0A94:  MOVF   FEF,F
+0A96:  BNZ   0AA2
+....................          return(0); 
+0A98:  MOVLW  00
+0A9A:  MOVWF  01
+0A9C:  MOVLB  1
+0A9E:  BRA    0ACA
+0AA0:  MOVLB  0
+0AA2:  MOVFF  FB,03
+0AA6:  MOVF   xFA,W
+0AA8:  INCF   xFA,F
+0AAA:  BTFSC  FD8.2
+0AAC:  INCF   xFB,F
+0AAE:  MOVFF  FD,03
+0AB2:  MOVF   xFC,W
+0AB4:  INCF   xFC,F
+0AB6:  BTFSC  FD8.2
+0AB8:  INCF   xFD,F
+0ABA:  MOVF   xFE,W
+0ABC:  BTFSC  FD8.2
+0ABE:  DECF   xFF,F
+0AC0:  DECF   xFE,F
+0AC2:  BRA    0A2C
+....................    return(0); 
+0AC4:  MOVLW  00
+0AC6:  MOVWF  01
+0AC8:  MOVLB  1
+0ACA:  MOVLB  0
+0ACC:  RETURN 0
+.................... } 
+.................... /* standard template: 
+....................    int strxfrm(const char *s1, const char *s2, size_t n). 
+....................    transforms maximum of n characters from s2 and places them into s1*/ 
+.................... size_t strxfrm(char *s1, char *s2, size_t n) 
+.................... { 
+....................   char *s; 
+....................   unsigned int8 n1; 
+....................   n1=n; 
+....................   for (s = s1; n > 0 && *s2 != '\0'; n--) 
+....................      *s++ = *s2++; 
+....................   for (; n > 0; n--) 
+....................      *s++ = '\0'; 
+....................  
+....................   return(n1); 
+.................... } 
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... /***********************************************************/ 
+.................... /*Search functions*/ 
+.................... /* standard template: void *memchr(const char *s, int c). 
+....................    Finds first occurrence of c in n characters of s */ 
+....................  
+.................... char *memchr(void *s,unsigned int8 c,size_t n) 
+.................... { 
+....................    char uc; 
+....................    char *su; 
+....................    uc=c; 
+....................    for(su=s;0<n;++su,--n) 
+....................       if(*su==uc) 
+....................       return su; 
+....................    return NULL; 
+.................... } 
+....................  
+.................... /* standard template: char *strchr(const char *s, int c). 
+....................    Finds first occurrence of c in s */ 
+....................  
+.................... char *strchr(char *s, unsigned int8 c) 
+.................... { 
+....................    for (; *s != c; s++) 
+....................       if (*s == '\0') 
+....................          return(0); 
+....................    return(s); 
+.................... } 
+.................... /* standard template: 
+....................    size_t strcspn(const char *s1, const char *s2). 
+....................    Computes length of max initial segment of s1 that 
+....................    consists entirely of characters NOT from s2*/ 
+....................  
+.................... unsigned int8  strcspn(char *s1, char *s2) 
+.................... { 
+....................    char *sc1, *sc2; 
+....................  
+....................    for (sc1 = s1; *sc1 != 0; sc1++) 
+....................       for (sc2 = s2; *sc2 != 0; sc2++) 
+....................          if (*sc1 == *sc2) 
+....................             return(sc1 - s1); 
+....................    return(sc1 - s1); 
+.................... } 
+.................... /* standard template: 
+....................    char *strpbrk(const char *s1, const char *s2). 
+....................    Locates first occurence of any character from s2 in s1; 
+....................    returns s1 if s2 is empty string */ 
+....................  
+.................... char *strpbrk(char *s1, char *s2) 
+.................... { 
+....................    char *sc1, *sc2; 
+....................  
+....................    for (sc1 = s1; *sc1 != 0; sc1++) 
+....................       for (sc2 = s2; *sc2 != 0; sc2++) 
+....................          if (*sc1 == *sc2) 
+....................             return(sc1); 
+....................    return(0); 
+.................... } 
+....................  
+....................  
+.................... /* standard template: char *strrchr(const char *s, int c). 
+....................    Finds last occurrence of c in s */ 
+....................  
+.................... char *strrchr(char *s, unsigned int8 c) 
+.................... { 
+....................    char *p; 
+....................  
+....................    for (p = 0; ; s++) 
+....................    { 
+....................       if (*s == c) 
+....................          p = s; 
+....................       if (*s == '\0') 
+....................          return(p); 
+....................    } 
+.................... } 
+.................... /* computes length of max initial segment of s1 consisting 
+....................    entirely of characters from s2 */ 
+....................  
+.................... unsigned int8  strspn(char *s1, char *s2) 
+.................... { 
+....................    char *sc1, *sc2; 
+....................  
+....................    for (sc1 = s1; *sc1 != 0; sc1++) 
+....................       for (sc2 = s2; ; sc2++) 
+....................     if (*sc2 == '\0') 
+....................        return(sc1 - s1); 
+....................          else if (*sc1 == *sc2) 
+....................             break; 
+....................    return(sc1 - s1); 
+.................... } 
+.................... /* standard template: 
+....................    char *strstr(const char *s1, const char *s2); 
+....................    Locates first occurence of character sequence s2 in s1; 
+....................    returns 0 if s2 is empty string 
+....................  
+....................    Uncomment #define FASTER_BUT_MORE_ROM at the top of the 
+....................    file to use the faster algorithm */ 
+.................... char *strstr(char *s1, char *s2) 
+.................... { 
+....................    char *s, *t; 
+....................  
+....................    #ifdef FASTER_BUT_MORE_ROM 
+....................    if (*s2 == '\0') 
+....................          return(s1); 
+....................    #endif 
+....................  
+....................    while (*s1) 
+....................    { 
+....................       for(s = s1, t = s2; *t && (*s == *t); ++s, ++t); 
+....................  
+....................       if (*t == '\0') 
+....................          return s1; 
+....................       ++s1; 
+....................       #ifdef FASTER_BUT_MORE_ROM 
+....................          while(*s1 != '\0' && *s1 != *s2) 
+....................             ++s1; 
+....................       #endif 
+....................    } 
+....................    return 0; 
+.................... } 
+....................  
+.................... /* standard template: char *strtok(char *s1, const char *s2). 
+....................  
+....................    Finds next token in s1 delimited by a character from separator 
+....................    string s2 (which can be different from call to call).  First call 
+....................    starts at beginning of s1 searching for first character NOT 
+....................    contained in s2; returns 0 if none is found. 
+....................    If one is found, it is the start of first token (return value). 
+....................    Function then searches from there for a character contained in s2. 
+....................    If none is found, current token extends to end of s1, and subsequent 
+....................    searches for a token will return 0.  If one is found, it is 
+....................    overwritten by '\0', which terminates current token.  Function saves 
+....................    pointer to following character from which next search will start. 
+....................    Each subsequent call, with 0 as first argument, starts searching 
+....................    from saved pointer */ 
+....................  
+.................... char *strtok(char *s1, char *s2) 
+.................... { 
+....................    char *beg, *end; 
+....................    static char *save; 
+....................  
+....................    beg = (s1)? s1: save; 
+....................    beg += strspn(beg, s2); 
+....................    if (*beg == '\0') 
+....................    { 
+....................       *save = ' '; 
+....................       return(0); 
+....................    } 
+....................    end = strpbrk(beg, s2); 
+....................    if (*end != '\0') 
+....................    { 
+....................       *end = '\0'; 
+....................       end++; 
+....................    } 
+....................    save = end; 
+....................    return(beg); 
+.................... } 
+....................  
+.................... /*****************************************************************/ 
+.................... /*Miscellaneous functions*/ 
+.................... /* standard template 
+.................... maps error number in errnum to an error message string 
+.................... Returns: Pointer to string 
+.................... */ 
+.................... #ifdef _ERRNO 
+.................... char * strerror(unsigned int8 errnum) 
+.................... { 
+.................... static char s[13]; 
+.................... switch( errnum) 
+.................... { 
+.................... case 0: 
+....................    strcpy(s,"no errors"); 
+....................    return s; 
+.................... case EDOM : 
+....................    strcpy(s,"domain error"); 
+....................    return s; 
+.................... case ERANGE: 
+....................    strcpy(s,"range error"); 
+....................    return s; 
+.................... } 
+.................... } 
+.................... #ENDIF 
+.................... /* standard template: size_t strlen(const char *s). 
+....................    Computes length of s1 (preceding terminating 0) */ 
+....................  
+.................... unsigned int8 strlen(char *s) 
+.................... { 
+....................    char *sc; 
+....................  
+....................    for (sc = s; *sc != 0; sc++); 
+....................    return(sc - s); 
+.................... } 
+....................  
+.................... /* standard template: size_t stricmp(const char *s1, const char *s2). 
+....................    Compares s1 to s2 ignoring case (upper vs. lower) */ 
+....................  
+.................... signed int8 stricmp(char *s1, char *s2) 
+.................... { 
+....................  for(; *s1==*s2||(isalpha(*s1)&&isalpha(*s2)&&(*s1==*s2+32||*s2==*s1+32)); 
+....................     s1++, s2++) 
+....................     if (*s1 == '\0') 
+....................        return(0); 
+....................  return((*s1 < *s2) ? -1: 1); 
+.................... } 
+....................  
+....................  
+.................... /* standard template: char *strlwr(char *s). 
+....................    Replaces uppercase letters by lowercase; 
+....................    returns pointer to new string s */ 
+....................  
+.................... char *strlwr(char *s) 
+.................... { 
+....................    char *p; 
+....................  
+....................    for (p = s; *p != '\0'; p++) 
+....................       if (*p >= 'A' && *p <='Z') 
+....................          *p += 'a' - 'A'; 
+....................    return(s); 
+.................... } 
+....................  
+.................... /* standard template: char *strupr(char *s). 
+....................    Replaces lowercase letters by upercase; 
+....................    returns pointer to new string s */ 
+....................  
+.................... char *strupr(char *s) 
+.................... { 
+....................    char *p; 
+....................  
+....................    for (p = s; *p != '\0'; p++) 
+....................       if (*p >= 'a' && *p <='z') 
+....................          *p -= 'a' - 'A'; 
+....................    return(s); 
+.................... } 
+....................  
+....................  
+.................... /************************************************************/ 
+....................  
+....................  
+.................... #endif 
+....................  
+....................  
+.................... uchar_t rxData[32];    
+.................... uchar_t txData[32]; 
+.................... uchar_t data_in; 
+.................... uint8_t rxData_count;  
+.................... unUSARTF_t unUSARTF;        
+.................... uchar_t terminal_text1[15];  
+.................... uchar_t terminal_text2[27];                               
+.................... uchar_t terminal_text3[17];   
+.................... uint8_t terminal_text1_Count,terminal_text2_Count ,terminal_text3_Count,terminal_text4_Count;  
+.................... uint8_t terminal_text1_size,terminal_text2_size ,terminal_text3_size,terminal_text4_size;  
+.................... uint8_t noKbHit_count;     
+.................... uint8_t switchTerminal_position;                         
+.................... uint8_t UART_BUSY;  
+....................                                            
+.................... uchar_t cmd1[]="LCD.ON";   uchar_t cmd2[]="LCD.OFF";  uchar_t cmd3[]="TEMP.ON"; 
+.................... uchar_t cmd4[]="TEMP.OFF"; uchar_t cmd5[]="LED.ON";   uchar_t cmd6[]="LED.OFF";  
+....................                                        
+....................  
+....................                                           
+....................                
+.................... void USART_Init(){                             
+....................    usart_inst.all=0x03;                                                        
+*
+064E:  MOVLW  03
+0650:  MOVWF  19
+....................                                                        
+....................    TRISC_6=0;        // Make Tx pin as output    
+0652:  BCF    F94.6
+....................    TRISC_7=1;        // Make Rx pin as input                                                                   
+0654:  BSF    F94.7
+....................    //Baud rate=9600, SPBRG = (F_CPU /(64*9600))-1         
+....................    SPBRG = 0x0C;                       
+0656:  MOVLW  0C
+0658:  MOVWF  FAF
+....................    TXSTA = 0x20;     // Enable Transmit(TX)   
+065A:  MOVLW  20
+065C:  MOVWF  FAC
+....................    RCSTA = 0x90;     // Enable Receive(RX) & Serial 
+065E:  MOVLW  90
+0660:  MOVWF  FAB
+....................                          
+....................    terminal_text1_size=sizeof(terminal_text1)/sizeof(terminal_text1[0]); 
+0662:  MOVLW  0F
+0664:  MOVWF  x9D
+....................    terminal_text2_size=sizeof(terminal_text2)/sizeof(terminal_text2[0]);   
+0666:  MOVLW  1B
+0668:  MOVWF  x9E
+....................    terminal_text3_size=sizeof(terminal_text3)/sizeof(terminal_text3[0]); 
+066A:  MOVLW  11
+066C:  MOVWF  x9F
+....................    terminal_text4_size=32;                             
+066E:  MOVLW  20
+0670:  MOVWF  xA0
+....................    memcpy(terminal_text1,"\fMEVCUT YAZI: ",terminal_text1_size);   
+0672:  CLRF   FEA
+0674:  MOVLW  5E
+0676:  MOVWF  FE9
+0678:  MOVFF  FF2,FA
+067C:  BCF    FF2.7
+067E:  MOVF   x9D,W
+0680:  MOVWF  01
+0682:  BZ    069A
+0684:  CLRF   FF7
+0686:  MOVLW  00
+0688:  RCALL  0096
+068A:  TBLRD*-
+068C:  TBLRD*+
+068E:  MOVFF  FF5,FEE
+0692:  DECFSZ 01,F
+0694:  BRA    068C
+0696:  BTFSC  xFA.7
+0698:  BSF    FF2.7
+....................    memcpy(terminal_text2,"\rLutfen bir yazi giriniz: ",terminal_text2_size);   
+069A:  CLRF   FEA
+069C:  MOVLW  6D
+069E:  MOVWF  FE9
+06A0:  MOVFF  FF2,FA
+06A4:  BCF    FF2.7
+06A6:  MOVF   x9E,W
+06A8:  MOVWF  01
+06AA:  BZ    06C2
+06AC:  CLRF   FF7
+06AE:  MOVLW  00
+06B0:  RCALL  00C0
+06B2:  TBLRD*-
+06B4:  TBLRD*+
+06B6:  MOVFF  FF5,FEE
+06BA:  DECFSZ 01,F
+06BC:  BRA    06B4
+06BE:  BTFSC  xFA.7
+06C0:  BSF    FF2.7
+....................    memcpy(terminal_text3,"\rLimit Asildi!!!",terminal_text3_size);   
+06C2:  CLRF   FEA
+06C4:  MOVLW  88
+06C6:  MOVWF  FE9
+06C8:  MOVFF  FF2,FA
+06CC:  BCF    FF2.7
+06CE:  MOVF   x9F,W
+06D0:  MOVWF  01
+06D2:  BZ    06EA
+06D4:  CLRF   FF7
+06D6:  MOVLW  00
+06D8:  RCALL  0402
+06DA:  TBLRD*-
+06DC:  TBLRD*+
+06DE:  MOVFF  FF5,FEE
+06E2:  DECFSZ 01,F
+06E4:  BRA    06DC
+06E6:  BTFSC  xFA.7
+06E8:  BSF    FF2.7
+06EA:  GOTO   0198 (RETURN)
+.................... }       
+....................      
+....................  
+.................... uchar_t USART_RxCharBuffer(){ 
+....................     if(RCIF_PIR1==1){         //wait for receive interrupt flag    
+*
+0A20:  BTFSS  F9E.5
+0A22:  BRA    0A28
+....................     return(RCREG);           //received in RCREG register and return to main program  
+0A24:  MOVFF  FAE,01
+....................     } 
+0A28:  GOTO   0B82 (RETURN)
+.................... }                           
+....................                                            
+.................... void USART_TxCharBuffer(uint8_t textIndex_charIndex){                 
+....................    if(OERR_RCSTA){               
+*
+0C28:  BTFSS  FAB.1
+0C2A:  BRA    0C32
+....................       CREN_RCSTA = 0;         
+0C2C:  BCF    FAB.4
+....................       #ASM NOP #ENDASM 
+0C2E:  NOP   
+....................       CREN_RCSTA=1; 
+0C30:  BSF    FAB.4
+....................    }                                    
+....................    TXREG = txData[textIndex_charIndex];             //Write char data to transmit register 
+0C32:  CLRF   03
+0C34:  MOVF   xFC,W
+0C36:  ADDLW  3C
+0C38:  MOVWF  FE9
+0C3A:  MOVLW  00
+0C3C:  ADDWFC 03,W
+0C3E:  MOVWF  FEA
+0C40:  MOVFF  FEF,FAD
+....................    TXIF_PIR1=0; 
+0C44:  BCF    F9E.4
+0C46:  GOTO   0CE2 (RETURN)
+.................... }                    
+....................                                                          
+.................... void rs232t_txText(uint8_t text_index, uint8_t textIndex_charIndex){ 
+....................     if(text_index==0&&textIndex_charIndex==0){                                    
+0C4A:  MOVF   xFA,F
+0C4C:  BNZ   0C6E
+0C4E:  MOVF   xFB,F
+0C50:  BNZ   0C6E
+....................       memcpy(txData, terminal_text1, terminal_text1_size);   
+0C52:  CLRF   FEA
+0C54:  MOVLW  3C
+0C56:  MOVWF  FE9
+0C58:  CLRF   FE2
+0C5A:  MOVLW  5E
+0C5C:  MOVWF  FE1
+0C5E:  MOVF   x9D,W
+0C60:  MOVWF  01
+0C62:  BZ    0C6C
+0C64:  MOVFF  FE6,FEE
+0C68:  DECFSZ 01,F
+0C6A:  BRA    0C64
+....................     }else if(text_index==1&&textIndex_charIndex==0){ 
+0C6C:  BRA    0CDC
+0C6E:  DECFSZ xFA,W
+0C70:  BRA    0C92
+0C72:  MOVF   xFB,F
+0C74:  BNZ   0C92
+....................       memcpy(txData, terminal_text2, terminal_text2_size);    
+0C76:  CLRF   FEA
+0C78:  MOVLW  3C
+0C7A:  MOVWF  FE9
+0C7C:  CLRF   FE2
+0C7E:  MOVLW  6D
+0C80:  MOVWF  FE1
+0C82:  MOVF   x9E,W
+0C84:  MOVWF  01
+0C86:  BZ    0C90
+0C88:  MOVFF  FE6,FEE
+0C8C:  DECFSZ 01,F
+0C8E:  BRA    0C88
+....................     }else if(text_index==2&&textIndex_charIndex==0){             
+0C90:  BRA    0CDC
+0C92:  MOVF   xFA,W
+0C94:  SUBLW  02
+0C96:  BNZ   0CB8
+0C98:  MOVF   xFB,F
+0C9A:  BNZ   0CB8
+....................       memcpy(txData, terminal_text3, terminal_text3_size);   
+0C9C:  CLRF   FEA
+0C9E:  MOVLW  3C
+0CA0:  MOVWF  FE9
+0CA2:  CLRF   FE2
+0CA4:  MOVLW  88
+0CA6:  MOVWF  FE1
+0CA8:  MOVF   x9F,W
+0CAA:  MOVWF  01
+0CAC:  BZ    0CB6
+0CAE:  MOVFF  FE6,FEE
+0CB2:  DECFSZ 01,F
+0CB4:  BRA    0CAE
+....................     }else if(text_index==3&&textIndex_charIndex==0){              
+0CB6:  BRA    0CDC
+0CB8:  MOVF   xFA,W
+0CBA:  SUBLW  03
+0CBC:  BNZ   0CDC
+0CBE:  MOVF   xFB,F
+0CC0:  BNZ   0CDC
+....................       memcpy(txData, strLCD, terminal_text4_size);    
+0CC2:  CLRF   FEA
+0CC4:  MOVLW  3C
+0CC6:  MOVWF  FE9
+0CC8:  CLRF   FE2
+0CCA:  MOVLW  D4
+0CCC:  MOVWF  FE1
+0CCE:  MOVF   xA0,W
+0CD0:  MOVWF  01
+0CD2:  BZ    0CDC
+0CD4:  MOVFF  FE6,FEE
+0CD8:  DECFSZ 01,F
+0CDA:  BRA    0CD4
+....................     }                                        
+....................     USART_TxCharBuffer(textIndex_charIndex);   
+0CDC:  MOVFF  FB,FC
+0CE0:  BRA    0C28
+0CE2:  RETURN 0
+....................                                                                                                                   
+.................... }       
+.................... uint8_t compare(){             
+....................                                     
+....................    return 15; 
+.................... } 
+.................... void activationCommands(){   
+....................     if(!strncmp(rxData,cmd1,5)){ 
+*
+0ACE:  CLRF   xFB
+0AD0:  MOVLW  1C
+0AD2:  MOVWF  xFA
+0AD4:  CLRF   xFD
+0AD6:  MOVLW  A4
+0AD8:  MOVWF  xFC
+0ADA:  CLRF   xFF
+0ADC:  MOVLW  05
+0ADE:  MOVWF  xFE
+0AE0:  RCALL  0A2C
+0AE2:  MOVF   01,F
+0AE4:  BNZ   0AEA
+....................       usart_inst.a.LCD=1;               
+0AE6:  BSF    19.0
+....................    }else if(!strncmp(rxData,cmd2,6)){ 
+0AE8:  BRA    0B78
+0AEA:  CLRF   xFB
+0AEC:  MOVLW  1C
+0AEE:  MOVWF  xFA
+0AF0:  CLRF   xFD
+0AF2:  MOVLW  AB
+0AF4:  MOVWF  xFC
+0AF6:  CLRF   xFF
+0AF8:  MOVLW  06
+0AFA:  MOVWF  xFE
+0AFC:  RCALL  0A2C
+0AFE:  MOVF   01,F
+0B00:  BNZ   0B08
+....................       usart_inst.a.LCD=0; 
+0B02:  BCF    19.0
+....................       lcdClear();                        
+0B04:  RCALL  0606
+....................    }else if(!strncmp(rxData,cmd3,6)){       
+0B06:  BRA    0B78
+0B08:  CLRF   xFB
+0B0A:  MOVLW  1C
+0B0C:  MOVWF  xFA
+0B0E:  CLRF   xFD
+0B10:  MOVLW  B3
+0B12:  MOVWF  xFC
+0B14:  CLRF   xFF
+0B16:  MOVLW  06
+0B18:  MOVWF  xFE
+0B1A:  RCALL  0A2C
+0B1C:  MOVF   01,F
+0B1E:  BNZ   0B24
+....................       usart_inst.a.TEMP=1;            
+0B20:  BSF    19.1
+....................    }else if(!strncmp(rxData,cmd4,7)){        
+0B22:  BRA    0B78
+0B24:  CLRF   xFB
+0B26:  MOVLW  1C
+0B28:  MOVWF  xFA
+0B2A:  CLRF   xFD
+0B2C:  MOVLW  BB
+0B2E:  MOVWF  xFC
+0B30:  CLRF   xFF
+0B32:  MOVLW  07
+0B34:  MOVWF  xFE
+0B36:  RCALL  0A2C
+0B38:  MOVF   01,F
+0B3A:  BNZ   0B40
+....................    usart_inst.a.TEMP=0;                      
+0B3C:  BCF    19.1
+....................    }else if(!strncmp(rxData,cmd5,5)){            
+0B3E:  BRA    0B78
+0B40:  CLRF   xFB
+0B42:  MOVLW  1C
+0B44:  MOVWF  xFA
+0B46:  CLRF   xFD
+0B48:  MOVLW  C4
+0B4A:  MOVWF  xFC
+0B4C:  CLRF   xFF
+0B4E:  MOVLW  05
+0B50:  MOVWF  xFE
+0B52:  RCALL  0A2C
+0B54:  MOVF   01,F
+0B56:  BNZ   0B5C
+....................       usart_inst.a.LED=1;                              
+0B58:  BSF    19.2
+....................    }else if(!strncmp(rxData,cmd6,6)){                
+0B5A:  BRA    0B78
+0B5C:  CLRF   xFB
+0B5E:  MOVLW  1C
+0B60:  MOVWF  xFA
+0B62:  CLRF   xFD
+0B64:  MOVLW  CB
+0B66:  MOVWF  xFC
+0B68:  CLRF   xFF
+0B6A:  MOVLW  06
+0B6C:  MOVWF  xFE
+0B6E:  RCALL  0A2C
+0B70:  MOVF   01,F
+0B72:  BNZ   0B78
+....................       usart_inst.a.LED=0;       
+0B74:  BCF    19.2
+....................       PORTB_7=0;                   
+0B76:  BCF    F81.7
+....................    }                   
+0B78:  GOTO   0BB8 (RETURN)
+.................... }                   
+....................                                  
+.................... void rs232t(){    
+....................       unUSARTF.stUSARTF.noKbhit=0; 
+0B7C:  BCF    xD3.0
+....................       noKbHit_count=0;                        
+0B7E:  CLRF   xA1
+....................       data_in=USART_RxCharBuffer();                  
+0B80:  BRA    0A20
+0B82:  MOVFF  01,5C
+....................       if(data_in==8 && rxData_count>0){                                                  
+0B86:  MOVF   5C,W
+0B88:  SUBLW  08
+0B8A:  BNZ   0BA4
+0B8C:  MOVF   5D,F
+0B8E:  BZ    0BA4
+....................          rxData_count--;                                                           
+0B90:  DECF   5D,F
+....................          rxData[rxData_count]=0;                                                           
+0B92:  CLRF   03
+0B94:  MOVF   5D,W
+0B96:  ADDLW  1C
+0B98:  MOVWF  FE9
+0B9A:  MOVLW  00
+0B9C:  ADDWFC 03,W
+0B9E:  MOVWF  FEA
+0BA0:  CLRF   FEF
+....................       }else if(data_in==13){   
+0BA2:  BRA    0C24
+0BA4:  MOVF   5C,W
+0BA6:  SUBLW  0D
+0BA8:  BNZ   0BFE
+....................          unUSARTF.all=0;      
+0BAA:  CLRF   xD3
+....................          unUSARTF.stUSARTF.enter_flag=1;  
+0BAC:  BSF    xD3.1
+....................          terminal_text1_Count=0,terminal_text2_Count=0,terminal_text3_Count=0,terminal_text4_Count=0; 
+0BAE:  CLRF   x99
+0BB0:  CLRF   x9A
+0BB2:  CLRF   x9B
+0BB4:  CLRF   x9C
+....................          activationCommands(); 
+0BB6:  BRA    0ACE
+....................          rxData[rxData_count+1] = "\0";  
+0BB8:  MOVLW  01
+0BBA:  ADDWF  5D,W
+0BBC:  CLRF   03
+0BBE:  ADDLW  1C
+0BC0:  MOVWF  01
+0BC2:  MOVLW  00
+0BC4:  ADDWFC 03,F
+0BC6:  MOVFF  03,FEA
+0BCA:  MOVFF  01,FE9
+0BCE:  CLRF   FEF
+....................          memcpy(strLCD, rxData, 32);   
+0BD0:  CLRF   FEA
+0BD2:  MOVLW  D4
+0BD4:  MOVWF  FE9
+0BD6:  CLRF   FE2
+0BD8:  MOVLW  1C
+0BDA:  MOVWF  FE1
+0BDC:  MOVLW  20
+0BDE:  MOVWF  01
+0BE0:  MOVFF  FE6,FEE
+0BE4:  DECFSZ 01,F
+0BE6:  BRA    0BE0
+....................          memset(rxData, 0, sizeof(rxData));                        
+0BE8:  CLRF   FEA
+0BEA:  MOVLW  1C
+0BEC:  MOVWF  FE9
+0BEE:  CLRF   00
+0BF0:  CLRF   02
+0BF2:  MOVLW  20
+0BF4:  MOVWF  01
+0BF6:  RCALL  06F4
+....................          rxData_count=0;     
+0BF8:  CLRF   5D
+....................          switchTerminal_position=0;        
+0BFA:  CLRF   xA2
+....................       }else if(rxData_count>31){  
+0BFC:  BRA    0C24
+0BFE:  MOVF   5D,W
+0C00:  SUBLW  1F
+0C02:  BC    0C10
+....................          switchTerminal_position=4; 
+0C04:  MOVLW  04
+0C06:  MOVWF  xA2
+....................          unUSARTF.stUSARTF.recieve_exceed=1; 
+0C08:  BSF    xD3.2
+....................          unUSARTF.stUSARTF.terminal_text3_flag=0; 
+0C0A:  BCF    xD3.5
+....................          terminal_text3_Count=0;   
+0C0C:  CLRF   x9B
+....................       }else {                         
+0C0E:  BRA    0C24
+....................          rxData[rxData_count] = data_in;  
+0C10:  CLRF   03
+0C12:  MOVF   5D,W
+0C14:  ADDLW  1C
+0C16:  MOVWF  FE9
+0C18:  MOVLW  00
+0C1A:  ADDWFC 03,W
+0C1C:  MOVWF  FEA
+0C1E:  MOVFF  5C,FEF
+....................          rxData_count++;             
+0C22:  INCF   5D,F
+....................       }   
+0C24:  GOTO   0CEA (RETURN)
+....................        
+.................... }                                               
+....................  
+....................  
+....................                            
+.................... usart_t usart_inst; //ACTIVE_PASIVE_FLAGS_OF_USART                     
+.................... uint16_t iSayac;           
+.................... tmr1_time_t tmr1_time; 
+.................... void WDTreset(void); 
+....................                           
+.................... void setupTimerIOSC(void){  
+....................  
+....................    //Setup Osilator 
+....................    IRCF2 = 1; 
+*
+0556:  BSF    FD3.6
+....................    IRCF1 = 1; 
+0558:  BSF    FD3.5
+....................    IRCF0 = 1;               
+055A:  BSF    FD3.4
+....................                          
+....................    //D ve P portlari cikis olarak ayarlanip sifirlandi. 
+....................    TRISB = 0x01;                  
+055C:  MOVLW  01
+055E:  MOVWF  F93
+....................    TRISD = 0x00; 
+0560:  CLRF   F95
+....................    TRISE = 0x00; 
+0562:  CLRF   F96
+....................    PORTB = 0x00;                                                       
+0564:  CLRF   F81
+....................    PORTD = 0x00; 
+0566:  CLRF   F8C
+....................    PORTE = 0x00;  
+0568:  CLRF   F84
+....................                                                       
+....................    //TMR1 etkinlik bayraklari sifirlandi 
+....................    tmr1_time.all = 0; 
+056A:  CLRF   18
+....................  
+....................    // Kesmelere izin verildi 
+....................    RCON_IPEN = 1;                                               
+056C:  BSF    FD0.7
+....................    INTCON_GIE_GIEH = 1; 
+056E:  BSF    FF2.7
+....................    INTCON_PEIE = 1; 
+0570:  BSF    FF2.6
+....................    IPR1_TMR1IP = 1; // TMR1 Overflow Interrupt Priority bit 
+0572:  BSF    F9F.0
+....................    PIE1_TMR1IE = 1; // TMR1 Overflow Interrupt Enable bit 
+0574:  BSF    F9D.0
+....................    PIR1_TMR1IF = 0; // TMR1 Overflow Interrupt Flag bit 
+0576:  BCF    F9E.0
+....................                                                                                        
+....................    //TIMER1 Konfigurasyon //50us 
+....................    T1CON_RD16 = 0; // 16 - bit Read / Write Mode Enable bit 
+0578:  BCF    FCD.7
+....................    T1CON_T1RUN = 0; // Timer1 System Clock Statusbit 
+057A:  BCF    FCD.6
+....................    T1CON_T1CKPS1 = 0; // Timer1 Input Clock Prescale Select bits | 1:1 Olcekleme 
+057C:  BCF    FCD.5
+....................    T1CON_T1CKPS0 = 0; // Timer1 Input Clock Prescale Select bits | 
+057E:  BCF    FCD.4
+....................    T1CON_T1OSCEN = 0; // Timer1 Oscillator Enable bit 
+0580:  BCF    FCD.3
+....................    T1CON_T1SYNC = 0; // Timer1 External Clock Input Synchronization Select bit 
+0582:  BCF    FCD.2
+....................    T1CON_TMR1CS = 0; // Timer1 Clock Source Select bit 
+0584:  BCF    FCD.1
+....................    TMR1H = 0xF8; //Tasma saayci| 
+0586:  MOVLW  F8
+0588:  MOVWF  FCF
+....................    TMR1L = 0x30; // |||65436 decimal sayisina esit. 
+058A:  MOVLW  30
+058C:  MOVWF  FCE
+....................    T1CON_TMR1ON = 1; // Timer1 On bit                                            
+058E:  BSF    FCD.0
+0590:  GOTO   0192 (RETURN)
+.................... } 
+....................                             
+.................... void adcSetup(){                                         
+....................    //A0 giris olarak ayarlandi          
+....................    PORTA_DIR_0 =1; 
+0594:  BSF    F92.0
+....................    PORTA_0 =0;   
+0596:  BCF    F80.0
+....................    ADCON1 = 0x0E; 
+0598:  MOVLW  0E
+059A:  MOVWF  FC1
+....................    PCFG0=0;                        
+059C:  BCF    FC1.0
+....................    //We use default value for +/- Vref 
+....................    //VCFG0=0,VCFG1=0 
+....................    //That means +Vref = Vdd (5v) and -Vref=GEN 
+....................    //ADCON1=0x00;                       
+....................    //ADC Result Right Justified.   
+....................    //Acquisition Time = 1TAD  
+....................    //Conversion Clock = 16 Tosc                  
+....................    ADCON2=0x89;                 
+059E:  MOVLW  89
+05A0:  MOVWF  FC0
+05A2:  GOTO   0194 (RETURN)
+.................... }  
+....................                         
+.................... void printOn2x16(){                   
+....................    delayUsFun(40);                                                                             
+*
+060E:  MOVLW  28
+0610:  MOVWF  xFE
+0612:  RCALL  05A6
+....................    twoLinesBCDMode(); 
+0614:  BRA    00F6
+....................    LinesActive();   
+0616:  BRA    05E8
+....................    lcdCursorOff(); 
+0618:  BRA    05F2
+....................    lcdShiftRight();                      
+061A:  BRA    05FC
+....................    lcdClear();                                                    
+061C:  RCALL  0606
+....................    memcpy(strLCD, "INFORMELEKTRONIKAR-GE    STAJYER", 32); 
+061E:  CLRF   FEA
+0620:  MOVLW  D4
+0622:  MOVWF  FE9
+0624:  MOVFF  FF2,FA
+0628:  BCF    FF2.7
+062A:  MOVLW  20
+062C:  MOVWF  01
+062E:  CLRF   FF7
+0630:  MOVLW  00
+0632:  RCALL  042E
+0634:  TBLRD*-
+0636:  TBLRD*+
+0638:  MOVFF  FF5,FEE
+063C:  DECFSZ 01,F
+063E:  BRA    0636
+0640:  BTFSC  xFA.7
+0642:  BSF    FF2.7
+....................    countLCDChar=0;  
+0644:  CLRF   xF4
+....................    LCDW1SecFlag=1; 
+0646:  MOVLW  01
+0648:  MOVWF  xF5
+064A:  GOTO   0196 (RETURN)
+....................    // LCD_Custom_CHAR(7, legrandLCDCharacter); 
+....................    //LCD_Custom_CHAR(6, stickManLCDCharacter);                                
+.................... }                           
+....................    
+.................... void lm35Calculate(){     //((float32_t)adresValue*(float32_t)0.4887) ((adresValue*125)+128)>>8   
+....................    memset(strLCD, 0, terminal_text4_size);  //LCD buffer temizlendi                  
+*
+0872:  CLRF   FEA
+0874:  MOVLW  D4
+0876:  MOVWF  FE9
+0878:  CLRF   00
+087A:  CLRF   02
+087C:  MOVFF  A0,01
+0880:  RCALL  06F4
+....................    uint16_t adresValue = ADRESH<<8; //16 bit deger ADC ADRESH ve ADRESL bitlerinden cekildi  
+0882:  MOVFF  FC4,FC
+0886:  CLRF   xFB
+....................    adresValue=adresValue+ADRESL;           
+0888:  MOVF   FC3,W
+088A:  ADDWF  xFB,F
+088C:  MOVLW  00
+088E:  ADDWFC xFC,F
+....................    uint8_t value= (((adresValue*125)+128)>>8); //(((adresValue*125)+128)>>8); 128 yuvarlama         
+0890:  MOVFF  FC,FF
+0894:  MOVFF  FB,FE
+0898:  MOVLB  1
+089A:  CLRF   x01
+089C:  MOVLW  7D
+089E:  MOVWF  x00
+08A0:  MOVLB  0
+08A2:  BRA    070E
+08A4:  MOVFF  02,FF
+08A8:  MOVFF  01,FE
+08AC:  MOVLW  80
+08AE:  ADDWF  xFE,F
+08B0:  MOVLW  00
+08B2:  ADDWFC xFF,F
+08B4:  MOVFF  FF,FD
+....................    sprintf(strLCD, "TEMP:%d%cC ", value , 0xdf); // 5000mV/1024(ADC=10)/10mv  10mv = 1 Derece 
+08B8:  CLRF   xF9
+08BA:  MOVLW  D4
+08BC:  MOVWF  xF8
+08BE:  MOVLW  6A
+08C0:  MOVWF  FF6
+08C2:  MOVLW  04
+08C4:  MOVWF  FF7
+08C6:  MOVLW  05
+08C8:  MOVWF  xFE
+08CA:  BRA    0756
+08CC:  MOVFF  FD,FE
+08D0:  MOVLW  18
+08D2:  MOVWF  xFF
+08D4:  BRA    07A2
+08D6:  MOVLW  DF
+08D8:  MOVLB  1
+08DA:  MOVWF  x06
+08DC:  MOVLB  0
+08DE:  RCALL  0736
+08E0:  MOVLW  43
+08E2:  MOVLB  1
+08E4:  MOVWF  x06
+08E6:  MOVLB  0
+08E8:  RCALL  0736
+08EA:  MOVLW  20
+08EC:  MOVLB  1
+08EE:  MOVWF  x06
+08F0:  MOVLB  0
+08F2:  RCALL  0736
+08F4:  GOTO   0932 (RETURN)
+.................... }                               
+....................  
+.................... void ADC_Read(uint8_t CHANNEL){ 
+....................    if(!GODONE & !ADON){ 
+08F8:  MOVLW  00
+08FA:  BTFSS  FC2.1
+08FC:  MOVLW  01
+08FE:  MOVWF  xFB
+0900:  MOVLW  00
+0902:  BTFSS  FC2.0
+0904:  MOVLW  01
+0906:  ANDWF  xFB,W
+0908:  BZ    091C
+....................       ADCON0=0x00;        // ADC modul deactive ve AN0 Anlog kanal oalrak secildi    
+090A:  CLRF   FC2
+....................       ADCON0=(CHANNEL<<2);//Sola 2 kaydir ondan sonra CHANNEL degerini diger bitlere yazdir.    
+090C:  RLCF   xFA,W
+090E:  MOVWF  FC2
+0910:  RLCF   FC2,F
+0912:  MOVLW  FC
+0914:  ANDWF  FC2,F
+....................       ADON=1;  //ADC yi aktif et.          
+0916:  BSF    FC2.0
+....................       GODONE=1;//Cevrime basla      
+0918:  BSF    FC2.1
+....................    }else if(!GODONE & ADON){ 
+091A:  BRA    0932
+091C:  MOVLW  00
+091E:  BTFSS  FC2.1
+0920:  MOVLW  01
+0922:  MOVWF  xFC
+0924:  MOVLW  00
+0926:  BTFSC  FC2.0
+0928:  MOVLW  01
+092A:  ANDWF  xFC,W
+092C:  BZ    0932
+....................       ADON=0;  //switch off adc    
+092E:  BCF    FC2.0
+....................       lm35Calculate(); 
+0930:  BRA    0872
+....................    }   
+0932:  GOTO   01B8 (RETURN)
+.................... }                                                                                                                                                                                                
+....................   
+.................... void rs232Case(){                                    
+....................    if(RCIF_PIR1)  
+*
+0CE4:  BTFSS  F9E.5
+0CE6:  BRA    0CEA
+....................       rs232t();                                                         
+0CE8:  BRA    0B7C
+....................    if(noKbHit_count>=1)    
+0CEA:  MOVF   xA1,W
+0CEC:  SUBLW  00
+0CEE:  BC    0CF2
+....................       unUSARTF.stUSARTF.noKbhit=1;                                                                         
+0CF0:  BSF    xD3.0
+....................                                                                             
+....................    switch (switchTerminal_position){   
+0CF2:  MOVF   xA2,W
+0CF4:  BZ    0D08
+0CF6:  XORLW  01
+0CF8:  BZ    0D16
+0CFA:  XORLW  03
+0CFC:  BZ    0D4A
+0CFE:  XORLW  01
+0D00:  BZ    0D80
+0D02:  XORLW  07
+0D04:  BZ    0DB6
+0D06:  BRA    0DF2
+....................       case 0: //              
+....................       if(unUSARTF.stUSARTF.enter_flag && unUSARTF.stUSARTF.noKbhit){  
+0D08:  BTFSS  xD3.1
+0D0A:  BRA    0D14
+0D0C:  BTFSS  xD3.0
+0D0E:  BRA    0D14
+....................          switchTerminal_position=1;                                                               
+0D10:  MOVLW  01
+0D12:  MOVWF  xA2
+....................       }    
+....................       break;                                   
+0D14:  BRA    0DF4
+....................       case 1: // MEVCUT METIN:                                                      
+....................       if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text1_flag==0){  
+0D16:  BTFSS  F9E.4
+0D18:  BRA    0D48
+0D1A:  BTFSC  xD3.3
+0D1C:  BRA    0D48
+....................          rs232t_txText(0,terminal_text1_Count);                                        
+0D1E:  CLRF   xFA
+0D20:  MOVFF  99,FB
+0D24:  RCALL  0C4A
+....................          if(terminal_text1_Count>=terminal_text1_size-1){ 
+0D26:  MOVLW  01
+0D28:  SUBWF  x9D,W
+0D2A:  SUBWF  x99,W
+0D2C:  BNC   0D46
+....................             unUSARTF.stUSARTF.terminal_text1_flag=1; 
+0D2E:  BSF    xD3.3
+....................             switchTerminal_position=2; 
+0D30:  MOVLW  02
+0D32:  MOVWF  xA2
+....................             memset(txData, 0, sizeof(txData));  
+0D34:  CLRF   FEA
+0D36:  MOVLW  3C
+0D38:  MOVWF  FE9
+0D3A:  CLRF   00
+0D3C:  CLRF   02
+0D3E:  MOVLW  20
+0D40:  MOVWF  01
+0D42:  RCALL  06F4
+....................          }else{    
+0D44:  BRA    0D48
+....................            terminal_text1_Count++;           
+0D46:  INCF   x99,F
+....................          }  
+....................       }                                 
+....................       break; 
+0D48:  BRA    0DF4
+....................       case 2: // Lutfen bir yazi giriniz                                          
+....................       if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text4_flag==0){  
+0D4A:  BTFSS  F9E.4
+0D4C:  BRA    0D7E
+0D4E:  BTFSC  xD3.6
+0D50:  BRA    0D7E
+....................          rs232t_txText(3,terminal_text4_Count);                                        
+0D52:  MOVLW  03
+0D54:  MOVWF  xFA
+0D56:  MOVFF  9C,FB
+0D5A:  RCALL  0C4A
+....................          if(terminal_text4_Count>=terminal_text4_size-1){ 
+0D5C:  MOVLW  01
+0D5E:  SUBWF  xA0,W
+0D60:  SUBWF  x9C,W
+0D62:  BNC   0D7C
+....................             unUSARTF.stUSARTF.terminal_text4_flag=1; 
+0D64:  BSF    xD3.6
+....................             switchTerminal_position=3; 
+0D66:  MOVLW  03
+0D68:  MOVWF  xA2
+....................             memset(txData, 0, sizeof(txData)); 
+0D6A:  CLRF   FEA
+0D6C:  MOVLW  3C
+0D6E:  MOVWF  FE9
+0D70:  CLRF   00
+0D72:  CLRF   02
+0D74:  MOVLW  20
+0D76:  MOVWF  01
+0D78:  RCALL  06F4
+....................          }else{    
+0D7A:  BRA    0D7E
+....................             terminal_text4_Count++;               
+0D7C:  INCF   x9C,F
+....................          }                
+....................       }  
+....................       break;           
+0D7E:  BRA    0DF4
+....................       case 3: // LCD TEXT   
+....................       if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text2_flag==0){  
+0D80:  BTFSS  F9E.4
+0D82:  BRA    0DB4
+0D84:  BTFSC  xD3.4
+0D86:  BRA    0DB4
+....................          rs232t_txText(1,terminal_text2_Count);                                        
+0D88:  MOVLW  01
+0D8A:  MOVWF  xFA
+0D8C:  MOVFF  9A,FB
+0D90:  RCALL  0C4A
+....................          if(terminal_text2_Count>=terminal_text2_size-1){ 
+0D92:  MOVLW  01
+0D94:  SUBWF  x9E,W
+0D96:  SUBWF  x9A,W
+0D98:  BNC   0DB2
+....................             unUSARTF.stUSARTF.terminal_text2_flag=1; 
+0D9A:  BSF    xD3.4
+....................             switchTerminal_position=0;    
+0D9C:  CLRF   xA2
+....................             unUSARTF.stUSARTF.enter_flag=0;           
+0D9E:  BCF    xD3.1
+....................             memset(txData, 0, sizeof(txData));     
+0DA0:  CLRF   FEA
+0DA2:  MOVLW  3C
+0DA4:  MOVWF  FE9
+0DA6:  CLRF   00
+0DA8:  CLRF   02
+0DAA:  MOVLW  20
+0DAC:  MOVWF  01
+0DAE:  RCALL  06F4
+....................          }else{  
+0DB0:  BRA    0DB4
+....................             terminal_text2_Count++;  
+0DB2:  INCF   x9A,F
+....................          }                                             
+....................       }                                                
+....................       break;    
+0DB4:  BRA    0DF4
+....................                                                                 
+....................       case 4: // Limit Asildi                                                                
+....................       if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text3_flag==0 && unUSARTF.stUSARTF.recieve_exceed){  
+0DB6:  BTFSS  F9E.4
+0DB8:  BRA    0DF0
+0DBA:  BTFSC  xD3.5
+0DBC:  BRA    0DF0
+0DBE:  BTFSS  xD3.2
+0DC0:  BRA    0DF0
+....................          rs232t_txText(2,terminal_text3_Count);                                        
+0DC2:  MOVLW  02
+0DC4:  MOVWF  xFA
+0DC6:  MOVFF  9B,FB
+0DCA:  RCALL  0C4A
+....................          if(terminal_text3_Count>=terminal_text3_size-1){       
+0DCC:  MOVLW  01
+0DCE:  SUBWF  x9F,W
+0DD0:  SUBWF  x9B,W
+0DD2:  BNC   0DEE
+....................             unUSARTF.stUSARTF.terminal_text3_flag=1; 
+0DD4:  BSF    xD3.5
+....................             unUSARTF.stUSARTF.recieve_exceed=0;       
+0DD6:  BCF    xD3.2
+....................             memset(txData, 0, sizeof(txData));                                                                                         
+0DD8:  CLRF   FEA
+0DDA:  MOVLW  3C
+0DDC:  MOVWF  FE9
+0DDE:  CLRF   00
+0DE0:  CLRF   02
+0DE2:  MOVLW  20
+0DE4:  MOVWF  01
+0DE6:  RCALL  06F4
+....................             terminal_text3_Count=0;  
+0DE8:  CLRF   x9B
+....................             switchTerminal_position=0;                  
+0DEA:  CLRF   xA2
+....................          }else{    
+0DEC:  BRA    0DF0
+....................             terminal_text3_Count++; 
+0DEE:  INCF   x9B,F
+....................          }                     
+....................       }    
+....................       break;                                                
+0DF0:  BRA    0DF4
+....................     
+....................       default:           
+....................       switchTerminal_position=0; 
+0DF2:  CLRF   xA2
+....................    } 
+0DF4:  GOTO   01DC (RETURN)
+.................... }                                                   
+....................                  
+.................... #INT_TIMER1                                                            
+.................... void timer1_interrupt(){  
+....................    TMR1H = 0xF8; //Tasma saayci| 
+*
+04BC:  MOVLW  F8
+04BE:  MOVWF  FCF
+....................    TMR1L = 0x30; // |||15536 decimal sayisina esit.  
+04C0:  MOVLW  30
+04C2:  MOVWF  FCE
+....................    PIR1_TMR1IF = 0; // Kesme bayragi sifirlaniyor. 
+04C4:  BCF    F9E.0
+....................    iSayac++;                                
+04C6:  INCF   16,F
+04C8:  BTFSC  FD8.2
+04CA:  INCF   17,F
+....................    if (iSayac % 2 == 0) //5ms 
+04CC:  MOVF   16,W
+04CE:  ANDLW  01
+04D0:  MOVLB  1
+04D2:  MOVWF  x09
+04D4:  CLRF   x0A
+04D6:  MOVF   x09,F
+04D8:  BNZ   04E0
+04DA:  MOVF   x0A,F
+04DC:  BNZ   04E0
+....................       tmr1_time.tmr1_flags._2ms = true;              
+04DE:  BSF    18.0
+....................    if(iSayac  % 50 == 0) //50ms         
+04E0:  MOVFF  17,10A
+04E4:  MOVFF  16,109
+04E8:  CLRF   x0C
+04EA:  MOVLW  32
+04EC:  MOVWF  x0B
+04EE:  MOVLB  0
+04F0:  RCALL  0476
+04F2:  MOVFF  00,109
+04F6:  MOVLB  1
+04F8:  MOVFF  03,10A
+04FC:  MOVF   x09,F
+04FE:  BNZ   0506
+0500:  MOVF   x0A,F
+0502:  BNZ   0506
+....................       tmr1_time.tmr1_flags._50ms = true;  
+0504:  BSF    18.2
+....................    if(iSayac  % 500 == 0) 
+0506:  MOVFF  17,10A
+050A:  MOVFF  16,109
+050E:  MOVLW  01
+0510:  MOVWF  x0C
+0512:  MOVLW  F4
+0514:  MOVWF  x0B
+0516:  MOVLB  0
+0518:  RCALL  0476
+051A:  MOVFF  00,109
+051E:  MOVLB  1
+0520:  MOVFF  03,10A
+0524:  MOVF   x09,F
+0526:  BNZ   052E
+0528:  MOVF   x0A,F
+052A:  BNZ   052E
+....................       tmr1_time.tmr1_flags._500ms = true;  
+052C:  BSF    18.5
+....................    if(iSayac > 1000&&STATUS){   // 1 Saniye   
+052E:  MOVF   17,W
+0530:  SUBLW  02
+0532:  BC    054E
+0534:  XORLW  FF
+0536:  BNZ   053E
+0538:  MOVF   16,W
+053A:  SUBLW  E8
+053C:  BC    054E
+053E:  MOVF   1B,F
+0540:  BZ    054E
+....................       tmr1_time.tmr1_flags._1000ms = true;  
+0542:  BSF    18.6
+....................       iSayac = 0;                                            
+0544:  CLRF   17
+0546:  CLRF   16
+....................       noKbHit_count++;   
+0548:  MOVLB  0
+054A:  INCF   xA1,F
+054C:  MOVLB  1
+....................    }                                 
+.................... }                              
+....................                                      
+054E:  BCF    F9E.0
+0550:  MOVLB  0
+0552:  GOTO   0054
+.................... #ORG 0x0100,0x0400                                                                     
+.................... void main(){                                  
+*
+0100:  CLRF   FF8
+0102:  BCF    FD0.7
+0104:  BSF    07.7
+0106:  CLRF   1B
+0108:  CLRF   xF9
+010A:  CLRF   xF8
+010C:  MOVF   FC1,W
+010E:  ANDLW  C0
+0110:  IORLW  0F
+0112:  MOVWF  FC1
+0114:  MOVLW  07
+0116:  MOVWF  FB4
+0118:  BRA    0152
+011A:  DATA 02,00
+011C:  DATA F6,00
+011E:  DATA 00,2F
+0120:  DATA 00,A4
+0122:  DATA 4C,43
+0124:  DATA 44,2E
+0126:  DATA 4F,4E
+0128:  DATA 00,4C
+012A:  DATA 43,44
+012C:  DATA 2E,4F
+012E:  DATA 46,46
+0130:  DATA 00,54
+0132:  DATA 45,4D
+0134:  DATA 50,2E
+0136:  DATA 4F,4E
+0138:  DATA 00,54
+013A:  DATA 45,4D
+013C:  DATA 50,2E
+013E:  DATA 4F,46
+0140:  DATA 46,00
+0142:  DATA 4C,45
+0144:  DATA 44,2E
+0146:  DATA 4F,4E
+0148:  DATA 00,4C
+014A:  DATA 45,44
+014C:  DATA 2E,4F
+014E:  DATA 46,46
+0150:  DATA 00,00
+0152:  MOVLW  00
+0154:  MOVWF  FF8
+0156:  MOVLW  01
+0158:  MOVWF  FF7
+015A:  MOVLW  1A
+015C:  MOVWF  FF6
+015E:  TBLRD*+
+0160:  MOVF   FF5,W
+0162:  MOVWF  00
+0164:  XORLW  00
+0166:  BZ    018E
+0168:  TBLRD*+
+016A:  MOVF   FF5,W
+016C:  MOVWF  01
+016E:  BTFSC  FE8.7
+0170:  BRA    017C
+0172:  ANDLW  0F
+0174:  MOVWF  FEA
+0176:  TBLRD*+
+0178:  MOVFF  FF5,FE9
+017C:  BTFSC  01.6
+017E:  TBLRD*+
+0180:  BTFSS  01.6
+0182:  TBLRD*+
+0184:  MOVFF  FF5,FEE
+0188:  DCFSNZ 00,F
+018A:  BRA    015E
+018C:  BRA    0180
+018E:  CLRF   FF8
+....................    setupTimerIOSC();                           
+0190:  BRA    0556
+....................    adcSetup();                                 
+0192:  BRA    0594
+....................    printOn2x16();                                                         
+0194:  BRA    060E
+....................    USART_Init();                                                        
+0196:  BRA    064E
+....................      while (TRUE){                                 
+....................       WDTreset(); 
+0198:  BRA    06EE
+....................               
+....................       if(tmr1_time.tmr1_flags._1000ms){                       
+019A:  BTFSS  18.6
+019C:  BRA    01AA
+....................          tmr1_time.tmr1_flags._1000ms = false;  
+019E:  BCF    18.6
+....................          if(usart_inst.a.LED) 
+01A0:  BTFSS  19.2
+01A2:  BRA    01A6
+....................             PORTB_7=~PORTB_7;           
+01A4:  BTG    F81.7
+....................          LCDW1SecFlag=1;    
+01A6:  MOVLW  01
+01A8:  MOVWF  xF5
+....................       }                                          
+....................       if(tmr1_time.tmr1_flags._500ms){                       
+01AA:  BTFSS  18.5
+01AC:  BRA    01B8
+....................          tmr1_time.tmr1_flags._500ms = false;   
+01AE:  BCF    18.5
+....................          if(usart_inst.a.TEMP)    
+01B0:  BTFSS  19.1
+01B2:  BRA    01B8
+....................             ADC_Read(0);   
+01B4:  CLRF   xFA
+01B6:  BRA    08F8
+....................       }                             
+....................       if(tmr1_time.tmr1_flags._50ms){           
+01B8:  BTFSS  18.2
+01BA:  BRA    01C6
+....................          tmr1_time.tmr1_flags._50ms = false; 
+01BC:  BCF    18.2
+....................          button_debounce (PORTB, 0); 
+01BE:  MOVFF  F81,FA
+01C2:  CLRF   xFB
+01C4:  BRA    095A
+....................                    
+....................       }                                 
+....................       if(tmr1_time.tmr1_flags._2ms){ 
+01C6:  BTFSS  18.0
+01C8:  BRA    01D8
+....................          tmr1_time.tmr1_flags._2ms = false;                                                                                               
+01CA:  BCF    18.0
+....................          if(LCDW1SecFlag && usart_inst.a.LCD) 
+01CC:  MOVF   xF5,F
+01CE:  BZ    01D8
+01D0:  BTFSS  19.0
+01D2:  BRA    01D8
+....................             LCD_String(); 
+01D4:  GOTO   09E8
+....................       }    
+....................       rs232Case(); 
+01D8:  GOTO   0CE4
+01DC:  BRA    0198
+....................    }                                                      
+.................... }  
+....................    
+01DE:  SLEEP 
+.................... void WDTreset(void){          
+....................    #asm                   
+*
+06EE:  CLRWDT
+....................    CLRWDT                          
+....................    #endasm                                  
+06F0:  GOTO   019A (RETURN)
+.................... }                   
+....................                    
+
+Configuration Fuses:
+   Word  1: C900   INTRC FCMEN IESO
+   Word  2: 011E   PUT BROWNOUT BORV21 WDT WDT1
+   Word  3: 0700   CCP2C1 PBADEN LPT1OSC NOMCLR
+   Word  4: 0081   STVREN NOLVP NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

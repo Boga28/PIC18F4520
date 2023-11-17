@@ -1,0 +1,330 @@
+000     @SCRATCH
+000     @MEMSET.P1
+001     @SCRATCH
+001-002 @MEMSET.P1
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     duty_cycle
+019     duty_direction
+01A     tmr1_time
+01B     usart_inst
+01C     BUTTON_PRESSED_RELEASED
+01D     STATUS
+01E-03D rxData
+03E-05D txData
+05E     data_in
+05F     rxData_count
+060-06E terminal_text1
+06F-089 terminal_text2
+08A-09A terminal_text3
+09B     terminal_text1_Count
+09C     terminal_text2_Count
+09D     terminal_text3_Count
+09E     terminal_text4_Count
+09F     terminal_text1_size
+0A0     terminal_text2_size
+0A1     terminal_text3_size
+0A2     terminal_text4_size
+0A3     noKbHit_count
+0A4     switchTerminal_position
+0A5     UART_BUSY
+0A6-0AC cmd1
+0AD-0B4 cmd2
+0B5-0BC cmd3
+0BD-0C5 cmd4
+0C6-0CC cmd5
+0CD-0D4 cmd6
+0D5-0DB cmd7
+0DC-0E3 cmd8
+0E4-0EB cmd9
+0EC-0F4 cmd10
+0F5     unUSARTF
+0F6-115 strLCD
+116     countLCDChar
+117     LCDW1SecFlag
+118-119 strtok.save
+11A-11B @sprintf_string
+11C     button_debounce.valueOfInput
+11C     lcdcmd.cmd_value
+11C     ADC_Read.channel
+11C-11D strncmp.s1
+11C     rs232t_txText.text_index
+11C     LCD_String.@SCRATCH1
+11C     USART_Init.@SCRATCH1
+11C     USART_RxCharBuffer.@SCRATCH1
+11C     activationCommands.@SCRATCH1
+11C     rs232t.@SCRATCH1
+11C     printOn2x16.@SCRATCH1
+11C     rs232Case.@SCRATCH1
+11D     lcdcmd.cmd_value1
+11D     lcddata.text
+11D     button_debounce.bit
+11D-11E lm35Calculate.adresValue
+11D     rs232t_txText.textIndex_charIndex
+11D     USART_Init.@SCRATCH2
+11D     activationCommands.@SCRATCH2
+11D     rs232t.@SCRATCH2
+11D     printOn2x16.@SCRATCH2
+11D     ADC_Read.@SCRATCH1
+11E     test_bit.valueOfInput
+11E     USART_TxCharBuffer.textIndex_charIndex
+11E-11F strncmp.s2
+11E     dis_cmd.cmdout
+11E     lcddata.data
+11E     lcdcmd.@SCRATCH1
+11E     button_debounce.@SCRATCH1
+11E     USART_Init.@SCRATCH3
+11E     activationCommands.@SCRATCH3
+11E     rs232t.@SCRATCH3
+11E     printOn2x16.@SCRATCH3
+11E     ADC_Read.@SCRATCH2
+11F     lm35Calculate.value
+11F     dis_data.dataout
+11F     test_bit.bits
+11F     lcddata.@SCRATCH1
+11F     USART_Init.@SCRATCH4
+11F     activationCommands.@SCRATCH4
+11F     rs232t.@SCRATCH4
+11F     printOn2x16.@SCRATCH4
+120     @PSTRINGCN_968.P1
+120     @PRINTF_D_968.P2
+120-121 @MUL1616.P3
+120-121 strncmp.n
+120     delayUsFun.us
+120     test_bit.@SCRATCH1
+120     rs232t.@SCRATCH5
+120     lm35Calculate.@SCRATCH1
+121     @PRINTF_D_968.P1
+121     delayUsFun.i
+121     rs232t.@SCRATCH6
+121     lm35Calculate.@SCRATCH2
+121     @PSTRINGCN_968.@SCRATCH1
+122-123 @MUL1616.P1
+122     strncmp.@SCRATCH1
+122     @PSTRINGCN_968.@SCRATCH2
+122     @PRINTF_D_968.@SCRATCH1
+123     @PRINTF_D_968.@SCRATCH2
+124     @MUL1616.@SCRATCH1
+124     @PRINTF_D_968.@SCRATCH3
+125     @PRINTF_D_968.@SCRATCH4
+126     @SPRINTF.P1
+126     @DIV88.P2
+127     @DIV88.P1
+128     @DIV88.@SCRATCH1
+129-12A @DIV1616.P1
+129     timer1_interrupt.@SCRATCH1
+12A     timer1_interrupt.@SCRATCH2
+12B-12C @DIV1616.P1
+12D     @DIV1616.@SCRATCH1
+F80     PORTA
+F80.0   PORTA_0
+F81     PORTB
+F81.0   PORTB_0
+F81.7   PORTB_7
+F82     PORTC
+F82.2   PORTC_2
+F83     PSP_DATA
+F84.0   PORTE_RS
+F84     PORTE
+F84.1   PORTE_E
+F84.2   PORTE_RW
+F8C     PORTD
+F8C.7   PORTD_7
+F92     TRISA
+F92.0   PORTA_DIR_0
+F93     TRISB
+F94     TRISC
+F94.2   TRISC_2
+F94.6   TRISC_6
+F94.7   TRISC_7
+F95     TRISD
+F96     TRISE
+F9D.0   PIE1_TMR1IE
+F9D     PIE1
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9D.6   ADIE
+F9E     PIR1
+F9E.0   PIR1_TMR1IF
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9E.6   ADIF
+F9F     IPR1
+F9F.0   IPR1_TMR1IP
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBD     CCP1CON
+FBE     CCPR1L
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCPR1H
+FBF     CCP_1_HIGH
+FC0     ADCON2
+FC1     ADCON1
+FC1.0   PCFG0
+FC2     ADCON0
+FC2.0   ADON
+FC2.1   GODONE
+FC3     ADRESL
+FC4     ADRESH
+FCA     T2CON
+FCA.2   TMR2ON
+FCB     PR2
+FCC     TMR2
+FCD.0   T1CON_TMR1ON
+FCD     T1CON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @MEMSET.P4
+FE9-FEA @WRITE_PACKED_MEMORY.P5
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @const940.call
+0000C0  @const941.call
+0000F6  WDTreset
+000100  MAIN
+000100  @cinit1
+00011A  @cinit2
+000402  @const942.call
+00042E  @const950.call
+00046A  @const966.call
+000476  @DIV1616
+0004BC  timer1_interrupt
+00057C  setupTimerIOSC
+0005BA  adcSetup
+0005CC  delayUsFun
+0005DE  dis_cmd
+0005F4  lcdcmd
+00061E  twoLinesBCDMode
+00062C  LinesActive
+00063A  lcdCursorOff
+000648  lcdShiftRight
+000656  lcdClear
+000662  printOn2x16
+0006AA  USART_Init
+000756  ccp1PwmInit
+00076E  @MEMSET
+000788  @MUL1616
+0007AC  @SPRINTF
+0007CC  @PSTRINGCN_968
+0007F6  @DIV88
+000822  @PRINTF_D_968
+0008E0  lm35Calculate
+00096E  ADC_Read
+0009B4  test_bit
+0009DC  button_debounce
+000A20  ccp1Control
+000A4E  lcdGoToFirstLine
+000A5C  lcdGoToSecondLine
+000A6A  dis_data
+000A80  lcddata
+000AAC  LCD_String
+000AF4  USART_RxCharBuffer
+000B00  strncmp
+000B96  activationCommands
+000D0C  rs232t
+000DBC  USART_TxCharBuffer
+000DE2  rs232t_txText
+000E90  rs232Case
+
+Project Directory:
+    C:\18F4520\CCS\ADC_LM35-LCD-PWMLED\
+
+Project Files:
+    main.c                                                  [19-Jul-23 17:25  CRC=A1AD6E18]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [19-Jul-23 08:38  CRC=DE295692]
+    main.h                                                  [19-Jul-23 16:39  CRC=23007ED8]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [19-Jul-23 16:06  CRC=8D694E76]
+    init.h                                                  [19-Jul-23 17:24  CRC=E61CF10E]
+    button.h                                                [10-Jul-23 21:59  CRC=E4670BCE]
+    usart_rs232.h                                           [19-Jul-23 17:23  CRC=50E2055E]
+    lcd.h                                                   [19-Jul-23 09:30  CRC=1292755A]
+    lcd.c                                                   [19-Jul-23 09:32  CRC=39DAF7FF]
+    button.c                                                [12-Jul-23 08:01  CRC=45CBFE65]
+    delayms.c                                               [19-Jul-23 16:26  CRC=7910CBDE]
+    usart_rs232.c                                           [19-Jul-23 17:28  CRC=4EF608E4]
+    ..\..\..\Program Files (x86)\PICC\Drivers\string.h      [14-Jul-11 10:13  CRC=23EDEC8F]
+    ..\..\..\Program Files (x86)\PICC\Drivers\stddef.h      [16-Jul-10 09:27  CRC=897CEC6C]
+    ..\..\..\Program Files (x86)\PICC\Drivers\ctype.h       [03-Jan-08 13:55  CRC=2D1F019F]
+
+Source signature=B6BD0F9D
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

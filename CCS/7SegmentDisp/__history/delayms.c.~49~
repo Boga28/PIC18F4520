@@ -1,0 +1,9 @@
+#include <delayms.h>   
+#include <definations.h>           
+  
+void delayMsFun(unsigned int16 msecs)  // Delay function - generates a delay of specified msecs
+{   int16_t i,j; 
+    for( i =0 ; i <= msecs; i++){
+      for( j = 0;j< 460;j++);                                        
+    }                               
+}                                     

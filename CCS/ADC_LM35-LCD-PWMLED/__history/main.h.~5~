@@ -1,0 +1,14 @@
+#ifndef MAIN_H     
+#define MAIN_H 
+#define DELAY 500 
+                           
+extern uint16_t iSayac;  
+extern uint8_t duty_cycle, ; 
+void WDTreset(void);  
+void ccp1PwmInit(void); 
+void ccp1Control(void);
+                    
+#endif //MAIN_H                                
+
+                                                                                                              
+                              

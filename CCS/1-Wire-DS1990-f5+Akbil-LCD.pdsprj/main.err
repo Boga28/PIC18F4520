@@ -1,0 +1,4 @@
+>>> Warning 202 "main.c" Line 40(9,15): Variable never used:   period
+      Memory usage:   ROM=12%      RAM=10% - 12%
+      0 Errors,  1 Warnings.
+Build Successful.

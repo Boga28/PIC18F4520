@@ -1,0 +1,16 @@
+#ifndef DEFINITIONS_H     
+#define DEFINITIONS_H   
+                                                    
+typedef unsigned int16  uint16_t;
+typedef unsigned int8   uint8_t;
+typedef unsigned char   uchar_t;  
+
+typedef unsigned char bool;
+typedef signed char sint8;
+typedef signed int sint16;
+typedef signed long sint32;
+typedef unsigned char  uint8;
+typedef unsigned int uint16;
+typedef unsigned long uint32;
+              
+#endif //DEFINITIONS_H      

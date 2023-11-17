@@ -1,0 +1,105 @@
+#include "ds1990a.h"
+#include <string.h>                       
+#ifndef DS1990A_C  
+#define DS1990A_C 
+ 
+//LCD TEXT BUFFER
+uchar_t TEMPBF[32];   
+
+//DEVICES ROM BUFFER 
+uchar_t SlaveROM[5][9]; 
+//READ ROM BUFFER  
+uchar_t ReadROM[9];
+
+
+// SEARCH ROOM  
+uchar_t DevicesFound; // Number of devices found 
+uchar_t RegisteredDevice;     
+uchar_t queue; 
+DS1990A_t DS1990A; 
+
+void ds1990SearchRom(uchar_t * interruptAddress, uchar_t interruptControlBit, uchar_t isInterruptAvailable){
+   DS1990A.X.MATCH_DONE=0; 
+   if(isInterruptAvailable)       
+     *interruptAddress &= ~(1<<interruptControlBit);       
+   switch(queue){ 
+   case 0:                                                                                 
+        DevicesFound = 0;  // Reset device counter    
+        if(Ow_First()){    // Check for the first device 
+          for(i=0; i<8; i++){    
+              SlaveROM[DevicesFound][i]=ROM_NO[i];  
+          }                 
+          DevicesFound++;  // Increment the device found counter
+          memset(ROM_NO,0,8); 
+          queue++;
+          }else
+             queue=0;  
+   break;                                                   
+   
+   case 1:                                                
+        if(Ow_Next()){    // Check for the next device 
+          for(i=0; i<8; i++){    
+             SlaveROM[DevicesFound][i]=ROM_NO[i];  
+          }
+          DevicesFound++;  // Increment the device found counter
+          memset(ROM_NO,0,8); 
+          queue=1;                        
+        }else{
+           DS1990A.X.SEARCH_DONE=1;
+           DS1990A.X.MATCH_DONE=1;    
+           RegisteredDevice= DevicesFound;
+           queue=0;
+           for(i=0;i<DevicesFound;i++){
+              printf("ROM%d: %02X %02X %02X  %02X  %02X  %02X  %02X  %02X\r",i,SlaveROM[i][0],SlaveROM[i][1],SlaveROM[i][2],SlaveROM[i][3],SlaveROM[i][4],SlaveROM[i][5],SlaveROM[i][6],SlaveROM[i][7]);
+           }  
+        }
+        break;
+   }                             
+                                                         
+   if (DevicesFound == 0) {     
+      DS1990A.X.MATCH_DONE=1; 
+      DS1990A.X.SEARCH_DONE=1;  
+      queue=0;  
+      printf("No devices found\r"); 
+   }                                                                                                     
+   if(isInterruptAvailable)          
+      *interruptAddress |= (1<<interruptControlBit); 
+}     
+void ds1990ReadAndMatch(uchar_t * interruptAddress, uchar_t interruptControlBit, uchar_t isInterruptAvailable){   
+   DevicesFound = 0;
+   DS1990A.X.MATCH_DONE=0;                               
+   if(isInterruptAvailable)       
+     *interruptAddress &= ~(1<<interruptControlBit);        
+   if(Ow_First()){    // Check for the first device  
+      for(i=0; i<8; i++){    
+         ReadROM[i]=ROM_NO[i];         
+      }   
+      compareROM();     
+      DevicesFound++;  // Increment the device found counter                   
+   }                
+   if (DevicesFound == 0) { 
+      memset(TEMPBF,0,32);                   
+      sprintf(TEMPBF,"No devices found"); 
+      memcpy(strLCD, TEMPBF, 32);   
+   }  
+   DS1990A.X.MATCH_DONE=1; 
+   if(isInterruptAvailable)  
+      *interruptAddress |= (1<<interruptControlBit); 
+}                                                                  
+void compareROM(){ 
+   memset(TEMPBF,0,32);
+   for(i=0;i<RegisteredDevice;i++){  
+      if(!memcmp(ReadROM,SlaveROM[i],64)){                           
+         sprintf(TEMPBF,"%02X%02X%02X%02X%02X%02X%02X%02X DEVICE DEFINED ",SlaveROM[i][0],SlaveROM[i][1],SlaveROM[i][2],SlaveROM[i][3],SlaveROM[i][4],SlaveROM[i][5],SlaveROM[i][6],SlaveROM[i][7]);
+         memcpy(strLCD, TEMPBF, 32);                                           
+         break;                                          
+      }else{                                                      
+         sprintf(TEMPBF,"%02X%02X%02X%02X%02X%02X%02X%02XDEVICE UNDEFINED",ReadROM[0],ReadROM[1],ReadROM[2],ReadROM[3],ReadROM[4],ReadROM[5],ReadROM[6],ReadROM[7]); 
+         printf("\fReadROM: %02X %02X %02X  %02X  %02X  %02X  %02X  %02X\r",ReadROM[0],ReadROM[1],ReadROM[2],ReadROM[3],ReadROM[4],ReadROM[5],ReadROM[6],ReadROM[7]);
+         printf("ROM%d: %02X %02X %02X  %02X  %02X  %02X  %02X  %02X\r",i,SlaveROM[i][0],SlaveROM[i][1],SlaveROM[i][2],SlaveROM[i][3],SlaveROM[i][4],SlaveROM[i][5],SlaveROM[i][6],SlaveROM[i][7]);
+         memcpy(strLCD, TEMPBF, 32);     
+      } 
+   }                                                                        
+}
+
+#endif // DS1990A_H                                             

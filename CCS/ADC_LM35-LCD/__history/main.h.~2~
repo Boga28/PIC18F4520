@@ -1,0 +1,12 @@
+#ifndef MAIN_H     
+#define MAIN_H                  
+#define DELAY 500 
+#define DS1820_DATAPIN  PIN_D0  
+   
+extern uint16_t iSayac;
+                          
+                    
+#endif //MAIN_H                                
+
+                                                                                                              
+                              

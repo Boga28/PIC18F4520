@@ -1,0 +1,20 @@
+#include "adc.h"
+#include "ucregisters.h"
+
+void adcSetup(){
+   //A0 giris olarak ayarlandi         
+   PORTA_DIR_0 =1;    
+   PORTA_DIR_1 =1; 
+   PORTA_0 =0;
+   PORTA_1 =0;                     
+   ADCON1 = 0x0E; 
+   PCFG0=0;                       
+   //We use default value for +/- Vref
+   //VCFG0=0,VCFG1=0         
+   //That means +Vref = Vdd (5v) and -Vref=GEN
+   //ADCON1=0x00;                      
+   //ADC Result Right Justified.       
+   //Acquisition Time = 1TAD 
+   //Conversion Clock = 16 Tosc                 
+   ADCON2=0x89;                
+} 

@@ -1,0 +1,6 @@
+#ifndef ADC_H                                                                                               
+#define ADC_H   
+         
+void adcSetup(); 
+
+#endif //ADC_H 

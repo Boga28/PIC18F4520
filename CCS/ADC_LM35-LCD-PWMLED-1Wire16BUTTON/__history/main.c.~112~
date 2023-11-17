@@ -1,0 +1,308 @@
+#include <18F4520.h>   //Kullanilan mikrodenetleyicinin surucusu derleyici uzerinde kaynak dosyasina tanimlanir.
+
+/*FUSES: cihaza bagli cesitli opsiyonlari ayarlamak icin kullanilir. Mevcut ozellikleri en ustte belirtilir. 
+       Konfigurasyon bileri vardir, bu komut ile mikrodenetleyicinin konfigurasyon pinleri ayarlan齬.
+  Yaygin kullanilan cihaz secenekleri:
+      路 LP, XT, HS, RC :LP dusuk guclu kristal osilator, XT klasik kristal osilator, HS yuksek hizli kristal osilator, RC Direnc / Kondansator osilator
+      路 WDT, NOWDT  :Programin olasi kilitlenmelerde resetlenmesini sa餷ar. WDT dersek bu mod aktif, NOWDT dersek bu mod pasiftir.     
+      路 PROTECT, NOPROTECT :Kod koruma, mikrokontrollerin i鏸ne y黭leyecegin kodlar kopyalananaz demek, NOPROTECT ise kodlar geriye okunup kopyalanabilir demektir. 
+      路 PUT, NOPUT (Power Up Timer) : NOPUT, zamanlayicilar kapali demek, yani timer olarak gecen zaman dongulerini kullanmayacagini belirtirsin.
+      路 BROWNOUT, NOBROWNOUT:Dusuk gerilimle program reset, bu ozellik gerilim seviyesi belli bir degerin altina dustugunde, mikrokontrollerin reset atmasidir,
+          genelde NOBROWNOUT modunda tutulur, eyer BROWNOUT olarak kullanilirsa, ani gerilim dalgalanmalarinda sistem surrekli resetlenir.
+      路 INTRC: Internal, dahili osilatoru kullan anlamina gelir.    
+      路 NOMCLR: Master Clear functionality, MCLR girisi PIC'i resetlemek icin kullanilir. Bu fuse yoksa #FUSE MCLR ve MCLR pini 10k ile 5V a 
+Tum #FUSES ozelliklerini kapatmak icin " #FUSES none" kullanilir.                              
+*/                               
+                                         
+#FUSES WDT, WDT1, NOLVP,NOCPD, NOWRT, NOMCLR, IESO, INTRC 
+                             
+                                                           
+                                               
+#include "definitions.h"                                                                                                      
+#include "main.h"                 
+#include "delayms.h"                                
+#include "ucregisters.h"                                    
+#include "init.h"                                      
+#include "button.h"                             
+#include "usart_rs232.h"
+#include "adc.h"         
+#include "keypad.h"
+                           
+#include "lcd.h"  
+#include "lcd.c"                        
+#include "button.c"          
+#include "delayms.c"        
+#include "usart_rs232.c"
+#include "adc.c"
+                   
+//COMMAND OF RS232 USART                          
+usart_t usart_inst; //ACTIVE_PASIVE_FLAGS_OF_USART                    
+//PWM
+uint8_t duty_cycle, duty_direction;  
+//TIMER1 UNION STRUCTURE AND COUNT MS
+tmr1_time_t tmr1_time; 
+uint16_t iSayac;     
+// KEYPAD VARIABLES             
+uchar_t keyPress,keyControl, keyCounter; 
+uint16_t keypadADCValue;
+
+                         
+void setupTimerIOSC(void){         
+           
+   //Setup Osilator
+   IRCF2 = 1;
+   IRCF1 = 1;
+   IRCF0 = 1;              
+                        
+   //D ve P portlari cikis olarak ayarlanip sifirlandi.
+   TRISB = 0x01;                 
+   TRISD = 0x00;
+   TRISE = 0x00;
+   PORTB = 0x00;                                                      
+   PORTD = 0x00;
+   PORTE = 0x00; 
+                                                     
+   //TMR1 etkinlik bayraklari sifirlandi
+   tmr1_time.all = 0;
+
+   // Kesmelere izin verildi
+   RCON_IPEN = 1;                                              
+   INTCON_GIE_GIEH = 1;
+   INTCON_PEIE = 1;
+   IPR1_TMR1IP = 1; // TMR1 Overflow Interrupt Priority bit
+   PIE1_TMR1IE = 1; // TMR1 Overflow Interrupt Enable bit
+   PIR1_TMR1IF = 0; // TMR1 Overflow Interrupt Flag bit
+                                                                                      
+   //TIMER1 Konfigurasyon //50us
+   T1CON_RD16 = 0; // 16 - bit Read / Write Mode Enable bit
+   T1CON_T1RUN = 0; // Timer1 System Clock Statusbit
+   T1CON_T1CKPS1 = 0; // Timer1 Input Clock Prescale Select bits | 1:1 Olcekleme
+   T1CON_T1CKPS0 = 0; // Timer1 Input Clock Prescale Select bits |
+   T1CON_T1OSCEN = 0; // Timer1 Oscillator Enable bit
+   T1CON_T1SYNC = 0; // Timer1 External Clock Input Synchronization Select bit
+   T1CON_TMR1CS = 0; // Timer1 Clock Source Select bit
+   TMR1H = 0xF8; //Tasma saayci|
+   TMR1L = 0x30; // |||65436 decimal sayisina esit.
+   T1CON_TMR1ON = 1; // Timer1 On bit                                           
+}
+                           
+                       
+void printOn2x16(){                  
+   delayUsFun(40);                                                                                                                                      
+   twoLinesBCDMode();
+   LinesActive();  
+   lcdCursorOff();
+   lcdShiftRight();                     
+   lcdClear();                                                   
+   memcpy(strLCD, "INFORMELEKTRONIKAR-GE    STAJYER", 32);
+   countLCDChar=0; 
+   LCDW1SecFlag=1;
+   // LCD_Custom_CHAR(7, legrandLCDCharacter);
+   //LCD_Custom_CHAR(6, stickManLCDCharacter);                               
+}                          
+
+// A/D Converter LM35 - RA0 
+void lm35Calculate(){     //((float32_t)adresValue*(float32_t)0.4887) ((adresValue*125)+128)>>8  
+   memset(strLCD, 0, terminal_text4_size);  //LCD buffer temizlendi                 
+   uint16_t adresValue = ADRESH<<8; //16 bit deger ADC ADRESH ve ADRESL bitlerinden cekildi 
+   adresValue=adresValue+ADRESL;          
+   uint8_t value= (((adresValue*125)+128)>>8); //(((adresValue*125)+128)>>8); 128 yuvarlama        
+   sprintf(strLCD, "TEMP:%d%cC ", value , 0xdf); // 5000mV/1024(ADC=10)/10mv  10mv = 1 Derece
+}                    
+         
+// A/D Converter 4x4 BUTTON  - RA1        
+void buttonKEY(){ 
+   if(keyCounter>sizeKEYPAD-1||keyCounter==0){ 
+      keyCounter=0;  
+      keyStartFlag=1; 
+      }
+   if(tresholdL[keyCounter]<keypadADCValue && tresholdH[keyCounter]>keypadADCValue){ 
+      keyPress = keypadChar[keyCounter]; 
+   }             
+   keyCounter++; 
+}                                
+void buttonRead(){ 
+      keypadADCValue = ADRESH<<8; //16 bit deger ADC ADRESH ve ADRESL bitlerinden cekildi 
+      keypadADCValue=keypadADCValue+ADRESL;                                                      
+}  
+
+                   
+void rs232Case(){                                   
+   if(RCIF_PIR1)                  
+      rs232t();                                                        
+   if(noKbHit_count>=1)   
+      unUSARTF.stUSARTF.noKbhit=1;                                                                        
+                                                                           
+   switch (switchTerminal_position){  
+      case 0: //             
+      if(unUSARTF.stUSARTF.enter_flag && unUSARTF.stUSARTF.noKbhit){ 
+         switchTerminal_position=1;                                                              
+      }   
+      break;                                  
+      case 1: // MEVCUT METIN:                                                     
+      if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text1_flag==0){ 
+         rs232t_txText(0,terminal_text1_Count);                                       
+         if(terminal_text1_Count>=terminal_text1_size-1){
+            unUSARTF.stUSARTF.terminal_text1_flag=1;
+            switchTerminal_position=2;
+            memset(txData, 0, sizeof(txData)); 
+         }else{   
+           terminal_text1_Count++;          
+         } 
+      }                                
+      break;
+      case 2: // Lutfen bir yazi giriniz                                         
+      if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text4_flag==0){ 
+         rs232t_txText(3,terminal_text4_Count);                                       
+         if(terminal_text4_Count>=terminal_text4_size-1){
+            unUSARTF.stUSARTF.terminal_text4_flag=1;
+            switchTerminal_position=3;
+            memset(txData, 0, sizeof(txData));
+         }else{   
+            terminal_text4_Count++;              
+         }               
+      } 
+      break;          
+      case 3: // LCD TEXT  
+      if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text2_flag==0){ 
+         rs232t_txText(1,terminal_text2_Count);                                       
+         if(terminal_text2_Count>=terminal_text2_size-1){
+            unUSARTF.stUSARTF.terminal_text2_flag=1;
+            switchTerminal_position=0;   
+            unUSARTF.stUSARTF.enter_flag=0;          
+            memset(txData, 0, sizeof(txData));    
+         }else{ 
+            terminal_text2_Count++; 
+         }                                            
+      }                                               
+      break;   
+                                                               
+      case 4: // Limit Asildi                                                               
+      if(TXIF_PIR1 && unUSARTF.stUSARTF.terminal_text3_flag==0 && unUSARTF.stUSARTF.recieve_exceed){ 
+         rs232t_txText(2,terminal_text3_Count);                                       
+         if(terminal_text3_Count>=terminal_text3_size-1){      
+            unUSARTF.stUSARTF.terminal_text3_flag=1;
+            unUSARTF.stUSARTF.recieve_exceed=0;      
+            memset(txData, 0, sizeof(txData));                                                                                        
+            terminal_text3_Count=0; 
+            switchTerminal_position=0;                 
+         }else{   
+            terminal_text3_Count++;
+         }                    
+      }   
+      break;                                               
+   
+      default:          
+      switchTerminal_position=0;
+   }
+}                                                  
+                
+#INT_TIMER1                                                           
+void timer1_interrupt(){ 
+   TMR1H = 0xF8; //Tasma saayci|
+   TMR1L = 0x30; // |||15536 decimal sayisina esit. 
+   PIR1_TMR1IF = 0; // Kesme bayragi sifirlaniyor.
+   iSayac++;                               
+   if (iSayac % 2 == 0) //5ms
+      tmr1_time.tmr1_flags._2ms = true; 
+    if(iSayac  % 20 == 0) //50ms        
+      tmr1_time.tmr1_flags._20ms = true;  
+   if(iSayac  % 50 == 0) //50ms        
+      tmr1_time.tmr1_flags._50ms = true; 
+   if(iSayac  % 100 == 0) //50ms        
+      tmr1_time.tmr1_flags._100ms = true;  
+   if(iSayac  % 200 == 0) //50ms        
+      tmr1_time.tmr1_flags._200ms = true;    
+   if(iSayac  % 500 == 0)
+      tmr1_time.tmr1_flags._500ms = true;   
+   if(iSayac > 1000&&STATUS){   // 1 Saniye  
+      tmr1_time.tmr1_flags._1000ms = true; 
+      iSayac = 0;                                           
+      noKbHit_count++;  
+   }                                
+}                             
+                                    
+#ORG 0x0100,0x0400                                                                    
+void main(){                                 
+   setupTimerIOSC();                          
+   adcSetup();                                
+   printOn2x16();                                                        
+   USART_Init();        
+   ccp1PwmInit();
+    while (TRUE){   
+      WDTreset();                 
+      if(tmr1_time.tmr1_flags._1000ms){                      
+         tmr1_time.tmr1_flags._1000ms = false; 
+         if(usart_inst.a.LED)
+            PORTB_7=~PORTB_7;          
+         LCDW1SecFlag=1;    
+      }                         
+      if(tmr1_time.tmr1_flags._500ms){                      
+         tmr1_time.tmr1_flags._500ms = false;  
+         if(usart_inst.a.TEMP)
+            if(ADC_Read(0)==1)
+               lm35Calculate();   
+      }       
+      if(tmr1_time.tmr1_flags._200ms){       
+         tmr1_time.tmr1_flags._200ms = false; 
+         if(keyStartFlag && usart_inst.a.BUT){                   
+            USART_TxCharBuffer(0,keyPress,0);  
+            keyControl=0;
+         }   
+      }        
+      if(tmr1_time.tmr1_flags._100ms){       
+         tmr1_time.tmr1_flags._100ms = false;      
+            if(usart_inst.a.BUT)
+               if(ADC_Read(1)==1)
+                  buttonRead(); 
+      }  
+      if(tmr1_time.tmr1_flags._50ms){          
+         tmr1_time.tmr1_flags._50ms = false;
+         button_debounce (PORTB, 0);
+      }
+      if(tmr1_time.tmr1_flags._20ms){          
+         tmr1_time.tmr1_flags._20ms = false;
+         if(usart_inst.a.CCP1)
+            ccp1Control();       
+      }                           
+      if(tmr1_time.tmr1_flags._2ms){
+         tmr1_time.tmr1_flags._2ms = false;                                                                                              
+         if(LCDW1SecFlag && usart_inst.a.LCD)     
+            LCD_String(); 
+         if(usart_inst.a.BUT && keypadADCValue!=0) 
+            buttonKEY();                 
+      }
+      rs232Case();
+   }                                                     
+} 
+
+void ccp1Control(){            
+   if(duty_cycle<99 && duty_direction){      
+      duty_cycle++;       
+      CCPR1L = duty_cycle; 
+   }else{            
+      duty_direction=0;
+   }                                 
+   if(duty_cycle>1 && !duty_direction){  
+      duty_cycle--; 
+      CCPR1L = duty_cycle;  
+   }else{        
+      duty_direction=1;
+   }
+}
+
+void ccp1PwmInit(){
+    TRISC_2=0;           //Set CCP1 pin as output for PWM out  
+    PR2=99;              // load period value in PR2 register 
+    CCPR1L=1;            // load duty cycle 
+    T2CON=0;             // no pre-scalar,timer2 is off 
+    CCP1CON=0x0C;        // set PWM mode and no decimal value for PWM   
+    TMR2=0;
+    TMR2ON=0;            // Turn ON Timer2 
+}
+void WDTreset(void){         
+   #asm                  
+   CLRWDT                         
+   #endasm                                 
+}                  
+                  

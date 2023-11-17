@@ -1,0 +1,29 @@
+#include "1wire.h"    
+#include "definitions.h"
+#include "ucregisters.h"     
+#include "1wire.c"  
+
+#ifndef DS1990A_H
+#define DS1990A_H    
+
+
+extern uchar_t SlaveROM[10][9];         
+extern uchar_t TEMPBF[32]; 
+// SEARCH ROOM 
+extern uchar_t DevicesFound; // Number of devices found   
+extern uchar_t queue;    
+// SEARCH ROOM  
+void ds1990SearchRom();  
+
+typedef union{  
+   uint8_t  all;      // Type  kayitciya erismek icin
+   struct{
+      uint8_t _2ms        : 1;  //bit:0, 2ms     
+      uint8_t reserved    : 7;  //bit:0, 2ms    
+     
+   }tmr1_flags;                    
+}tmr1_time_t;   
+extern tmr1_time_t tmr1_time;  
+
+
+#endif // DS1990A_H                               

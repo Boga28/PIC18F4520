@@ -1,0 +1,277 @@
+000     @SCRATCH
+000     @MEMSET.P1
+001     @SCRATCH
+001     _RETURN_
+001-002 @MEMSET.P1
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016-017 iSayac
+018     tmr1_time
+019-038 strLCD
+039     countLCDChar
+03A     LCDW1SecFlag
+03B-044 TEMPBF
+045     period
+046-047 @sprintf_string
+048     ds1820_read.busy
+048     lcdcmd.cmd_value
+048     LCD_String.@SCRATCH1
+048     printOn2x16.@SCRATCH1
+049     lcdcmd.cmd_value1
+049     lcddata.text
+049     ds1820_read.temp1
+049     printOn2x16.@SCRATCH2
+04A     lcddata.data
+04A     ds1820_read.temp2
+04A     dis_cmd.cmdout
+04A     lcdcmd.@SCRATCH1
+04A     printOn2x16.@SCRATCH3
+04B-04C ds1820_read.temp3
+04B     dis_data.dataout
+04B     lcddata.@SCRATCH1
+04B     printOn2x16.@SCRATCH4
+04C     delayUsFun.us
+04D     onewire_write.data
+04D-04E @PRINTF_LD_834.P1
+04D     @PSTRINGCN_834.P2
+04D     onewire_read.count
+04D     delayUsFun.i
+04D-04E @DIVS1616.P1
+04D     onewire_reset.@SCRATCH1
+04E     onewire_read.data
+04E     onewire_write.count
+04E     @delay_us1.P1
+04E     @PSTRINGCN_834.@SCRATCH1
+04F-050 @DIVS1616.P1
+04F     @PSTRINGCN_834.@SCRATCH2
+04F     @PRINTF_LD_834.@SCRATCH1
+050     @PRINTF_LD_834.@SCRATCH2
+051     @DIVS1616.@SCRATCH1
+051     @PRINTF_LD_834.@SCRATCH3
+052     @DIVS1616.@SCRATCH2
+052     @PRINTF_LD_834.@SCRATCH4
+053     @PRINTF_LD_834.@SCRATCH5
+054     @PRINTF_LD_834.@SCRATCH6
+055     @PRINTF_LD_834.@SCRATCH7
+056     @SPRINTF.P1
+057-058 @DIV1616.P1
+057     timer1_interrupt.@SCRATCH1
+058     timer1_interrupt.@SCRATCH2
+059-05A @DIV1616.P1
+05B     @DIV1616.@SCRATCH1
+F80.0   PORTA_0
+F80     PORTA
+F80.1   PORTA_1
+F81.0   PORTB_0
+F81     PORTB
+F81.7   PORTB_7
+F82     PORTC
+F82.0   PORTC_0
+F82.2   PORTC_2
+F83     PSP_DATA
+F84     PORTE
+F84.0   PORTE_RS
+F84.1   PORTE_E
+F84.2   PORTE_RW
+F8B.0   LATC_0
+F8B     LATC
+F8C     PORTD
+F8C.7   PORTD_7
+F92.0   PORTA_DIR_0
+F92     TRISA
+F92.1   PORTA_DIR_1
+F93     TRISB
+F94.0   TRISC_0
+F94     TRISC
+F94.2   TRISC_2
+F94.3   SCL_DIR
+F94.4   SDA_DIR
+F94.6   TRISC_6
+F94.7   TRISC_7
+F95     TRISD
+F96     TRISE
+F9D     PIE1
+F9D.0   PIE1_TMR1IE
+F9D.4   TXIE_PIE1
+F9D.5   RCIE_PIE1
+F9D.6   ADIE
+F9E     PIR1
+F9E.0   PIR1_TMR1IF
+F9E.4   TXIF_PIR1
+F9E.5   RCIF_PIR1
+F9E.6   ADIF
+F9F.0   IPR1_TMR1IP
+F9F     IPR1
+FAB     RCSTA
+FAB.1   OERR_RCSTA
+FAB.4   CREN_RCSTA
+FAC     TXSTA
+FAD     TXREG
+FAE     RCREG
+FAF     SPBRG
+FB0     SPBRGH
+FB4.6   C1OUT
+FB4.7   C2OUT
+FB8     BAUDCON
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBD     CCP1CON
+FBE     CCPR1L
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FBF     CCPR1H
+FC0     ADCON2
+FC1.0   PCFG0
+FC1     ADCON1
+FC1.1   PCFG1
+FC2     ADCON0
+FC2.0   ADON
+FC2.1   GODONE
+FC3     ADRESL
+FC4     ADRESH
+FC5     SSPCON2
+FC5.0   SEN
+FC5.1   RSEN
+FC5.2   PEN
+FC5.3   RCEN
+FC5.4   ACKEN
+FC5.5   ACKDT
+FC5.6   ACKSTAT
+FC6     SSPCON1
+FC7.0   BF
+FC7     SSPSTAT
+FC8     SSPADD
+FC9     SSPBUF
+FCA     T2CON
+FCA.2   TMR2ON
+FCB     PR2
+FCC     TMR2
+FCD.0   T1CON_TMR1ON
+FCD     T1CON
+FCD.1   T1CON_TMR1CS
+FCD.2   T1CON_T1SYNC
+FCD.3   T1CON_T1OSCEN
+FCD.4   T1CON_T1CKPS0
+FCD.5   T1CON_T1CKPS1
+FCD.6   T1CON_T1RUN
+FCD.7   T1CON_RD16
+FCE     TMR1L
+FCF     TMR1H
+FD0     RCON
+FD0.7   RCON_IPEN
+FD3     OSCCON
+FD3.4   IRCF0
+FD3.5   IRCF1
+FD3.6   IRCF2
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FE9-FEA @MEMSET.P5
+FF2     INTCON
+FF2.6   INTCON_PEIE
+FF2.7   INTCON_GIE_GIEH
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @const846.call
+0000D2  @const832.call
+0000DC  delayUsFun
+0000EA  dis_cmd
+000100  @cinit1
+000100  MAIN
+00012E  @cinit2
+000402  @DIV1616
+000446  timer1_interrupt
+0004A8  setupTimerIOSC
+0004E4  lcdcmd
+000506  twoLinesBCDMode
+000510  LinesActive
+00051A  lcdCursorOff
+000524  lcdShiftRight
+00052E  lcdClear
+000538  printOn2x16
+000578  OneWireRelease
+00057E  @delay_us1
+00059C  OneWireHigh
+0005A2  onewire_reset
+0005C4  onewire_write
+0005F4  onewire_read
+00063E  @DIVS1616
+0006B4  @SPRINTF
+0006D0  @PSTRINGCN_834
+0006F0  @PRINTF_LD_834
+0007E4  @MEMSET
+000800  ds1820_read
+0008BC  WDTreset
+0008C2  lcdGoToFirstLine
+0008CC  lcdGoToSecondLine
+0008D6  dis_data
+0008EA  lcddata
+00090E  LCD_String
+
+Project Directory:
+    C:\18F4520\CCS\1-Wire-D18B20-LCD\
+
+Project Files:
+    main.c                                                  [28-Jul-23 08:28  CRC=C0E97309]
+    ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h     [12-Nov-13 14:35  CRC=30BAB57A]
+    definitions.h                                           [27-Jul-23 14:40  CRC=F817D64F]
+    main.h                                                  [20-Jul-23 16:34  CRC=D8102B21]
+    delayms.h                                               [12-Jul-23 07:41  CRC=D872A938]
+    ucregisters.h                                           [27-Jul-23 12:16  CRC=7037A62B]
+    init.h                                                  [27-Jul-23 15:52  CRC=7925241E]
+    lcd.h                                                   [19-Jul-23 09:30  CRC=1292755A]
+    lcd.c                                                   [20-Jul-23 16:37  CRC=ECEA4FFE]
+    delayms.c                                               [19-Jul-23 16:26  CRC=7910CBDE]
+    1wire.c                                                 [28-Jul-23 08:26  CRC=9C5C1E27]
+    1wire.h                                                 [27-Jul-23 17:15  CRC=5DFB589E]
+    ds1820.c                                                [27-Jul-23 17:34  CRC=2576DC20]
+
+Source signature=416E5DAF
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4520
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

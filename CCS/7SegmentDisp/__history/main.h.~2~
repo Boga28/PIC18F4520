@@ -1,0 +1,11 @@
+#ifndef MAIN_H     
+#define MAIN_H    
+              
+#define unsigned DELAY 1000
+#define TRUE 1
+extern unsigned int iSevenSegDisp[];
+                    
+#endif //MAIN_H    
+
+                         
+

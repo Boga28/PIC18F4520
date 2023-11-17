@@ -1,0 +1,104 @@
+
+ROM used:   3026/32768 (9%)
+            3576/32768 (11%) including unused fragments
+
+            1.4 Average locations per line
+            7.1 Average locations per statement
+
+RAM used:   250/1536 (16%) at main() level
+            270/1536 (18%) worst case
+
+Stack used: 9 worst case (7 in main + 2 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  259   156  36  main.c
+  840     0   0  ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h
+   14     0   0  definitions.h
+   11     0   0  main.h
+    8     0   0  delayms.h
+  108     0   0  ucregisters.h
+   34     0   0  init.h
+   10     0   0  button.h
+   42     0   0  usart_rs232.h
+   24     0   0  lcd.h
+  130    42  10  lcd.c
+   29    17   4  button.c
+   17     5   1  delayms.c
+  124    84  20  usart_rs232.c
+  423   125  29  ..\..\..\Program Files (x86)\PICC\Drivers\string.h
+   32     0   0  ..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
+   28     0   0  ..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
+----- -----
+ 2133   429 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     18   0    1   100  1.7  dis_cmd
+0     34   1    3   145  2.6  lcdcmd
+0     10   0    0    17  0.8  twoLinesBCDMode
+0     10   0    0    17  0.8  LinesActive
+0      8   0    0    17  0.8  lcdClear
+0     10   0    0    17  0.8  lcdGoToFirstLine
+0     10   0    0    17  0.8  lcdGoToSecondLine
+0     10   0    0    17  0.8  lcdShiftRight
+0     10   0    0    17  0.8  lcdCursorOff
+0     18   0    1   100  1.7  dis_data
+0     36   1    3   145  2.6  lcddata
+0     56   1    1   207  4.4  LCD_String
+0     36   1    3    81  2.9  test_bit
+0     68   1    3   369  5.6  button_debounce
+0     14   0    2   154  1.9  delayUsFun
+0    162   3    7   343  8.6  strncmp
+0    160   3    4   524  4.1  USART_Init
+0     42   1    0   524  4.1  @const922
+0     54   1    0   807  4.8  @const923
+0     44   1    0     5  1.0  @const924
+0     12   0    1    42  1.8  USART_RxCharBuffer
+0     34   1    1   112  2.6  USART_TxCharBuffer
+0    154   3    2   483  3.7  rs232t_txText
+0    174   3    0   762  4.3  activationCommands
+0    172   3    6   995  7.6  rs232t
+0     26   0    0   112  2.6  @MEMSET
+0     62   1    0   646  2.4  setupTimerIOSC
+0     18   0    0    88  1.7  adcSetup
+0     64   1    4   167  2.1  printOn2x16
+0     60   1    0   167  2.1  @const941
+0    134   2    2   239  4.0  lm35Calculate
+0     40   1    5   239  4.0  @MUL1616
+0     12   0    0   646  2.4  @const948
+0     32   1    1    88  1.7  @SPRINTF
+0     32   1    3   167  2.1  @PSTRINGCN_950
+0     44   1    3   239  4.0  @DIV88
+0    208   3    6   239  4.0  @PRINTF_D_950
+0     62   1    3   223  4.0  ADC_Read
+0    276   5    1  2243  9.4  rs232Case
+0    154   3    2   482  5.2  timer1_interrupt
+0     70   1    5   482  5.2  @DIV1616
+0    224   4    0   807  4.8  MAIN
+0      6   0    0     5  1.0  WDTreset
+ Inline         0     5  1.0  @cinit1
+
+Program metrics:
+    Functions               44
+    Statements              429
+    Comments                617
+    Volume (V)              24719
+    Difficulty (D)          140.5
+    Effort to implement (E) 3474156
+    Time to implement (T)   53 hours, 37 minutes
+    Est Delivered Bugs (B)  8
+    Cyclomatic Complexity   67
+    Maintainability (MI)    78
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00006     4  4  
+00008-00094   142  0  
+00096-000FE   106  0  
+00100-00400   224  546  
+00402-07FFE  2550  29192  
+
+
+

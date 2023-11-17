@@ -1,0 +1,158 @@
+ÀÄmain
+   ÃÄMAIN  0/112  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/60  Ram=0
+   ³  ÃÄprintOn2x16  0/64  Ram=4
+   ³  ³  ÃÄdelayUsFun  0/14  Ram=2
+   ³  ³  ÃÄtwoLinesBCDMode  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÃÄdis_cmd  0/18  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³  ³     ÀÄdis_cmd  0/18  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLinesActive  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdCursorOff  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdShiftRight  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdClear  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄ@const893  0/60  Ram=0
+   ³  ÃÄsearchRom  0/360  Ram=3
+   ³  ³  ÃÄOw_First  0/14  Ram=0
+   ³  ³  ³  ÀÄOw_Search  0/300  Ram=11
+   ³  ³  ³     ÃÄOw_Reset  0/60  Ram=2
+   ³  ³  ³     ³  ÃÄOneWireLow  0/6  Ram=0
+   ³  ³  ³     ³  ÃÄ@delay_us1  0/30  Ram=1
+   ³  ³  ³     ³  ÃÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ³  ÃÄOw_Read_Bit  0/46  Ram=1
+   ³  ³  ³     ³  ³  ÃÄOneWireLow  0/6  Ram=0
+   ³  ³  ³     ³  ³  ÀÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ³  ÃÄ@delay_us1  0/30  Ram=1
+   ³  ³  ³     ³  ÀÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ÃÄonewire_write  0/48  Ram=2
+   ³  ³  ³     ³  ÃÄOneWireLow  0/6  Ram=0
+   ³  ³  ³     ³  ÃÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ³  ÀÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ÃÄOw_Read_Bit  0/46  Ram=1
+   ³  ³  ³     ³  ÀÄ*
+   ³  ³  ³     ÃÄOw_Read_Bit  0/46  Ram=1
+   ³  ³  ³     ³  ÀÄ*
+   ³  ³  ³     ÃÄOw_Write_One  0/30  Ram=0
+   ³  ³  ³     ³  ÃÄOneWireLow  0/6  Ram=0
+   ³  ³  ³     ³  ÃÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ³  ÀÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ÃÄOw_Write_Zero  0/30  Ram=0
+   ³  ³  ³     ³  ÃÄOneWireLow  0/6  Ram=0
+   ³  ³  ³     ³  ÀÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³     ÀÄdocrc8  0/28  Ram=2
+   ³  ³  ³        ÀÄ@const828  0/282  Ram=0
+   ³  ³  ÃÄ@MEMSET  0/26  Ram=0
+   ³  ³  ÃÄOw_Next  0/6  Ram=0
+   ³  ³  ³  ÀÄOw_Search  0/300  Ram=11
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄ@MEMSET  0/26  Ram=0
+   ³  ³  ÃÄOw_Next  0/6  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@MEMSET  0/26  Ram=0
+   ³  ³  ÀÄ@PSTRINGC_9600_31766_31767  0/36  Ram=2
+   ³  ÃÄsearchRom  0/360  Ram=3
+   ³  ³  ÀÄ*
+   ³  ÃÄsearchRom  0/360  Ram=3
+   ³  ³  ÀÄ*
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÃÄLCD_String  0/56  Ram=1
+   ³  ³  ÃÄlcdGoToFirstLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdGoToSecondLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄlcddata  0/36  Ram=3
+   ³  ³     ÃÄdis_data  0/20  Ram=1
+   ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³     ÀÄdis_data  0/20  Ram=1
+   ³  ³        ÀÄ*
+   ³  ÀÄmultid18b20cal  0/546  Ram=0
+   ³     ÃÄds1820_read_from_rom  0/190  Ram=3
+   ³     ³  ÃÄonewire_reset  0/36  Ram=1
+   ³     ³  ³  ÃÄOneWireLow  0/6  Ram=0
+   ³     ³  ³  ÃÄ@delay_us1  0/30  Ram=1
+   ³     ³  ³  ÃÄOneWireRelease  0/6  Ram=0
+   ³     ³  ³  ÀÄ@delay_us1  0/30  Ram=1
+   ³     ³  ÃÄonewire_write  0/48  Ram=2
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄonewire_write  0/48  Ram=2
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄonewire_write  0/48  Ram=2
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄonewire_reset  0/36  Ram=1
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄonewire_write  0/48  Ram=2
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄonewire_write  0/48  Ram=2
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄonewire_write  0/48  Ram=2
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÃÄonewire_read  0/76  Ram=2
+   ³     ³  ³  ÃÄOneWireLow  0/6  Ram=0
+   ³     ³  ³  ÀÄOneWireRelease  0/6  Ram=0
+   ³     ³  ÃÄonewire_read  0/76  Ram=2
+   ³     ³  ³  ÀÄ*
+   ³     ³  ÀÄ@DIVS1616  0/118  Ram=6
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@MEMSET  0/26  Ram=0
+   ³     ÃÄds1820_read_from_rom  0/190  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@MEMSET  0/26  Ram=0
+   ³     ÃÄds1820_read_from_rom  0/190  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PRINTF_LD_884  0/242  Ram=9
+   ³     ³  ÀÄ*
+   ³     ÃÄ@PSTRINGCN_884  0/30  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÀÄ@MEMSET  0/26  Ram=0
+   ÀÄtimer1_interrupt  0/96  Ram=2
+      ÀÄ@DIV1616  0/68  Ram=5

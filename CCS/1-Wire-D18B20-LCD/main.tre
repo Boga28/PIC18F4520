@@ -1,0 +1,73 @@
+ÀÄmain
+   ÃÄMAIN  0/100  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄsetupTimerIOSC  0/60  Ram=0
+   ³  ÃÄprintOn2x16  0/64  Ram=4
+   ³  ³  ÃÄdelayUsFun  0/14  Ram=2
+   ³  ³  ÃÄtwoLinesBCDMode  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÃÄdis_cmd  0/18  Ram=1
+   ³  ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³  ³     ÀÄdis_cmd  0/18  Ram=1
+   ³  ³  ³        ÀÄ*
+   ³  ³  ÃÄLinesActive  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdCursorOff  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdShiftRight  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdClear  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄ@const846  0/60  Ram=0
+   ³  ÃÄds1820_read  0/188  Ram=5
+   ³  ³  ÃÄonewire_reset  0/34  Ram=1
+   ³  ³  ³  ÃÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³  ÃÄ@delay_us1  0/30  Ram=1
+   ³  ³  ³  ÃÄOneWireHigh  0/6  Ram=0
+   ³  ³  ³  ÀÄ@delay_us1  0/30  Ram=1
+   ³  ³  ÃÄonewire_write  0/48  Ram=2
+   ³  ³  ³  ÃÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³  ÃÄOneWireHigh  0/6  Ram=0
+   ³  ³  ³  ÀÄOneWireHigh  0/6  Ram=0
+   ³  ³  ÃÄonewire_write  0/48  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄonewire_read  0/74  Ram=2
+   ³  ³  ³  ÃÄOneWireRelease  0/6  Ram=0
+   ³  ³  ³  ÀÄOneWireHigh  0/6  Ram=0
+   ³  ³  ÃÄonewire_reset  0/34  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄonewire_write  0/48  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄonewire_write  0/48  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄonewire_read  0/74  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄonewire_read  0/74  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@DIVS1616  0/118  Ram=6
+   ³  ³  ÃÄ@PSTRINGCN_834  0/32  Ram=3
+   ³  ³  ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÃÄ@PRINTF_LD_834  0/244  Ram=9
+   ³  ³  ³  ÀÄ@SPRINTF  0/28  Ram=1
+   ³  ³  ÀÄ@MEMSET  0/28  Ram=0
+   ³  ÃÄWDTreset  0/6  Ram=0
+   ³  ÃÄLCD_String  0/56  Ram=1
+   ³  ³  ÃÄlcdGoToFirstLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÃÄlcdGoToSecondLine  0/10  Ram=0
+   ³  ³  ³  ÀÄlcdcmd  0/34  Ram=3
+   ³  ³  ³     ÀÄ*
+   ³  ³  ÀÄlcddata  0/36  Ram=3
+   ³  ³     ÃÄdis_data  0/20  Ram=1
+   ³  ³     ³  ÀÄdelayUsFun  0/14  Ram=2
+   ³  ³     ÀÄdis_data  0/20  Ram=1
+   ³  ³        ÀÄ*
+   ³  ÀÄds1820_read  0/188  Ram=5
+   ³     ÀÄ*
+   ÀÄtimer1_interrupt  0/98  Ram=2
+      ÀÄ@DIV1616  0/68  Ram=5

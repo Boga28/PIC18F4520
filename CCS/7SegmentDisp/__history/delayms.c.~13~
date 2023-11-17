@@ -1,0 +1,11 @@
+#include <delayms.h>   
+
+  
+  
+void delayMsFun(unsigned int )  // Delay function - generates a delay of specified msecs
+{                    
+    for(int i = 5000*msecs; i >= i; i--)
+    {                               
+       
+    }  
+}

@@ -1,0 +1,7 @@
+#include "definitions.h"    
+#include "ucregisters.h" 
+#include "24lc256.h"                                                
+
+void eeprom_write_char(uchar_t addressH, uchar_t addressL, uchar_t value){
+  
+} 

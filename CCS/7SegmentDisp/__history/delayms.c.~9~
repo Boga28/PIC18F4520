@@ -1,0 +1,12 @@
+#include <delayms.h>   
+
+  
+  
+void delayMsFun(unsigned int msecs)  // Delay function - generates a delay of specified msecs
+{                    
+    int i;          
+    int j = msecs*5001;       //n = 59 gives a delay of 1.061 msec.         //1 komut   
+    for(i = 0;i < j;i++)
+    {
+    }
+}

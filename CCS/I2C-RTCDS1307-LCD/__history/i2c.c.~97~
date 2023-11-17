@@ -1,0 +1,63 @@
+#include "i2c.h"                                                                                        
+#include "definitions.h"    
+#include "ucregisters.h"
+                         
+ 
+                                                
+                       
+void _I2CACK(void){
+   ACKDT = 0; //Acknowledge Data bit  
+   ACKEN = 1;  // Acknowledge Sequence Enable bit   
+   while(SSPIF==0);      // Wait for it to complete
+   SSPIF = 0;         // Clear the flag bit
+}          
+void _I2CNACK(void){
+   ACKDT = 1;   
+   ACKEN = 1; 
+   while(SSPIF==0);      // Wait for it to complete
+   SSPIF = 0;         // Clear the flag bit     
+}                         
+                                            
+                           
+void _I2C_Start(void){ 
+   SEN = 1;         // Start condition enabled 
+   while(SSPIF==0);      // automatically cleared by hardware 
+                    // wait for start condition to finish  
+   SSPIF=0;
+}
+
+void _I2C_ReStart(void){
+   RSEN = 1;         // Send Restart bit
+   while(SSPIF==0);      // Wait for it to complete
+   SSPIF = 0;         // Clear the flag bit     
+   delay_us(5); 
+}        
+                                           
+//Function : I2C_Stop sends stop bit sequence 
+void _I2C_Stop(void){     
+   PEN = 1;      // Initiate Stop condition on SDA and SCL pins 
+   while(SSPIF==0);   // Wait for stop condition to finish 
+                     // PEN automatically cleared by hardware 
+   SSPIF=0;
+} 
+                                     
+// Function Purpose: I2C_Write_Byte transfers one byte 
+uchar_t _I2C_Write_Byte(uchar_t data){              
+   SSPBUF = data;      // Send Byte value
+   while(SSPIF==0);      // Wait for it to complete
+   SSPIF = 0;          // Clear the flag bit                                       
+   return ACKSTAT;     // Return ACK/NACK from slave
+}                           
+                                        
+// Function Purpose: I2C_Read_Byte reads one byte
+uchar_t _I2C_Read_Byte(uchar_t flag){    
+   uchar_t receive = 0;
+   RCEN = 1;  
+   while(SSPIF==0);      // Wait for it to complete  
+   SSPIF = 0;        
+   receive = SSPBUF; 
+   if(!flag) 
+      _I2CACK();
+      _I2CNACK();
+   return receive; // Return The Received Byte  
+}

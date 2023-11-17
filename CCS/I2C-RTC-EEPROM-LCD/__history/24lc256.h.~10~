@@ -1,0 +1,11 @@
+#include "definitions.h"    
+
+#ifndef 24LC256_H                                         
+#define 24LC256_H  
+#define EEPROM_ADDRESS 0xA1
+ 
+void eeprom_test();                          
+void eeprom_write_char(uchar_t, uchar_t, uchar_t);
+uchar_t eeprom_read_char(uchar_t, uchar_t);                                                  
+                                                  
+#endif //24LC256_H

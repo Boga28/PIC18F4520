@@ -1,0 +1,26 @@
+#include "binbcdconv.h"
+                                                    
+uchar_t bin2bcd(uchar_t binary_value){
+  uchar_t retval;                    
+  retval = 0;                                               
+  while(1){
+    if(binary_value >= 10){    // 10'dan buyuk oldugu muddetce                                    
+      binary_value   -= 10;    // 10 cikar
+      retval += 0x10;  //asil degiskenimizin MsB'sine 1 ekle     
+    } 
+    else{ 
+      retval += binary_value;  //artik 10'dan buyuk degil kalan 0-9 arasi sayiyi asil degiskenimize ekle                            
+      break;                
+    }
+  }
+  return(retval);  
+}
+                          
+                              
+// 8-Bit ile oldugu icin 0-99 arasi bir bcd sayi yazilmalidir. 
+uchar_t bcd2bin(uchar_t bcd_value){ 
+         // (bcd_value>>4)*10) BCD'nin 10 luk kisim ilk 4 bite kaydirildi ve 10 ile carpildi.
+         // (bcd_value & 0x0F) BCD'nin yuksek degerli 4 biti sifirlandi ve 0-9 kismi birakildi.
+         // 2 sayi toplanarak binary karsiligi elde edildi.
+  return ((bcd_value>>4)*10) + (bcd_value & 0x0F);  
+}                     

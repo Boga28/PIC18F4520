@@ -1,0 +1,28 @@
+#ifndef ONE_WIRE_H
+#define ONE_WIRE_H  
+
+#define OW_PIN_DIRECTION   LATC_0 
+#define OW_WRITE_PIN       TRISC_0                       
+#define OW_READ_PIN        PORTC_0       
+                       
+ 
+                              
+/*                      
+ * One wire (1-wire) driver for CCS C compiler. Suitable for use with devices
+ * such as the DS18B20 1-wire digital temperature sensor.
+ */                                                                            
+  
+uchar_t OneWireRead(void); 
+void OneWireReset();
+            
+void OneWireWriteByte(uchar_t);  
+void OneWireWriteBit(uchar_t);                     
+
+uchar_t OneWireReadByte(void);
+uchar_t OneWireReadBit(); 
+
+void OneWireHigh(void);  
+void OneWireRelease(void); 
+                       
+
+#endif ONE_WIRE_H

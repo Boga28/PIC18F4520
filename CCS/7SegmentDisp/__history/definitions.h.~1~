@@ -1,0 +1,7 @@
+#ifndef DEFINATIONS_H     
+#define DEFINATIONS_H   
+                                                    
+typedef unsigned int16  int16_t;
+typedef unsigned int8   int8_t;   
+              
+#endif //DEFINATIONS_H      

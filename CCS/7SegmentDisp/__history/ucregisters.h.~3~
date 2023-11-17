@@ -1,0 +1,3 @@
+#
+#byte TRISD = 0x0F95
+#byte PORTD = 0x0F83  

@@ -1,0 +1,62 @@
+#include "i2c.h"                                                                                        
+#include "definitions.h"    
+#include "ucregisters.h"
+                         
+ 
+                                                
+                       
+void _I2CACK(){
+   SSPIF = 0;
+   ACKDT = 0; //Acknowledge Data bit  
+   ACKEN = 1;  // Acknowledge Sequence Enable bit   
+   while(SSPIF == 0);
+}          
+void _I2NCACK(){
+   SSPIF = 0;
+   ACKDT = 1;   
+   ACKEN = 1; 
+   while(SSPIF == 0);
+}                         
+                                            
+                           
+void _I2C_Start(){  
+   SEN = 1;         // Start condition enabled 
+   while(SEN);      // automatically cleared by hardware 
+                    // wait for start condition to finish   
+}    
+                                           
+//Function : I2C_Stop sends stop bit sequence 
+void _I2C_Stop(){ 
+   PEN = 1;      // Initiate Stop condition on SDA and SCL pins 
+   while(PEN);   // Wait for stop condition to finish 
+                 // PEN automatically cleared by hardware 
+} 
+         
+void _I2C_WAIT() {
+   while(RW == 1)
+      continue;
+   if(ACKSTAT == 1) { // If Acknowledge was not received from slave
+      _I2C_Stop();
+   }
+}                   
+    
+// Function Purpose: I2C_Write_Byte transfers one byte 
+void _I2C_Write_Byte(uchar_t data){ 
+   _I2C_WAIT();  
+   SSPBUF = data;                
+   while(BF == 1);
+   _I2C_WAIT();  
+}                         
+                                        
+// Function Purpose: I2C_Read_Byte reads one byte
+uchar_t _I2C_Read_Byte(uchar_t flag){  
+   uchar_t receive = 0;
+   RCEN = 1;     
+   while(BF == 0);            
+   receive = SSPBUF; 
+   _I2C_WAIT();
+   ACKDT = flag;   // ACK(0) ou NOT_ACK(1)
+   ACKEN=1;  
+   while(ACKEN == 1); 
+   return receive; // Return The Received Byte  
+}                   

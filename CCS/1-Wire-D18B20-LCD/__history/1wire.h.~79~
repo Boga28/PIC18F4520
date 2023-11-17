@@ -1,0 +1,16 @@
+#ifndef ONE_WIRE_H                                 
+#define ONE_WIRE_H  
+
+
+                             
+                                                                           
+     
+void onewire_reset();  
+void onewire_write(uchar_t); 
+uint8_t onewire_read(); 
+void OneWireHigh();          
+void OneWireRelease(); 
+                                                 
+                       
+
+#endif ONE_WIRE_H

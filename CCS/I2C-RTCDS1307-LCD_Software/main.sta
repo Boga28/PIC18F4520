@@ -1,0 +1,118 @@
+
+ROM used:   3012/32768 (9%)
+            3464/32768 (11%) including unused fragments
+
+            1.3 Average locations per line
+            7.8 Average locations per statement
+
+RAM used:   109/1536 (7%) at main() level
+            148/1536 (10%) worst case
+
+Stack used: 6 worst case (5 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  168    82  21  main.c
+  840     0   0  ..\..\..\Program Files (x86)\PICC\Devices\18F4520.h
+   14     0   0  definitions.h
+   11     0   0  main.h
+    8     0   0  delayms.h
+  160     0   0  ucregisters.h
+   25     0   0  init.h
+   24     0   0  lcd.h
+  129    42  11  lcd.c
+   18     5   1  delayms.c
+  148    67  17  DS1307.c
+   27    12   3  binbcdconv.c
+   10     0   0  binbcdconv.h
+   30     0   0  DS1307.h
+   26     0   0  i2c.h
+  124    51  13  i2c.c
+  423   125  33  ..\..\..\Program Files (x86)\PICC\Drivers\string.h
+   32     0   0  ..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
+   28     0   0  ..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
+----- -----
+ 2245   384 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     18   0    1   100  1.7  dis_cmd
+0     34   1    3   145  2.6  lcdcmd
+0     10   0    0    17  0.8  twoLinesBCDMode
+0     10   0    0    17  0.8  LinesActive
+0     10   0    0    17  0.8  lcdClear
+0     12   0    0    17  0.8  lcdGoToFirstLine
+0     12   0    0    17  0.8  lcdGoToSecondLine
+0     10   0    0    17  0.8  lcdShiftRight
+0     10   0    0    17  0.8  lcdCursorOff
+0     20   0    1   100  1.7  dis_data
+0     36   1    3   145  2.6  lcddata
+0     56   1    1   207  4.4  LCD_String
+0     14   0    2    88  2.3  delayUsFun
+0     32   1    2   203  5.1  bin2bcd
+0     26   0    2    75  2.8  bcd2bin
+0      8   0    0    45  0.9  I2C_Clock
+0     44   1    3   269  5.1  _I2C_Read
+0     34   1    2   245  5.0  _I2C_Write
+0     22   0    1   125  2.5  _I2CACK
+0     12   0    0    54  1.3  _I2C_Start
+0     10   0    0    48  1.3  _I2C_Stop
+0     16   0    0    38  1.4  i2cHighSda
+0     18   0    0    56  1.6  i2cLowSda
+0     16   0    0    38  1.4  i2cHighScl
+0     18   0    0   121  1.2  i2cLowScl
+0     24   0    0    74  1.2  DS1307_Init
+0    136   2    8   540  2.9  ds1307_set_date_time
+0    302   5    1   581  2.8  ds1307_get_date
+0     44   1    0     5  1.0  @const965
+0     28   0    1     5  1.0  @SPRINTF
+0     40   1    3             @DIV88
+0    170   3    6   263  2.3  @PRINTF_D0_967
+0     30   0    3   601  3.6  @PSTRINGCN_967
+0     38   1    2             @PSTRINGR_967
+0     28   0    0     5  1.0  @MEMSET
+0     84   1    1   263  2.3  ds1307_get_time
+0    214   4    4   601  3.6  getDayText
+0      8   0    0    14  0.7  getSec
+0      8   0    0    14  0.7  getMin
+0      8   0    0    14  0.7  getHour
+0      8   0    0    14  0.7  getDay
+0      6   0    0    14  0.7  getMonth
+0      6   0    0    14  0.7  getYear
+0    256   4   34   416  6.4  day_of_the_week
+0     66   1    5     5  1.0  @DIV1616
+0     64   1    0   675  2.4  setupTimerIOSC
+0     64   1    4   167  2.1  printOn2x16
+0     60   1    0             @const995
+0     62   1    2   254  4.6  timer1_interrupt
+0    324   5    3   703  4.2  MAIN
+0    178   3    6     5  1.0  @PRINTF_D0_9600_31766_31767
+0     22   0    0             @const1005
+0     34   1    3             @PSTRINGCN_9600_31766_31767
+0     40   1    2             @PSTRINGR_9600_31766_31767
+0      6   0    0     5  1.0  WDTreset
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               49
+    Statements              384
+    Comments                923
+    Volume (V)              14790
+    Difficulty (D)          106.2
+    Effort to implement (E) 1570687
+    Time to implement (T)   24 hours, 14 minutes
+    Est Delivered Bugs (B)  5
+    Cyclomatic Complexity   29
+    Maintainability (MI)    129
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00006     4  4  
+00008-00094   142  0  
+00096-000FE   104  2  
+00100-00400   324  446  
+00402-07FFE  2438  29304  
+
+
+

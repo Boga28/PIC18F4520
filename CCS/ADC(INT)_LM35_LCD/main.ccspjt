@@ -1,0 +1,35 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC18F4520
+CCSVerions=5.015
+Compiler=PCH
+CCSVersion=5.015
+[Target Data]
+FileList=main.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\boga2\Desktop\18F4520\CCS\LED\main]
+Type=4
+[mru-list]
+1=main.c
+[Opened Files]
+1=main.c
+2=main.h
+3=ucregisters.h
+4=usart_rs232.h
+5=usart_rs232.c
+6=lcd.c
+7=button.h
+8=ds18b20.h
+9=definitions.h
+10=delayms.h
+11=delayms.c
+12=
+13=usart_rs232.c
+14=main.lst
+15=
+[main.c]
+Type=4
+[Units]
+Count=1
+1=main (main)
